@@ -46,7 +46,7 @@ export class RoutinesController extends BaseController {
       const routineData = req.body
 
 
-      routineData.creatorId = req.userInfo.id
+      routineData.accountId = req.userInfo.id
       const routine = await routinesService.createRoutine(routineData)
       return res.send(routine)
     } catch (error) {
