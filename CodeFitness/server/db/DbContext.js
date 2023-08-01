@@ -8,6 +8,7 @@ class DbContext {
   Account = mongoose.model('Account', AccountSchema);
 
   Routines = mongoose.model('Routine', RoutineSchema)
+
 }
 
 export const dbContext = new DbContext()
