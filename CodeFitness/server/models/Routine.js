@@ -8,6 +8,11 @@ export const RoutineSchema = new Schema({
   public: { type: Boolean, default: true },
   accountId: { type: Schema.Types.ObjectId, required: true, ref: "Account" }
 }, {
-  timestamps: true, toJSON: { virtuals: true }
-}
-)
+  timestamps: true, toJSON: { virtuals: true }})
+
+  RoutineSchema.virtual('account', {
+    localField: 'accountId',
+    foreignField: '_id',
+    justOne:true,
+    ref:'Account'
+  })
