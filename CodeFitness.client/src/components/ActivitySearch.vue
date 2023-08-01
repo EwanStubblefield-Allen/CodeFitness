@@ -11,8 +11,8 @@
     </form>
     <button class="btn btn-info mx-5" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter</button>
   </div>
-  <div v-for="a in activities" :key="a.data.id" class="col-12 col-md-3 p-3">
-    <ActivityCard :activityProp="a.data" />
+  <div v-for="a in activities" :key="a.id" class="col-12 col-md-3 p-3">
+    <ActivityCard :activityProp="a" />
   </div>
 </template>
 

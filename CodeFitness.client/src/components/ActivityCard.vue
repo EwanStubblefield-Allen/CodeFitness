@@ -1,7 +1,10 @@
 <template>
-  <div :class="{ 'activityProp.image': 'image-bg' }" class="d-flex flex-column justify-content-center align-items-center bg-neutral-dark text-light p-3 activity-card">
+  <div class="d-flex flex-column justify-content-center text-center image-bg p-3 activity-card">
     <p class="fw-bold py-2">{{ activityProp.name }}</p>
-    <p>Category: {{ activityProp.category }}</p>
+    <p v-if="activityProp.category">Category: {{ activityProp.category }}</p>
+    <div v-if="activityProp.description">
+      {{ activityProp.description }}
+    </div>
   </div>
 </template>
 
@@ -23,7 +26,7 @@ export default {
     })
 
     return {
-      imageBackground: computed(() => `url('${props.activityProp.image}')`)
+      imageBackground: computed(() => `url('https://wger.de/${props.activityProp.image}')`)
     }
   }
 }
