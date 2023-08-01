@@ -6,10 +6,19 @@ export class RoutinesController extends BaseController {
   constructor() {
     super('api/routines')
     this.router
-
+      .get('', this.getRoutines)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createRoutine)
   }
+  async getRoutines (req, res, next) {
+  try{
+      const routines = await routinesService.getRoutines()
+  return res.send(routines)
+  } catch(error) {
+      next(error);
+  }
+  }
+  
   async createRoutine(req, res, next) {
     try {
       const routineData = req.body
