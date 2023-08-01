@@ -1,19 +1,34 @@
 <template>
-  <header>
-    <Navbar />
-  </header>
-  <main>
-    <router-view />
-  </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer>
+  <div class="container-fluid">
+    <section class="row">
+      <header class="col-12 bg-neutral py-2 px-0">
+        <Navbar />
+      </header>
+      <div class="col-2 bg-neutral">
+        <AccountBar />
+      </div>
+      <div class="col-10 p-0">
+        <main>
+          <router-view />
+        </main>
+      </div>
+    </section>
+
+    <ModalComponent id="filterForm">
+      <template #title>Filter</template>
+      <template #body>
+        <ActivityFilter />
+      </template>
+    </ModalComponent>
+  </div>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import AccountBar from './components/AccountBar.vue'
+import ModalComponent from './components/ModalComponent.vue'
 
 export default {
   setup() {
@@ -21,20 +36,41 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, AccountBar, ModalComponent }
 }
 </script>
 <style lang="scss">
-@import "./assets/scss/main.scss";
+  @import "./assets/scss/main.scss";
 
-:root{
-  --main-height: calc(100vh - 32px - 64px);
-}
+  :root {
+    --main-height: calc(100vh - 32px - 64px);
+    --darkest: #363737;
+    --dark: #334F52;
+    --neutral-dark: #406B6E;
+    --neutral: #308484;
+    --neutral-light: #67C5CB;
+    --light: #BEDFEC;
+    --background: #D9D9D9;
+    --action: #34DCE7;
+  }
 
+  body {
+    font-family: 'Aldrich', sans-serif;
+  }
 
-footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
-}
+  p {
+    margin: 0;
+  }
+
+  .bg-neutral-dark {
+    background-color: var(--neutral-dark);
+  }
+
+  .bg-neutral {
+    background-color: var(--neutral);
+  }
+
+  .bg-neutral-light {
+    background-color: var(--neutral-light);
+  }
 </style>
