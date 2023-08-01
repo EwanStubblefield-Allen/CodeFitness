@@ -22,6 +22,8 @@ export class RoutinesController extends BaseController {
   async createRoutine(req, res, next) {
     try {
       const routineData = req.body
+      debugger
+      
       routineData.creatorId = req.userInfo.id
       const routine = await routinesService.createRoutine(routineData)
       return res.send(routine)
