@@ -3,7 +3,7 @@ import { Forbidden } from "../utils/Errors.js"
 
 class RoutinesService {
   async getRoutineById(routineId) {
-    const routine = await dbContext.Routines.findById(routineId)
+    const routine = (await dbContext.Routines.findById(routineId)).populate('account')
     return routine
   }
   async removeRoutine(accountId, routineId) {
@@ -16,11 +16,12 @@ class RoutinesService {
     return routineToRemove
   }
   async getRoutines() {
-    const routines = await dbContext.Routines.find()
+    const routines = await dbContext.Routines.find().populate('account')
     return routines
   }
   async createRoutine(routineData) {
     const routine = await dbContext.Routines.create(routineData)
+    await routine.populate('account')
     return routine
   }
 
