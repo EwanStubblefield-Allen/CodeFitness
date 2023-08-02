@@ -1,6 +1,10 @@
 <template>
   <section class="row mb-3">
-    <img class="community-img " src="../assets/img/yellow-flag.png" alt="Yellow">
+    <div class="col-11 m-auto">
+      <section class="row">
+        <img class="community-img " src="../assets/img/yellow-flag.png" alt="Yellow">
+      </section>
+    </div>
   </section>
   <section class="row mb-3">
     <div class="col-11 m-auto bg-light d-flex justify-content-center p-3 bg-cover-img">
@@ -8,14 +12,14 @@
     </div>
   </section>
   <section class="row mb-3">
-    <div class="col-11 m-auto text-center text-dark bg-light fs-1">
+    <div class="col-11 m-auto text-center text-dark bg-light fs-3">
       <div class="mb-3">
         <p>Your Points</p>
         <p>0</p>
       </div>
 
-      <p class="mb-3"> Your Routines</p>
-      <div v-for="routine in 3" :key="routine" class="bg-neutral-light mb-2">
+      <p class="mb-3 px-3"> Your Routines</p>
+      <div v-for="routine in 3" :key="routine" class="bg-neutral-light mb-2 px-1">
         Routine {{ routine }}
       </div>
     </div>
