@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="getActivitiesByFilter()" class="row p-3">
+  <form @submit.prevent="getActivities()" class="row p-3">
     <p class="col-12 fw-bold">Body Group:</p>
     <div class="col-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="abs" value="abdominals">
@@ -110,6 +110,7 @@
       </label>
     </div>
     <div class="text-end">
+      <button @click="resetTemplate()" class="btn btn-secondary mx-3" type="reset">Reset</button>
       <button class="btn btn-success" type="submit">Submit</button>
     </div>
   </form>
@@ -137,7 +138,14 @@ export default {
       adaptable,
       difficulty,
 
-      async getActivitiesByFilter() {
+      resetTemplate() {
+        activitiesService.resetTemplate()
+        editable.value = ''
+        adaptable.value = ''
+        difficulty.value = ''
+      },
+
+      async getActivities() {
         try {
           await activitiesService.getActivities('', editable.value, adaptable.value, difficulty.value)
           Modal.getOrCreateInstance('#filterForm').hide()

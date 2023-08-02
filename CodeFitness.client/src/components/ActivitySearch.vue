@@ -4,7 +4,7 @@
       <div class="form-group d-flex align-items-center">
         <label for="search" class="fw-bold w-100">Search for activity:</label>
         <div class="input-group">
-          <input v-model="editable.search" id="search" class="form-control" type="text" minlength="3" maxlength="50" placeholder="Activity..." required>
+          <input v-model="editable.name" id="search" class="form-control" type="text" minlength="3" maxlength="50" placeholder="Activity..." required>
           <button type="submit" class="input-group-text" id="comment" title="Post Comment">+</button>
         </div>
       </div>
@@ -32,7 +32,7 @@ export default {
 
       async getActivitiesBySearch() {
         try {
-          await activitiesService.getActivities(editable.value.search)
+          await activitiesService.getActivities(editable.value.name)
         }
         catch (error) {
           Pop.error(error.message, '[GETTING ACTIVITIES BY SEARCH]')

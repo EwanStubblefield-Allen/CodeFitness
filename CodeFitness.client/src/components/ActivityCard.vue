@@ -5,7 +5,10 @@
     <p>Muscles: {{ activityProp.muscle.charAt(0).toUpperCase() + activityProp.muscle.slice(1) }}</p>
     <p>Type: {{ activityProp.type.charAt(0).toUpperCase() + activityProp.type.slice(1) }}</p>
     <p>Equipment: {{ activityProp.equipment.charAt(0).toUpperCase() + activityProp.equipment.slice(1).replace('_', ' ') }}</p>
-    <p>difficulty: {{ activityProp.difficulty.charAt(0).toUpperCase() + activityProp.difficulty.slice(1) }}</p>
+    <p>Difficulty: {{ activityProp.difficulty.charAt(0).toUpperCase() + activityProp.difficulty.slice(1) }}</p>
+  </div>
+  <div>
+    <button>Hi</button>
   </div>
 </template>
 
