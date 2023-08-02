@@ -4,12 +4,22 @@ import BaseController from "../utils/BaseController.js";
 
 export class ActivityRoutinesController extends BaseController {
   constructor() {
-    super('api/activityroutines')
+    super('api/activityRoutines')
     this.router
       .get('', this.getActivityRoutines)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createActivityRoutine)
   }
+
+  async getActivityRoutines(req, res, next) {
+    try {
+      const activityRoutines = await activityRoutinesService.getActivityRoutines()
+      return res.send(activityRoutines)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async createActivityRoutine(req, res, next) {
     try {
       const activityData = req.body
@@ -17,17 +27,7 @@ export class ActivityRoutinesController extends BaseController {
       const newActivityRoutine = await activityRoutinesService.createActivityRoutines(activityData)
       return res.send(newActivityRoutine)
     } catch (error) {
-      next(error);
+      next(error)
     }
   }
-  async getActivityRoutines(req, res, next) {
-    try {
-      const activityRoutines = await activityRoutinesService.getActivityRoutines()
-      return res.send(activityRoutines)
-    } catch (error) {
-      next(error);
-    }
-  }
-
-
 }

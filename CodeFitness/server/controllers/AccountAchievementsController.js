@@ -6,13 +6,11 @@ export class AccountAchievementsController extends BaseController {
   constructor() {
     super('api/accountAchievements')
     this.router
-    .get('', this.getAccountAchievements)
-    .use(Auth0Provider.getAuthorizedUserInfo)
-    .delete('/:accountAchievementId', this.deleteAccountAchievement)
-
+      .get('', this.getAccountAchievements)
+      .use(Auth0Provider.getAuthorizedUserInfo)
+      .delete('/:accountAchievementId', this.deleteAccountAchievement)
   }
 
-  
   async getAccountAchievements(req, res, next) {
     try {
       const accountAchievement = await accountAchievementsService.getAccountAchievement()
@@ -24,11 +22,10 @@ export class AccountAchievementsController extends BaseController {
 
   async deleteAccountAchievement(req, res, next) {
     try {
-      // debugger
-      const accountId = req.userInfo.id 
+      const accountId = req.userInfo.id
       const accountAchievementId = req.params.accountAchievementId
       const accountAchievement = await accountAchievementsService.deleteAccountAchievement(accountId, accountAchievementId)
-    return res.send(accountAchievement)
+      return res.send(accountAchievement)
     } catch (error) {
       next(error)
     }
