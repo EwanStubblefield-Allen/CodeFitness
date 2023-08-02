@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import { achievementsService } from "../services/AchievementsService";
 import BaseController from "../utils/BaseController";
+import { accountAchievementsService } from "../services/AccountAchievementsService";
 
 export class AchievementsController extends BaseController{
   constructor(){
@@ -11,6 +12,7 @@ export class AchievementsController extends BaseController{
     .use(Auth0Provider.getAuthorizedUserInfo)
     .post('', this.createAchievement)
     .delete('/:achievementId', this.removeAchievement)
+    .post('/:achievementId/accountAchievements', this.createAccountAchievement)
   }
   async getAchievementById (req, res, next) {
   try{
@@ -32,6 +34,7 @@ export class AchievementsController extends BaseController{
   try{
      const achievementData = req.body
     //  achievementData.accountId = req.userInfo.id
+    achievementData.achievementId = req.params.achievementId
       const achievement = await achievementsService.createAchievement(achievementData)
   return res.send(achievement)
   } catch(error) {
@@ -48,5 +51,17 @@ export class AchievementsController extends BaseController{
   } catch(error) {
       next(error);
   }
+  }
+
+  async createAccountAchievement(req, res, next) {
+    try {
+      const data = req.body
+      data.achievementId = req.params.achievementId
+      data.accountId = req.userInfo.id
+      const newAccountAchievement = await accountAchievementsService.createAccountAchievement(data)
+      return res.send(newAccountAchievement)
+    } catch (error) {
+      next(error);
+    }
   }
 }

@@ -20,9 +20,8 @@ class ActivitiesService {
       const isTrue = a.description.includes('<p>')
 
       if (isTrue) {
-        // FIXME Add regex
-        a.description = a.description.replaceAll('<p>', '')
-        a.description = a.description.replaceAll('</p>', '')
+        const regex = /<\/?.>/g
+        a.description = a.description.replaceAll(regex, '')
       }
       a.name = a.name.charAt(0).toUpperCase() + a.name.slice(1)
       a.description = a.description.charAt(0).toUpperCase() + a.description.slice(1)
