@@ -4,10 +4,11 @@ import BaseController from "../utils/BaseController.js";
 
 export class AccountAchievementsController extends BaseController {
   constructor() {
-    super('api/accountachievements')
+    super('api/accountAchievements')
     this.router
     .get('', this.getAccountAchievements)
-    .delete('/:accountachievementId', this.deleteAccountAchievement)
+    .use(Auth0Provider.getAuthorizedUserInfo)
+    .delete('/:accountAchievementId', this.deleteAccountAchievement)
 
   }
 
@@ -23,9 +24,11 @@ export class AccountAchievementsController extends BaseController {
 
   async deleteAccountAchievement(req, res, next) {
     try {
+      // debugger
       const accountId = req.userInfo.id 
-      const accountachievementId = req.params.accountachievementId
-      const accountAchievement = await accountAchievementsService.deleteAccountAchievements(accountId, accountachievementId)
+      const accountAchievementId = req.params.accountAchievementId
+      const accountAchievement = await accountAchievementsService.deleteAccountAchievement(accountId, accountAchievementId)
+    return res.send(accountAchievement)
     } catch (error) {
       next(error)
     }
