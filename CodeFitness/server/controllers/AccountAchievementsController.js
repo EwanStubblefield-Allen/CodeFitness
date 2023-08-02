@@ -25,7 +25,7 @@ export class AccountAchievementsController extends BaseController {
     try {
       const accountId = req.userInfo.id 
       const accountachievementId = req.params.accountachievementId
-      const accountAchievement = await accountAchievementsService.deleteAccountAchievment(accountId, accountachievementId)
+      const accountAchievement = await accountAchievementsService.deleteAccountAchievement(accountId, accountachievementId)
     } catch (error) {
       next(error)
     }
