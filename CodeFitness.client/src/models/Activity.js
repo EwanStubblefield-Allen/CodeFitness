@@ -6,5 +6,6 @@ export class Activity {
     this.equipment = data.equipment
     this.difficulty = data.difficulty
     this.instructions = data.instructions
+    this.picture = data.picture
   }
 }
