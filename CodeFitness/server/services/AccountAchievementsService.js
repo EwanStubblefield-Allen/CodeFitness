@@ -2,7 +2,7 @@ import { dbContext } from "../db/DbContext.js"
 import { Forbidden } from "../utils/Errors.js"
 
 class AccountAchievementsService {
-  async deleteAccountAchievement(accountId, accountachievementId) {
+  async deleteAccountAchievements(accountId, accountachievementId) {
     const achievmentToRemove = await dbContext.AccountAchievements.findById(accountachievementId)
     if (achievmentToRemove.accountId.toString() != accountId) {
       throw new Forbidden('You are not the creator.')
