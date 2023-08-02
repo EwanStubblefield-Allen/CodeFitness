@@ -2,7 +2,10 @@
   <div class="row justify-content-around bg-neutral-dark text-light m-3">
     <TeamComponent />
   </div>
-
+  <div class="row m-3">
+    <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
+      Routine</button>
+  </div>
   <div class="row m-3">
     <ActivitySearch />
   </div>
