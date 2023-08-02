@@ -8,7 +8,14 @@ export const api = Axios.create({
 })
 
 export const activityApi = Axios.create({
-  baseURL: 'https://wger.de/api/v2',
+  baseURL: 'https://api.api-ninjas.com/v1/',
+  headers: { 'X-Api-Key': 'Ayh9Fz4WaGOn40+RojiX1A==tUPKH12n69NwXjlx' },
+  timeout: 8000
+})
+
+export const pictureApi = Axios.create({
+  baseURL: 'https://api.pexels.com/v1/',
+  headers: { 'Authorization': 'uvMRboBqFGX0nUAxq6yoLvvO4dXCmqTuREGtQ2PqdtK3AfR3qDwNUcwb' },
   timeout: 8000
 })
 

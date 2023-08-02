@@ -1,10 +1,11 @@
 <template>
-  <div :class="{ 'image-bg': activityProp.image, 'bg-neutral-dark': !activityProp.image }" class="d-flex flex-column justify-content-center text-center p-3 activity-card">
+  <div class="d-flex flex-column justify-content-center text-center p-3 bg-neutral-dark activity-card">
     <p class="fw-bold py-2">{{ activityProp.name }}</p>
     <p v-if="activityProp.category">Category: {{ activityProp.category }}</p>
-    <div v-if="activityProp.description">
-      {{ activityProp.description }}
-    </div>
+    <p>Muscles: {{ activityProp.muscle.charAt(0).toUpperCase() + activityProp.muscle.slice(1) }}</p>
+    <p>Type: {{ activityProp.type.charAt(0).toUpperCase() + activityProp.type.slice(1) }}</p>
+    <p>Equipment: {{ activityProp.equipment.charAt(0).toUpperCase() + activityProp.equipment.slice(1).replace('_', ' ') }}</p>
+    <p>difficulty: {{ activityProp.difficulty.charAt(0).toUpperCase() + activityProp.difficulty.slice(1) }}</p>
   </div>
 </template>
 

@@ -32,8 +32,7 @@ export default {
 
       async getActivitiesBySearch() {
         try {
-          await activitiesService.getActivitiesBySearch(editable.value.search)
-          editable.value = {}
+          await activitiesService.getActivities(editable.value.search)
         }
         catch (error) {
           Pop.error(error.message, '[GETTING ACTIVITIES BY SEARCH]')
