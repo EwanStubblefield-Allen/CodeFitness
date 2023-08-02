@@ -7,6 +7,7 @@ export class AccountAchievementsController extends BaseController {
     super('api/accountachievements')
     this.router
     .get('', this.getAccountAchievements)
+    .delete('/:accountachievementId', this.deleteAccountAchievement)
 
   }
 
@@ -17,6 +18,16 @@ export class AccountAchievementsController extends BaseController {
       return res.send(accountAchievement)
     } catch (error) {
       next(error);
+    }
+  }
+
+  async deleteAccountAchievement(req, res, next) {
+    try {
+      const accountId = req.userInfo.id 
+      const accountachievementId = req.params.accountachievementId
+      const accountAchievement = await accountAchievementsService.deleteAccountAchievment(accountId, accountachievementId)
+    } catch (error) {
+      next(error)
     }
   }
 }
