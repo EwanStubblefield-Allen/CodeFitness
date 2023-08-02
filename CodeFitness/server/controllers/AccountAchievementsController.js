@@ -14,7 +14,7 @@ export class AccountAchievementsController extends BaseController {
   
   async getAccountAchievements(req, res, next) {
     try {
-      const accountAchievement = await accountAchievementsService.getAccountAchievements()
+      const accountAchievement = await accountAchievementsService.getAccountAchievement()
       return res.send(accountAchievement)
     } catch (error) {
       next(error);
@@ -25,7 +25,7 @@ export class AccountAchievementsController extends BaseController {
     try {
       const accountId = req.userInfo.id 
       const accountachievementId = req.params.accountachievementId
-      const accountAchievement = await accountAchievementsService.deleteAccountAchievement(accountId, accountachievementId)
+      const accountAchievement = await accountAchievementsService.deleteAccountAchievements(accountId, accountachievementId)
     } catch (error) {
       next(error)
     }
