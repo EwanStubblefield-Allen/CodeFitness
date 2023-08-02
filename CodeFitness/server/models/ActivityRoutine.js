@@ -1,7 +1,6 @@
 import { Schema } from "mongoose";
 
 export const ActivityRoutineSchema = new Schema({
-  activityId: {type: Schema.Types.ObjectId, required: true, ref:""},
   routineId: {type: Schema.Types.ObjectId, required: true, ref: "Routine"},
   name: {type: String, required: true,},
   level: {type: Number, default: 0},
