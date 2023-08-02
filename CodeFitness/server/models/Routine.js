@@ -10,9 +10,17 @@ export const RoutineSchema = new Schema({
 }, {
   timestamps: true, toJSON: { virtuals: true }})
 
-  RoutineSchema.virtual('account', {
+  RoutineSchema.virtual('profile', {
     localField: 'accountId',
     foreignField: '_id',
     justOne:true,
     ref:'Account'
+  })
+
+  RoutineSchema.virtual("activityCount",{
+
+    localField: '_id',
+    ref: 'ActivityRoutine',
+    foreignField: 'id',
+    count: true
   })
