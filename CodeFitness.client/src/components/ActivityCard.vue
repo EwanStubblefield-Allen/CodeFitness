@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column justify-content-center text-center image-bg p-3 activity-card">
+  <div :class="{ 'image-bg': activityProp.image, 'bg-neutral-dark': !activityProp.image }" class="d-flex flex-column justify-content-center text-center p-3 activity-card">
     <p class="fw-bold py-2">{{ activityProp.name }}</p>
     <p v-if="activityProp.category">Category: {{ activityProp.category }}</p>
     <div v-if="activityProp.description">

@@ -112,6 +112,7 @@
 import { AppState } from '../AppState.js'
 import { computed, onMounted, ref } from 'vue'
 import { activitiesService } from '../services/ActivitiesService.js'
+import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
 
 export default {
@@ -130,6 +131,9 @@ export default {
       async getActivitiesByFilter() {
         try {
           await activitiesService.getActivitiesByFilter(editable.value, adaptable.value)
+          editable.value = []
+          adaptable.value = []
+          Modal.getOrCreateInstance('#filterForm').hide()
         } catch (error) {
           Pop.error(error.message, '[GETTING ACTIVITIES BY FILTER]')
         }
