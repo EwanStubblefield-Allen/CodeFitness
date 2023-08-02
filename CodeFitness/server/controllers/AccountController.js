@@ -13,7 +13,7 @@ export class AccountController extends BaseController {
   async getUserAccount(req, res, next) {
     try {
       const account = await accountService.getAccount(req.userInfo)
-      res.send(account)
+      return res.send(account)
     } catch (error) {
       next(error)
     }

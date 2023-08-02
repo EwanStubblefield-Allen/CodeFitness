@@ -6,22 +6,22 @@ export class ProfilesController extends BaseController {
     super('api/profiles')
     this.router
       .get('', this.getProfiles)
-      .get('/:id', this.getProfile)
+      .get('/:id', this.getProfileById)
   }
 
   async getProfiles(req, res, next) {
     try {
       const profiles = await profileService.findProfiles(req.query.name, req.query.offset)
-      res.send(profiles)
+      return res.send(profiles)
     } catch (error) {
       next(error)
     }
   }
 
-  async getProfile(req, res, next) {
+  async getProfileById(req, res, next) {
     try {
       const profile = await profileService.getProfileById(req.params.id)
-      res.send(profile)
+      return res.send(profile)
     } catch (error) {
       next(error)
     }

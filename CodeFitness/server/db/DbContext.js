@@ -4,6 +4,7 @@ import { ValueSchema } from '../models/Value'
 import { RoutineSchema } from "../models/Routine.js";
 import { AchievementSchema } from "../models/Achievement.js";
 import { AccountAchievementSchema } from "../models/AccountAchievment.js";
+import { ActivityRoutineSchema } from "../models/ActivityRoutine.js";
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
@@ -14,6 +15,8 @@ class DbContext {
   Achievements = mongoose.model('Achievement', AchievementSchema)
 
   AccountAchievements = mongoose.model('AccountAchievement', AccountAchievementSchema)
+
+  ActivityRoutines = mongoose.model('ActivityRoutine', ActivityRoutineSchema)
 }
 
 export const dbContext = new DbContext()

@@ -20,6 +20,19 @@
         <ActivityFilter />
       </template>
     </ModalComponent>
+
+    <ModalComponent id="activeActivity" v-if="appState.activeActivity">
+      <template #title>{{ appState.activeActivity.name }}</template>
+      <template #body>
+        <ActivityDetails />
+      </template>
+    </ModalComponent>
+    <ModalComponent id="routineForm">
+      <template #title>Create Routine</template>
+      <template #body>
+        <RoutineForm />
+      </template>
+    </ModalComponent>
   </div>
 </template>
 
@@ -29,6 +42,8 @@ import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import AccountBar from './components/AccountBar.vue'
 import ModalComponent from './components/ModalComponent.vue'
+import ActivityDetails from "./components/ActivityDetails.vue"
+import ActivityFilter from "./components/ActivityFilter.vue"
 
 export default {
   setup() {
@@ -36,7 +51,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, AccountBar, ModalComponent }
+  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter }
 }
 </script>
 <style lang="scss">
