@@ -14,7 +14,7 @@ export class AccountAchievementsController extends BaseController {
   
   async getAccountAchievements(req, res, next) {
     try {
-      const accountAchievement = await accountAchievementsService.getAccountAchievement()
+      const accountAchievement = await accountAchievementsService.getAccountAchievements()
       return res.send(accountAchievement)
     } catch (error) {
       next(error);
