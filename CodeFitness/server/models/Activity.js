@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 
-export const ActivityRoutineSchema = new Schema({
+export const ActivitySchema = new Schema({
   routineId: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -37,7 +37,7 @@ export const ActivityRoutineSchema = new Schema({
   toJSON: { virtuals: true }
 })
 
-ActivityRoutineSchema.virtual('routine', {
+ActivitySchema.virtual('routine', {
   localField: 'routineId',
   foreignField: '_id',
   justOne: true,

@@ -38,10 +38,16 @@ RoutineSchema.virtual('profile', {
   justOne: true,
   ref: 'Account'
 })
+RoutineSchema.virtual('activity', {
+  localField: '_id',
+  foreignField: 'routineId',
+  justOne: false,
+  ref: 'Activity'
+})
 
 RoutineSchema.virtual("activityCount", {
   localField: '_id',
   foreignField: 'routineId',
   count: true,
-  ref: 'ActivityRoutine'
+  ref: 'Activity'
 })

@@ -14,8 +14,7 @@
 </template>
 
 <script>
-import { AppState } from '../AppState.js'
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 
 export default {
   setup() {

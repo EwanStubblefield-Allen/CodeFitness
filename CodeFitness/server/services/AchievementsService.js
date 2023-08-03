@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext"
+import { BadRequest } from "../utils/Errors.js"
 
 class AchievementsService {
   async getAchievements() {
@@ -7,8 +8,11 @@ class AchievementsService {
   }
 
   async getAchievementsById(achievementId) {
-    const foundAchievement = await dbContext.Achievements.findById(achievementId)
-    return foundAchievement
+    const achievement = await dbContext.Achievements.findById(achievementId)
+    if (!achievement) {
+      throw new BadRequest(`[NO ACHIEVEMENT MATCHES THE ID: ${achievementId}]`)
+    }
+    return achievement
   }
 
   async createAchievement(achievementData) {
@@ -17,8 +21,7 @@ class AchievementsService {
   }
 
   async removeAchievement(achievementId) {
-    const achievementToRemove = await dbContext.Achievements.findById(achievementId)
-    // FIXME add go to get by id and do check
+    const achievementToRemove = await this.getAchievementsById(achievementId)
     await achievementToRemove.remove()
     return achievementToRemove
   }

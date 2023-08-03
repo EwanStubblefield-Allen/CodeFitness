@@ -12,7 +12,6 @@ export class AchievementsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createAchievement)
       .delete('/:achievementId', this.removeAchievement)
-      .post('/:achievementId/accountAchievements', this.createAccountAchievement)
   }
 
   async getAchievements(req, res, next) {
@@ -51,18 +50,6 @@ export class AchievementsController extends BaseController {
       const achievementId = req.params.achievementId
       const achievement = await achievementsService.removeAchievement(achievementId)
       return res.send(achievement)
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async createAccountAchievement(req, res, next) {
-    try {
-      const data = req.body
-      data.achievementId = req.params.achievementId
-      data.accountId = req.userInfo.id
-      const newAccountAchievement = await accountAchievementsService.createAccountAchievement(data)
-      return res.send(newAccountAchievement)
     } catch (error) {
       next(error);
     }
