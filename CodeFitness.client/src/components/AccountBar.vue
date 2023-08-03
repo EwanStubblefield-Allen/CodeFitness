@@ -35,7 +35,7 @@
 
 <script>
 import { AppState } from '../AppState.js'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop.js"
 import { logger } from "../utils/Logger"

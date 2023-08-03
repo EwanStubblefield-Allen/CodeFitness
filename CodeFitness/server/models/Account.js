@@ -32,13 +32,12 @@ export const AccountSchema = new Schema(
     },
     community: {
       type: String,
-      enum: ['Cardio Kings, Weight Warriors, Legion of Leisure']
+      enum: ['Cardio Kings', 'Weight Warriors', 'Legion of Leisure']
     },
     points: {
       type: Number,
       default: 0
     }
-
   },
   {
     timestamps: true,
