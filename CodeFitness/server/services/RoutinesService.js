@@ -1,32 +1,29 @@
 import { dbContext } from "../db/DbContext.js"
-import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { Forbidden } from "../utils/Errors.js"
 import { accountAchievementsService } from "./AccountAchievementsService.js"
 
 class RoutinesService {
   async getRoutines() {
-    const routines = await dbContext.Routines.find().populate('profile').populate('activityCount').populate('activity')
+    const routines = await dbContext.Routines.find().populate('profile').populate('activity')
     return routines
   }
 
   async getRoutineById(routineId) {
-    const routine = await (await dbContext.Routines.findById(routineId).populate('profile').populate('activityCount')).populate('activity')
-
+    const routine = await dbContext.Routines.findById(routineId).populate('profile').populate('activity')
     return routine
   }
 
   async getRoutinesByAccountId(accountId) {
-    const routines = await dbContext.Routines.find({ accountId: accountId }).populate('profile').populate('activityCount').populate('activity')
-
+    const routines = await dbContext.Routines.find({ accountId: accountId }).populate('profile').populate('activity')
     return routines
   }
 
   async createRoutine(routineData) {
     const routine = await dbContext.Routines.create(routineData)
     await routine.populate('profile')
-    await routine.populate('activityCount')
     await routine.populate('activity')
-    await accountAchievementsService.updateAccountAchievement(routine.accountId, 'routineCount')
-    return routine
+    const accountAchievement = await accountAchievementsService.updateAccountAchievement(routine.accountId, 'routineCount', 1)
+    return { routine: routine, accountAchievement: accountAchievement }
   }
 
   async removeRoutine(accountId, routineId) {

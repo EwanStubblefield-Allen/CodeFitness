@@ -6,16 +6,20 @@ export const TierSchema = new Schema({
     required: true,
     ref: "Achievement"
   },
+  tier: {
+    type: Number,
+    required: true
+  },
   name: {
-    type: Array,
+    type: String,
     required: true
   },
   picture: {
-    type: Array,
+    type: String,
     required: true
   },
   description: {
-    type: Array,
+    type: String,
     required: true
   },
 }, {

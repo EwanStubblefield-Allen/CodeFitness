@@ -13,7 +13,7 @@ export const AccountAchievementSchema = new Schema({
   },
   progress: {
     type: Number,
-    required: true
+    default: 0
   },
   tier: {
     type: Number,
@@ -25,7 +25,7 @@ export const AccountAchievementSchema = new Schema({
 })
 
 AccountAchievementSchema.index({
-  achiementId: 1,
+  achievementId: 1,
   accountId: 1
 }, {
   unique: true
@@ -36,11 +36,4 @@ AccountAchievementSchema.virtual('achievement', {
   foreignField: '_id',
   justOne: true,
   ref: 'Achievement'
-})
-
-AccountAchievementSchema.virtual('profile', {
-  localField: 'accountId',
-  foreignField: '_id',
-  justOne: true,
-  ref: 'Account'
 })

@@ -2,20 +2,20 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest } from "../utils/Errors.js"
 
 class AchievementsService {
-
   async getAchievements() {
-    const achievements = await dbContext.Achievements.find()
+    const achievements = await dbContext.Achievements.find().populate('tier')
     return achievements
   }
 
   async getAchievementsById(achievementId) {
-    const achievement = await dbContext.Achievements.findById(achievementId)
+    const achievement = await dbContext.Achievements.findById(achievementId).populate('tier')
     if (!achievement) {
       throw new BadRequest(`[NO ACHIEVEMENT MATCHES THE ID: ${achievementId}]`)
     }
     return achievement
   }
-  async getAchievmentByType(type) {
+
+  async getAchievementByType(type) {
     const achievement = await dbContext.Achievements.findOne({ type: type })
     if (!achievement) {
       throw new BadRequest(`[NO ACHIEVEMENT MATCHES THE TYPE: ${type}]`)
@@ -34,4 +34,5 @@ class AchievementsService {
     return achievementToRemove
   }
 }
+
 export const achievementsService = new AchievementsService()

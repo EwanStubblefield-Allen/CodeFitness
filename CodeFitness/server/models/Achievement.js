@@ -7,7 +7,7 @@ export const AchievementSchema = new Schema({
     required: true
   },
   requirement: {
-    type: Number,
+    type: Array,
     required: true
   },
 },
@@ -15,6 +15,12 @@ export const AchievementSchema = new Schema({
     timestamps: true,
     toJSON: { virtuals: true }
   })
+
+AchievementSchema.index({
+  type: 1
+}, {
+  unique: true
+})
 
 AchievementSchema.virtual('tier', {
   localField: '_id',
