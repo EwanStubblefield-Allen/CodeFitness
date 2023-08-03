@@ -38,8 +38,8 @@
           </router-link>
         </div>
 
-        <div class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
-          <router-link v-if="account.id" class="navbar-brand d-flex" :to="{ name: 'Account' }">
+        <div v-if="account.id" class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
+          <router-link  class="navbar-brand d-flex" :to="{ name: 'Account' }">
             <div class="text-light fs-2" data-bs-dismiss="offcanvas"> Account</div>
           </router-link>
         </div>

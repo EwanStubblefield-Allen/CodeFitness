@@ -1,24 +1,13 @@
 import { Schema } from "mongoose";
 
 export const AchievementSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  picture: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
+  // routineCount
   type: {
     type: String,
     required: true
   },
   requirement: {
-    type: Number,
+    type: Array,
     required: true
   },
 },
@@ -26,3 +15,15 @@ export const AchievementSchema = new Schema({
     timestamps: true,
     toJSON: { virtuals: true }
   })
+
+AchievementSchema.index({
+  type: 1
+}, {
+  unique: true
+})
+
+AchievementSchema.virtual('tier', {
+  localField: '_id',
+  foreignField: 'achievementId',
+  ref: 'Tier'
+})

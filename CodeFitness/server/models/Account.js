@@ -23,8 +23,7 @@ export const AccountSchema = new Schema(
     coverImg: {
       type: String,
       minlength: 3,
-      maxlength: 300,
-      default: 'https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'
+      maxlength: 300
     },
     bio: {
       type: String,
@@ -33,13 +32,12 @@ export const AccountSchema = new Schema(
     },
     community: {
       type: String,
-      enum: ['Cardio Kings, Weight Warriors, Legion of Leisure']
+      enum: ['Cardio Kings', 'Weight Warriors', 'Legion of Leisure']
     },
     points: {
       type: Number,
       default: 0
     }
-
   },
   {
     timestamps: true,
