@@ -1,4 +1,6 @@
 import { dbContext } from '../db/DbContext'
+import { accountAchievementsService } from './AccountAchievementsService.js'
+import { profileService } from './ProfileService.js'
 
 // Private Methods
 
@@ -74,6 +76,12 @@ class AccountService {
    *  @param {any} body Updates to apply to user object
    */
   async updateAccount(user, body) {
+    const profile = await profileService.getProfileById(user.id)
+    if (!profile.community) {
+      await accountAchievementsService.createAccountAchievement(user.id)
+    } else {
+      body.community = profile.community
+    }
     const update = sanitizeBody(body)
     const account = await dbContext.Account.findOneAndUpdate(
       { _id: user.id },
