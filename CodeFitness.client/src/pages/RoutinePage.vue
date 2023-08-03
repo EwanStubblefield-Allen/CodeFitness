@@ -1,5 +1,5 @@
 <template>
-  {{}}
+  {{activeRoutines}}
 </template>
 
 <script>
@@ -27,7 +27,8 @@ export default {
       getRoutinesById(route.params.routineId)
     })
     return {
-      routines: computed(()=> AppState.routines)
+      routines: computed(()=> AppState.routines),
+      activeRoutines: computed(()=> AppState.activeRoutines)
     }
   }
 }

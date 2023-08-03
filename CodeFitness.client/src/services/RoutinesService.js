@@ -29,6 +29,7 @@ class RoutinesService {
   async getRoutinesById(routineId) {
     const res = await api.get(`api/routines/${routineId}`)
     logger.log('got one routine', res.data)
+    AppState.activeRoutines = new Routine(res.data)
   }
 }
 
