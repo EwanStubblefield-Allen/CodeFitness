@@ -6,14 +6,23 @@
           <img class="img-fluid cover-image"
             src="https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
             alt="Alt image yo">
-          <div class="d-flex pt-3">
-            <img class="account-picture" :src="account.picture" :alt="account.name">
-            <div class="fs-1 account-name text-uppercase">{{ account.name }}</div>
-            <div class="account-name text-stroke fs-1 ps-3 mdi mdi-star-four-points text-warning"></div>
-          </div>
         </div>
       </div>
     </section>
+    <section class="row">
+      <div class="col-4 d-flex justify-content-center">
+        <img class="account-picture" :src="account.picture" :alt="account.name">
+      </div>
+
+      <div class="col-2">
+        <div class="fs-1 text-center text-uppercase">{{ account.name }}</div>
+      </div>
+
+      <div class="col-3">
+        <div class=" text-start text-stroke fs-1 ps-3 mdi mdi-star-four-points text-warning"></div>
+      </div>
+    </section>
+
     <section class="row">
       <div class="col-9 m-auto mb-5">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, veritatis excepturi fugiat, neque mollitia
@@ -84,9 +93,10 @@ export default {
 <style scoped>
 .account-picture {
   position: relative;
-  top: -10vh;
-  left: 20vh;
-  scale: 2;
+  top: -10vw;
+  /* left: 20vh; */
+  width: 20vw;
+  height: 20vw;
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
