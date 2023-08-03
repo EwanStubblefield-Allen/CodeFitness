@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
-          <router-link class="navbar-brand d-flex" :to="{ name: 'Account' }">
+          <router-link v-if="account.id" class="navbar-brand d-flex" :to="{ name: 'Account' }">
             <div class="text-light fs-2" data-bs-dismiss="offcanvas"> Account</div>
           </router-link>
         </div>
@@ -61,42 +61,46 @@
 </template>
 
 <script>
+import { computed } from "vue"
 import Login from './Login.vue'
+import { AppState } from "../AppState.js"
 
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login }
 }
 </script>
 
 <style scoped>
-.top-margin {
-  margin-top: 11vh;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-.offcanvas-width {
-  max-width: 16.7vw;
-}
-
-.nav-link {
-  text-transform: uppercase;
-}
-
-.navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-@media screen and (min-width: 768px) {
-  nav {
-    height: 64px;
+  .top-margin {
+    margin-top: 11vh;
   }
-}
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .offcanvas-width {
+    max-width: 16.7vw;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+  }
+
+  .navbar-nav .router-link-exact-active {
+    border-bottom: 2px solid var(--bs-success);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    nav {
+      height: 64px;
+    }
+  }
 </style>

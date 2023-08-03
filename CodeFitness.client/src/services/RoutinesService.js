@@ -6,14 +6,14 @@ import { api } from "./AxiosService.js"
 
 class RoutinesService {
 
-  async getRoutines() {
-    try {
-      const res = await api.get(`profiles/${AppState.account.id}/routines`)
-      AppState.routines = res.data.map(d => new Routine(d))
-    } catch (error) {
-      Pop.error(error.message)
-    }
-  }
+  // async getRoutines() {
+  //   try {
+  //     const res = await api.get(`profiles/${AppState.account.id}/routines`)
+  //     AppState.routines = res.data.map(d => new Routine(d))
+  //   } catch (error) {
+  //     Pop.error(error.message)
+  //   }
+  // }
   async createRoutine(routineData) {
     const res = await api.post('api/routines', routineData)
     logger.log(res.data)
