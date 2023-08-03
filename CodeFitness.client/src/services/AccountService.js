@@ -5,17 +5,23 @@ import { api } from './AxiosService'
 
 class AccountService {
   async selectCommunityOne() {
-    AppState.account.community = 'Cardio Kings'
-    logger.log(AppState.account.community)
+    const newAccount = AppState.account
+    newAccount.community = 'Cardio Kings'
+    const updatedAccount = new Account(newAccount)
+    logger.log('updated account', updatedAccount)
   }
   async selectCommunityTwo() {
-    AppState.account.community = 'Weight Warriors'
-    logger.log(AppState.account.community)
+    const newAccount = AppState.account
+    newAccount.community = 'Weight Warriors'
+    const updatedAccount = new Account(newAccount)
+    logger.log('updated account', updatedAccount)
   }
 
   async selectCommunityThree() {
-    AppState.account.community = 'Legions of Leisure'
-    logger.log(AppState.account.community)
+    const newAccount = AppState.account
+    newAccount.community = 'Legion of Leisure'
+    const updatedAccount = new Account(newAccount)
+    logger.log('updated account', updatedAccount)
   }
   async getAccount() {
     try {
