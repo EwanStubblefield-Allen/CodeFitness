@@ -14,10 +14,21 @@ export const AccountAchievementSchema = new Schema({
   progress: {
     type: Number,
     required: true
+  },
+  tier: {
+    type: Number,
+    default: 0
   }
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
+})
+
+AccountAchievementSchema.index({
+  achiementId: 1,
+  accountId: 1
+}, {
+  unique: true
 })
 
 AccountAchievementSchema.virtual('achievement', {
