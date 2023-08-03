@@ -17,9 +17,7 @@ class RoutinesService {
 
   async getRoutinesByAccountId(accountId) {
     const routines = await dbContext.Routines.find({ accountId: accountId }).populate('profile').populate('activityCount').populate('activity')
-    if (!routines[0]) {
-      throw new BadRequest(`[NO ROUTINES MATCH THE ACCOUNT ID: ${accountId}]`)
-    }
+
     return routines
   }
 
