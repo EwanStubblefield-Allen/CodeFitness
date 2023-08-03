@@ -2,12 +2,10 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-neutral px-3">
     <!-- <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }"> -->
     <div class="d-flex flex-column align-items-center">
-      <img type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" alt="logo"
-        src="../assets/img/codeFitness.png" height="55" />
+      <img type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" alt="logo" src="../assets/img/codeFitness.png" height="55" />
     </div>
     <!-- </router-link> -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -23,11 +21,9 @@
     </div>
   </nav>
   <!-- SECTION Off Canvas -->
-  <div class="offcanvas offcanvas-start bg-dark text-light offcanvas-width" data-bs-scroll="true" data-bs-backdrop="true"
-    tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas offcanvas-start bg-dark text-light offcanvas-width" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header bg-neutral-dark d-flex justify-content-center">
-      <h5 class="offcanvas-title " id="offcanvasScrollingLabel"><img type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasScrolling" alt="logo" src="../assets/img/codeFitness.png" height="55" /></h5>
+      <h5 class="offcanvas-title " id="offcanvasScrollingLabel"><img type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" alt="logo" src="../assets/img/codeFitness.png" height="55" /></h5>
       <!-- <p type="button" class="mdi mdi-close text-light bg-neutral-dark fs-2" data-bs-dismiss="offcanvas"></p> -->
     </div>
     <div class="offcanvas-body container-fluid bg-neutral-dark">
@@ -72,27 +68,27 @@ export default {
 </script>
 
 <style scoped>
-a:hover {
-  text-decoration: none;
-}
-
-.offcanvas-width {
-  max-width: 16.7vw;
-}
-
-.nav-link {
-  text-transform: uppercase;
-}
-
-.navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-@media screen and (min-width: 768px) {
-  nav {
-    height: 64px;
+  a:hover {
+    text-decoration: none;
   }
-}
+
+  .offcanvas-width {
+    max-width: 16.7vw;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+  }
+
+  .navbar-nav .router-link-exact-active {
+    border-bottom: 2px solid var(--bs-success);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    nav {
+      height: 64px;
+    }
+  }
 </style>

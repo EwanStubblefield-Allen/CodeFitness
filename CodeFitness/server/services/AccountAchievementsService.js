@@ -1,19 +1,27 @@
 import { dbContext } from "../db/DbContext.js"
-import { Forbidden } from "../utils/Errors.js"
+import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class AccountAchievementsService {
   async getAccountAchievement() {
-    const gotAchievements = await dbContext.AccountAchievements.find()
-    return gotAchievements
+    const accountAchievements = await dbContext.AccountAchievements.find()
+    return accountAchievements
   }
 
-  async createAccountAchievement(data) {
-    const newAchievement = await dbContext.AccountAchievements.create(data)
-    return newAchievement
+  async getAccountAchievementById(accountAchievementId) {
+    const accountAchievement = await dbContext.AccountAchievements.findById(accountAchievementId)
+    if (!accountAchievement) {
+      throw new BadRequest(`[NO ACCOUNT ACHIEVEMENT MATCHES THE ID: ${accountAchievementId}]`)
+    }
+    return accountAchievement
+  }
+
+  async createAccountAchievement(accountAchievementData) {
+    const accountAchievement = await dbContext.AccountAchievements.create(accountAchievementData)
+    return accountAchievement
   }
 
   async deleteAccountAchievement(accountId, accountAchievementId) {
-    const achievementToRemove = await dbContext.AccountAchievements.findById(accountAchievementId)
+    const achievementToRemove = await this.getAccountAchievementById(accountAchievementId)
     if (achievementToRemove.accountId.toString() != accountId) {
       throw new Forbidden('[YOU ARE NOT THE CREATOR OF THIS]')
     }

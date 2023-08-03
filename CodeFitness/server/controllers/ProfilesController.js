@@ -1,4 +1,5 @@
 import { profileService } from '../services/ProfileService.js'
+import { routinesService } from '../services/RoutinesService.js'
 import BaseController from '../utils/BaseController'
 
 export class ProfilesController extends BaseController {
@@ -6,7 +7,8 @@ export class ProfilesController extends BaseController {
     super('api/profiles')
     this.router
       .get('', this.getProfiles)
-      .get('/:id', this.getProfileById)
+      .get('/:profileId', this.getProfileById)
+      .get('/:accountId/routines', this.getRoutinesByAccountId)
   }
 
   async getProfiles(req, res, next) {
@@ -20,8 +22,17 @@ export class ProfilesController extends BaseController {
 
   async getProfileById(req, res, next) {
     try {
-      const profile = await profileService.getProfileById(req.params.id)
+      const profile = await profileService.getProfileById(req.params.profileId)
       return res.send(profile)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getRoutinesByAccountId(req, res, next) {
+    try {
+      const routines = await routinesService.getRoutinesByAccountId(req.params.accountId)
+      return res.send(routines)
     } catch (error) {
       next(error)
     }
