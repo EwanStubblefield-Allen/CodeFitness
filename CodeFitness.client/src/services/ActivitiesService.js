@@ -29,9 +29,9 @@ class ActivitiesService {
     AppState.activities = res.data.map(d => new Activity(d))
   }
 
-  async addActivity(activity){
+  async addActivity(activity) {
     const newActivity = new Activity(activity)
-    AppState.activeRoutines.activities = newActivity
+    AppState.activeRoutines.activities.push(newActivity)
     logger.log('AppState active routines', AppState.activeRoutines)
   }
 }
