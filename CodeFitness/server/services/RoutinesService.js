@@ -3,12 +3,12 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class RoutinesService {
   async getRoutines() {
-    const routines = await dbContext.Routines.find().populate('profile').populate('activityCount')
+    const routines = await dbContext.Routines.find().populate('profile').populate('activityCount').populate('activity')
     return routines
   }
 
   async getRoutineById(routineId) {
-    const routine = await dbContext.Routines.findById(routineId).populate('profile').populate('activityCount')
+    const routine = await (await dbContext.Routines.findById(routineId).populate('profile').populate('activityCount')).populate('activity')
     if (!routine) {
       throw new BadRequest(`[NO ROUTINE MATCHES THE ID: ${routineId}]`)
     }
@@ -16,7 +16,7 @@ class RoutinesService {
   }
 
   async getRoutinesByAccountId(accountId) {
-    const routines = await dbContext.Routines.find({ accountId: accountId })
+    const routines = await dbContext.Routines.find({ accountId: accountId }).populate('profile').populate('activityCount').populate('activity')
     if (!routines[0]) {
       throw new BadRequest(`[NO ROUTINES MATCH THE ACCOUNT ID: ${accountId}]`)
     }
@@ -27,6 +27,7 @@ class RoutinesService {
     const routine = await dbContext.Routines.create(routineData)
     await routine.populate('profile')
     await routine.populate('activityCount')
+    await routine.populate('activity')
     return routine
   }
 
@@ -36,6 +37,7 @@ class RoutinesService {
       throw new Forbidden(`[YOU ARE NOT THE CREATOR OF ${routineToRemove.title}]`)
     }
     // ASK IF WE ARE HARD DELETING
+    // YES MAN WE HAVE A BUNCH OF CRAPPY FALSE DATA I"M SENDING UP, i don't want to bother you to delete your mongo DB :3 even though that's logical :)
     routineToRemove.public = false
     await routineToRemove.save()
     return routineToRemove
