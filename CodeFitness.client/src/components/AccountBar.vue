@@ -30,23 +30,23 @@
 
 <script>
 import { AppState } from '../AppState.js'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop.js"
 
 export default {
   setup() {
     onMounted(() => {
-      // getRoutines()
+      getRoutines()
     })
 
-    // async function getRoutines() {
-    //   try {
-    //     await routinesService.getRoutines()
-    //   } catch (error) {
-    //     Pop.error(error.message)
-    //   }
-    // }
+    async function getRoutines() {
+      try {
+        await routinesService.getRoutines()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines)
