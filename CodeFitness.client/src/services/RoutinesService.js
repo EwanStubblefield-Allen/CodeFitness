@@ -26,7 +26,7 @@ class RoutinesService {
     logger.log('active routine', AppState.activeRoutines)
   }
 
-  async getRoutinesById(routineId) {
+  async getRoutineById(routineId) {
     const res = await api.get(`api/routines/${routineId}`)
     logger.log('got one routine', res.data)
     AppState.activeRoutines = new Routine(res.data)
