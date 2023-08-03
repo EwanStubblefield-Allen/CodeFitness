@@ -43,7 +43,7 @@ class AccountAchievementsService {
     const achievement = await achievementsService.getAchievementByType(type)
     const accountAchievement = await this.getAccountAchievementByAccountIdAndAchievementId(accountId, achievement.id)
     accountAchievement.progress += increment
-    if (achievement.requirement.length >= accountAchievement.tier) {
+    if (achievement.requirement.length <= accountAchievement.tier) {
       return accountAchievement
     }
     if (accountAchievement.progress >= achievement.requirement[accountAchievement.tier]) {
