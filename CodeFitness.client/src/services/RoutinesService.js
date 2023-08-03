@@ -8,7 +8,6 @@ class RoutinesService {
 
   async getRoutines() {
     try {
-      debugger
       const res = await api.get(`profiles/${AppState.account.id}/routines`)
       AppState.routines = res.data.map(d => new Routine(d))
     } catch (error) {
