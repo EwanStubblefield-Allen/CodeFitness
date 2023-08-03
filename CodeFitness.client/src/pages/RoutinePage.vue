@@ -17,17 +17,17 @@ export default {
   setup() {
     const route = useRoute()
 
-    async function getRoutinesById() {
+    async function getRoutineById() {
       try {
         const routineId = route.params.routineId
-        await routinesService.getRoutinesById(routineId)
+        await routinesService.getRoutineById(routineId)
       } catch (error) {
         Pop.error(error.message)
         logger.log(error)
       }
     }
     watchEffect(()=> {
-      getRoutinesById(route.params.routineId)
+      getRoutineById(route.params.routineId)
     })
     return {
       routines: computed(()=> AppState.routines),
