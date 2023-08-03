@@ -1,7 +1,9 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { achievementsService } from "./AchievementsService.js"
 
 class AccountAchievementsService {
+
   async getAccountAchievement() {
     const accountAchievements = await dbContext.AccountAchievements.find().populate('profile').populate('achievement')
     return accountAchievements
@@ -21,6 +23,10 @@ class AccountAchievementsService {
     await accountAchievement.populate('achievement')
     return accountAchievement
   }
+  async updateAccountAchievement(accountId, type) {
+    const achievement = await achievementsService.getAchievmentByType(type)
+    const accountAchievement = await dbContext.AccountAchievements.find({ accountId: accountId, achievementId: achievement.id })
+  }
 
   async deleteAccountAchievement(accountId, accountAchievementId) {
     const achievementToRemove = await this.getAccountAchievementById(accountAchievementId)
@@ -30,6 +36,7 @@ class AccountAchievementsService {
     await achievementToRemove.remove()
     return achievementToRemove
   }
+
 }
 
 export const accountAchievementsService = new AccountAchievementsService()

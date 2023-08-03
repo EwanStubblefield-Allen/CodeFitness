@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { accountAchievementsService } from "./AccountAchievementsService.js"
 
 class RoutinesService {
   async getRoutines() {
@@ -24,6 +25,7 @@ class RoutinesService {
     await routine.populate('profile')
     await routine.populate('activityCount')
     await routine.populate('activity')
+    await accountAchievementsService.updateAccountAchievement(routine.accountId, 'routineCount')
     return routine
   }
 

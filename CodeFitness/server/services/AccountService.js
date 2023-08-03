@@ -51,9 +51,6 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
-  editAccount(accountData, accountId) {
-    throw new Error("Method not implemented.")
-  }
   /**
    * Returns a user account from the Auth0 user object
    *
