@@ -25,11 +25,9 @@
 
     <section class="row">
       <div class="col-9 m-auto mb-5">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, veritatis excepturi fugiat, neque mollitia
-        explicabo nesciunt perferendis doloribus facere quidem id vel ullam aperiam nemo magni maiores blanditiis dicta
-        exercitationem! Deserunt fugiat delectus quo optio reprehenderit ducimus id consequuntur officia dicta? Voluptas
-        corporis illo tenetur nemo dolorum, officia deserunt magnam.
+   {{ account.bio }}
       </div>
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#accountForm" > Edit Account </button>
     </section>
     <section class="row mb-3">
       <div class="col-9 m-auto d-flex text-dark align-items-center">

@@ -29,6 +29,13 @@
       </template>
     </ModalComponent>
 
+    <ModalComponent id="accountForm">
+      <template #title>Edit Account</template>
+      <template #body>
+        <AccountForm />
+      </template>
+    </ModalComponent>
+
     <ModalComponent v-if="appState.activeActivity" id="activeActivity" class="modal-lg">
       <template #title>{{ appState.activeActivity.name }}</template>
       <template #body>
@@ -46,6 +53,7 @@ import AccountBar from './components/AccountBar.vue'
 import ModalComponent from './components/ModalComponent.vue'
 import ActivityDetails from "./components/ActivityDetails.vue"
 import ActivityFilter from "./components/ActivityFilter.vue"
+import AccountForm from "./components/AccountForm.vue"
 
 export default {
   setup() {
@@ -54,7 +62,7 @@ export default {
       account: computed(() => AppState.account)
     }
   },
-  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter }
+  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter, AccountForm }
 }
 </script>
 <style lang="scss">
