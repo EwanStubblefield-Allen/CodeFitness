@@ -26,7 +26,7 @@ export class RoutinesController extends BaseController {
 
   async getRoutineById(req, res, next) {
     try {
-      const routine = await routinesService.getRoutinesByAccountId(req.params.routineId)
+      const routine = await routinesService.getRoutineById(req.params.routineId)
       return res.send(routine)
     } catch (error) {
       next(error)

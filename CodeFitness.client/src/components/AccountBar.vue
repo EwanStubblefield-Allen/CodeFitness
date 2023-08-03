@@ -19,9 +19,14 @@
       </div>
 
       <p class="mb-3 px-3"> Your Routines</p>
-      <div v-for="routine in 3" :key="routine" class="bg-neutral-light mb-2 px-1">
-        Routine {{ routine.t }}
-      </div>
+      <div v-for="routine in routines" :key="routine.id" class="bg-neutral-light mb-2 px-1">
+        <RouterLink :to=" {name: 'Routines', params: {routineId: routine.id}}">
+
+            {{ routine.title }}
+
+        </RouterLink>
+
+        </div>
     </div>
   </section>
   <!-- <section class="row mb-3">
@@ -33,23 +38,33 @@ import { AppState } from '../AppState.js'
 import { computed, onMounted } from 'vue'
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop.js"
+import { logger } from "../utils/Logger"
 
 export default {
   setup() {
     onMounted(() => {
-      // getRoutines()
+      getRoutines()
     })
 
-    // async function getRoutines() {
-    //   try {
-    //     await routinesService.getRoutines()
-    //   } catch (error) {
-    //     Pop.error(error.message)
-    //   }
-    // }
+    async function getRoutines() {
+      try {
+        await routinesService.getRoutines()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
     return {
       account: computed(() => AppState.account),
-      routines: computed(() => AppState.routines)
+      routines: computed(() => AppState.routines),
+      async setActiveRoutine(routine) {
+        try {
+          // logger.log('routine Id', routineId)
+          await routinesService.setActiveRoutine(routine)
+        } catch (error) {
+          Pop.error(error.message)
+          logger.log(error)
+        }
+      }
 
     }
   }
