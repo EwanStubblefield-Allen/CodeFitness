@@ -20,7 +20,7 @@
 
       <p class="mb-3 px-3"> Your Routines</p>
       <div v-for="routine in 3" :key="routine" class="bg-neutral-light mb-2 px-1">
-        Routine {{ routine }}
+        Routine {{ routine.t }}
       </div>
     </div>
   </section>
@@ -31,40 +31,51 @@
 <script>
 import { AppState } from '../AppState.js'
 import { computed, onMounted } from 'vue'
+import { routinesService } from "../services/RoutinesService.js"
+import Pop from "../utils/Pop.js"
 
 export default {
   setup() {
     onMounted(() => {
-
+      getRoutines()
     })
 
+    async function getRoutines() {
+      try {
+        await routinesService.getRoutines()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      routines: computed(() => AppState.routines)
+
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.account-picture {
-  height: 15vh;
-  width: 15vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
+  .account-picture {
+    height: 15vh;
+    width: 15vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
 
-.bg-cover-img {
-  background-image: url('https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
-  background-position: center;
-  background-size: cover;
-  border: 10px solid white;
-}
+  .bg-cover-img {
+    background-image: url('https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+    background-position: center;
+    background-size: cover;
+    border: 10px solid white;
+  }
 
-.community-img {
-  image-rendering: pixelated;
-  background-color: var(--neutral-light);
-  border: 10px solid white;
-  padding: 2vh;
-}
+  .community-img {
+    image-rendering: pixelated;
+    background-color: var(--neutral-light);
+    border: 10px solid white;
+    padding: 2vh;
+  }
 </style>
