@@ -41,12 +41,19 @@ async function mergeSubsIfNeeded(account, user) {
 function sanitizeBody(body) {
   const writable = {
     name: body.name,
-    picture: body.picture
+    picture: body.picture,
+    coverImg: body.coverImg,
+    bio: body.bio,
+    community: body.community,
+    points: body.points
   }
   return writable
 }
 
 class AccountService {
+  editAccount(accountData, accountId) {
+    throw new Error("Method not implemented.")
+  }
   /**
    * Returns a user account from the Auth0 user object
    *
