@@ -9,7 +9,7 @@
       <p>Difficulty: {{ activityProp.difficulty }}</p>
     </div>
     <div class="dark-bg text-end p-3">
-      <button class="btn btn-info">Add to Routine</button>
+      <button @click="addActivity(activityProp)" class="btn btn-info">Add to Routine</button>
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ import { computed, onMounted } from 'vue'
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"
+import { logger } from "../utils/Logger.js"
 
 export default {
   props: {
@@ -43,6 +44,17 @@ export default {
         } catch (error) {
           Pop.error(error.message)
         }
+      },
+      
+      async addActivity(activityId) {
+        try{
+          logger.log(activityId)
+          await activitiesService.addActivity(activityId)
+            
+        } catch(error) {
+            Pop.error(error.message);
+            logger.log(error);
+          }
       }
     }
   }

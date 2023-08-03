@@ -1,5 +1,8 @@
 <template>
   {{activeRoutines}}
+  <div class="row m-3">
+    <ActivitySearch />
+  </div>
 </template>
 
 <script>

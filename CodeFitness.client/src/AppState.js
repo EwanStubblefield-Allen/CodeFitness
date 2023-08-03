@@ -7,6 +7,7 @@ export const AppState = reactive({
   account: {},
   /** @type {import('./models/Activity.js').Activity[]} */
   activities: [],
+  accountActivities: [],
   template: {},
   /** @type {import('./models/Activity.js').Activity | null} */
   activeActivity: null,

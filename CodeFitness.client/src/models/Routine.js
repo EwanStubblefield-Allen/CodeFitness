@@ -6,5 +6,6 @@ export class Routine {
     this.public = data.public
     this.accountId = data.accountId
     this.profile = data.profile
+    this.activities = data.activities
   }
 }
