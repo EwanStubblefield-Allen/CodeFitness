@@ -3,12 +3,12 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class AccountAchievementsService {
   async getAccountAchievement() {
-    const accountAchievements = await dbContext.AccountAchievements.find()
+    const accountAchievements = await dbContext.AccountAchievements.find().populate('profile').populate('achievement')
     return accountAchievements
   }
 
   async getAccountAchievementById(accountAchievementId) {
-    const accountAchievement = await dbContext.AccountAchievements.findById(accountAchievementId)
+    const accountAchievement = await dbContext.AccountAchievements.findById(accountAchievementId).populate('profile').populate('achievement')
     if (!accountAchievement) {
       throw new BadRequest(`[NO ACCOUNT ACHIEVEMENT MATCHES THE ID: ${accountAchievementId}]`)
     }
@@ -17,6 +17,8 @@ class AccountAchievementsService {
 
   async createAccountAchievement(accountAchievementData) {
     const accountAchievement = await dbContext.AccountAchievements.create(accountAchievementData)
+    await accountAchievement.populate('profile')
+    await accountAchievement.populate('achievement')
     return accountAchievement
   }
 

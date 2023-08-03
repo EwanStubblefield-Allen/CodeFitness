@@ -21,8 +21,15 @@ export const AccountAchievementSchema = new Schema({
 })
 
 AccountAchievementSchema.virtual('achievement', {
-  localField: 'accountAchievementId',
+  localField: 'achievementId',
   foreignField: '_id',
   justOne: true,
   ref: 'Achievement'
+})
+
+AccountAchievementSchema.virtual('profile', {
+  localField: 'accountId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Account'
 })

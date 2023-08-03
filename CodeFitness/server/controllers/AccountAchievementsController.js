@@ -34,7 +34,8 @@ export class AccountAchievementsController extends BaseController {
   async createAccountAchievement(req, res, next) {
     try {
       const data = req.body
-      data.achievementId = req.params.achievementId
+      // Moved from achievement controller, going to get achievement ID in front end
+      // data.achievementId = req.params.achievementId
       data.accountId = req.userInfo.id
       const newAccountAchievement = await accountAchievementsService.createAccountAchievement(data)
       return res.send(newAccountAchievement)
