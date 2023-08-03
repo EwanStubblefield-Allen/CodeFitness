@@ -27,7 +27,7 @@ class AccountAchievementsService {
   async createAccountAchievement(accountId) {
     const accountAchievements = []
     const achievements = await achievementsService.getAchievements()
-    achievements.forEach(async a => {
+    for (const a of achievements) {
       const data = {
         accountId: accountId,
         achievementId: a.id
@@ -35,7 +35,7 @@ class AccountAchievementsService {
       const accountAchievement = await dbContext.AccountAchievements.create(data)
       await accountAchievement.populate('achievement')
       accountAchievements.push(accountAchievement)
-    })
+    }
     return accountAchievements
   }
 
@@ -43,6 +43,9 @@ class AccountAchievementsService {
     const achievement = await achievementsService.getAchievementByType(type)
     const accountAchievement = await this.getAccountAchievementByAccountIdAndAchievementId(accountId, achievement.id)
     accountAchievement.progress += increment
+    if (achievement.requirement.length >= accountAchievement.tier) {
+      return accountAchievement
+    }
     if (accountAchievement.progress >= achievement.requirement[accountAchievement.tier]) {
       accountAchievement.tier++
     }

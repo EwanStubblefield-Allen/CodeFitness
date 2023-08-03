@@ -26,16 +26,10 @@ export class AccountController extends BaseController {
     try {
       const accountData = req.body
       const accountInfo = req.userInfo
-      if (accountData.community && accountInfo.community) {
-        throw new BadRequest('[YOU CANNOT EDIT YOUR COMMUNITY]')
-      }
       const account = await accountService.updateAccount(accountInfo, accountData)
-      if (accountData.community) {
-        await accountAchievementsService.createAccountAchievement(accountInfo.id)
-      }
       return res.send(account)
     } catch (error) {
-      next(error);
+      next(error)
     }
   }
 }
