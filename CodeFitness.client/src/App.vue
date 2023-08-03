@@ -21,16 +21,17 @@
       </template>
     </ModalComponent>
 
-    <ModalComponent id="activeActivity" v-if="appState.activeActivity">
-      <template #title>{{ appState.activeActivity.name }}</template>
-      <template #body>
-        <ActivityDetails />
-      </template>
-    </ModalComponent>
     <ModalComponent id="routineForm">
       <template #title>Create Routine</template>
       <template #body>
         <RoutineForm />
+      </template>
+    </ModalComponent>
+
+    <ModalComponent v-if="appState.activeActivity" id="activeActivity" class="modal-lg">
+      <template #title>{{ appState.activeActivity.name }}</template>
+      <template #body>
+        <ActivityDetails />
       </template>
     </ModalComponent>
   </div>
@@ -75,6 +76,10 @@ export default {
 
   p {
     margin: 0;
+  }
+
+  .dark-bg {
+    background-color: var(--dark);
   }
 
   .bg-neutral-dark {

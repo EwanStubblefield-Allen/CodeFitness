@@ -93,21 +93,15 @@
     <p class="col-12 pt-2 fw-bold">Difficulty:</p>
     <div class="form-check">
       <input v-model="difficulty" class="form-check-input" type="radio" name="difficulty" id="beginner" value="beginner">
-      <label class="form-check-label" for="beginner">
-        Beginner
-      </label>
+      <label class="form-check-label" for="beginner">Beginner</label>
     </div>
     <div class="form-check">
       <input v-model="difficulty" class="form-check-input" type="radio" name="difficulty" id="intermediate" value="intermediate">
-      <label class="form-check-label" for="intermediate">
-        Intermediate
-      </label>
+      <label class="form-check-label" for="intermediate">Intermediate</label>
     </div>
     <div class="form-check">
       <input v-model="difficulty" class="form-check-input" type="radio" name="difficulty" id="expert" value="expert">
-      <label class="form-check-label" for="expert">
-        Expert
-      </label>
+      <label class="form-check-label" for="expert">Expert</label>
     </div>
     <div class="text-end">
       <button @click="resetTemplate()" class="btn btn-secondary mx-3" type="reset">Reset</button>
@@ -117,8 +111,7 @@
 </template>
 
 <script>
-import { AppState } from '../AppState.js'
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { activitiesService } from '../services/ActivitiesService.js'
 import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
