@@ -42,7 +42,7 @@
         </button>
       </div>
     </section>
-    <secition class="row">
+    <section class="row">
       <div class="col-9 m-auto">
         <section class="row">
           <div v-for="i in 3" :key="i" class="col-4 pb-3">
@@ -58,7 +58,7 @@
           </div>
         </section>
       </div>
-    </secition>
+    </section>
     <section class="row">
       <div class="col-12 bg-primary text-light text-center fs-1 py-3">
         Achievements
@@ -91,62 +91,62 @@ export default {
 </script>
 
 <style scoped>
-.account-picture {
-  position: relative;
-  top: -10vw;
-  /* left: 20vh; */
-  width: 20vw;
-  height: 20vw;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
+  .account-picture {
+    position: relative;
+    top: -10vw;
+    /* left: 20vh; */
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
 
-.account-name {
-  position: relative;
-  left: 50vh;
-}
+  .account-name {
+    position: relative;
+    left: 50vh;
+  }
 
-.cover-image {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 50vh;
-}
+  .cover-image {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 50vh;
+  }
 
-.text-stroke {
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black;
-}
+  .text-stroke {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+  }
 
-.routine-bg {
-  background-image: url('https://wger.de/media/exercise-images/1012/8270fdb8-28f1-4eff-b410-af8642085b3f.png');
-}
+  .routine-bg {
+    background-image: url('https://wger.de/media/exercise-images/1012/8270fdb8-28f1-4eff-b410-af8642085b3f.png');
+  }
 
-.reserved-space {
-  height: 30vh;
-}
+  .reserved-space {
+    height: 30vh;
+  }
 
-.routine-details {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 16px 16px;
-  /* border-bottom: 1px solid black; */
-  backdrop-filter: blur(13.6px);
-  -webkit-backdrop-filter: blur(13.6px);
-}
+  .routine-details {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 16px 16px;
+    /* border-bottom: 1px solid black; */
+    backdrop-filter: blur(13.6px);
+    -webkit-backdrop-filter: blur(13.6px);
+  }
 
-.achievement-img {
-  height: 15vh;
-  width: 15vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-  /* filter: drop-shadow(0px 6px black); */
-  outline: 16px solid rgb(90, 90, 90);
-}
+  .achievement-img {
+    height: 15vh;
+    width: 15vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    /* filter: drop-shadow(0px 6px black); */
+    outline: 16px solid rgb(90, 90, 90);
+  }
 
-/* img {
-  max-width: 100px;
-} */
+  /* img {
+    max-width: 100px;
+  } */
 </style>

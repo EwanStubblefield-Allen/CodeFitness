@@ -1,13 +1,29 @@
 <template>
-  <div @click="selectCommunityOne()" class="col-2 bg-neutral-light my-4 p-3 text-center selectable">
+  <h2 v-if="!account.community" class="text-center mt-2">Select a Community</h2>
+  <div v-if="!account.community" @click="selectCommunityOne()"
+    class="col-2 bg-neutral-light my-4 p-3 text-center selectable">
     <p>Cardio Kings</p>
     <p class="pt-3">Global Points: 0</p>
   </div>
-  <div @click="selectCommunityTwo()" class=" col-2 bg-neutral-light my-4 p-3 text-center selectable">
+  <div v-if="!account.community" @click="selectCommunityTwo()"
+    class=" col-2 bg-neutral-light my-4 p-3 text-center selectable">
     <p>Weight Warriors</p>
     <p class="pt-3">Global Points: 0</p>
   </div>
-  <div @click="selectCommunityThree()" class=" col-2 bg-neutral-light my-4 p-3 text-center selectable">
+  <div v-if="!account.community" @click="selectCommunityThree()"
+    class=" col-2 bg-neutral-light my-4 p-3 text-center selectable">
+    <p>Legion of Leisure</p>
+    <p class="pt-3">Global Points: 0</p>
+  </div>
+  <div v-if="account.community" class="col-2 bg-neutral-light my-4 p-3 text-center">
+    <p>Cardio Kings</p>
+    <p class="pt-3">Global Points: 0</p>
+  </div>
+  <div v-if="account.community" class=" col-2 bg-neutral-light my-4 p-3 text-center">
+    <p>Weight Warriors</p>
+    <p class="pt-3">Global Points: 0</p>
+  </div>
+  <div v-if="account.community" class=" col-2 bg-neutral-light my-4 p-3 text-center">
     <p>Legion of Leisure</p>
     <p class="pt-3">Global Points: 0</p>
   </div>
@@ -27,6 +43,9 @@ export default {
     })
 
     return {
+
+      account: computed(() => AppState.account),
+
       async selectCommunityOne() {
         try {
           await accountService.selectCommunityOne()

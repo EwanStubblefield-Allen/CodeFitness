@@ -8,7 +8,7 @@ class RoutinesService {
 
   // async getRoutines() {
   //   try {
-  //     const res = await api.get('account/routines')
+  //     const res = await api.get(`profiles/${AppState.account.id}/routines`)
   //     AppState.routines = res.data.map(d => new Routine(d))
   //   } catch (error) {
   //     Pop.error(error.message)
