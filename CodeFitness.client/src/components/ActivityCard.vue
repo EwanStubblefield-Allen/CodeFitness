@@ -18,6 +18,7 @@
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"
+import { logger } from "../utils/Logger"
 
 export default {
   props: {
