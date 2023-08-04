@@ -2,15 +2,18 @@
   <form @submit.prevent="updateAccount()">
     <div class="form-group py-2">
       <label for="picture">Picture</label>
-      <input v-model="editable.picture" id="picture" class="form-control" type="url" minlength="3" maxlength="300" placeholder="Image...">
+      <input v-model="editable.picture" id="picture" class="form-control" type="url" minlength="3" maxlength="300"
+        placeholder="Image...">
     </div>
     <div class="form-group py-2">
       <label for="coverImg">CoverImg</label>
-      <input v-model="editable.coverImg" id="coverImg" class="form-control" type="url" minlength="3" maxlength="300" placeholder="CoverImg...">
+      <input v-model="editable.coverImg" id="coverImg" class="form-control" type="url" minlength="3" maxlength="300"
+        placeholder="CoverImg...">
     </div>
     <div class="form-group pb-2">
       <label for="bio">Edit Bio</label>
-      <textarea v-model="editable.bio" id="bio" class="form-control" type="text" minlength="10" maxlength="1000" rows="10" placeholder="Bio..."></textarea>
+      <textarea v-model="editable.bio" id="bio" class="form-control" type="text" minlength="10" maxlength="1000" rows="10"
+        placeholder="Bio..."></textarea>
     </div>
     <div class="text-end">
       <button class="btn btn-action mt-2" type="submit">Create</button>
@@ -22,6 +25,7 @@
 import { ref } from "vue"
 import { accountService } from "../services/AccountService"
 import Pop from "../utils/Pop.js"
+import { Modal } from "bootstrap"
 
 export default {
   setup() {
@@ -33,6 +37,7 @@ export default {
       async updateAccount() {
         try {
           await accountService.updateAccount(editable.value)
+          Modal.getOrCreateInstance('#accountForm').hide()
         } catch (error) {
           Pop.error(error.message)
         }
