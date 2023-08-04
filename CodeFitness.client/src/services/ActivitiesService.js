@@ -5,6 +5,16 @@ import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
 
 class ActivitiesService {
+
+  async deleteActivity(activityId) {
+    const res = await api.delete(`api/activities/${activityId}`)
+    logger.log('[REMOVING ACTIVITY]', res.data)
+
+    const activityIndex = AppState.activities.findIndex(r => r.id == activityId)
+
+    AppState.activities.splice(activityIndex, 1)
+  }
+  
   resetTemplate() {
     AppState.template = {}
   }
