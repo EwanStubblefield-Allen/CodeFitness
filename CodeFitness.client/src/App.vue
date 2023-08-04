@@ -1,48 +1,44 @@
 <template>
-  <div class="container-fluid">
+  <header class="bg-neutral py-2 px-0">
+    <Navbar />
+  </header>
+  <main class="container-fluid">
     <section class="row">
-      <header class="col-12 bg-neutral py-2 px-0">
-        <Navbar />
-      </header>
-      <div class="col-2 bg-neutral" v-if="account.id">
+      <div v-if="account.id" class="col-2 bg-neutral">
         <AccountBar />
       </div>
-      <div class="col-2 bg-neutral" style="height: 100vh;" v-if="!account.id"></div>
-      <div class="col-10 p-0">
-        <main>
-          <router-view />
-        </main>
-      </div>
+      <div v-else class="col-2 bg-neutral" style="height: 100vh;"></div>
+      <router-view />
     </section>
+  </main>
 
-    <ModalComponent id="filterForm">
-      <template #title>Filter</template>
-      <template #body>
-        <ActivityFilter />
-      </template>
-    </ModalComponent>
+  <ModalComponent id="filterForm">
+    <template #title>Filter</template>
+    <template #body>
+      <ActivityFilter />
+    </template>
+  </ModalComponent>
 
-    <ModalComponent id="routineForm">
-      <template #title>Create Routine</template>
-      <template #body>
-        <RoutineForm />
-      </template>
-    </ModalComponent>
+  <ModalComponent id="routineForm">
+    <template #title>Create Routine</template>
+    <template #body>
+      <RoutineForm />
+    </template>
+  </ModalComponent>
 
-    <ModalComponent id="accountForm">
-      <template #title>Edit Account</template>
-      <template #body>
-        <AccountForm />
-      </template>
-    </ModalComponent>
+  <ModalComponent id="accountForm">
+    <template #title>Edit Account</template>
+    <template #body>
+      <AccountForm />
+    </template>
+  </ModalComponent>
 
-    <ModalComponent v-if="appState.activeActivity" id="activeActivity" class="modal-lg">
-      <template #title>{{ appState.activeActivity.name }}</template>
-      <template #body>
-        <ActivityDetails />
-      </template>
-    </ModalComponent>
-  </div>
+  <ModalComponent v-if="appState.activeActivity" id="activeActivity" class="modal-lg">
+    <template #title>{{ appState.activeActivity.name }}</template>
+    <template #body>
+      <ActivityDetails />
+    </template>
+  </ModalComponent>
 </template>
 
 <script>
@@ -102,5 +98,18 @@ export default {
 
   .bg-neutral-light {
     background-color: var(--neutral-light);
+  }
+
+  .btn-action:hover {
+    color: black;
+    background-color: var(--light);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12)
+  }
+
+  .btn-action,
+  .btn-action:active {
+    color: black !important;
+    background-color: var(--action) !important;
+    box-shadow: none;
   }
 </style>

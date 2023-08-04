@@ -105,13 +105,13 @@
     </div>
     <div class="text-end">
       <button @click="resetTemplate()" class="btn btn-secondary mx-3" type="reset">Reset</button>
-      <button class="btn btn-success" type="submit">Submit</button>
+      <button class="btn btn-action" type="submit">Submit</button>
     </div>
   </form>
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { activitiesService } from '../services/ActivitiesService.js'
 import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
@@ -121,10 +121,6 @@ export default {
     const editable = ref('')
     const adaptable = ref('')
     const difficulty = ref('')
-
-    onMounted(() => {
-
-    })
 
     return {
       editable,

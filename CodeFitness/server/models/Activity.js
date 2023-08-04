@@ -12,13 +12,13 @@ export const ActivitySchema = new Schema({
     maxlength: 100,
     required: true,
   },
-  image: {
+  picture: {
     type: String,
     required: true
   },
-  level: {
-    type: Number,
-    default: 0
+  instructions: {
+    type: String,
+    required: true
   },
   type: {
     type: String,
@@ -32,6 +32,15 @@ export const ActivitySchema = new Schema({
     type: String,
     required: true
   },
+  difficulty: {
+    type: String,
+    enum: ['Beginner', 'Intermediate', 'Expert'],
+    required: true
+  },
+  level: {
+    type: Number,
+    default: 0
+  }
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

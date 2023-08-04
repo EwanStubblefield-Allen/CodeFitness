@@ -1,7 +1,7 @@
 <template>
   <div>
     <img class="img-fluid" :src="activity.picture" :alt="activity.name">
-    <div class="d-flex justify-content-around pt-2">
+    <div class="d-flex flex-column flex-md-row justify-content-around text-center pt-2">
       <p>{{ activity.difficulty }}</p>
       <p>{{ activity.type }}</p>
       <p>{{ activity.equipment }}</p>
@@ -13,7 +13,7 @@
     </div>
     <div v-if="account.id" class="d-flex justify-content-end align-items-center pt-3">
       <p>Add to Routine</p>
-      <button @click="addActivity()" class="mdi mdi-plus mx-2 btn btn-primary"></button>
+      <button @click="createActivity()" class="mdi mdi-plus mx-2 btn btn-action"></button>
     </div>
   </div>
 </template>
@@ -21,6 +21,8 @@
 <script>
 import { computed } from "vue"
 import { AppState } from "../AppState.js"
+import { activitiesService } from "../services/ActivitiesService.js"
+import Pop from "../utils/Pop.js"
 
 export default {
   setup() {
@@ -28,8 +30,12 @@ export default {
       activity: computed(() => AppState.activeActivity),
       account: computed(() => AppState.account),
 
-      addActivity() {
-
+      async createActivity() {
+        try {
+          await activitiesService.createActivity(this.activity)
+        } catch (error) {
+          Pop.error(error.message, '[CREATING ACTIVITY]')
+        }
       }
     }
   }

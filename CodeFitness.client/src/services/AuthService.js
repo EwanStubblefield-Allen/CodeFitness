@@ -5,7 +5,7 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { socketService } from './SocketService'
-import { routinesService } from "./RoutinesService.js"
+import { routinesService } from './RoutinesService.js'
 
 export const AuthService = initialize({
   domain,
@@ -28,8 +28,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
   // NOTE if there is something you want to do once the user is authenticated, place that here
-
-  // routinesService.getRoutines()
+  await routinesService.getRoutines()
 })
 
 async function refreshAuthToken(config) {

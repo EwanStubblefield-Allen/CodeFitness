@@ -4,25 +4,12 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class AccountService {
-  async selectCommunityOne() {
-    const newAccount = AppState.account
-    newAccount.community = 'Cardio Kings'
-    const updatedAccount = new Account(newAccount)
-    logger.log('updated account', updatedAccount)
-  }
-  async selectCommunityTwo() {
-    const newAccount = AppState.account
-    newAccount.community = 'Weight Warriors'
-    const updatedAccount = new Account(newAccount)
+  async selectCommunity(community) {
+    AppState.account.community = community
+    const updatedAccount = new Account(AppState.account)
     logger.log('updated account', updatedAccount)
   }
 
-  async selectCommunityThree() {
-    const newAccount = AppState.account
-    newAccount.community = 'Legion of Leisure'
-    const updatedAccount = new Account(newAccount)
-    logger.log('updated account', updatedAccount)
-  }
   async getAccount() {
     try {
       const res = await api.get('/account')
@@ -31,11 +18,10 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
-  async editAccount(formData) {
+
+  async updateAccount(formData) {
     const res = await api.put('/account', formData)
-    // logger.log('account edited', res.data)
-    let updatedAccount = new Account(res.data)
-    AppState.account = updatedAccount
+    AppState.account = new Account(res.data.account)
   }
 }
 

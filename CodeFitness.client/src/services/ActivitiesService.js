@@ -1,15 +1,10 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
 import { logger } from "../utils/Logger.js"
-import { activityApi, pictureApi } from "./AxiosService.js"
+import { activityApi, api } from "./AxiosService.js"
+import { picturesService } from "./PicturesService.js"
 
 class ActivitiesService {
-  async setActiveActivity(activity) {
-    const res = await pictureApi.get(`/search?query=${activity.name}`)
-    logger.log(res.data)
-    activity.picture = res.data.photos[0].src.landscape
-    AppState.activeActivity = activity
-  }
   resetTemplate() {
     AppState.template = {}
   }
@@ -29,10 +24,23 @@ class ActivitiesService {
     AppState.activities = res.data.map(d => new Activity(d))
   }
 
-  async addActivity(activity){
-    const newActivity = new Activity(activity)
-    AppState.activeRoutines.activities = newActivity
-    logger.log('AppState active routines', AppState.activeRoutines)
+  async setActiveActivity(activity) {
+    activity.picture = await picturesService.getPictures(activity.name)
+    AppState.activeActivity = activity
+  }
+
+  async createActivity(activityData) {
+    if (!activityData.picture) {
+      activityData.picture = await picturesService.getPictures(activityData.name)
+    }
+
+    if (!AppState.activeRoutine) {
+      throw new Error(`Please Select a Routine to Add the ${activityData.name} to!`)
+    }
+    activityData.routineId = AppState.activeRoutine.id
+    const res = await api.post('api/activities', activityData)
+    logger.log(res.data)
+    AppState.activeRoutine.activities.push(new Activity(res.data))
   }
 }
 

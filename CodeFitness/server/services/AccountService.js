@@ -1,4 +1,6 @@
 import { dbContext } from '../db/DbContext'
+import { accountAchievementsService } from './AccountAchievementsService.js'
+import { profileService } from './ProfileService.js'
 
 // Private Methods
 
@@ -74,13 +76,23 @@ class AccountService {
    *  @param {any} body Updates to apply to user object
    */
   async updateAccount(user, body) {
+    let accountAchievement
+    const profile = await profileService.getProfileById(user.id)
+    if (!profile.community) {
+      await accountAchievementsService.createAccountAchievement(user.id)
+    } else {
+      body.community = profile.community
+    }
+    if (body.points) {
+      accountAchievement = await accountAchievementsService.updateAccountAchievement(user.id, 'pointCount', body.points - profile.points)
+    }
     const update = sanitizeBody(body)
     const account = await dbContext.Account.findOneAndUpdate(
       { _id: user.id },
       { $set: update },
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     )
-    return account
+    return { account: account, accountAchievement: accountAchievement }
   }
 }
 
