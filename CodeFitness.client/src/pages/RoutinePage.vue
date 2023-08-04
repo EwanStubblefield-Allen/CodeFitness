@@ -12,9 +12,9 @@
     <h2>Equipment: </h2>
     {{ activeRoutine }}
     <div class="row m-3">
-      <ActivitySearch />
     </div>
   </div>
+  <ActivitySearch />
 </template>
 
 <script>
