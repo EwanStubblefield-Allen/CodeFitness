@@ -3,6 +3,9 @@ import { Forbidden } from "../utils/Errors.js"
 import { accountAchievementsService } from "./AccountAchievementsService.js"
 
 class RoutinesService {
+  updateRoutine() {
+    throw new Error("Method not implemented.")
+  }
   async getRoutines() {
     const routines = await dbContext.Routines.find().populate('profile').populate('activity')
     return routines

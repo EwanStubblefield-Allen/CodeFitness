@@ -27,6 +27,10 @@ export const RoutineSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true,
     ref: "Account"
+  },
+  completeCount: {
+    type: Number,
+    default: 0
   }
 }, {
   timestamps: true, toJSON: { virtuals: true }

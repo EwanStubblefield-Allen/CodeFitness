@@ -6,6 +6,11 @@ export const ActivitySchema = new Schema({
     required: true,
     ref: "Routine"
   },
+  accountId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "Account"
+  },
   name: {
     type: String,
     minlength: 3,
