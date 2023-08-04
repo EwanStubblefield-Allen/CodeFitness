@@ -12,7 +12,7 @@ export class RoutinesController extends BaseController {
       .get('/:routineId/activities', this.getActivitiesByRoutineId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createRoutine)
-      .put('/:routineId', this.)
+      .put('/:routineId', this.updateRoutine)
       .delete('/:routineId', this.removeRoutine)
   }
 
@@ -54,6 +54,18 @@ export class RoutinesController extends BaseController {
     }
   }
 
+  async updateRoutine(req, res, next) {
+    try {
+      const routineData = req.body
+      routineData.accountId = req.userInfo.id
+      routineData.id = req.params.routineId
+      const routine = await routinesService.updateRoutine()
+
+      return res.send()
+    } catch (error) {
+      next(error);
+    }
+  }
   async removeRoutine(req, res, next) {
     try {
       const routine = await routinesService.removeRoutine(req.userInfo.id, req.params.routineId)
