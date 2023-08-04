@@ -70,16 +70,32 @@
 </template>
 
 <script>
-import { computed, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 import { AppState } from "../AppState"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { activitiesService } from "../services/ActivitiesService"
 
 export default {
   setup() {
     const editable = ref({})
+
+    async function setRoutineActivities() {
+      try {
+        await activitiesService.setRoutineActivities()
+      } catch (error) {
+        Pop.error(error.message)
+        logger.log(error)
+      }
+    }
+    onMounted(()=>{
+      setRoutineActivities()
+    })
     return {
       activeRoutine: computed(()=> AppState.activeRoutine),
       routineActivities: computed(()=> AppState.routineActivities),
       editable
+
     }
   }
 }

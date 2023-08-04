@@ -10,7 +10,7 @@ class ActivitiesService {
     const res = await api.delete(`api/activities/${activityId}`)
     logger.log('[REMOVING ACTIVITY]', res.data)
 
-    const activityIndex = AppState.activities.findIndex(r => r.id == activityId)
+    const activityIndex = AppState.activities.findIndex(a => a.id == activityId)
 
     AppState.activities.splice(activityIndex, 1)
   }
@@ -37,6 +37,12 @@ class ActivitiesService {
   async setActiveActivity(activity) {
     activity.picture = await picturesService.getPictures(activity.name)
     AppState.activeActivity = activity
+  }
+  async setRoutineActivities() {
+    let act = AppState.activeRoutine.activities
+    logger.log('active routine activities', act)
+    AppState.routineActivities = act.map(a => new Activity(a))
+    logger.log('appstate activities', AppState.routineActivities)
   }
 
   async createActivity(activityData) {

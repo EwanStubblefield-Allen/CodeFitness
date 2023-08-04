@@ -2,7 +2,7 @@
   <div class="col-10">
     <TeamComponent />
 
-    <div v-if="account.id" class="row m-3">
+    <div v-if="account.community" class="row m-3">
       <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
         Routine</button>
     </div>
