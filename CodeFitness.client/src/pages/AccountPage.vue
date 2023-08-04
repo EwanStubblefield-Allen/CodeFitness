@@ -2,7 +2,9 @@
   <div class="col-12 col-md-10">
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
-        <img class="cover-image" src="https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" :alt="account.name">
+        <img class="cover-image"
+          src="https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          :alt="account.name">
 
         <div class="d-flex justify-content-between align-items-end position">
           <img class="account-picture" :src="account.picture" :alt="account.name">
@@ -15,7 +17,8 @@
     </section>
 
     <div class="text-end">
-      <button class="btn btn-action mt-3 mb-5 py-3" data-bs-toggle="modal" data-bs-target="#accountForm"> Edit Account </button>
+      <button class="btn btn-action mt-3 mb-5 py-3" data-bs-toggle="modal" data-bs-target="#accountForm"> Edit Account
+      </button>
     </div>
 
     <section class="row justify-content-center">
@@ -61,7 +64,8 @@
         <section class="row pt-5">
           <div v-for="i in 18" :key="i" class="col-6 col-md-2 pb-5 mb-3">
             <div class="d-flex justify-content-center">
-              <img class="achievement-img" src="https://cdn.filestackcontent.com/4rXt91EuR7m88pBaQaZE" alt="" :title="`Achievement Name ${i}`">
+              <img class="achievement-img" src="https://cdn.filestackcontent.com/4rXt91EuR7m88pBaQaZE" alt=""
+                :title="`Achievement Name ${i}`">
             </div>
           </div>
         </section>
@@ -134,6 +138,5 @@ export default {
     object-position: center;
     border-radius: 50%;
     /* filter: drop-shadow(0px 6px black); */
-    outline: 16px solid rgb(90, 90, 90);
-  }
-</style>
+  outline: 16px solid rgb(90, 90, 90);
+}</style>
