@@ -17,17 +17,9 @@
 </template>
 
 <script>
-import { onMounted } from 'vue'
-
 export default {
   setup() {
-    onMounted(() => {
-
-    })
-
-    return {
-
-    }
+    return {}
   }
 }
 </script>

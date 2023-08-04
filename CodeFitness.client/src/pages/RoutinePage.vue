@@ -1,7 +1,9 @@
 <template>
-  {{activeRoutines}}
-  <div class="row m-3">
-    <ActivitySearch />
+  <div class="col-10">
+    {{ activeRoutine }}
+    <div class="row m-3">
+      <ActivitySearch />
+    </div>
   </div>
 </template>
 
@@ -9,34 +11,31 @@
 import { computed, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
-import Pop from "../utils/Pop"
-import { logger } from "../utils/Logger"
 import { routinesService } from "../services/RoutinesService"
+import Pop from "../utils/Pop"
 
 export default {
   setup() {
     const route = useRoute()
+
+    watchEffect(() => {
+      getRoutineById(route.params.routineId)
+    })
 
     async function getRoutineById() {
       try {
         const routineId = route.params.routineId
         await routinesService.getRoutineById(routineId)
       } catch (error) {
-        Pop.error(error.message)
-        logger.log(error)
+        Pop.error(error.message, '[GETTING ROUTINE BY ID]')
       }
     }
-    watchEffect(()=> {
-      getRoutineById(route.params.routineId)
-    })
+
     return {
-      routines: computed(()=> AppState.routines),
-      activeRoutines: computed(()=> AppState.activeRoutines)
+      activeRoutine: computed(() => AppState.activeRoutine)
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,71 +1,42 @@
 <template>
-  <section class="row mb-3">
-    <div class="col-11 m-auto">
-      <section class="row">
-        <img class="community-img " src="../assets/img/yellow-flag.png" alt="Yellow">
-      </section>
+  <section class="row justify-content-center">
+    <div class="col-11 px-0 pb-3">
+      <img class="community-img w-100" src="../assets/img/yellow-flag.png" alt="Yellow">
     </div>
-  </section>
-  <section class="row mb-3">
-    <div class="col-11 m-auto bg-light d-flex justify-content-center p-3 bg-cover-img">
+
+    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-3 bg-cover-img">
       <img class="account-picture " :src="account.picture" :alt="account.name" :title="account.name">
     </div>
-  </section>
-  <section class="row mb-3">
-    <div class="col-11 m-auto text-center text-dark bg-light fs-3">
+
+    <div class="col-11 text-center text-dark bg-light fs-3 mb-3">
       <div class="mb-3">
-        <p>Your Points</p>
-        <p>0</p>
+        <p>Points: {{ account.points }}</p>
       </div>
 
-      <p class="mb-3 px-3"> Your Routines</p>
+      <p class="mb-3">Routines:</p>
       <div v-for="routine in routines" :key="routine.id" class="bg-neutral-light mb-2 px-1">
-        <RouterLink :to=" {name: 'Routines', params: {routineId: routine.id}}">
-
-            {{ routine.title }}
-
+        <RouterLink :to="{ name: 'Routines', params: { routineId: routine.id } }">
+          {{ routine.title }}
         </RouterLink>
-
-        </div>
+      </div>
     </div>
   </section>
-  <!-- <section class="row mb-3">
-  </section> -->
 </template>
 
 <script>
 import { AppState } from '../AppState.js'
-import { computed, onMounted, watchEffect } from 'vue'
+import { computed } from 'vue'
 import { routinesService } from "../services/RoutinesService.js"
-import Pop from "../utils/Pop.js"
-import { logger } from "../utils/Logger"
 
 export default {
   setup() {
-    onMounted(() => {
-      getRoutines()
-    })
-
-    async function getRoutines() {
-      try {
-        await routinesService.getRoutines()
-      } catch (error) {
-        Pop.error(error.message)
-      }
-    }
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
-      async setActiveRoutine(routine) {
-        try {
-          // logger.log('routine Id', routineId)
-          await routinesService.setActiveRoutine(routine)
-        } catch (error) {
-          Pop.error(error.message)
-          logger.log(error)
-        }
-      }
 
+      setActiveRoutine(routine) {
+        routinesService.setActiveRoutine(routine)
+      }
     }
   }
 }

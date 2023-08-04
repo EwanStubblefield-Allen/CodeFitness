@@ -2,29 +2,27 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-neutral px-3">
     <!-- <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }"> -->
     <div class="d-flex flex-column align-items-center">
-      <img type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" alt="logo"
-        src="../assets/img/codeFitness.png" height="55" />
+      <img type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" alt="logo" src="../assets/img/codeFitness.png" height="55" />
     </div>
     <!-- </router-link> -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <!-- <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
-          </router-link>
+          </router-link> -->
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
+
   <!-- SECTION Off Canvas -->
-  <div class="offcanvas offcanvas-start  text-light offcanvas-width top-margin" data-bs-scroll="true"
-    data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas offcanvas-start  text-light offcanvas-width top-margin" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <!-- <div class="offcanvas-header  d-flex justify-content-center">
       <h5 class="offcanvas-title " id="offcanvasScrollingLabel"><img type="button" data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasScrolling" alt="logo" src="../assets/img/codeFitness.png" height="55" /></h5>
@@ -39,7 +37,7 @@
         </div>
 
         <div v-if="account.id" class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
-          <router-link  class="navbar-brand d-flex" :to="{ name: 'Account' }">
+          <router-link class="navbar-brand d-flex" :to="{ name: 'Account' }">
             <div class="text-light fs-2" data-bs-dismiss="offcanvas"> Account</div>
           </router-link>
         </div>
@@ -57,13 +55,12 @@
       </section>
     </div>
   </div>
-  <!-- SECTION OFf Canvas -->
 </template>
 
 <script>
 import { computed } from "vue"
-import Login from './Login.vue'
 import { AppState } from "../AppState.js"
+import Login from './Login.vue'
 
 export default {
   setup() {
@@ -77,7 +74,7 @@ export default {
 
 <style scoped>
   .top-margin {
-    margin-top: 11vh;
+    margin-top: 80px;
   }
 
   a:hover {

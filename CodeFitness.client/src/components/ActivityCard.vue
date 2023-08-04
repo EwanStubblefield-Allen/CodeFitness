@@ -9,17 +9,15 @@
       <p>Difficulty: {{ activityProp.difficulty }}</p>
     </div>
     <div class="dark-bg text-end p-3">
-      <button @click="addActivity(activityProp)" class="btn btn-info">Add to Routine</button>
+      <button @click="createActivity(activityProp)" class="btn btn-action">Add to Routine</button>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"
-import { logger } from "../utils/Logger.js"
 
 export default {
   props: {
@@ -30,31 +28,22 @@ export default {
   },
 
   setup(props) {
-    onMounted(() => {
-
-    })
-
     return {
-      imageBackground: computed(() => `url('https://wger.de/${props.activityProp.image}')`),
-
       async setActiveActivity() {
         try {
           await activitiesService.setActiveActivity(props.activityProp)
           Modal.getOrCreateInstance('#activeActivity').show()
         } catch (error) {
-          Pop.error(error.message)
+          Pop.error(error.message, '[SETTING ACTIVE ACTIVITY]')
         }
       },
-      
-      async addActivity(activityId) {
-        try{
-          logger.log(activityId)
-          await activitiesService.addActivity(activityId)
-            
-        } catch(error) {
-            Pop.error(error.message);
-            logger.log(error);
-          }
+
+      async createActivity(activityId) {
+        try {
+          await activitiesService.createActivity(activityId)
+        } catch (error) {
+          Pop.error(error.message, '[CREATING ACTIVITY]')
+        }
       }
     }
   }
@@ -62,12 +51,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .image-bg {
-    background-image: v-bind(imageBackground);
-    background-position: center;
-    background-size: cover;
-  }
-
   .activity-card {
     min-height: 40vh;
   }
