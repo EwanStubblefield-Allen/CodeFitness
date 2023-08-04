@@ -1,4 +1,4 @@
-import { profileService } from "../services/ProfileService.js";
+import { communitiesService } from "../services/CommunitiesService.js";
 import BaseController from "../utils/BaseController.js";
 
 export class CommunitiesController extends BaseController {
@@ -10,7 +10,7 @@ export class CommunitiesController extends BaseController {
 
   async getCommunities(req, res, next) {
     try {
-      const communities = await profileService.getCommunities()
+      const communities = await communitiesService.getCommunities()
       return res.send(communities)
     } catch (error) {
       next(error)
