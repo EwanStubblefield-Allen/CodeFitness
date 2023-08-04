@@ -29,11 +29,11 @@ import { AppState } from '../AppState.js'
 import { computed } from 'vue'
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop.js"
-import { useRoute } from "vue-router"
+import { useRouter } from "vue-router"
 
 export default {
   setup() {
-    const route = useRoute()
+    const router = useRouter()
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
@@ -53,6 +53,7 @@ export default {
           const routineToRemove = AppState.routines.find(r => r.accountId == AppState.account.id)
           const routineId = routineToRemove.id
           await routinesService.deleteRoutine(routineId)
+          router.push('/')
         } catch (error) {
           Pop.error(error.message)
         }
