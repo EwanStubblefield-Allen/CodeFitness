@@ -17,6 +17,7 @@
       <div v-for="routine in routines" :key="routine.id" class="bg-neutral-light mb-2 px-1">
         <RouterLink :to="{ name: 'Routines', params: { routineId: routine.id } }">
           {{ routine.title }}
+          <!-- <button class="fs-6" @click="deleteRoutine()"><span class="mdi mdi-trash-can"></span></button> -->
         </RouterLink>
       </div>
     </div>
@@ -27,9 +28,12 @@
 import { AppState } from '../AppState.js'
 import { computed } from 'vue'
 import { routinesService } from "../services/RoutinesService.js"
+import Pop from "../utils/Pop.js"
+import { useRoute } from "vue-router"
 
 export default {
   setup() {
+    const route = useRoute()
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
@@ -37,6 +41,22 @@ export default {
       setActiveRoutine(routine) {
         routinesService.setActiveRoutine(routine)
       }
+
+      // async deleteRoutine() {
+      //   try {
+      //     const wantsToRemove = await Pop.confirm()
+
+      //     if (!wantsToRemove) {
+      //       return
+      //     }
+
+      //     const routineToRemove = AppState.routines.find(r => r.accountId == AppState.account.id)
+      //     const routineId = routineToRemove.id
+      //     await routinesService.deleteRoutine(routineId)
+      //   } catch (error) {
+      //     Pop.error(error.message)
+      //   }
+      // }
     }
   }
 }

@@ -5,6 +5,15 @@ import { api } from "./AxiosService.js"
 import Pop from "../utils/Pop.js"
 
 class RoutinesService {
+
+  // async deleteRoutine(routineId) {
+  //   const res = await api.delete(`api/routines/${routineId}`)
+  //   logger.log('[REMOVING ROUTINE]', res.data)
+
+  //   const routineIndex = AppState.routines.findIndex(r => r.id == routineId)
+
+  //   AppState.routines.splice(routineIndex, 1)
+  // }
   setActiveRoutine(routine) {
     AppState.activeRoutine = new Routine(routine)
     logger.log('active routine', AppState.activeRoutine)
