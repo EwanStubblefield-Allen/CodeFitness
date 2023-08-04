@@ -16,8 +16,8 @@
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
               incidunt!</p>
-            <a href="" class="mdi mdi-linkedin fs-3"> Username</a>
-            <a href="" class="mdi mdi-github fs-3"> Username</a>
+            <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
+            <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
           </h2>
         </Section>
         <Section v-if="selectedDev == 2" class="row reserved-space  mb-3">
@@ -28,8 +28,8 @@
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
               incidunt!</p>
-            <a href="" class="mdi mdi-linkedin fs-3"> Username</a>
-            <a href="" class="mdi mdi-github fs-3"> Username</a>
+            <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
+            <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
           </h2>
         </Section>
         <Section v-if="selectedDev == 3" class="row reserved-space mb-3">
@@ -40,8 +40,8 @@
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
               incidunt!</p>
-            <a href="" class="mdi mdi-linkedin fs-3"> Username</a>
-            <a href="" class="mdi mdi-github fs-3"> Username</a>
+            <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank"> Jasper Delight</a>
+            <a href="https://github.com/Jasperdelight" class="mdi mdi-github fs-3" target="_blank">Jasperdelight</a>
           </h2>
         </Section>
         <Section v-if="selectedDev == 4" class="row reserved-space  mb-3">
@@ -52,8 +52,8 @@
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
               incidunt!</p>
-            <a href="" class="mdi mdi-linkedin fs-3"> Username</a>
-            <a href="" class="mdi mdi-github fs-3"> Username</a>
+            <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
+            <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
           </h2>
         </Section>
         <Section v-if="selectedDev == 5" class="row reserved-space bg-dark mb-3 ">
@@ -64,8 +64,8 @@
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
               incidunt!</p>
-            <a href="http://linkedin.com/in/kyle-peppersack-a39025285" class="mdi mdi-linkedin fs-3"> Kyle Peppersack</a>
-            <a href="https://github.com/KylePep" class="mdi mdi-github fs-3"> KylePep</a>
+            <a href="http://linkedin.com/in/kyle-peppersack-a39025285" class="mdi mdi-linkedin fs-3" target="_blank"> Kyle Peppersack</a>
+            <a href="https://github.com/KylePep" class="mdi mdi-github fs-3" target="_blank"> KylePep</a>
           </h2>
           <!-- <div class="col-3">
             Full Stack Developer
