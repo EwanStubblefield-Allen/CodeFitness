@@ -1,9 +1,17 @@
 <template>
-    <div class="col-2">
-      biceps
-    </div>
-    <div class="col-6">Triceps</div>
-    <div class="col-2">Shoulder</div>
+  <div class="col-10 bg-dark">
+<div class="row  text-center justify-content-between">
+<div class="col-12" style="height: 5vh;"></div>
+  <div class="col-2 bg-light">
+    biceps
+  </div>
+  <div class="col-6 bg-light">
+    <div class="row">
+
+    </div>Triceps</div>
+  <div class="col-2 bg-light">Shoulder</div>
+</div>
+  </div>
 
 </template>
 
