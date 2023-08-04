@@ -12,6 +12,7 @@ export class RoutinesController extends BaseController {
       .get('/:routineId/activities', this.getActivitiesByRoutineId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createRoutine)
+      .put('/:routineId', this.)
       .delete('/:routineId', this.removeRoutine)
   }
 
