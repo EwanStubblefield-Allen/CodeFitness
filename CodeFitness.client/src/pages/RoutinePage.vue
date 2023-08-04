@@ -11,7 +11,7 @@
           <h4>Sets: 0{{ act.sets }}</h4>
           <h4>Reps: 0{{ act.reps }}</h4>
         </div>
-        <div class="text-start pt-4">
+        <div v-if="act.equipment" class="text-start pt-4">
           <h4>Equipment: </h4>
           <ul>
             <li>
@@ -20,39 +20,20 @@
               </h4>
             </li>
           </ul>
+          <div class="text-end">
+            <button class="fs-6 bg-danger border no-border rounded" @click="deleteActivity()"><span class="mdi mdi-trash-can"></span></button>
+          </div>
         </div>
       </div>
     </div>
-
-      <div v-else>
-        <h1>Please Select Activities Below</h1>
-      </div>
-
+    
+    <div v-else>
+      <h1>Please Select Activities Below</h1>
     </div>
-
-    <h4 class="p-3">Level: {{ act?.level }}</h4>
-
-    <div class="d-flex justify-content-between p-2">
-      <h4>Sets: 0{{ act?.sets }}</h4>
-      <h4>Reps: 0{{ act?.reps }}</h4>
-    </div>
-
-    <div class="text-start pt-4">
-      <h3>Equipment: </h3>
-      <ul>
-        <li>
-          <h3>
-            {{ act?.equipment }}
-          </h3>
-        </li>
-      </ul>
-    </div>
+    
   </div>
-
-  <!-- {{ activeRoutine }} -->
-  <div class="row m-3">
-    <ActivitySearch />
-  </div>
+  
+</div>
 
   <div class="row m-3">
     <ActivitySearch />
