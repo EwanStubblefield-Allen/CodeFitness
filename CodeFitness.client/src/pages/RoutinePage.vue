@@ -30,11 +30,11 @@
 
     </div>
 
-    <h4 class="p-3">Level: {{ act.level }}</h4>
+    <h4 class="p-3">Level: {{ act?.level }}</h4>
 
     <div class="d-flex justify-content-between p-2">
-      <h4>Sets: 0{{ act.sets }}</h4>
-      <h4>Reps: 0{{ act.reps }}</h4>
+      <h4>Sets: 0{{ act?.sets }}</h4>
+      <h4>Reps: 0{{ act?.reps }}</h4>
     </div>
 
     <div class="text-start pt-4">
@@ -42,7 +42,7 @@
       <ul>
         <li>
           <h3>
-            {{ act.equipment }}
+            {{ act?.equipment }}
           </h3>
         </li>
       </ul>

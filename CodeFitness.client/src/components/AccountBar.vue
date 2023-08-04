@@ -17,7 +17,7 @@
       <div v-for="routine in routines" :key="routine.id" class="bg-neutral-light mb-2 px-1">
         <RouterLink :to="{ name: 'Routines', params: { routineId: routine.id } }">
           {{ routine.title }}
-          <!-- <button class="fs-6" @click="deleteRoutine()"><span class="mdi mdi-trash-can"></span></button> -->
+          <button class="fs-6" @click="deleteRoutine()"><span class="mdi mdi-trash-can"></span></button>
         </RouterLink>
       </div>
     </div>
@@ -40,23 +40,23 @@ export default {
 
       setActiveRoutine(routine) {
         routinesService.setActiveRoutine(routine)
+      },
+
+      async deleteRoutine() {
+        try {
+          const wantsToRemove = await Pop.confirm()
+
+          if (!wantsToRemove) {
+            return
+          }
+
+          const routineToRemove = AppState.routines.find(r => r.accountId == AppState.account.id)
+          const routineId = routineToRemove.id
+          await routinesService.deleteRoutine(routineId)
+        } catch (error) {
+          Pop.error(error.message)
+        }
       }
-
-      // async deleteRoutine() {
-      //   try {
-      //     const wantsToRemove = await Pop.confirm()
-
-      //     if (!wantsToRemove) {
-      //       return
-      //     }
-
-      //     const routineToRemove = AppState.routines.find(r => r.accountId == AppState.account.id)
-      //     const routineId = routineToRemove.id
-      //     await routinesService.deleteRoutine(routineId)
-      //   } catch (error) {
-      //     Pop.error(error.message)
-      //   }
-      // }
     }
   }
 }
