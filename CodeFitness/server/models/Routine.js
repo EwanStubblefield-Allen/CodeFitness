@@ -1,6 +1,11 @@
 import { Schema } from "mongoose";
 
 export const RoutineSchema = new Schema({
+  accountId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "Account"
+  },
   title: {
     type: String,
     minlength: 1,
@@ -23,17 +28,13 @@ export const RoutineSchema = new Schema({
     type: Boolean,
     default: false
   },
-  accountId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: "Account"
-  },
   completeCount: {
     type: Number,
     default: 0
   }
 }, {
-  timestamps: true, toJSON: { virtuals: true }
+  timestamps: true,
+  toJSON: { virtuals: true }
 })
 
 RoutineSchema.virtual('profile', {
