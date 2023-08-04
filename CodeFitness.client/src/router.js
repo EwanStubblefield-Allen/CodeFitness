@@ -26,6 +26,11 @@ const routes = [
     path: '/routines/:routineId',
     name: 'Routines',
     component: loadPage('RoutinePage')
+  },
+  {
+    path: '/routines/:routineId/active',
+    name: 'ActiveRoutine',
+    component: loadPage('ActiveRoutinePage')
   }
 ]
 
