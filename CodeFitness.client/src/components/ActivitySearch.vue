@@ -5,7 +5,7 @@
         <label for="search" class="fw-bold w-100">Search for activity:</label>
         <div class="input-group">
           <input v-model="editable.name" id="search" class="form-control" type="text" minlength="3" maxlength="50" placeholder="Activity..." required>
-          <button type="submit" class="input-group-text" id="comment" title="Post Comment">+</button>
+          <button type="submit" class="input-group-text" id="comment" title="Post Comment"><i class="mdi mdi-magnify"></i></button>
         </div>
       </div>
     </form>
