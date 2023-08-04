@@ -47,23 +47,26 @@
 <div class="col-12 text-center text-white mt-4">Routine One</div>
     </section>
 
-    <section class="row my-4 justify-content-around">
-      <div class="col-5 bg-light">Exercise one </div>
-      <div class="col-5 bg-light"> Exercise one</div>
-    </section>
+    <form action="">
 
-    <section class="row my-4 justify-content-around">
-      <div class="col-5 bg-light">Exercise one </div>
-      <div class="col-5 bg-light"> Exercise one</div>
-    </section>
+      <section class="row my-4 justify-content-around">
+        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""> </div>
+        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
+      </section>
 
-    <section class="row my-4 justify-content-around">
-      <div class="col-5 bg-light">Exercise one </div>
-      <div class="col-5 bg-light"> Exercise one</div>
-    </section>
+      <section class="row my-4 justify-content-around">
+        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""></div>
+        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
+      </section>
 
-    <button>Stop</button>
-  </div>
+      <section class="row my-4 justify-content-around">
+        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""></div>
+        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
+      </section>
+
+      <button>Stop</button>
+    </form>
+    </div>
 
 </template>
 
