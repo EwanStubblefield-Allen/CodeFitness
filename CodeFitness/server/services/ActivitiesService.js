@@ -25,6 +25,24 @@ class ActivitiesService {
   }
 
   async createActivities(activityData) {
+    switch (activityData.type) {
+      case "Plyometrics":
+        activityData.reps = 10
+        break;
+      case "Strongman":
+      case "Powerlifting":
+      case "Cardio":
+        activityData.reps = 3
+        break;
+      case "Stretching":
+        activityData.reps = 20
+        break;
+
+      default:
+        activityData.reps = 5
+        break;
+    }
+
     const activityRoutine = await dbContext.Activities.create(activityData)
     return activityRoutine
   }

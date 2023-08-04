@@ -1,5 +1,5 @@
 <template>
-  <div class="col-9 mt-2 m-auto bg-dark" style="height: 70vh;">
+  <div class="col-9 mt-2 m-auto bg-dark" style="height: 60vh;">
 <div class="row  text-center justify-content-around">
 <div class="col-12" style="height: 5vh;"></div>
   <div class="col-2 bg-light">
@@ -41,12 +41,32 @@
 
 </div>
 
-  <div class="col-9 mt-2 m-auto bg-primary" style="height: 40vh;">
+  <div class="col-9 m-auto bg-primary" style="height: 40vh;">
 
     <section class="row">
-<div class="col-12"></div>
+<div class="col-12 text-center text-white mt-4">Routine One</div>
     </section>
-  </div>
+
+    <form action="">
+
+      <section class="row my-4 justify-content-around">
+        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""> </div>
+        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
+      </section>
+
+      <section class="row my-4 justify-content-around">
+        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""></div>
+        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
+      </section>
+
+      <section class="row my-4 justify-content-around">
+        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""></div>
+        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
+      </section>
+
+      <button>Stop</button>
+    </form>
+    </div>
 
 </template>
 

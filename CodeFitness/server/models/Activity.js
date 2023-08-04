@@ -15,7 +15,7 @@ export const ActivitySchema = new Schema({
     type: String,
     minlength: 3,
     maxlength: 100,
-    required: true,
+    required: true
   },
   picture: {
     type: String,
@@ -43,6 +43,18 @@ export const ActivitySchema = new Schema({
     required: true
   },
   level: {
+    type: Number,
+    default: 0
+  },
+  reps: {
+    type: Number,
+    required: true
+  },
+  sets: {
+    type: Number,
+    default: 1
+  },
+  weight: {
     type: Number,
     default: 0
   }
