@@ -12,7 +12,7 @@
     </div>
     <div class="form-group py-2">
       <label for="description">Description</label>
-      <input v-model="editable.description" id="description" class="form-control" type="text" minlength="5"
+      <input v-model="editable.description" id="description" class="form-control" type="text" minlength="10"
         maxlength="1000" placeholder="Description..." required>
     </div>
     <div class="text-end">
