@@ -1,9 +1,9 @@
 import { dbContext } from "../db/DbContext.js"
 import { Forbidden } from "../utils/Errors.js"
 import { accountAchievementsService } from "./AccountAchievementsService.js"
+import { activitiesService } from "./ActivitiesService.js"
 
 class RoutinesService {
-
   async getRoutines() {
     const routines = await dbContext.Routines.find().populate('profile').populate('activity')
     return routines
@@ -33,11 +33,9 @@ class RoutinesService {
     if (updateRoutine.accountId != routineData.accountId) {
       throw new Forbidden(`[YOU CAN NOT CHANGE SOMEONE ELSES ROUTINE]`)
     }
-
     if (routineData.completeCount) {
       accountAchievement = await accountAchievementsService.updateAccountAchievement(routineData.accountId, 'completeCount', routineData.completeCount - updateRoutine.completeCount)
     }
-
     updateRoutine.title = routineData.title || updateRoutine.title
     updateRoutine.picture = routineData.picture || updateRoutine.picture
     updateRoutine.description = routineData.description || updateRoutine.description
@@ -48,13 +46,11 @@ class RoutinesService {
 
   async removeRoutine(accountId, routineId) {
     const routineToRemove = await this.getRoutineById(routineId)
-    if (routineToRemove.accountId.toString() != accountId) {
+    if (routineToRemove.accountId != accountId) {
       throw new Forbidden(`[YOU ARE NOT THE CREATOR OF ${routineToRemove.title}]`)
     }
-    // ASK IF WE ARE HARD DELETING
-    // YES MAN WE HAVE A BUNCH OF CRAPPY FALSE DATA I"M SENDING UP, i don't want to bother you to delete your mongo DB :3 even though that's logical :)
-    routineToRemove.public = false
-    await routineToRemove.save()
+    await activitiesService.removeAllActivitiesByRoutineId(accountId, routineId)
+    await routineToRemove.remove()
     return routineToRemove
   }
 }

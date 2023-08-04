@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-end p-3">
+  <div class="col-12 d-flex flex-column flex-md-row justify-content-between p-3">
     <form @submit.prevent="getActivitiesBySearch()">
       <div class="form-group d-flex align-items-center">
         <label for="search" class="fw-bold w-100">Search for activity:</label>
@@ -9,7 +9,9 @@
         </div>
       </div>
     </form>
-    <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter</button>
+    <div class="text-end">
+      <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter</button>
+    </div>
   </div>
   <div v-for="a in activities" :key="a.id" class="col-12 col-md-3 p-3">
     <ActivityCard :activityProp="a" />
