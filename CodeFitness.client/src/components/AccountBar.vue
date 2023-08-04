@@ -17,8 +17,8 @@
       <div v-for="routine in routines" :key="routine.id" class="bg-neutral-light mb-2 px-1">
         <RouterLink :to="{ name: 'Routines', params: { routineId: routine.id } }">
           {{ routine.title }}
-          <button class="fs-6" @click="deleteRoutine()"><span class="mdi mdi-trash-can"></span></button>
         </RouterLink>
+        <button class="fs-6" @click="deleteRoutine()"><span class="mdi mdi-trash-can"></span></button>
       </div>
     </div>
   </section>
