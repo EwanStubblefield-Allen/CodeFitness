@@ -1,6 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
-import BaseController from "../utils/BaseController.js";
 import { tiersService } from "../services/TiersService.js";
+import BaseController from "../utils/BaseController.js";
 
 export class TiersController extends BaseController {
   constructor() {

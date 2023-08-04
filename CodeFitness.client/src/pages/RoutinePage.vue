@@ -35,6 +35,7 @@
   
 </div>
 
+  <!-- {{ activeRoutine }} -->
   <div class="row m-3">
     <ActivitySearch />
   </div>
@@ -45,7 +46,6 @@ import { computed, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
-import { activitiesService } from "../services/ActivitiesService"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger.js"
 
@@ -66,26 +66,8 @@ export default {
       }
     }
 
-    
-
     return {
-      activeRoutine: computed(() => AppState.activeRoutine),
-
-      async deleteActivity() {
-        try {
-          const wantsToRemove = await Pop.confirm()
-
-          if (!wantsToRemove) {
-            return
-          }
-
-          const activityToRemove = AppState.activities.find(r => r.accountId == AppState.account.id)
-          const activityId = activityToRemove.id
-          await activitiesService.deleteActivity(activityId)
-        } catch (error) {
-          Pop.error(error.message)
-        }
-      }
+      activeRoutine: computed(() => AppState.activeRoutine)
 
     }
   }

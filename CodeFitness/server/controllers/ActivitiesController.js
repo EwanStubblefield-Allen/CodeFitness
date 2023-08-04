@@ -10,6 +10,7 @@ export class ActivitiesController extends BaseController {
       .get('/:activityId', this.getActivityById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createActivity)
+      .put('/:activityId', this.updateActivity)
       .delete('/:activityId', this.removeActivity)
   }
 
@@ -21,6 +22,7 @@ export class ActivitiesController extends BaseController {
       next(error)
     }
   }
+
   async getActivityById(req, res, next) {
     try {
       const activityId = req.params.activityId
@@ -41,6 +43,19 @@ export class ActivitiesController extends BaseController {
       next(error)
     }
   }
+
+  async updateActivity(req, res, next) {
+    try {
+      const activityData = req.body
+      activityData.accountId = req.userInfo.id
+      activityData.id = req.params.activityId
+      const activity = await activitiesService.updateActivity(activityData)
+      return res.send(activity)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async removeActivity(req, res, next) {
     try {
       const activityData = {}
