@@ -28,6 +28,20 @@ class ProfileService {
       .limit(20)
       .exec()
   }
+
+  async getCommunities() {
+    return await dbContext.Account.aggregate([{
+      $group: {
+        _id: '$community',
+        'points': { $sum: '$points' }
+      },
+    }, {
+      $project: {
+        _id: '$community',
+        'totalPoints': '$points'
+      }
+    }])
+  }
 }
 
 export const profileService = new ProfileService()
