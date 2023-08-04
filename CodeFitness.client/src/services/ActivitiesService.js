@@ -10,7 +10,7 @@ class ActivitiesService {
     const res = await api.delete(`api/activities/${activityId}`)
     logger.log('[REMOVING ACTIVITY]', res.data)
 
-    const activityIndex = AppState.activities.findIndex(r => r.id == activityId)
+    const activityIndex = AppState.activities.findIndex(a => a.id == activityId)
 
     AppState.activities.splice(activityIndex, 1)
   }
