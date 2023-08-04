@@ -4,7 +4,7 @@
     <div class="text-center bg-neutral-dark text-light p-3">
       <h1>{{ activeRoutine?.title }}</h1>
       <div v-if="activeRoutine?.activities[0]">
-      <div v-for="act in activeRoutine.activities" :key="act.id" class="col-12 col-md-3 card text-center m-5 p-4 fw-bold elevation-5">
+      <div v-for="act in activeRoutine.activities" :key="act.id" class="col-12 col-md-3 card text-center m-5 p-4 fw-bold elevation-5 selectable ">
         <h2>{{ act.name }}</h2>
         <h3 class="p-3">Level: {{ act.level }}</h3>
         <div class="d-flex justify-content-between p-2">
@@ -33,12 +33,12 @@
     
   </div>
   
-</div>
-
+  
   <!-- {{ activeRoutine }} -->
   <div class="row m-3">
     <ActivitySearch />
   </div>
+</div>
 </template>
 
 <script>
