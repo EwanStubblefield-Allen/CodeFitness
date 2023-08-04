@@ -4,8 +4,7 @@ import { accountAchievementsService } from "./AccountAchievementsService.js"
 
 class ActivitiesService {
   async getActivities() {
-    const activities = await dbContext.Activities.find()
-    return activities
+    return await dbContext.Activities.find()
   }
 
   async getActivityById(activityId) {
@@ -17,13 +16,11 @@ class ActivitiesService {
   }
 
   async getActivitiesByAccountId(accountId) {
-    const activities = await dbContext.Activities.find({ accountId: accountId })
-    return activities
+    return await dbContext.Activities.find({ accountId: accountId })
   }
 
   async getActivitiesByRoutineId(routineId) {
-    const activities = await dbContext.Activities.find({ routineId: routineId })
-    return activities
+    return await dbContext.Activities.find({ routineId: routineId })
   }
 
   async createActivities(activityData) {
@@ -43,8 +40,7 @@ class ActivitiesService {
         activityData.reps = 5
         break;
     }
-    const activityRoutine = await dbContext.Activities.create(activityData)
-    return activityRoutine
+    return await dbContext.Activities.create(activityData)
   }
 
   async updateActivity(activityData) {
@@ -62,13 +58,13 @@ class ActivitiesService {
         }
       }
       if (max < activityData.level) {
-        await accountAchievementsService.updateAccountAchievement(activityData.accountId, 'levelCount', activityData.level - max)
+        accountAchievement = await accountAchievementsService.updateAccountAchievement(activityData.accountId, 'levelCount', activityData.level - max)
       }
+      // FIXME Add switch for type to adjust reps
+      updateActivity.reps += (activityData.level - max)
     }
     updateActivity.level = activityData.level || updateActivity.level
     updateActivity.sets = activityData.sets || updateActivity.sets
-    // FIXME Add switch for type to adjust reps
-    updateActivity.reps += activityData.levels
     await updateActivity.save()
     return { accountAchievement: accountAchievement, activity: updateActivity }
   }
@@ -84,12 +80,13 @@ class ActivitiesService {
 
   async removeAllActivitiesByRoutineId(accountId, routineId) {
     const activities = await this.getActivitiesByRoutineId(routineId)
+    if (!activities[0]) {
+      return
+    }
     if (activities[0].accountId != accountId) {
       throw new Forbidden(`[YOU CAN NOT REMOVE SOMEONE ELSES ACTIVITY]`)
     }
-    if (activities[0]) {
-      activities.forEach(async a => await a.remove())
-    }
+    activities.forEach(async a => await a.remove())
   }
 }
 
