@@ -3,9 +3,7 @@ import { Forbidden } from "../utils/Errors.js"
 import { accountAchievementsService } from "./AccountAchievementsService.js"
 
 class RoutinesService {
-  updateRoutine() {
-    throw new Error("Method not implemented.")
-  }
+
   async getRoutines() {
     const routines = await dbContext.Routines.find().populate('profile').populate('activity')
     return routines
@@ -27,6 +25,25 @@ class RoutinesService {
     await routine.populate('activity')
     const accountAchievement = await accountAchievementsService.updateAccountAchievement(routine.accountId, 'routineCount', 1)
     return { routine: routine, accountAchievement: accountAchievement }
+  }
+
+  async updateRoutine(routineData) {
+    const updateRoutine = await this.getRoutineById(routineData.id)
+    let accountAchievement
+    if (updateRoutine.accountId != routineData.accountId) {
+      throw new Forbidden(`[YOU CAN NOT CHANGE SOMEONE ELSES ROUTINE]`)
+    }
+
+    if (routineData.completeCount) {
+      accountAchievement = await accountAchievementsService.updateAccountAchievement(routineData.accountId, 'completeCount', routineData.completeCount - updateRoutine.completeCount)
+    }
+
+    updateRoutine.title = routineData.title || updateRoutine.title
+    updateRoutine.picture = routineData.picture || updateRoutine.picture
+    updateRoutine.description = routineData.description || updateRoutine.description
+    updateRoutine.completeCount = routineData.completeCount || updateRoutine.completeCount
+    await updateRoutine.save()
+    return { routine: updateRoutine, accountAchievement: accountAchievement }
   }
 
   async removeRoutine(accountId, routineId) {

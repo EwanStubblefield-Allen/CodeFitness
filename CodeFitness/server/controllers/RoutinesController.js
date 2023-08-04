@@ -59,9 +59,8 @@ export class RoutinesController extends BaseController {
       const routineData = req.body
       routineData.accountId = req.userInfo.id
       routineData.id = req.params.routineId
-      const routine = await routinesService.updateRoutine()
-
-      return res.send()
+      const routine = await routinesService.updateRoutine(routineData)
+      return res.send(routine)
     } catch (error) {
       next(error);
     }
