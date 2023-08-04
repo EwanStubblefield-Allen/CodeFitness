@@ -10,7 +10,6 @@
     <h2>Reps: 0</h2>
     {{ activeRoutine?.activities.equipment }}
     <h2>Equipment: </h2>
-    {{ activeRoutine }}
     <div class="row m-3">
     </div>
   </div>
