@@ -25,7 +25,6 @@
       </div>
     </section>
   </div>
-
   <div class="col-2 bg-light">
     <section class="row">
 
@@ -71,13 +70,16 @@
 </template>
 
 <script>
-import { computed } from "vue"
+import { computed, ref } from "vue"
 import { AppState } from "../AppState"
 
 export default {
   setup() {
+    const editable = ref({})
     return {
-      activeRoutine: computed(()=> AppState.activeRoutine)
+      activeRoutine: computed(()=> AppState.activeRoutine),
+      routineActivities: computed(()=> AppState.routineActivities),
+      editable
     }
   }
 }
