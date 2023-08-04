@@ -23,7 +23,8 @@ export const AccountSchema = new Schema(
     coverImg: {
       type: String,
       minlength: 3,
-      maxlength: 300
+      maxlength: 300,
+      default: 'https://images.unsplash.com/photo-1522506209496-4536d9020ec4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bW91bnRhaW4lMjBoaWtlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'
     },
     bio: {
       type: String,

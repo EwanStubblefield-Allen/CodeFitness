@@ -21,7 +21,7 @@ class AccountService {
 
   async updateAccount(formData) {
     const res = await api.put('/account', formData)
-    AppState.account = new Account(res.data)
+    AppState.account = new Account(res.data.account)
   }
 }
 
