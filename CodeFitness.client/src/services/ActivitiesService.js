@@ -38,6 +38,12 @@ class ActivitiesService {
     activity.picture = await picturesService.getPictures(activity.name)
     AppState.activeActivity = activity
   }
+  async setRoutineActivities() {
+    let act = AppState.activeRoutine.activities
+    logger.log('active routine activities', act)
+    AppState.routineActivities = act.map(a => new Activity(a))
+    logger.log('appstate activities', AppState.routineActivities)
+  }
 
   async createActivity(activityData) {
     if (!activityData.picture) {
