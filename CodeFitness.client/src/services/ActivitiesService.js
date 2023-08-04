@@ -14,7 +14,7 @@ class ActivitiesService {
 
     AppState.activities.splice(activityIndex, 1)
   }
-  
+
   resetTemplate() {
     AppState.template = {}
   }
