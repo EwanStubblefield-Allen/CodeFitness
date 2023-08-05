@@ -14,12 +14,14 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-              incidunt!</p>
-            <a href="https://www.linkedin.com/in/ewan-stubblefield-allen
-
-" class="mdi mdi-linkedin fs-3" target="_blank"> Ewan Stubblefield-Allen</a>
-            <a href="https://github.com/EwanStubblefield-Allen" class="mdi mdi-github fs-3" target="_blank"> EwanStubblefield-Allen</a>
+            <p class="fs-2">Major contributions:
+              <span style="--n:70">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
+                incidunt!
+              </span>
+            </p>
+            <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
+            <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
           </h2>
         </section>
 
@@ -29,8 +31,12 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-              incidunt!</p>
+            <p class="fs-2">Major contributions:
+              <span style="--n:70">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
+                incidunt!
+              </span>
+            </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
             <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
           </h2>
@@ -42,8 +48,12 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-              incidunt!</p>
+            <p class="fs-2">Major contributions:
+              <span style="--n:70">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
+                incidunt!
+              </span>
+            </p>
             <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank">
               Jasper Delight</a>
             <a href="https://github.com/Jasperdelight" class="mdi mdi-github fs-3" target="_blank">Jasperdelight</a>
@@ -56,8 +66,12 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-              incidunt!</p>
+            <p class="fs-2">Major contributions:
+              <span style="--n:70">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
+                incidunt!
+              </span>
+            </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
             <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
           </h2>
@@ -68,9 +82,13 @@
             <div>Kyle Peppersack</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
-          <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-              incidunt!</p>
+          <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0 ">
+            <p class="fs-2">Major contributions:
+              <span style="--n:70">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
+                incidunt!
+              </span>
+            </p>
             <a href="http://linkedin.com/in/kyle-peppersack-a39025285" class="mdi mdi-linkedin fs-3" target="_blank"> Kyle
               Peppersack</a>
             <a href="https://github.com/KylePep" class="mdi mdi-github fs-3" target="_blank"> KylePep</a>
@@ -81,23 +99,23 @@
 
     <section class="row">
       <div class=" col-12  d-flex flex-column flex-md-row justify-content-around dev-select ">
-        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); " class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" @click="selectedDev = 1">
+        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); " class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 1 }" @click="selectedDev = 1">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/faith-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" @click="selectedDev = 2">
+        <div style="background-image: url('src/assets/img/faith-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 2 }" @click="selectedDev = 2">
           <p class="fs-1">Faith</p>
           <!-- <img src="../assets/img/faith-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/jasper-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" @click="selectedDev = 3">
+        <div style="background-image: url('src/assets/img/jasper-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 3 }" @click="selectedDev = 3">
           <p class="fs-1">Jasper</p>
           <!-- <img src="src/assets/img/jasper-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/josh-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" @click="selectedDev = 4">
+        <div style="background-image: url('src/assets/img/josh-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 4 }" @click="selectedDev = 4">
           <p class="fs-1">Josh</p>
           <!-- <img src="src/assets/img/josh-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" @click="selectedDev = 5">
+        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 5 }" @click="selectedDev = 5">
           <p class="fs-1">Kyle</p>
           <!-- <img src="../assets/img/Kyle-icon.jpg" alt=""> -->
         </div>
@@ -133,6 +151,53 @@ export default {
     border-bottom: solid 2px #ffffff;
     border-left: solid 2px #ffffff;
     border-top: solid 2px #ffffff;
+  }
+
+  @media screen and (min-width: 768px) {
+
+    .reserved-space span {
+
+      color: #0000;
+      background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
+        linear-gradient(white 0 0) 0 0;
+      background-size: calc(var(--n)*1ch) 200%;
+      -webkit-background-clip: padding-box,
+        text;
+      background-clip: padding-box,
+        text;
+      background-repeat: no-repeat;
+      animation: b .7s infinite steps(1),
+        t calc(var(--n)*.1s) steps(var(--n)) forwards;
+    }
+
+    @keyframes t {
+      from {
+        background-size: 0 200%
+      }
+    }
+
+    @keyframes b {
+      50% {
+        background-position: 0 -100%, 0 0
+      }
+    }
+
+    @keyframes typing {
+      0% {
+        width: 0%
+      }
+
+      100% {
+        width: 100%
+      }
+    }
+
+  }
+
+  @keyframes type {
+    from {
+      width: 0;
+    }
   }
 
   .reserved-space h2 {
@@ -176,6 +241,10 @@ export default {
 
   .icon-space p:hover {
     font-size: 100px;
+  }
+
+  .iconBorder {
+    border: 1rem solid #ffffff;
   }
 
   .reserved-space {
