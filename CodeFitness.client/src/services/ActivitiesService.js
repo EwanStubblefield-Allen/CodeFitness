@@ -1,48 +1,35 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
-import { logger } from "../utils/Logger.js"
 import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
 
 class ActivitiesService {
-
-  async deleteActivity(activityId) {
-    const res = await api.delete(`api/activities/${activityId}`)
-    logger.log('[REMOVING ACTIVITY]', res.data)
-
-    const activityIndex = AppState.activities.findIndex(a => a.id == activityId)
-
-    AppState.activities.splice(activityIndex, 1)
-  }
-
-  resetTemplate() {
-    AppState.template = {}
-  }
-
-  async getActivities(search, editable = '', adaptable = '', difficulty = '', page = 1) {
-    let template = AppState.template
-    search ? template.name = search : ''
-    editable ? template.muscle = editable : ''
-    adaptable ? template.type = adaptable : ''
-    difficulty ? template.difficulty = difficulty : ''
-    const query = Object.keys(template).map((k, index) => `${k}=${Object.values(template)[index]}`).join('&')
-    const res = await activityApi.get(`exercises?offset=${page}&${query}`)
-
-    if (!res.data[0]) {
-      throw new Error('No activities match the criteria!')
-    }
-    AppState.activities = res.data.map(d => new Activity(d))
-  }
-
   async setActiveActivity(activity) {
     activity.picture = await picturesService.getPictures(activity.name)
     AppState.activeActivity = activity
   }
-  async setCurrentActivity() {
-    let currentAct = AppState?.routineActivities[0]
-    // logger.log('current activity', currentAct)
-    AppState.activeActivity = currentAct
+
+  async getActivities(template = AppState.template) {
+    const query = Object.keys(template).map((k, index) => `${k}=${Object.values(template)[index]}`).join('&')
+    const res1 = await activityApi.get(`exercises?offset=${AppState.page}&${query}`)
+    const res2 = await activityApi.get(`exercises?offset=${AppState.page + 1}&${query}`)
+    const res3 = await activityApi.get(`exercises?offset=${AppState.page + 2}&${query}`)
+    let res = res1.data.concat(res2.data)
+
+    if (!res3.data[0] || !res3.data[res3.data.length - 1].instructions) {
+      AppState.nextPage = false
+      res = res.filter(r => r.instructions)
+    } else {
+      AppState.nextPage = true
+    }
+
+    if (!res[0]) {
+      throw new Error('No activities match the criteria!')
+    }
+    AppState.activities = res.map(d => new Activity(d))
+    AppState.template = template
   }
+
   async setRoutineActivities() {
     let act = AppState.activeRoutine?.activities
     // logger.log('active routine activities', act)
@@ -62,6 +49,11 @@ class ActivitiesService {
     const res = await api.post('api/activities', activityData)
     // logger.log(res.data)
     AppState.activeRoutine.activities.push(new Activity(res.data))
+  }
+
+  async removeActivity(activityId) {
+    await api.delete(`api/activities/${activityId}`)
+    AppState.activeRoutine.activities = AppState.activeRoutine.activities.filter(a => a.id != activityId)
   }
 }
 

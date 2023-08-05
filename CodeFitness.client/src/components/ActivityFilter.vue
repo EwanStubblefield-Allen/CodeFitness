@@ -67,8 +67,7 @@
       <label class="form-check-label" for="cardio">Cardio</label>
     </div>
     <div class="col-4 form-check">
-      <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="weightlifting"
-        value="olympic_weightlifting">
+      <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="weightlifting" value="olympic_weightlifting">
       <label class="form-check-label" for="weightlifting">Weightlifting</label>
     </div>
     <div class="col-4 form-check">
@@ -97,8 +96,7 @@
       <label class="form-check-label" for="beginner">Beginner</label>
     </div>
     <div class="form-check">
-      <input v-model="difficulty" class="form-check-input" type="radio" name="difficulty" id="intermediate"
-        value="intermediate">
+      <input v-model="difficulty" class="form-check-input" type="radio" name="difficulty" id="intermediate" value="intermediate">
       <label class="form-check-label" for="intermediate">Intermediate</label>
     </div>
     <div class="form-check">
@@ -130,7 +128,6 @@ export default {
       difficulty,
 
       resetTemplate() {
-        activitiesService.resetTemplate()
         editable.value = ''
         adaptable.value = ''
         difficulty.value = ''
@@ -138,7 +135,9 @@ export default {
 
       async getActivities() {
         try {
-          await activitiesService.getActivities('', editable.value, adaptable.value, difficulty.value)
+          await activitiesService.getActivities({ muscle: editable.value, type: adaptable.value, difficulty: difficulty.value })
+          Modal.getOrCreateInstance('#filterForm').hide()
+          this.resetTemplate()
         } catch (error) {
           Pop.error(error.message, '[GETTING ACTIVITIES BY FILTER]')
         }

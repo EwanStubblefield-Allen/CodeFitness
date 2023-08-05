@@ -67,8 +67,8 @@
 import { computed, onMounted, ref, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
-import Pop from "../utils/Pop"
 import { activitiesService } from "../services/ActivitiesService"
+import Pop from "../utils/Pop"
 
 export default {
   setup() {
@@ -110,6 +110,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

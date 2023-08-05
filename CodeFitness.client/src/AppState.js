@@ -8,6 +8,8 @@ export const AppState = reactive({
   /** @type {import('./models/Activity.js').Activity[]} */
   activities: [],
   accountActivities: [],
+  page: 1,
+  nextPage: false,
   template: {},
   /** @type {import('./models/Activity.js').Activity | null} */
   activeActivity: null,

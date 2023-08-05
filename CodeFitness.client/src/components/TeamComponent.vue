@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark text-light">
+  <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark text-light">
     <h2 class="text-center mt-2">Select a Community</h2>
     <div @click="selectCommunity('Cardio Kings')" class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
       <p class="fs-4 fw-bold">Cardio Kings</p>
@@ -13,9 +13,9 @@
       <p class="fs-4 fw-bold">Legion of Leisure</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
-  </div>
+  </section>
 
-  <div v-else class="row justify-content-around bg-neutral-dark text-light">
+  <section v-else class="row justify-content-around bg-neutral-dark text-light">
     <div class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center">
       <p class="fs-4 fw-bold">Cardio Kings</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
@@ -28,7 +28,7 @@
       <p class="fs-4 fw-bold">Legion of Leisure</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

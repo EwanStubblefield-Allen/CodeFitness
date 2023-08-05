@@ -22,6 +22,7 @@
 import { computed } from "vue"
 import { AppState } from "../AppState.js"
 import { activitiesService } from "../services/ActivitiesService.js"
+import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"
 
 export default {
@@ -33,6 +34,7 @@ export default {
       async createActivity() {
         try {
           await activitiesService.createActivity(this.activity)
+          Modal.getOrCreateInstance('#activeActivity').hide()
         } catch (error) {
           Pop.error(error.message, '[CREATING ACTIVITY]')
         }

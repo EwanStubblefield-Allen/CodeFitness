@@ -99,33 +99,23 @@
 
     <section class="row">
       <div class=" col-12  d-flex flex-column flex-md-row justify-content-around dev-select ">
-        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); "
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1"
-          :class="{ iconBorder: selectedDev == 1 }" @click="selectedDev = 1">
+        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); " class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 1 }" @click="selectedDev = 1">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/faith-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1"
-          :class="{ iconBorder: selectedDev == 2 }" @click="selectedDev = 2">
+        <div style="background-image: url('src/assets/img/faith-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 2 }" @click="selectedDev = 2">
           <p class="fs-1">Faith</p>
           <!-- <img src="../assets/img/faith-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/jasper-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1"
-          :class="{ iconBorder: selectedDev == 3 }" @click="selectedDev = 3">
+        <div style="background-image: url('src/assets/img/jasper-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 3 }" @click="selectedDev = 3">
           <p class="fs-1">Jasper</p>
           <!-- <img src="src/assets/img/jasper-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/josh-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1"
-          :class="{ iconBorder: selectedDev == 4 }" @click="selectedDev = 4">
+        <div style="background-image: url('src/assets/img/josh-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 4 }" @click="selectedDev = 4">
           <p class="fs-1">Josh</p>
           <!-- <img src="src/assets/img/josh-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1"
-          :class="{ iconBorder: selectedDev == 5 }" @click="selectedDev = 5">
+        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 5 }" @click="selectedDev = 5">
           <p class="fs-1">Kyle</p>
           <!-- <img src="../assets/img/Kyle-icon.jpg" alt=""> -->
         </div>
@@ -153,136 +143,136 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.reserved-space h1 {
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  text-shadow: 2px 2px black;
-  border-bottom: solid 2px #ffffff;
-  border-left: solid 2px #ffffff;
-  border-top: solid 2px #ffffff;
-}
-
-@media screen and (min-width: 768px) {
-
-  .reserved-space span {
-
-    color: #0000;
-    background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
-      linear-gradient(white 0 0) 0 0;
-    background-size: calc(var(--n)*1ch) 200%;
-    -webkit-background-clip: padding-box,
-      text;
-    background-clip: padding-box,
-      text;
+  .reserved-space h1 {
+    background-size: cover;
     background-repeat: no-repeat;
-    animation: b .7s infinite steps(1),
-      t calc(var(--n)*.1s) steps(var(--n)) forwards;
+
+    text-shadow: 2px 2px black;
+    border-bottom: solid 2px #ffffff;
+    border-left: solid 2px #ffffff;
+    border-top: solid 2px #ffffff;
   }
 
-  @keyframes t {
+  @media screen and (min-width: 768px) {
+
+    .reserved-space span {
+
+      color: #0000;
+      background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
+        linear-gradient(white 0 0) 0 0;
+      background-size: calc(var(--n)*1ch) 200%;
+      -webkit-background-clip: padding-box,
+        text;
+      background-clip: padding-box,
+        text;
+      background-repeat: no-repeat;
+      animation: b .7s infinite steps(1),
+        t calc(var(--n)*.1s) steps(var(--n)) forwards;
+    }
+
+    @keyframes t {
+      from {
+        background-size: 0 200%
+      }
+    }
+
+    @keyframes b {
+      50% {
+        background-position: 0 -100%, 0 0
+      }
+    }
+
+    @keyframes typing {
+      0% {
+        width: 0%
+      }
+
+      100% {
+        width: 100%
+      }
+    }
+
+  }
+
+  @keyframes type {
     from {
-      background-size: 0 200%
+      width: 0;
     }
   }
 
-  @keyframes b {
-    50% {
-      background-position: 0 -100%, 0 0
-    }
+  .reserved-space h2 {
+    border: thick double #ffffff;
   }
 
-  @keyframes typing {
-    0% {
-      width: 0%
-    }
-
-    100% {
-      width: 100%
-    }
+  .ewan-space {
+    background-image: url('src/assets/img/ewan-bg.jpg');
   }
 
-}
-
-@keyframes type {
-  from {
-    width: 0;
+  .faith-space {
+    background-image: url('src/assets/img/faith-bg.jpg');
+    background-position: top;
   }
-}
 
-.reserved-space h2 {
-  border: thick double #ffffff;
-}
+  .jasper-space {
+    background-image: url('src/assets/img/jasper-bg.jpg');
+    background-position: top;
+  }
 
-.ewan-space {
-  background-image: url('src/assets/img/ewan-bg.jpg');
-}
+  .josh-space {
+    background-image: url('src/assets/img/josh-bg.jpg');
+    background-position: top;
+  }
 
-.faith-space {
-  background-image: url('src/assets/img/faith-bg.jpg');
-  background-position: top;
-}
+  .kyle-space {
+    background-image: url('src/assets/img/kyle-bg.jpg');
+    background-position: right top;
+  }
 
-.jasper-space {
-  background-image: url('src/assets/img/jasper-bg.jpg');
-  background-position: top;
-}
+  .icon-space {
+    height: 30vh;
+    background-position: center;
+    background-size: cover;
+  }
 
-.josh-space {
-  background-image: url('src/assets/img/josh-bg.jpg');
-  background-position: top;
-}
+  .icon-space p {
+    color: #ffffff;
+    text-shadow: 2px 2px black;
+  }
 
-.kyle-space {
-  background-image: url('src/assets/img/kyle-bg.jpg');
-  background-position: right top;
-}
+  .icon-space p:hover {
+    font-size: 100px;
+  }
 
-.icon-space {
-  height: 30vh;
-  background-position: center;
-  background-size: cover;
-}
+  .iconBorder {
+    border: 1rem solid #ffffff;
+  }
 
-.icon-space p {
-  color: #ffffff;
-  text-shadow: 2px 2px black;
-}
+  .reserved-space {
+    height: 55vh;
+    background-image: linear-gradient(#4496b6, #2e728d, #10313e);
+  }
 
-.icon-space p:hover {
-  font-size: 100px;
-}
+  .reserved-space a {
+    color: white;
+  }
 
-.iconBorder {
-  border: 1rem solid #ffffff;
-}
+  .dev-select {
+    background-color: var(--neutral-light);
+    text-align: center;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 
-.reserved-space {
-  height: 55vh;
-  background-image: linear-gradient(#4496b6, #2e728d, #10313e);
-}
+  }
 
-.reserved-space a {
-  color: white;
-}
+  .dev-select img {
+    height: 10vh;
+    width: 10vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
 
-.dev-select {
-  background-color: var(--neutral-light);
-  text-align: center;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
-
-}
-
-.dev-select img {
-  height: 10vh;
-  width: 10vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
-
-.dev-select img:hover {
-  scale: 1.05;
-}
+  .dev-select img:hover {
+    scale: 1.05;
+  }
 </style>
