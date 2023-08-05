@@ -30,6 +30,7 @@ export default {
     const editable = ref({})
     return {
       editable,
+
       activities: computed(() => AppState.activities),
 
       async getActivitiesBySearch() {

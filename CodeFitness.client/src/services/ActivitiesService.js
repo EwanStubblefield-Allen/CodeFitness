@@ -5,18 +5,13 @@ import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
 
 class ActivitiesService {
-
-  async deleteActivity(activityId) {
-    const res = await api.delete(`api/activities/${activityId}`)
-    logger.log('[REMOVING ACTIVITY]', res.data)
-
-    const activityIndex = AppState.activities.findIndex(a => a.id == activityId)
-
-    AppState.activities.splice(activityIndex, 1)
-  }
-
   resetTemplate() {
     AppState.template = {}
+  }
+
+  async setActiveActivity(activity) {
+    activity.picture = await picturesService.getPictures(activity.name)
+    AppState.activeActivity = activity
   }
 
   async getActivities(search, editable = '', adaptable = '', difficulty = '', page = 1) {
@@ -34,10 +29,6 @@ class ActivitiesService {
     AppState.activities = res.data.map(d => new Activity(d))
   }
 
-  async setActiveActivity(activity) {
-    activity.picture = await picturesService.getPictures(activity.name)
-    AppState.activeActivity = activity
-  }
   async setRoutineActivities() {
     let act = AppState.activeRoutine.activities
     logger.log('active routine activities', act)
@@ -57,6 +48,11 @@ class ActivitiesService {
     const res = await api.post('api/activities', activityData)
     logger.log(res.data)
     AppState.activeRoutine.activities.push(new Activity(res.data))
+  }
+
+  async deleteActivity(activityId) {
+    await api.delete(`api/activities/${activityId}`)
+    AppState.activities = AppState.activities.filter(a => a.id != activityId)
   }
 }
 

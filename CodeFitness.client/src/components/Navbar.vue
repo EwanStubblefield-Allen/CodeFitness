@@ -29,25 +29,25 @@
       <p type="button" class="mdi mdi-close text-light bg-neutral-dark fs-2" data-bs-dismiss="offcanvas"></p>
     </div> -->
     <div class="offcanvas-body container-fluid bg-neutral-dark ">
-      <section class="row">
-        <div class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
+      <section class="row justify-content-center">
+        <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
           <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
             <div class="text-light fs-2" data-bs-dismiss="offcanvas"> HOME</div>
           </router-link>
         </div>
 
-        <div v-if="account.id" class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
+        <div v-if="account.community" class="col-11 bg-neutral-light mb-3 border-4 border border-light">
           <router-link class="navbar-brand d-flex" :to="{ name: 'Account' }">
             <div class="text-light fs-2" data-bs-dismiss="offcanvas"> Account</div>
           </router-link>
         </div>
 
-        <div class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
+        <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
           <router-link class="navbar-brand d-flex" :to="{ name: 'About' }">
             <div class="text-light fs-2" data-bs-dismiss="offcanvas"> About</div>
           </router-link>
         </div>
-        <div class="col-11 m-auto bg-neutral-light mb-3 border-4 border border-light">
+        <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
           <!-- <router-link class="navbar-brand d-flex" :to="{ name: 'About' }"> -->
           <div class="text-light fs-2" data-bs-dismiss="offcanvas"> Template</div>
           <!-- </router-link> -->
