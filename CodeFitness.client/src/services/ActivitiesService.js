@@ -1,6 +1,5 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
-import { logger } from "../utils/Logger.js"
 import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
 
@@ -31,9 +30,7 @@ class ActivitiesService {
 
   async setRoutineActivities() {
     let act = AppState.activeRoutine.activities
-    logger.log('active routine activities', act)
     AppState.routineActivities = act.map(a => new Activity(a))
-    logger.log('appstate activities', AppState.routineActivities)
   }
 
   async createActivity(activityData) {
@@ -46,13 +43,12 @@ class ActivitiesService {
     }
     activityData.routineId = AppState.activeRoutine.id
     const res = await api.post('api/activities', activityData)
-    logger.log(res.data)
     AppState.activeRoutine.activities.push(new Activity(res.data))
   }
 
-  async deleteActivity(activityId) {
+  async removeActivity(activityId) {
     await api.delete(`api/activities/${activityId}`)
-    AppState.activities = AppState.activities.filter(a => a.id != activityId)
+    AppState.activeRoutine.activities = AppState.activeRoutine.activities.filter(a => a.id != activityId)
   }
 }
 

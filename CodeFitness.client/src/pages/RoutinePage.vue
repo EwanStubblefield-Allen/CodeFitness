@@ -20,7 +20,7 @@
               </li>
             </ul>
             <div class="text-end">
-              <button class="fs-6 bg-danger border no-border rounded" @click="deleteActivity(act.id)"><span class="mdi mdi-trash-can"></span></button>
+              <button class="fs-6 bg-danger border no-border rounded" @click="removeActivity(act)"><span class="mdi mdi-trash-can"></span></button>
             </div>
           </div>
         </div>
@@ -43,7 +43,6 @@ import { computed, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
-import { logger } from "../utils/Logger.js"
 import { activitiesService } from "../services/ActivitiesService.js"
 import Pop from "../utils/Pop"
 
@@ -67,17 +66,16 @@ export default {
     return {
       activeRoutine: computed(() => AppState.activeRoutine),
 
-      async deleteActivity(activityId) {
+      async removeActivity(activity) {
         try {
-          logger.log(activityId)
-          const wantsToRemove = await Pop.confirm()
+          const wantsToRemove = await Pop.confirm(`Are you sure you want to remove ${activity.name} from this routine?`)
 
           if (!wantsToRemove) {
             return
           }
-          await activitiesService.deleteActivity(activityId)
+          await activitiesService.removeActivity(activity.id)
         } catch (error) {
-          Pop.error(error.message)
+          Pop.error(error.message, '[DELETING ACTIVITY]')
         }
       }
     }
