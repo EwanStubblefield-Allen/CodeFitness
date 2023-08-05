@@ -38,11 +38,16 @@ class ActivitiesService {
     activity.picture = await picturesService.getPictures(activity.name)
     AppState.activeActivity = activity
   }
+  async setCurrentActivity() {
+    let currentAct = AppState?.routineActivities[0]
+    // logger.log('current activity', currentAct)
+    AppState.activeActivity = currentAct
+  }
   async setRoutineActivities() {
-    let act = AppState.activeRoutine.activities
-    logger.log('active routine activities', act)
-    AppState.routineActivities = act.map(a => new Activity(a))
-    logger.log('appstate activities', AppState.routineActivities)
+    let act = AppState.activeRoutine?.activities
+    // logger.log('active routine activities', act)
+    AppState.routineActivities = act?.map(a => new Activity(a))
+    // logger.log('appstate activities', AppState.routineActivities)
   }
 
   async createActivity(activityData) {
@@ -55,7 +60,7 @@ class ActivitiesService {
     }
     activityData.routineId = AppState.activeRoutine.id
     const res = await api.post('api/activities', activityData)
-    logger.log(res.data)
+    // logger.log(res.data)
     AppState.activeRoutine.activities.push(new Activity(res.data))
   }
 }

@@ -48,7 +48,7 @@
                 <p class="">{{r.description}}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
-                    <button class="btn btn-action" type="button">Start Routine</button>
+                    <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
         </RouterLink>
                 </div>
               </div>
@@ -78,12 +78,29 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { routinesService } from "../services/RoutinesService"
 
 export default {
   setup() {
     return {
       account: computed(() => AppState.account),
-      routines: computed(()=> AppState.routines)
+      routines: computed(()=> AppState.routines),
+      // setActiveRoutine(routine) {
+      //   try {
+      //     routinesService.setActiveRoutine(routine)
+      //   } catch (error) {
+      //     Pop.error(error.message)
+      //     logger.log(error)
+      //   }      },
+      async getRoutineById(routineId) {
+        try {
+          await routinesService.getRoutineById(routineId)
+        } catch (error) {
+          Pop.error(error.message, '[GETTING ROUTINE BY ID]')
+        }
+      }
     }
   }
 }

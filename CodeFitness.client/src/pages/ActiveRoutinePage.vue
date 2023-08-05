@@ -3,17 +3,17 @@
 <div class="row text-center justify-content-around mt-4">
   <div class="col-2 bg-light">
     <section class="row">
-      <div class="col-12 my-2">Biceps</div>
+      <div class="col-12 my-2">{{currentActivity.name}}</div>
       <div class="col-12 my-2">Information</div>
       <div class="col-12 my-2">Reps</div>
     </section>
   </div>
   <div class="col-6 bg-light">
     <section class="row">
-      <div class="col-12">Triceps</div>
-      <div class="col-12 my-2">Information</div>
+      <div class="col-12">{{currentActivity.name}}</div>
+      <div class="col-12 my-2">{{ currentActivity.equipment }}</div>
       <div class="col-12 my-2">Reps</div>
-      <div class="col-12">Description<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, sit!</p></div>
+      <div class="col-12">Instructions: <p>{{currentActivity.instructions}}</p></div>
         <div class="col-12 d-flex justify-content-between">
           <button class="btn btn-primary">back</button>
           <button class="btn btn-primary">next</button>
@@ -39,7 +39,7 @@
     <form action="">
       <div class="row justify-content-around">
 
-        <div v-for="i in 6" :key="i.id" class="col-5 bg-light d-flex justify-content-between my-2">Exercise one <input type="checkbox" name="" id=""> </div>
+        <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input type="checkbox" name="" id=""> </div>
       </div>
 
       <!-- <section class="row my-4 justify-content-around">
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from "vue"
+import { computed, onMounted, ref, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -78,8 +78,8 @@ export default {
       try {
         await activitiesService.setRoutineActivities()
       } catch (error) {
-        Pop.error(error.message)
-        logger.log(error)
+        // Pop.error(error.message)
+        // logger.log(error)
       }
     }
 
@@ -87,13 +87,17 @@ export default {
       try {
         await activitiesService.setCurrentActivity()
       } catch (error) {
-        Pop.error(error.message)
-        logger.log(error)
+        // Pop.error(error.message)
+        // logger.log(error)
       }
     }
-    onMounted(()=>{
-      setRoutineActivities(),
-      setCurrentActivity()
+    // onMounted(()=>{
+    //   // setRoutineActivities(),
+    //   setCurrentActivity()
+    // })
+    watchEffect(()=> {
+      setRoutineActivities(AppState.activeRoutine?.activities)
+      setCurrentActivity(AppState?.routineActivities)
     })
     return {
       activeRoutine: computed(()=> AppState.activeRoutine),
