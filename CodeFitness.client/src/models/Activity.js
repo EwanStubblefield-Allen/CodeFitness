@@ -15,6 +15,6 @@ export class Activity {
   }
 
   computedData(input) {
-    return input.replaceAll('_', ' ').replaceAll(/(?<=\W).|^./gm, String.call.bind(input.toUpperCase))
+    return input.replaceAll(/[_\-$]/g, ' ').replaceAll(/(?<=[-\s]).|^./gm, String.call.bind(input.toUpperCase))
   }
 }

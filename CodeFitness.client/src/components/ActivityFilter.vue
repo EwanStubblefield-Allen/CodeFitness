@@ -90,7 +90,7 @@
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="strongman" value="strongman">
       <label class="form-check-label" for="strongman">Strongman</label>
     </div>
-    <p class="col-12 pt-2 fw-bold">Difficulty:</p>
+    <!-- <p class="col-12 pt-2 fw-bold">Difficulty:</p>
     <div class="form-check">
       <input v-model="difficulty" class="form-check-input" type="radio" name="difficulty" id="beginner" value="beginner">
       <label class="form-check-label" for="beginner">Beginner</label>
@@ -102,7 +102,7 @@
     <div class="form-check">
       <input v-model="difficulty" class="form-check-input" type="radio" name="difficulty" id="expert" value="expert">
       <label class="form-check-label" for="expert">Expert</label>
-    </div>
+    </div> -->
     <div class="text-end">
       <button @click="resetTemplate()" class="btn btn-secondary mx-3" type="reset">Reset</button>
       <button class="btn btn-action" type="submit">Submit</button>
@@ -115,27 +115,26 @@ import { ref } from 'vue'
 import { activitiesService } from '../services/ActivitiesService.js'
 import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
+import { AppState } from '../AppState.js'
 
 export default {
   setup() {
     const editable = ref('')
     const adaptable = ref('')
-    const difficulty = ref('')
 
     return {
       editable,
       adaptable,
-      difficulty,
 
       resetTemplate() {
         editable.value = ''
         adaptable.value = ''
-        difficulty.value = ''
       },
 
       async getActivities() {
         try {
-          await activitiesService.getActivities({ muscle: editable.value, type: adaptable.value, difficulty: difficulty.value })
+          AppState.page = 1
+          await activitiesService.getActivities(`muscle=${editable.value}&type=${adaptable.value}`)
           Modal.getOrCreateInstance('#filterForm').hide()
           this.resetTemplate()
         } catch (error) {

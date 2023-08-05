@@ -1,6 +1,9 @@
 <template>
   <div>
-    <img class="img-fluid" :src="activity.picture" :alt="activity.name">
+    <!-- <img class="img-fluid" :src="activity.picture" :alt="activity.name"> -->
+    <video class="img-fluid w-100" controls autoplay :src="activity.picture" type="sample/mp4">
+      Your browser does not support the video tag.
+    </video>
     <div class="d-flex flex-column flex-md-row justify-content-around text-center pt-2">
       <p>{{ activity.difficulty }}</p>
       <p>{{ activity.type }}</p>

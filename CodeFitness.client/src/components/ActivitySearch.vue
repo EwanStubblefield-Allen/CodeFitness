@@ -1,16 +1,16 @@
 <template>
   <div class="col-12 d-flex flex-column flex-md-row justify-content-between p-3">
-    <form @submit.prevent="getActivitiesBySearch()">
+    <form @submit.prevent="resetPage()">
       <div class="form-group d-flex align-items-center">
         <label for="search" class="fw-bold w-100">Search for activity:</label>
         <div class="input-group">
-          <input v-model="editable.name" id="search" class="form-control" type="text" minlength="3" maxlength="50" placeholder="Activity..." required>
+          <input v-model="editable" id="search" class="form-control" type="text" minlength="3" maxlength="50" placeholder="Activity..." required>
           <button type="submit" class="input-group-text" id="comment" title="Post Comment"><i class="mdi mdi-magnify"></i></button>
         </div>
       </div>
     </form>
     <div class="text-end">
-      <button @click="editable = {}" class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter Activities</button>
+      <button @click="editable = ''" class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter Activities</button>
     </div>
   </div>
   <div v-for="a in activities" :key="a.id" class="col-12 col-md-3 p-3">
@@ -18,11 +18,11 @@
   </div>
   <section class="row justify-content-center my-3">
     <div class="col-10 d-flex justify-content-between no-select">
-      <div @click="changePage(page - 2)" :class="{ disabled: page == 1, 'text-secondary': page == 1 }" class="d-flex selectable py-1 px-3">
+      <div @click="changePage(page - 20)" :class="{ disabled: page == 1, 'text-secondary': page == 1 }" class="d-flex selectable py-1 px-3">
         <i class="mdi mdi-arrow-left pe-3"></i>
         <p>Last Page</p>
       </div>
-      <div @click="changePage(page + 2)" :class="{ disabled: !nextPage, 'text-secondary': !nextPage }" class="d-flex selectable py-1 px-3">
+      <div @click="changePage(page + 20)" :class="{ disabled: !nextPage, 'text-secondary': !nextPage }" class="d-flex selectable py-1 px-3">
         <p>Next Page</p>
         <i class="mdi mdi-arrow-right ps-3"></i>
       </div>
@@ -36,19 +36,18 @@ import { activitiesService } from '../services/ActivitiesService.js'
 import { computed, onMounted, ref } from 'vue'
 import ActivityCard from './ActivityCard.vue'
 import Pop from '../utils/Pop.js'
-import { logger } from '../utils/Logger.js'
 
 export default {
   setup() {
-    const editable = ref({})
+    const editable = ref('')
 
     // onMounted(() => {
     //   getActivitiesBySearch('')
     // })
 
-    async function getActivitiesBySearch() {
+    async function getActivitiesBySearch(template) {
       try {
-        await activitiesService.getActivities(editable.value)
+        await activitiesService.getActivities(template)
       }
       catch (error) {
         Pop.error(error.message, '[GETTING ACTIVITIES BY SEARCH]')
@@ -57,7 +56,6 @@ export default {
 
     return {
       editable,
-      getActivitiesBySearch,
 
       activities: computed(() => AppState.activities),
       page: computed(() => AppState.page),
@@ -65,8 +63,12 @@ export default {
 
       changePage(page) {
         AppState.page = page
-        logger.log(page)
         getActivitiesBySearch()
+      },
+
+      resetPage() {
+        AppState.page = 1
+        getActivitiesBySearch(`name=${editable.value.replace(/s+$/, '')}`)
       }
     }
   },

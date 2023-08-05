@@ -10,15 +10,27 @@ class ActivitiesService {
   }
 
   async getActivities(template = AppState.template) {
-    const query = Object.keys(template).map((k, index) => `${k}=${Object.values(template)[index]}`).join('&')
-    const res1 = await activityApi.get(`exercises?offset=${AppState.page}&${query}`)
-    const res2 = await activityApi.get(`exercises?offset=${AppState.page + 1}&${query}`)
-    const res3 = await activityApi.get(`exercises?offset=${AppState.page + 2}&${query}`)
+    const res1 = await activityApi.get(`exercises?offset=${AppState.page}&${template}`)
+    const res2 = await activityApi.get(`exercises?offset=${AppState.page + 10}&${template}`)
+    const res3 = await activityApi.get(`exercises?offset=${AppState.page + 20}&${template}`)
     let res = res1.data.concat(res2.data)
 
     if (!res3.data[0] || !res3.data[res3.data.length - 1].instructions) {
       AppState.nextPage = false
-      res = res.filter(r => r.instructions)
+      res = res.filter((r, index) => {
+        let match = false
+
+        for (let i = index + 1; i < res.length; i++) {
+          if (r.instructions == res[i].instructions) {
+            match = true
+            return
+          }
+        }
+
+        if (r.instructions && !match) {
+          return r
+        }
+      })
     } else {
       AppState.nextPage = true
     }
@@ -47,7 +59,6 @@ class ActivitiesService {
     }
     activityData.routineId = AppState.activeRoutine.id
     const res = await api.post('api/activities', activityData)
-    // logger.log(res.data)
     AppState.activeRoutine.activities.push(new Activity(res.data))
   }
 
