@@ -1,20 +1,20 @@
 export class Activity {
   constructor(data) {
     this.id = data.id
-    this.name = data.name
+    this.name = this.computedData(data.name)
     this.picture = data.picture
     this.instructions = data.instructions
-    this.muscle = this.computedDate(data.muscle)
-    this.equipment = this.computedDate(data.equipment)
-    this.difficulty = this.computedDate(data.difficulty)
-    this.type = this.computedDate(data.type)
+    this.muscle = this.computedData(data.muscle)
+    this.equipment = this.computedData(data.equipment)
+    this.difficulty = this.computedData(data.difficulty)
+    this.type = this.computedData(data.type)
     this.level = data.level
     this.sets = data.sets
     this.reps = data.reps
     this.weight = data.weight
   }
 
-  computedDate(input) {
-    return input.charAt(0).toUpperCase() + input.slice(1).replace('_', ' ')
+  computedData(input) {
+    return input.replaceAll('_', ' ').replaceAll(/(?<=\W).|^./gm, String.call.bind(input.toUpperCase))
   }
 }

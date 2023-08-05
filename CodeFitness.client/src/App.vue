@@ -4,7 +4,7 @@
   </header>
   <main class="container-fluid">
     <section class="row">
-      <div v-if="account.id" class="col-2 bg-neutral" >
+      <div v-if="account.id" class="col-2 bg-neutral">
         <AccountBar />
       </div>
       <div v-else class="col-2 bg-neutral" style="height: 100vh;"></div>

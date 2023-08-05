@@ -1,6 +1,6 @@
 <template>
   <div class="col-9 mt-2 m-auto bg-dark" style="height: 60vh;">
-    <div class="row  text-center justify-content-around">
+    <section class="row text-center justify-content-around">
       <div class="col-12" style="height: 5vh;"></div>
       <div class="col-2 bg-light">
         <section class="row">
@@ -33,7 +33,7 @@
           <div class="col-12 my-2">Reps</div>
         </section>
       </div>
-    </div>
+    </section>
   </div>
 
   <div class="col-2 bg-neutral">

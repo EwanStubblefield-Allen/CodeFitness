@@ -4,28 +4,30 @@ import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
 
 class ActivitiesService {
-  resetTemplate() {
-    AppState.template = {}
-  }
-
   async setActiveActivity(activity) {
     activity.picture = await picturesService.getPictures(activity.name)
     AppState.activeActivity = activity
   }
 
-  async getActivities(search, editable = '', adaptable = '', difficulty = '', page = 1) {
-    let template = AppState.template
-    search ? template.name = search : ''
-    editable ? template.muscle = editable : ''
-    adaptable ? template.type = adaptable : ''
-    difficulty ? template.difficulty = difficulty : ''
+  async getActivities(template = AppState.template) {
     const query = Object.keys(template).map((k, index) => `${k}=${Object.values(template)[index]}`).join('&')
-    const res = await activityApi.get(`exercises?offset=${page}&${query}`)
+    const res1 = await activityApi.get(`exercises?offset=${AppState.page}&${query}`)
+    const res2 = await activityApi.get(`exercises?offset=${AppState.page + 1}&${query}`)
+    const res3 = await activityApi.get(`exercises?offset=${AppState.page + 2}&${query}`)
+    let res = res1.data.concat(res2.data)
 
-    if (!res.data[0]) {
+    if (!res3.data[0] || !res3.data[res3.data.length - 1].instructions) {
+      AppState.nextPage = false
+      res = res.filter(r => r.instructions)
+    } else {
+      AppState.nextPage = true
+    }
+
+    if (!res[0]) {
       throw new Error('No activities match the criteria!')
     }
-    AppState.activities = res.data.map(d => new Activity(d))
+    AppState.activities = res.map(d => new Activity(d))
+    AppState.template = template
   }
 
   async setRoutineActivities() {

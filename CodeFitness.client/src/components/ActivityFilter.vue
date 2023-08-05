@@ -128,7 +128,6 @@ export default {
       difficulty,
 
       resetTemplate() {
-        activitiesService.resetTemplate()
         editable.value = ''
         adaptable.value = ''
         difficulty.value = ''
@@ -136,8 +135,9 @@ export default {
 
       async getActivities() {
         try {
-          await activitiesService.getActivities('', editable.value, adaptable.value, difficulty.value)
+          await activitiesService.getActivities({ muscle: editable.value, type: adaptable.value, difficulty: difficulty.value })
           Modal.getOrCreateInstance('#filterForm').hide()
+          this.resetTemplate()
         } catch (error) {
           Pop.error(error.message, '[GETTING ACTIVITIES BY FILTER]')
         }
