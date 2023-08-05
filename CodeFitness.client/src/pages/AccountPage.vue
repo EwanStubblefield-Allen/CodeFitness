@@ -3,7 +3,7 @@
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
         <img class="cover-image"
-          src="https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          :src="account.coverImg"
           :alt="account.name">
 
         <div class="d-flex justify-content-between align-items-end position">
@@ -40,15 +40,16 @@
     <section class="row justify-content-center">
       <div class="col-12 col-md-9">
         <section class="row">
-          <div v-for="i in 3" :key="i" class="col-12 col-md-4 pb-3">
+          <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <div class="reserved-space"></div>
               <div class="routine-details p-2">
-                <h5 class="">Routine {{ i }}</h5>
-                <p class="">Some quick example text to build on the card title and make up the bulk of the card's
-                  content.</p>
+                <h5 class=""> {{ r.title }}</h5>
+                <p class="">{{r.description}}</p>
                 <div class="text-end">
-                  <button class="btn btn-action" type="button">Start Routine</button>
+                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
+                    <button class="btn btn-action" type="button">Start Routine</button>
+        </RouterLink>
                 </div>
               </div>
             </div>
@@ -81,7 +82,8 @@ import { AppState } from '../AppState'
 export default {
   setup() {
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      routines: computed(()=> AppState.routines)
     }
   }
 }

@@ -27,17 +27,22 @@
 </template>
 
 <script>
-import { ref } from "vue"
+import { computed, ref, watchEffect } from "vue"
 import { accountService } from "../services/AccountService"
 import Pop from "../utils/Pop.js"
 import { Modal } from "bootstrap"
+import { AppState } from "../AppState"
 
 export default {
   setup() {
     const editable = ref({})
+    watchEffect(()=> {
+      editable.value = {...AppState.account}
+    })
 
     return {
       editable,
+      account: computed(()=> AppState.account),
 
       async updateAccount() {
         try {
