@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="getActivities()" class="row p-3">
+    <MuscleMan></MuscleMan>
     <p class="col-12 fw-bold">Body Group:</p>
     <div class="col-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="abs" value="abdominals">
@@ -116,33 +117,33 @@ import { activitiesService } from '../services/ActivitiesService.js'
 import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
 import { AppState } from '../AppState.js'
+import MuscleMan from "./MuscleMan.vue"
 
 export default {
   setup() {
     const editable = ref('')
     const adaptable = ref('')
-
     return {
       editable,
       adaptable,
-
       resetTemplate() {
         editable.value = ''
         adaptable.value = ''
       },
-
       async getActivities() {
         try {
           AppState.page = 1
           await activitiesService.getActivities(`muscle=${editable.value}&type=${adaptable.value}`)
           Modal.getOrCreateInstance('#filterForm').hide()
           this.resetTemplate()
-        } catch (error) {
+        }
+        catch (error) {
           Pop.error(error.message, '[GETTING ACTIVITIES BY FILTER]')
         }
       }
     }
-  }
+  },
+  components: { MuscleMan }
 }
 </script>
 
