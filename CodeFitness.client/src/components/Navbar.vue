@@ -31,26 +31,35 @@
     <div class="offcanvas-body container-fluid bg-neutral-dark ">
       <section class="row justify-content-center">
         <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-            <div class="text-light fs-2" data-bs-dismiss="offcanvas"> HOME</div>
-          </router-link>
+          <div data-bs-dismiss="offcanvas">
+            <router-link class="navbar-brand text-center" :to="{ name: 'Home' }">
+              <div class="text-light fs-2">HOME</div>
+            </router-link>
+          </div>
         </div>
 
         <div v-if="account.community" class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <router-link class="navbar-brand d-flex" :to="{ name: 'Account' }">
-            <div class="text-light fs-2" data-bs-dismiss="offcanvas"> Account</div>
-          </router-link>
+          <div data-bs-dismiss="offcanvas">
+            <router-link class="navbar-brand text-center" :to="{ name: 'Account' }">
+              <div class="text-light fs-2">Account</div>
+            </router-link>
+          </div>
         </div>
 
         <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <router-link class="navbar-brand d-flex" :to="{ name: 'About' }">
-            <div class="text-light fs-2" data-bs-dismiss="offcanvas"> About</div>
-          </router-link>
+          <div data-bs-dismiss="offcanvas">
+            <router-link class="navbar-brand text-center" :to="{ name: 'About' }">
+              <div class="text-light fs-2">About</div>
+            </router-link>
+          </div>
         </div>
-        <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <!-- <router-link class="navbar-brand d-flex" :to="{ name: 'About' }"> -->
-          <div class="text-light fs-2" data-bs-dismiss="offcanvas"> Template</div>
-          <!-- </router-link> -->
+
+        <div v-if="account.community" class="col-11 bg-neutral-light mb-3 border-4 border border-light">
+          <div data-bs-dismiss="offcanvas">
+            <router-link class="navbar-brand text-center" :to="{ name: 'Home' }">
+              <div class="text-light fs-2">Routines</div>
+            </router-link>
+          </div>
         </div>
       </section>
     </div>
@@ -81,10 +90,6 @@ export default {
     text-decoration: none;
   }
 
-  .offcanvas-width {
-    max-width: 16.7vw;
-  }
-
   .nav-link {
     text-transform: uppercase;
   }
@@ -98,6 +103,10 @@ export default {
   @media screen and (min-width: 768px) {
     nav {
       height: 64px;
+    }
+
+    .offcanvas-width {
+      max-width: 16.7vw;
     }
   }
 </style>

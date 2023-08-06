@@ -13,7 +13,7 @@
       <button @click="editable = ''" class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter Activities</button>
     </div>
   </div>
-  <div v-for="a in activities" :key="a.id" class="col-12 col-md-3 p-3">
+  <div v-for="a in activities" :key="a.id" class="col-12 col-md-4 col-lg-3 p-3">
     <ActivityCard :activityProp="a" />
   </div>
   <section class="row justify-content-center my-3">

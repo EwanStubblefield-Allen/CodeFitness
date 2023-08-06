@@ -5,7 +5,9 @@ import { picturesService } from "./PicturesService.js"
 
 class ActivitiesService {
   async setActiveActivity(activity) {
-    activity.picture = await picturesService.getPictures(activity.name)
+    if (!activity.picture) {
+      activity.picture = await picturesService.getPictures(activity.name)
+    }
     AppState.activeActivity = activity
   }
 

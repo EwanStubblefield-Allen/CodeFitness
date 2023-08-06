@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-neutral py-2 px-0">
+  <header class="bg-neutral py-2 px-0 elevation-5 sticky-top">
     <Navbar />
   </header>
   <main class="container-fluid">
