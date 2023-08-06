@@ -1,5 +1,22 @@
 <template>
   <div class="col-12 col-md-10 bg-dark">
+
+    <div class="col-9 m-auto bg-primary">
+
+<section class="row mt-4">
+<div class="col-12 text-center text-white mt-4">Routine One</div>
+</section>
+
+<form @submit.prevent="" action="">
+  <div class="row justify-content-around">
+
+    <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input type="checkbox" name="" id="" :checked="a.checked === true" > </div>
+  </div>
+
+  <button @click="resetActivityChecked()">Restart</button>
+</form>
+</div>
+
 <div class="row text-center justify-content-around mt-4">
   <div class="col-2 bg-light">
     <section class="row">
@@ -14,10 +31,10 @@
           <button @click="prevActivity(routineActivities[current-1])" class="btn btn-primary">back</button>
           <button  @click="nextActivity(routineActivities[current])" class="btn btn-primary">next</button>
         </div>
-      <div class="col-12">{{routineActivities[current]?.name}}</div>
-      <div class="col-12 my-2">{{ routineActivities[current]?.equipment}}</div>
-      <div class="col-12 my-2">Reps</div>
-      <div class="col-12">Instructions: <p>{{routineActivities[current]?.instructions}}</p></div>
+        <div class="col-12">{{routineActivities[current]?.name}}</div>
+        <div class="col-12 my-2">Equipment: {{ routineActivities[current]?.equipment}}</div>
+        <div class="col-12 mb-2">Reps: 10 <span> Sets: 2</span></div>
+      <div class="col-12 mb-2">Instructions: <p>{{routineActivities[current]?.instructions}}</p></div>
 
     </section>
   </div>
@@ -31,36 +48,6 @@
   </div>
 </div>
 
-  <div class="col-9 m-auto bg-primary">
-
-    <section class="row mt-4">
-<div class="col-12 text-center text-white mt-4">Routine One</div>
-    </section>
-
-    <form @submit.prevent="" action="">
-      <div class="row justify-content-around">
-
-        <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input type="checkbox" name="" id="" :checked="a.checked === true" > </div>
-      </div>
-
-      <!-- <section class="row my-4 justify-content-around">
-        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""> </div>
-        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
-      </section>
-
-      <section class="row my-4 justify-content-around">
-        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""></div>
-        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
-      </section>
-
-      <section class="row my-4 justify-content-around">
-        <div class="col-5 bg-light d-flex justify-content-between">Exercise one <input type="checkbox" name="" id=""></div>
-        <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
-      </section> -->
-
-      <button>Stop</button>
-    </form>
-    </div>
   </div>
 </template>
 
@@ -115,6 +102,15 @@ export default {
 
         if (current.value < 0 ) {
           current.value = this.routineActivities.length - 1
+        }
+      },
+      resetActivityChecked() {
+        try {
+          current.value = 0
+          activitiesService.resetActivityChecked()
+        } catch (error) {
+          Pop.error(error.message)
+          logger.log(error)
         }
       }
     }

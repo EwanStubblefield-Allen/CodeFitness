@@ -46,10 +46,12 @@ class ActivitiesService {
 
   async setRoutineActivities() {
     let act = AppState.activeRoutine?.activities
-    // logger.log('active routine activities', act)
     AppState.routineActivities = act?.map(a => new Activity(a))
-
-    // logger.log('appstate activities', AppState.routineActivities)
+  }
+  resetActivityChecked() {
+    AppState.routineActivities.forEach(activity => {
+      activity.checked = false
+    })
   }
 
   async createActivity(activityData) {
