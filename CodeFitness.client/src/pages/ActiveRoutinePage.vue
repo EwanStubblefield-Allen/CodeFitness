@@ -4,7 +4,7 @@
     <div class="col-9 m-auto bg-primary">
 
 <section class="row mt-4">
-<div class="col-12 text-center text-white mt-4">Routine One</div>
+<div class="col-12 text-center text-white mt-4">{{activeRoutine.title}}</div>
 </section>
 
 <form @submit.prevent="" action="">
@@ -28,11 +28,11 @@
   <div class="col-6 bg-light">
     <section class="row">
       <div class="col-12 d-flex justify-content-between">
-          <button @click="prevActivity(routineActivities[current-1])" class="btn btn-primary">back</button>
+          <button :disabled="current==0" @click="prevActivity(routineActivities[current-1])" class="btn btn-primary">back</button>
           <button  @click="nextActivity(routineActivities[current])" class="btn btn-primary">next</button>
         </div>
         <div class="col-12">{{routineActivities[current]?.name}}</div>
-        <div class="col-12 my-2">Equipment: {{ routineActivities[current]?.equipment}}</div>
+        <div class="col-12 m-2">Equipment: {{ routineActivities[current]?.equipment}}</div>
         <div class="col-12 mb-2">Reps: 10 <span> Sets: 2</span></div>
       <div class="col-12 mb-2">Instructions: <p>{{routineActivities[current]?.instructions}}</p></div>
 
@@ -97,6 +97,9 @@ export default {
         }
       },
       prevActivity(activity) {
+        if (current.value <= 0) {
+          return
+        }
         current.value--
         this.toggleActivity(activity)
 
