@@ -3,29 +3,29 @@
 <div class="row text-center justify-content-around mt-4">
   <div class="col-2 bg-light">
     <section class="row">
-      <div class="col-12 my-2">{{currentActivity.name}}</div>
-      <div class="col-12 my-2">Information</div>
-      <div class="col-12 my-2">Reps</div>
+      <div class="col-12 my-2">{{routineActivities[current-1]?.name}}</div>
+      <div class="col-12 my-2">{{routineActivities[current-1]?.muscle}}</div>
+      <div class="col-12 my-2">{{routineActivities[current-1]?.difficulty}}</div>
     </section>
   </div>
   <div class="col-6 bg-light">
     <section class="row">
-      <div class="col-12">{{currentActivity.name}}</div>
-      <div class="col-12 my-2">{{ currentActivity.equipment }}</div>
+      <div class="col-12">{{routineActivities[current]?.name}}</div>
+      <div class="col-12 my-2">{{ routineActivities[current]?.equipment}}</div>
       <div class="col-12 my-2">Reps</div>
-      <div class="col-12">Instructions: <p>{{currentActivity.instructions}}</p></div>
+      <div class="col-12">Instructions: <p>{{routineActivities[current]?.instructions}}</p></div>
         <div class="col-12 d-flex justify-content-between">
-          <button class="btn btn-primary">back</button>
-          <button class="btn btn-primary">next</button>
+          <button @click="prevActivity()" class="btn btn-primary">back</button>
+          <button  @click="nextActivity()" class="btn btn-primary">next</button>
         </div>
     </section>
   </div>
   <div class="col-2 bg-light">
     <section class="row">
 
-      <div class="col-12 my-2">Shoulder</div>
-      <div class="col-12 my-2">Information</div>
-      <div class="col-12 my-2">Reps</div>
+      <div class="col-12 my-2">{{routineActivities[current+1]?.name}}</div>
+      <div class="col-12 my-2">{{routineActivities[current+1]?.muscle}}</div>
+      <div class="col-12 my-2">{{routineActivities[current+1]?.difficulty}}</div>
     </section>
   </div>
 </div>
@@ -73,19 +73,11 @@ import Pop from "../utils/Pop"
 export default {
   setup() {
     const editable = ref({})
+    let current = ref(0)
 
     async function setRoutineActivities() {
       try {
         await activitiesService.setRoutineActivities()
-      } catch (error) {
-        // Pop.error(error.message)
-        // logger.log(error)
-      }
-    }
-
-    async function setCurrentActivity() {
-      try {
-        await activitiesService.setCurrentActivity()
       } catch (error) {
         // Pop.error(error.message)
         // logger.log(error)
@@ -97,14 +89,28 @@ export default {
     // })
     watchEffect(()=> {
       setRoutineActivities(AppState.activeRoutine?.activities)
-      setCurrentActivity(AppState?.routineActivities)
     })
     return {
       activeRoutine: computed(()=> AppState.activeRoutine),
       routineActivities: computed(()=> AppState.routineActivities),
       currentActivity: computed(()=> AppState.activeActivity),
-      editable
+      editable,
+      current,
 
+      nextActivity() {
+        current.value++
+
+        if (current.value >= this.routineActivities.length) {
+          current.value = 0
+        }
+      },
+      prevActivity() {
+        current.value--
+
+        if (current.value < 0 ) {
+          current.value = this.routineActivities.length - 1
+        }
+      }
     }
   }
 }
