@@ -10,14 +10,15 @@
   </div>
   <div class="col-6 bg-light">
     <section class="row">
+      <div class="col-12 d-flex justify-content-between">
+          <button @click="prevActivity()" class="btn btn-primary">back</button>
+          <button  @click="nextActivity()" class="btn btn-primary">next</button>
+        </div>
       <div class="col-12">{{routineActivities[current]?.name}}</div>
       <div class="col-12 my-2">{{ routineActivities[current]?.equipment}}</div>
       <div class="col-12 my-2">Reps</div>
       <div class="col-12">Instructions: <p>{{routineActivities[current]?.instructions}}</p></div>
-        <div class="col-12 d-flex justify-content-between">
-          <button @click="prevActivity()" class="btn btn-primary">back</button>
-          <button  @click="nextActivity()" class="btn btn-primary">next</button>
-        </div>
+
     </section>
   </div>
   <div class="col-2 bg-light">
@@ -36,7 +37,7 @@
 <div class="col-12 text-center text-white mt-4">Routine One</div>
     </section>
 
-    <form action="">
+    <form  action="">
       <div class="row justify-content-around">
 
         <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input type="checkbox" name="" id=""> </div>
@@ -57,7 +58,7 @@
         <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
       </section> -->
 
-      <button>Stop</button>
+      <button disabled>Stop</button>
     </form>
     </div>
   </div>
