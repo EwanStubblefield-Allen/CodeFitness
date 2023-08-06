@@ -11,8 +11,8 @@
   <div class="col-6 bg-light">
     <section class="row">
       <div class="col-12 d-flex justify-content-between">
-          <button @click="prevActivity()" class="btn btn-primary">back</button>
-          <button  @click="nextActivity()" class="btn btn-primary">next</button>
+          <button @click="prevActivity(routineActivities[current-1])" class="btn btn-primary">back</button>
+          <button  @click="nextActivity(routineActivities[current])" class="btn btn-primary">next</button>
         </div>
       <div class="col-12">{{routineActivities[current]?.name}}</div>
       <div class="col-12 my-2">{{ routineActivities[current]?.equipment}}</div>
@@ -37,10 +37,10 @@
 <div class="col-12 text-center text-white mt-4">Routine One</div>
     </section>
 
-    <form  action="">
+    <form @submit.prevent="" action="">
       <div class="row justify-content-around">
 
-        <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input type="checkbox" name="" id=""> </div>
+        <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input type="checkbox" name="" id="" :checked="a.checked === true" > </div>
       </div>
 
       <!-- <section class="row my-4 justify-content-around">
@@ -58,7 +58,7 @@
         <div class="col-5 bg-light d-flex justify-content-between"> Exercise one <input type="checkbox" name="" id=""></div>
       </section> -->
 
-      <button disabled>Stop</button>
+      <button>Stop</button>
     </form>
     </div>
   </div>
@@ -97,16 +97,21 @@ export default {
       currentActivity: computed(()=> AppState.activeActivity),
       editable,
       current,
+      toggleActivity(activity) {
+        activity.checked = !activity.checked
+      },
 
-      nextActivity() {
+      nextActivity(activity) {
         current.value++
+        this.toggleActivity(activity)
 
         if (current.value >= this.routineActivities.length) {
           current.value = 0
         }
       },
-      prevActivity() {
+      prevActivity(activity) {
         current.value--
+        this.toggleActivity(activity)
 
         if (current.value < 0 ) {
           current.value = this.routineActivities.length - 1

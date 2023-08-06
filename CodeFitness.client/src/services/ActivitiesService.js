@@ -48,6 +48,7 @@ class ActivitiesService {
     let act = AppState.activeRoutine?.activities
     // logger.log('active routine activities', act)
     AppState.routineActivities = act?.map(a => new Activity(a))
+
     // logger.log('appstate activities', AppState.routineActivities)
   }
 
