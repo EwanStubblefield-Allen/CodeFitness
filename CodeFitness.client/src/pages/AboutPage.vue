@@ -67,9 +67,8 @@
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
-              <span style="--n:70">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-                incidunt!
+              <span style="--n:200">
+                Chuck Norris does not use spell check. If he happens to misspell a word, Oxford will change the spelling. When Chuck Norris gives you the finger, he’s telling you how many seconds you have left to live.
               </span>
             </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
