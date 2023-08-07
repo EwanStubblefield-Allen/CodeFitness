@@ -138,7 +138,7 @@ export default {
 }
 
 .routine-bg {
-  background-image: url('https://wger.de/media/exercise-images/1012/8270fdb8-28f1-4eff-b410-af8642085b3f.png');
+  : v-bind(picture);
 }
 
 .reserved-space {
