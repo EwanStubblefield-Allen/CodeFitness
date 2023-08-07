@@ -23,7 +23,7 @@
 
 <script>
 import { ref, watchEffect } from "vue"
-import { useRoute, useRouter } from "vue-router"
+import { useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"

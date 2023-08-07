@@ -37,9 +37,9 @@
       </div>
     </section>
 
-    <div class="col-12 text-center">
-      <button @click="setRoutineToEdit()" class="btn btn-info ms-3" title="Edit Routine" type="button"
-        data-bs-toggle="modal" data-bs-target="#editRoutineForm">Edit
+    <div class="row">
+      <button @click="setRoutineToEdit()" class="btn btn-info" title="Edit Routine" type="button" data-bs-toggle="modal"
+        data-bs-target="#editRoutineForm">Edit
         Routine</button>
     </div>
 
