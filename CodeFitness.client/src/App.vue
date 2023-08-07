@@ -26,6 +26,13 @@
     </template>
   </ModalComponent>
 
+  <ModalComponent id="editRoutineForm">
+    <template #title>Edit Routine</template>
+    <template #body>
+      <RoutineForm />
+    </template>
+  </ModalComponent>
+
   <ModalComponent id="accountForm">
     <template #title>Edit Account</template>
     <template #body>

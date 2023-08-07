@@ -41,6 +41,7 @@
           <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <div class="reserved-space"></div>
+              <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class=""> {{ r.title }}</h5>
                 <p class="">{{ r.description }}</p>
@@ -67,11 +68,30 @@
                 :title="`Achievement Name ${i}`">
             </div>
           </div> -->
-          <div v-for="achievement in achievements" :key="achievement.id">
-            {{ achievement.type }}
-            <div v-for="tier in achievement.achievementTier" :key="tier._id" class="d-flex">
-              <img :src="tier.picture" alt="">
-              {{ tier.name }}
+          <div v-for="achievement in achievements" :key="achievement.id" class="d-flex flex-column py-1">
+            <h2>
+              {{ achievement.type }}
+            </h2>
+            <div class="d-flex text-light">
+              <div v-for="tier in achievement.achievementTier" :key="tier._id"
+                class="col-3 d-flex achievement-card border border-light">
+                <img class=" img-fluid"
+                  :class="achievement.requirement[tier.tier - 1] >= achievement.progress ? 'locked' : 'unlocked'"
+                  :src="tier.picture" alt="" :title="tier.name">
+                <div v-if="achievement.tier >= tier.tier - 1">
+                  <h3>
+                    {{ tier.name }}
+                  </h3>
+                  <p>
+                    {{ tier.description }}
+                  </p>
+                </div>
+                <div v-else class="d-flex flex-column justify-content-center">
+                  <h3>
+                    -HIDDEN-
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -154,12 +174,8 @@ export default {
   -webkit-text-stroke-color: black;
 }
 
-.routine-bg {
+.routine-pic {
   background-image: v-bind(picture);
-}
-
-.routine-bg {
-  /* : v-bind(picture); */
 }
 
 .reserved-space {
@@ -175,13 +191,22 @@ export default {
   -webkit-backdrop-filter: blur(13.6px);
 }
 
-.achievement-img {
+.achievement-card {
+  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+
+}
+
+.locked {
   height: 15vh;
   width: 15vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-  /* filter: drop-shadow(0px 6px black); */
-  outline: 16px solid rgb(90, 90, 90);
+  padding: 1vh;
+  filter: contrast(0) brightness(0) drop-shadow(3px 3px var(--action)) drop-shadow(-3px -3px var(--light));
+}
+
+.unlocked {
+  height: 15vh;
+  width: 15vh;
+  padding: 1vh;
+  filter: contrast(1) saturate(1);
 }
 </style>

@@ -37,6 +37,12 @@
       </div>
     </section>
 
+    <div class="row m-3">
+      <button @click="setRoutineToEdit()" class="btn btn-info" title="Edit Routine" type="button" data-bs-toggle="modal"
+        data-bs-target="#editRoutineForm">Edit
+        Routine</button>
+    </div>
+
     <!-- {{ activeRoutine }} -->
     <section class="row m-3">
       <ActivitySearch />
@@ -45,7 +51,7 @@
 </template>
 
 <script>
-import { computed, watchEffect } from "vue"
+import { computed, ref, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
@@ -56,6 +62,7 @@ import { Modal } from "bootstrap"
 export default {
   setup() {
     const route = useRoute()
+    const editable = ref({})
 
     watchEffect(() => {
       getRoutineById(route.params.routineId)
@@ -71,7 +78,14 @@ export default {
     }
 
     return {
+      editable,
       activeRoutine: computed(() => AppState.activeRoutine),
+
+      setRoutineToEdit() {
+        const routineToEdit = route.params.id
+
+        routinesService.setRoutineToEdit(routineToEdit)
+      },
 
       async setActiveActivity(act) {
         try {
