@@ -6,7 +6,11 @@ class PicturesService {
     const res = await pictureApi.get(`search?query=${name}`)
     logger.log(res.data)
     const foundVideo = res.data.videos.find(v => v.width / v.height > 1)
-    return foundVideo.video_files[1].link
+
+    if (!foundVideo) {
+      return ''
+    }
+    return foundVideo.video_files[0].link
     // return res.data.photos[0].src.landscape
   }
 }

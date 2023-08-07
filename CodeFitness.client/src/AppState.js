@@ -8,7 +8,7 @@ export const AppState = reactive({
   /** @type {import('./models/Activity.js').Activity[]} */
   activities: [],
   accountActivities: [],
-  page: 1,
+  page: 0,
   nextPage: false,
   template: {},
   /** @type {import('./models/Activity.js').Activity | null} */
