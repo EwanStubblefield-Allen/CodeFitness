@@ -41,6 +41,7 @@
           <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <div class="reserved-space"></div>
+              <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top" >
               <div class="routine-details p-2">
                 <h5 class=""> {{ r.title }}</h5>
                 <p class="">{{ r.description }}</p>
@@ -97,7 +98,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
-      picture: computed(() => `url(${AppState.account.picture })`),
+      picture: computed(() => `url(${AppState.routines.picture })`),
       // setActiveRoutine(routine) {
       //   try {
       //     routinesService.setActiveRoutine(routine)
@@ -144,11 +145,8 @@ export default {
   -webkit-text-stroke-color: black;
 }
 
-  .routine-bg {
-      background-image: v-bind(picture);
-  }
-.routine-bg {
-  /* : v-bind(picture); */
+  .routine-pic {
+  background-image: v-bind(picture);
 }
 
 .reserved-space {
