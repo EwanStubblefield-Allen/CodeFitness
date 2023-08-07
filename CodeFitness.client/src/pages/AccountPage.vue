@@ -75,9 +75,8 @@
             <div class="d-flex text-light">
               <div v-for="tier in achievement.achievementTier" :key="tier._id"
                 class="col-3 d-flex achievement-card border border-light">
-                <img class=" img-fluid"
-                  :class="achievement.requirement[tier.tier - 1] >= achievement.progress ? 'locked' : 'unlocked'"
-                  :src="tier.picture" alt="" :title="tier.name">
+                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture"
+                  alt="" :title="tier.name">
                 <div v-if="achievement.tier >= tier.tier - 1">
                   <h3>
                     {{ tier.name }}
