@@ -1,5 +1,5 @@
 <template>
-  <div class="col-10 bg-neutral-dark">
+  <div class="col-12 col-md-10 offset-md-2 p-0 bg-neutral-dark">
     <section class="row justify-content-center">
       <div class="col-11 fs-1 p-0 d-flex justify-content-center text-light my-3">
         <section v-if="selectedDev == 0" class="row reserved-space d-flex justify-content-center flex-grow-1">
@@ -15,9 +15,8 @@
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
-              <span style="--n:70">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-                incidunt!
+              <span style="--n:200">
+                Chuck Norris tells Simon what to do. If Chuck Norris were to travel to an alternate dimension in which there was another Chuck Norris and they both fought, they would both win.
               </span>
             </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
@@ -32,9 +31,8 @@
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
-              <span style="--n:70">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-                incidunt!
+              <span style="--n:200">
+                The flu gets a Chuck Norris shot every year. Chuck Norris does not use spell check. If he happens to misspell a word, Oxford will change the spelling.
               </span>
             </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
@@ -49,9 +47,8 @@
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
-              <span style="--n:70">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-                incidunt!
+              <span style="--n:200">
+                Chuck Norris once had a heart attack. His heart lost. Chuck Norris once roundhouse kicked someone so hard that his foot broke the speed of light.
               </span>
             </p>
             <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank">
@@ -68,7 +65,7 @@
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
               <span style="--n:200">
-                Chuck Norris does not use spell check. If he happens to misspell a word, Oxford will change the spelling. When Chuck Norris gives you the finger, he’s telling you how many seconds you have left to live.
+                Chuck Norris drinks napalm to fight his heartburn. When Chuck Norris gives you the finger, he’s telling you how many seconds you have left to live.
               </span>
             </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
@@ -83,9 +80,8 @@
           </h1>
           <h2 class="col-8 fs-5 d-flex flex-column justify-content-around mb-0 ">
             <p class="fs-2">Major contributions:
-              <span style="--n:70">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-                incidunt!
+              <span style="--n:200">
+                On New Year’s Eve, Chuck Norris promised that he’d lose 20 pounds. The next morning he shaved his chest and smiled as he realized that he’d lost 30.
               </span>
             </p>
             <a href="http://linkedin.com/in/kyle-peppersack-a39025285" class="mdi mdi-linkedin fs-3" target="_blank"> Kyle
@@ -98,23 +94,23 @@
 
     <section class="row">
       <div class=" col-12  d-flex flex-column flex-md-row justify-content-around dev-select ">
-        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); " class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 1 }" @click="selectedDev = 1">
+        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); " class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 1 }" @click="selectedDev = 1">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/faith-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 2 }" @click="selectedDev = 2">
+        <div style="background-image: url('src/assets/img/faith-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 2 }" @click="selectedDev = 2">
           <p class="fs-1">Faith</p>
           <!-- <img src="../assets/img/faith-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/jasper-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 3 }" @click="selectedDev = 3">
+        <div style="background-image: url('src/assets/img/jasper-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 3 }" @click="selectedDev = 3">
           <p class="fs-1">Jasper</p>
           <!-- <img src="src/assets/img/jasper-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/josh-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 4 }" @click="selectedDev = 4">
+        <div style="background-image: url('src/assets/img/josh-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 4 }" @click="selectedDev = 4">
           <p class="fs-1">Josh</p>
           <!-- <img src="src/assets/img/josh-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1" :class="{ iconBorder: selectedDev == 5 }" @click="selectedDev = 5">
+        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 5 }" @click="selectedDev = 5">
           <p class="fs-1">Kyle</p>
           <!-- <img src="../assets/img/Kyle-icon.jpg" alt=""> -->
         </div>

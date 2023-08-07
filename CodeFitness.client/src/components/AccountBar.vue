@@ -1,5 +1,5 @@
 <template>
-  <section class="row justify-content-center">
+  <section v-if="account.id" class="row justify-content-center bar-height">
     <div class="col-11 px-0 pb-3">
       <img class="community-img w-100" src="../assets/img/yellow-flag.png" alt="Yellow">
     </div>
@@ -12,28 +12,13 @@
       <p class="text-break">Points: {{ account.points }}</p>
 
       <div class="mb-3">
-        <p class="text-break">Routines:</p>
-        <!-- <div v-for="routine in routines" :key="routine.id" class="bg-neutral-light mb-2 px-1">
-          <RouterLink :to="{ name: 'Routines', params: { routineId: routine.id } }">
-            {{ routine.title }}
-          </RouterLink>
-          <button class="fs-6" @click="deleteRoutine(routine)"><span class="mdi mdi-trash-can"></span></button>
-        </div> -->
-
-        <div v-if="routines.length > 3" class="list-group">
-          <RouterLink :to="{ name: 'Routines', params: { routineId: routines[i - 1].id } }" v-for="i in 3" :key="routines[i - 1].id" class="list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center text-break d-flex flex-column">
-            {{ routines[i - 1].title }}
-            <span class="badge bg-primary rounded-pill">{{ routines[i - 1].activities.length }}</span>
-          </RouterLink>
-        </div>
-
-        <div v-else class="list-group">
-          <RouterLink :to="{ name: 'Routines', params: { routineId: routine.id } }" v-for="routine in routines" :key="routine.id" class="list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center text-break d-flex flex-column">
-            {{ routine.title }}
-            <span class="badge bg-primary rounded-pill">{{ routine.activities.length }}</span>
-          </RouterLink>
-        </div>
+        <button class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
       </div>
+    </div>
+  </section>
+  <section v-else class="row justify-content-center align-items-center bar-height">
+    <div class="col-11 text-light">
+      <p class="fs-5">Log in to Account Details</p>
     </div>
   </section>
 </template>
@@ -51,6 +36,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
+      backgroundImg: computed(() => `url(${AppState.account.coverImg})`),
 
       async deleteRoutine(routine) {
         try {
@@ -73,6 +59,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .bar-height {
+    height: 87vh;
+  }
+
   .account-picture {
     height: 15vh;
     width: 15vh;
@@ -82,7 +72,7 @@ export default {
   }
 
   .bg-cover-img {
-    background-image: url('https://plus.unsplash.com/premium_photo-1687672031143-9d430c8e7d3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+    background-image: v-bind(backgroundImg);
     background-position: center;
     background-size: cover;
     border: 10px solid white;

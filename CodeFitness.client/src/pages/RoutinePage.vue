@@ -1,7 +1,9 @@
 <template>
-  <div class="col-10 d-flex flex-column">
+  <div class="col-12 col-md-10 offset-md-2 d-flex flex-column">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3">
       <h1>{{ activeRoutine.title }}</h1>
+      <img :src="activeRoutine.picture" alt="User Selected Picture" class="mx-auto p-2">
+      <p>{{ activeRoutine.description }}</p>
       <div v-if="activeRoutine.activities[0]" class="col-12 d-flex flex-column flex-md-row overflow-auto p-0">
         <div v-for="act in activeRoutine.activities" :key="act.id" class="d-flex justify-content-center p-3">
           <div class="card card-size text-center fw-bold elevation-5">
@@ -101,5 +103,10 @@ export default {
   .card-size {
     height: 100%;
     width: 250px;
+  }
+
+  img {
+    height: 25vh;
+    width: 25vh;
   }
 </style>

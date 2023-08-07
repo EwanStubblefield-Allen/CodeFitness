@@ -1,16 +1,16 @@
 <template>
-  <header class="bg-neutral py-2 px-0 elevation-5 sticky-top">
-    <Navbar />
-  </header>
-  <main class="container-fluid">
-    <section class="row">
-      <div v-if="account.id" class="col-2 bg-neutral">
+  <div class="container-fluid flex-grow-1">
+    <header class="row bg-neutral py-2 px-0 elevation-5 sticky-top">
+      <Navbar />
+    </header>
+    <main class="row">
+      <div class="col-2 d-none d-md-block bg-neutral position-fixed">
         <AccountBar />
       </div>
-      <div v-else class="col-2 bg-neutral" style="height: 100vh;"></div>
+
       <router-view />
-    </section>
-  </main>
+    </main>
+  </div>
 
   <ModalComponent id="filterForm">
     <template #title>Filter</template>
@@ -39,6 +39,14 @@
       <ActivityDetails />
     </template>
   </ModalComponent>
+
+  <Offcanvas id="offcanvasScrolling">
+    <SideBarNav />
+  </Offcanvas>
+
+  <Offcanvas id="offcanvasRoutine">
+    <RoutineList />
+  </Offcanvas>
 </template>
 
 <script>
@@ -50,6 +58,9 @@ import ModalComponent from './components/ModalComponent.vue'
 import ActivityDetails from "./components/ActivityDetails.vue"
 import ActivityFilter from "./components/ActivityFilter.vue"
 import AccountForm from "./components/AccountForm.vue"
+import Offcanvas from './components/Offcanvas.vue'
+import SideBarNav from './components/SideBarNav.vue'
+import RoutineList from './components/RoutineList.vue'
 
 export default {
   setup() {
@@ -58,7 +69,7 @@ export default {
       account: computed(() => AppState.account)
     }
   },
-  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter, AccountForm }
+  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter, AccountForm, Offcanvas, SideBarNav, RoutineList }
 }
 </script>
 <style lang="scss">
