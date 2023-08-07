@@ -7,9 +7,8 @@
       <div class="col-2 d-none d-md-block bg-neutral position-fixed">
         <AccountBar />
       </div>
-      <div class="col-12 col-md-10 offset-md-2">
-        <router-view />
-      </div>
+
+      <router-view />
     </main>
   </div>
 
