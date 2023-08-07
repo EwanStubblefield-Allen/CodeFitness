@@ -1,5 +1,5 @@
 <template>
-  <div class="col-10 d-flex flex-column">
+  <div class="col-12 col-md-10 offset-md-2 d-flex flex-column">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3">
       <h1>{{ activeRoutine.title }}</h1>
       <img :src="activeRoutine.picture" alt="User Selected Picture" class="mx-auto p-2">

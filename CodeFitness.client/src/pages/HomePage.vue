@@ -1,5 +1,5 @@
 <template>
-  <div class="col-10">
+  <div class="col-12 col-md-10 offset-md-2">
     <TeamComponent />
 
     <section v-if="account.community" class="row m-3">

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-10 bg-neutral-dark">
+  <div class="col-12 col-md-10 offset-md-2 p-0 bg-neutral-dark">
     <section class="row justify-content-center">
       <div class="col-11 fs-1 p-0 d-flex justify-content-center text-light my-3">
         <section v-if="selectedDev == 0" class="row reserved-space d-flex justify-content-center flex-grow-1">

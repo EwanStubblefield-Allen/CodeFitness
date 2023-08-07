@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 col-md-10">
+  <div class="col-12 col-md-10 offset-md-2">
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
         <img class="cover-image" :src="account.coverImg" :alt="account.name">
