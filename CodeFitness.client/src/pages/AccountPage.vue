@@ -4,7 +4,7 @@
       <div class="col-12 col-md-12 p-0 position-relative">
         <img class="cover-image" :src="account.coverImg" :alt="account.name">
 
-        <div class="d-flex justify-content-between align-items-end position">
+        <div class="d-md-flex justify-content-between align-items-end position">
           <img class="account-picture" :src="account.picture" :alt="account.name">
           <div class="d-flex justify-content-end">
             <div class="fs-1 fs-bold text-center text-uppercase">{{ account.name }}</div>
@@ -25,7 +25,7 @@
       </div>
     </section>
     <section class="row justify-content-center py-3">
-      <div class="col-12 col-md-9 d-flex text-dark align-items-center">
+      <div class="col-12 col-md-9 d-flex text-dark align-items-center justify-content-between">
         <div class="pe-3 fs-3">
           Recent Routines
         </div>
@@ -43,8 +43,8 @@
               <div class="reserved-space"></div>
               <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
-                <h5 class=""> {{ r.title }}</h5>
-                <p class="">{{ r.description }}</p>
+                <h5 class="p-2 text-center"> {{ r.title }}</h5>
+                <p class="p-2 mb-2">{{ r.description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
                     <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
