@@ -2,9 +2,7 @@
   <div class="col-12 col-md-10">
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
-        <img class="cover-image"
-          :src="account.coverImg"
-          :alt="account.name">
+        <img class="cover-image" :src="account.coverImg" :alt="account.name">
 
         <div class="d-flex justify-content-between align-items-end position">
           <img class="account-picture" :src="account.picture" :alt="account.name">
@@ -45,11 +43,11 @@
               <div class="reserved-space"></div>
               <div class="routine-details p-2">
                 <h5 class=""> {{ r.title }}</h5>
-                <p class="">{{r.description}}</p>
+                <p class="">{{ r.description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
                     <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
-        </RouterLink>
+                  </RouterLink>
                 </div>
               </div>
             </div>
@@ -76,7 +74,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -84,9 +82,12 @@ import { routinesService } from "../services/RoutinesService"
 
 export default {
   setup() {
+    onMounted(() => {
+      this.getAchievmentsByUser
+    })
     return {
       account: computed(() => AppState.account),
-      routines: computed(()=> AppState.routines),
+      routines: computed(() => AppState.routines),
       // setActiveRoutine(routine) {
       //   try {
       //     routinesService.setActiveRoutine(routine)
@@ -100,6 +101,9 @@ export default {
         } catch (error) {
           Pop.error(error.message, '[GETTING ROUTINE BY ID]')
         }
+      },
+      async getAchievmentsByUser() {
+
       }
     }
   }
@@ -107,55 +111,56 @@ export default {
 </script>
 
 <style scoped>
-  .account-picture {
-    width: 20vh;
-    height: 20vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-  }
+.account-picture {
+  width: 20vh;
+  height: 20vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
 
-  .position {
-    position: absolute;
-    bottom: -10vh;
-    left: 5vw;
-  }
+.position {
+  position: absolute;
+  bottom: -10vh;
+  left: 5vw;
+}
 
-  .cover-image {
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-    height: 50vh;
-  }
+.cover-image {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 50vh;
+}
 
-  .text-stroke {
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-  }
+.text-stroke {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
 
-  .routine-bg {
-    background-image: url('https://wger.de/media/exercise-images/1012/8270fdb8-28f1-4eff-b410-af8642085b3f.png');
-  }
+.routine-bg {
+  background-image: url('https://wger.de/media/exercise-images/1012/8270fdb8-28f1-4eff-b410-af8642085b3f.png');
+}
 
-  .reserved-space {
-    height: 30vh;
-  }
+.reserved-space {
+  height: 30vh;
+}
 
-  .routine-details {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 16px 16px;
-    /* border-bottom: 1px solid black; */
-    backdrop-filter: blur(13.6px);
-    -webkit-backdrop-filter: blur(13.6px);
-  }
+.routine-details {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 16px 16px;
+  /* border-bottom: 1px solid black; */
+  backdrop-filter: blur(13.6px);
+  -webkit-backdrop-filter: blur(13.6px);
+}
 
-  .achievement-img {
-    height: 15vh;
-    width: 15vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-    /* filter: drop-shadow(0px 6px black); */
+.achievement-img {
+  height: 15vh;
+  width: 15vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  /* filter: drop-shadow(0px 6px black); */
   outline: 16px solid rgb(90, 90, 90);
-}</style>
+}
+</style>
