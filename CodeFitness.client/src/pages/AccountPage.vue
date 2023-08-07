@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -84,15 +84,17 @@ import { achievementService } from "../services/AchievementService"
 
 export default {
   setup() {
-    async function getAchievementsByUser() {
+    async function getAchievementsByUserId() {
       try {
-        const achievement = accountAchievementService.getAchievmentsByUser()
+        const achievement = accountAchievementService.getAchievementsByUserId()
       } catch (error) {
         Pop.error(error.message, '[]')
       }
     }
-    onMounted(() => {
-      getAchievementsByUser()
+    watchEffect(() => {
+      if (AppState.account.id) {
+        getAchievementsByUserId()
+      }
     })
     return {
       account: computed(() => AppState.account),
