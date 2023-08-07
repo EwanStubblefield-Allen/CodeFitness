@@ -62,10 +62,17 @@
       </div>
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
-          <div v-for="i in 18" :key="i" class="col-6 col-md-2 pb-5 mb-3">
+          <!-- <div v-for="i in 18" :key="i" class="col-6 col-md-2 pb-5 mb-3">
             <div class="d-flex justify-content-center">
               <img class="achievement-img" src="https://cdn.filestackcontent.com/4rXt91EuR7m88pBaQaZE" alt=""
                 :title="`Achievement Name ${i}`">
+            </div>
+          </div> -->
+          <div v-for="achievement in achievements" :key="achievement.id">
+            {{ achievement.type }}
+            <div v-for="tier in achievement.achievementTier" :key="tier._id" class="d-flex">
+              <img :src="tier.picture" alt="">
+              {{ tier.name }}
             </div>
           </div>
         </section>
@@ -75,7 +82,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -85,20 +92,23 @@ import { achievementService } from "../services/AchievementService"
 
 export default {
   setup() {
-    async function getAchievementsByUser() {
+    async function getAchievementsByUserId() {
       try {
-        const achievement = accountAchievementService.getAchievmentsByUser()
+        const achievement = accountAchievementService.getAchievementsByUserId()
       } catch (error) {
         Pop.error(error.message, '[]')
       }
     }
-    onMounted(() => {
-      getAchievementsByUser()
+    watchEffect(() => {
+      if (AppState.account.id) {
+        getAchievementsByUserId()
+      }
     })
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
-      picture: computed(() => `url(${AppState.routines.picture })`),
+      picture: computed(() => `url(${AppState.account.picture})`),
+      achievements: computed(() => AppState.activeAchievements),
       // setActiveRoutine(routine) {
       //   try {
       //     routinesService.setActiveRoutine(routine)
