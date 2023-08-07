@@ -16,6 +16,16 @@ class AccountAchievementsService {
     return accountAchievement
   }
 
+  async getAccountAchievementsByAccountId(accountId) {
+    return await dbContext.AccountAchievements.find({ accountId: accountId })
+      .populate({
+        path: 'achievement',
+        populate: {
+          path: 'tier',
+        }
+      })
+  }
+
   async getAccountAchievementByAccountIdAndAchievementId(accountId, achievementId) {
     const accountAchievement = await dbContext.AccountAchievements.findOne({ accountId: accountId, achievementId: achievementId })
     if (!accountAchievement) {
