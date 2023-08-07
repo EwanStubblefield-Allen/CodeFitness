@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js"
 import { Routine } from "../models/Routine.js"
 import { api } from "./AxiosService.js"
 import Pop from "../utils/Pop.js"
+import { logger } from "../utils/Logger.js"
 
 class RoutinesService {
   setActiveRoutine(routine) {
@@ -32,6 +33,15 @@ class RoutinesService {
   async deleteRoutine(routineId) {
     await api.delete(`api/routines/${routineId}`)
     AppState.routines = AppState.routines.filter(r => r.id != routineId)
+  }
+
+  async editRoutine(routineData) {
+    const res = await api.put(`api/routines/${routineData.id}`, routineData)
+    logger.log('[EDIT ROUTINE]', res.data)
+  }
+
+  setRoutineToEdit(routineToEdit) {
+    AppState.activeRoutine = new Routine(routineToEdit)
   }
 }
 
