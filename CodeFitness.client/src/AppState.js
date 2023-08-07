@@ -20,5 +20,6 @@ export const AppState = reactive({
   picture: null,
   /** @type {import('./models/Routine.js').Routine | null} */
   activeRoutine: null,
+  /** @type {import('./models/Achievement.js').Achievement[]}} */
   activeAchievements: []
 })
