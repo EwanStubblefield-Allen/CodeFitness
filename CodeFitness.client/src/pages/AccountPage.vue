@@ -79,14 +79,20 @@ import { AppState } from '../AppState'
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
 import { routinesService } from "../services/RoutinesService"
+import { accountAchievementService } from "../services/AccountAchievementService"
+import { achievementService } from "../services/AchievementService"
 
 export default {
   setup() {
-    async function getAchievmentsByUser() {
-      return
+    async function getAchievementsByUser() {
+      try {
+        const achievement = accountAchievementService.getAchievmentsByUser()
+      } catch (error) {
+        Pop.error(error.message, '[]')
+      }
     }
     onMounted(() => {
-      getAchievmentsByUser()
+      getAchievementsByUser()
     })
     return {
       account: computed(() => AppState.account),
@@ -138,7 +144,7 @@ export default {
 }
 
 .routine-bg {
-  : v-bind(picture);
+  /* : v-bind(picture); */
 }
 
 .reserved-space {
