@@ -63,7 +63,8 @@
         <section class="row pt-5">
           <div v-for="i in 18" :key="i" class="col-6 col-md-2 pb-5 mb-3">
             <div class="d-flex justify-content-center">
-              <img class="achievement-img" src="https://cdn.filestackcontent.com/4rXt91EuR7m88pBaQaZE" alt="" :title="`Achievement Name ${i}`">
+              <img class="achievement-img" src="https://cdn.filestackcontent.com/4rXt91EuR7m88pBaQaZE" alt=""
+                :title="`Achievement Name ${i}`">
             </div>
           </div>
         </section>
@@ -73,14 +74,26 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
 import { routinesService } from "../services/RoutinesService"
+import { accountAchievementService } from "../services/AccountAchievementService"
+import { achievementService } from "../services/AchievementService"
 
 export default {
   setup() {
+    async function getAchievementsByUser() {
+      try {
+        const achievement = accountAchievementService.getAchievmentsByUser()
+      } catch (error) {
+        Pop.error(error.message, '[]')
+      }
+    }
+    onMounted(() => {
+      getAchievementsByUser()
+    })
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
@@ -105,56 +118,59 @@ export default {
 </script>
 
 <style scoped>
-  .account-picture {
-    width: 20vh;
-    height: 20vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-  }
+.account-picture {
+  width: 20vh;
+  height: 20vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
 
-  .position {
-    position: absolute;
-    bottom: -10vh;
-    left: 5vw;
-  }
+.position {
+  position: absolute;
+  bottom: -10vh;
+  left: 5vw;
+}
 
-  .cover-image {
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-    height: 50vh;
-  }
+.cover-image {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 50vh;
+}
 
-  .text-stroke {
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-  }
+.text-stroke {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
 
   .routine-bg {
       background-image: v-bind(picture);
   }
+.routine-bg {
+  /* : v-bind(picture); */
+}
 
-  .reserved-space {
-    height: 30vh;
-  }
+.reserved-space {
+  height: 30vh;
+}
 
-  .routine-details {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 16px 16px;
-    /* border-bottom: 1px solid black; */
-    backdrop-filter: blur(13.6px);
-    -webkit-backdrop-filter: blur(13.6px);
-  }
+.routine-details {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 16px 16px;
+  /* border-bottom: 1px solid black; */
+  backdrop-filter: blur(13.6px);
+  -webkit-backdrop-filter: blur(13.6px);
+}
 
-  .achievement-img {
-    height: 15vh;
-    width: 15vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-    /* filter: drop-shadow(0px 6px black); */
-    outline: 16px solid rgb(90, 90, 90);
-  }
+.achievement-img {
+  height: 15vh;
+  width: 15vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  /* filter: drop-shadow(0px 6px black); */
+  outline: 16px solid rgb(90, 90, 90);
+}
 </style>
