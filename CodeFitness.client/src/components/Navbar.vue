@@ -20,50 +20,6 @@
       <Login />
     </div>
   </nav>
-
-  <!-- SECTION Off Canvas -->
-  <div class="offcanvas offcanvas-start  text-light offcanvas-width top-margin" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    <!-- <div class="offcanvas-header  d-flex justify-content-center">
-      <h5 class="offcanvas-title " id="offcanvasScrollingLabel"><img type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasScrolling" alt="logo" src="../assets/img/codeFitness.png" height="55" /></h5>
-      <p type="button" class="mdi mdi-close text-light bg-neutral-dark fs-2" data-bs-dismiss="offcanvas"></p>
-    </div> -->
-    <div class="offcanvas-body container-fluid bg-neutral-dark ">
-      <section class="row justify-content-center">
-        <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <div data-bs-dismiss="offcanvas">
-            <router-link class="navbar-brand text-center" :to="{ name: 'Home' }">
-              <div class="text-light fs-2">HOME</div>
-            </router-link>
-          </div>
-        </div>
-
-        <div v-if="account.community" class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <div data-bs-dismiss="offcanvas">
-            <router-link class="navbar-brand text-center" :to="{ name: 'Account' }">
-              <div class="text-light fs-2">Account</div>
-            </router-link>
-          </div>
-        </div>
-
-        <div class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <div data-bs-dismiss="offcanvas">
-            <router-link class="navbar-brand text-center" :to="{ name: 'About' }">
-              <div class="text-light fs-2">About</div>
-            </router-link>
-          </div>
-        </div>
-
-        <div v-if="account.community" class="col-11 bg-neutral-light mb-3 border-4 border border-light">
-          <div data-bs-dismiss="offcanvas">
-            <router-link class="navbar-brand text-center" :to="{ name: 'Home' }">
-              <div class="text-light fs-2">Routines</div>
-            </router-link>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -82,10 +38,6 @@ export default {
 </script>
 
 <style scoped>
-  .top-margin {
-    margin-top: 80px;
-  }
-
   a:hover {
     text-decoration: none;
   }
@@ -103,10 +55,6 @@ export default {
   @media screen and (min-width: 768px) {
     nav {
       height: 64px;
-    }
-
-    .offcanvas-width {
-      max-width: 16.7vw;
     }
   }
 </style>

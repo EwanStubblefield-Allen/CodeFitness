@@ -132,7 +132,7 @@ export default {
       },
       async getActivities() {
         try {
-          AppState.page = 1
+          AppState.page = 0
           await activitiesService.getActivities(`muscle=${editable.value}&type=${adaptable.value}`)
           Modal.getOrCreateInstance('#filterForm').hide()
           this.resetTemplate()
