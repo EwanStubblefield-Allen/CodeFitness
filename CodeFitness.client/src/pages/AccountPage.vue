@@ -4,7 +4,7 @@
       <div class="col-12 col-md-12 p-0 position-relative">
         <img class="cover-image" :src="account.coverImg" :alt="account.name">
 
-        <div class="d-flex justify-content-between align-items-end position">
+        <div class="d-md-flex justify-content-between align-items-end position">
           <img class="account-picture" :src="account.picture" :alt="account.name">
           <div class="d-flex justify-content-end">
             <div class="fs-1 fs-bold text-center text-uppercase">{{ account.name }}</div>
@@ -25,7 +25,7 @@
       </div>
     </section>
     <section class="row justify-content-center py-3">
-      <div class="col-12 col-md-9 d-flex text-dark align-items-center">
+      <div class="col-12 col-md-9 d-flex text-dark align-items-center justify-content-between">
         <div class="pe-3 fs-3">
           Recent Routines
         </div>
@@ -40,10 +40,11 @@
         <section class="row">
           <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
-              <div class="reserved-space"></div>
+              <!-- <div class="reserved-space"></div> -->
+              <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
-                <h5 class=""> {{ r.title }}</h5>
-                <p class="">{{ r.description }}</p>
+                <h5 class="p-2 text-center"> {{ r.title }}</h5>
+                <p class="p-2 mb-2">{{ r.description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
                     <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
@@ -67,11 +68,29 @@
                 :title="`Achievement Name ${i}`">
             </div>
           </div> -->
-          <div v-for="achievement in achievements" :key="achievement.id">
-            {{ achievement.type }}
-            <div v-for="tier in achievement.achievementTier" :key="tier._id" class="d-flex">
-              <img :src="tier.picture" alt="">
-              {{ tier.name }}
+          <div v-for="achievement in achievements" :key="achievement.id" class="d-flex flex-column py-1">
+            <h2>
+              {{ achievement.type }}
+            </h2>
+            <div class="d-flex text-light">
+              <div v-for="tier in achievement.achievementTier" :key="tier._id"
+                class="col-3 d-flex achievement-card border border-light">
+                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture"
+                  alt="" :title="tier.name">
+                <div v-if="achievement.tier >= tier.tier - 1">
+                  <h3>
+                    {{ tier.name }}
+                  </h3>
+                  <p>
+                    {{ tier.description }}
+                  </p>
+                </div>
+                <div v-else class="d-flex flex-column justify-content-center">
+                  <h3>
+                    -HIDDEN-
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -154,12 +173,8 @@ export default {
   -webkit-text-stroke-color: black;
 }
 
-.routine-bg {
+.routine-pic {
   background-image: v-bind(picture);
-}
-
-.routine-bg {
-  /* : v-bind(picture); */
 }
 
 .reserved-space {
@@ -175,13 +190,22 @@ export default {
   -webkit-backdrop-filter: blur(13.6px);
 }
 
-.achievement-img {
+.achievement-card {
+  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+
+}
+
+.locked {
   height: 15vh;
   width: 15vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-  /* filter: drop-shadow(0px 6px black); */
-  outline: 16px solid rgb(90, 90, 90);
+  padding: 1vh;
+  filter: contrast(0) brightness(0) drop-shadow(3px 3px var(--action)) drop-shadow(-3px -3px var(--light));
+}
+
+.unlocked {
+  height: 15vh;
+  width: 15vh;
+  padding: 1vh;
+  filter: contrast(1) saturate(1);
 }
 </style>

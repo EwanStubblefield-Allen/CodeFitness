@@ -14,7 +14,6 @@ export const AppState = reactive({
   activeActivity: null,
   /** @type {import('./models/Routine.js').Routine[]} */
   routines: [],
-  picture: null,
   /** @type {import('./models/Routine.js').Routine | null} */
   activeRoutine: null,
   /** @type {import('./models/Achievement.js').Achievement[]}} */

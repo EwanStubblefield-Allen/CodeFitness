@@ -37,6 +37,15 @@
       </div>
     </section>
 
+    <div class="row m-3">
+      <button @click="setRoutineToEdit()" class="btn btn-info mb-3" title="Edit Routine" type="button"
+        data-bs-toggle="modal" data-bs-target="#editRoutineForm">Edit
+        Routine</button>
+      <button @click="deleteRoutine()" class="btn btn-danger">
+        Delete Routine
+      </button>
+    </div>
+
     <!-- {{ activeRoutine }} -->
     <section class="row m-3">
       <ActivitySearch />
@@ -45,9 +54,9 @@
 </template>
 
 <script>
-import { computed, watchEffect } from "vue"
+import { computed, ref, watchEffect } from "vue"
 import { AppState } from "../AppState"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
 import { activitiesService } from "../services/ActivitiesService.js"
 import Pop from "../utils/Pop"
@@ -56,6 +65,8 @@ import { Modal } from "bootstrap"
 export default {
   setup() {
     const route = useRoute()
+    const router = useRouter()
+    const editable = ref({})
 
     watchEffect(() => {
       getRoutineById(route.params.routineId)
@@ -71,7 +82,29 @@ export default {
     }
 
     return {
+      editable,
       activeRoutine: computed(() => AppState.activeRoutine),
+
+      setRoutineToEdit() {
+        const routineToEdit = route.params.id
+
+        routinesService.setRoutineToEdit(routineToEdit)
+      },
+
+      async deleteRoutine() {
+        try {
+          const wantsToRemove = await Pop.confirm(`Are you sure you want to delete this routine?`)
+
+          if (!wantsToRemove) {
+            return
+          }
+          const routineId = route.params.routineId
+          await routinesService.deleteRoutine(routineId)
+          router.push('/')
+        } catch (error) {
+          Pop.error(error.message)
+        }
+      },
 
       async setActiveActivity(act) {
         try {
