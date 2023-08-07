@@ -12,15 +12,8 @@
       <p class="text-break">Points: {{ account.points }}</p>
 
       <div class="mb-3">
-        <p class="text-break">Routines:</p>
-        <!-- <div v-for="routine in routines" :key="routine.id" class="bg-neutral-light mb-2 px-1">
-          <RouterLink :to="{ name: 'Routines', params: { routineId: routine.id } }">
-            {{ routine.title }}
-          </RouterLink>
-          <button class="fs-6" @click="deleteRoutine(routine)"><span class="mdi mdi-trash-can"></span></button>
-        </div> -->
-
-        <div v-if="routines.length > 3" class="list-group">
+        <button class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
+        <!-- <div v-if="routines.length > 3" class="list-group">
           <RouterLink :to="{ name: 'Routines', params: { routineId: routines[i - 1].id } }" v-for="i in 3" :key="routines[i - 1].id" class="list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center text-break d-flex flex-column">
             {{ routines[i - 1].title }}
             <span class="badge bg-primary rounded-pill">{{ routines[i - 1].activities.length }}</span>
@@ -32,7 +25,7 @@
             {{ routine.title }}
             <span class="badge bg-primary rounded-pill">{{ routine.activities.length }}</span>
           </RouterLink>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

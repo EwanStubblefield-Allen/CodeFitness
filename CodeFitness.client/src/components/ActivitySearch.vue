@@ -18,7 +18,7 @@
   </div>
   <section class="row justify-content-center my-3">
     <div class="col-10 d-flex justify-content-between no-select">
-      <div @click="changePage(page - 20)" :class="{ disabled: page == 1, 'text-secondary': page == 1 }" class="d-flex selectable py-1 px-3">
+      <div @click="changePage(page - 20)" :class="{ disabled: page == 0, 'text-secondary': page == 0 }" class="d-flex selectable py-1 px-3">
         <i class="mdi mdi-arrow-left pe-3"></i>
         <p>Last Page</p>
       </div>
@@ -67,7 +67,7 @@ export default {
       },
 
       resetPage() {
-        AppState.page = 1
+        AppState.page = 0
         getActivitiesBySearch(`name=${editable.value.replace(/s+$/, '')}`)
       }
     }

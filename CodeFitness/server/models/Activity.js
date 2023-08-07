@@ -19,7 +19,6 @@ export const ActivitySchema = new Schema({
   },
   picture: {
     type: String,
-    required: true
   },
   instructions: {
     type: String,
