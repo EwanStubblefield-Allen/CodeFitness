@@ -48,7 +48,7 @@
             </label>
           </div>
           <div class="text-end p-3">
-            <button class="btn btn-danger" type="reset">Restart</button>
+            <button @click="current = 0; editable = {}" class="btn btn-danger" type="reset">Restart</button>
           </div>
         </form>
       </div>
@@ -58,15 +58,17 @@
 
 <script>
 import { computed, ref, watchEffect } from "vue"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { AppState } from "../AppState"
 import { accountService } from "../services/AccountService"
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop"
+import { Modal } from "bootstrap"
 
 export default {
   setup() {
     const route = useRoute()
+    const router = useRouter()
     const editable = ref({})
     let current = ref(0)
 
@@ -108,7 +110,9 @@ export default {
             return
           }
           await accountService.updateAccountPoints(10)
+          current.value = 0
           Pop.success(`10 Points Awarded!`)
+          router.push({ name: 'Routines', params: { routineId: this.routine.id } })
         } catch (error) {
           Pop.error(error.message, '[UPDATING ACCOUNT POINTS]')
         }
