@@ -1,5 +1,5 @@
 <template>
-  <div class="col-10 d-flex flex-column">
+  <div class="d-flex flex-column">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3">
       <h1>{{ activeRoutine.title }}</h1>
       <div v-if="activeRoutine.activities[0]" class="col-12 d-flex flex-column flex-md-row overflow-auto p-0">
