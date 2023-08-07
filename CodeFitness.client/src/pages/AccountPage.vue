@@ -82,8 +82,11 @@ import { routinesService } from "../services/RoutinesService"
 
 export default {
   setup() {
+    async function getAchievmentsByUser() {
+      return
+    }
     onMounted(() => {
-      this.getAchievmentsByUser
+      getAchievmentsByUser()
     })
     return {
       account: computed(() => AppState.account),
@@ -101,9 +104,6 @@ export default {
         } catch (error) {
           Pop.error(error.message, '[GETTING ROUTINE BY ID]')
         }
-      },
-      async getAchievmentsByUser() {
-
       }
     }
   }
