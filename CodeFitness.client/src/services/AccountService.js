@@ -18,6 +18,11 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+  async updateAccountPoints(formData) {
+    AppState.account.points += formData
+    const res = await api.put('/account', {points: AppState.account.points})
+    AppState.account = new Account(res.data.account)
+  }
 
   async updateAccount(formData) {
     const res = await api.put('/account', formData)

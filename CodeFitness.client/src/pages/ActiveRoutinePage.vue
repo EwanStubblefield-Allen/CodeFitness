@@ -3,39 +3,42 @@
 
     <div class="col-9 m-auto bg-primary">
 
-      <section class="row mt-4">
-        <div class="col-12 text-center text-white mt-4">{{ activeRoutine.title }}</div>
-      </section>
+<section class="row mt-4">
+<div class="col-12 text-center text-white mt-4">{{activeRoutine?.title}}</div>
+</section>
 
       <form @submit.prevent="" action="">
         <div class="row justify-content-around">
 
-          <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{ a.name }} <input type="checkbox" name="" id="" :checked="a.checked === true"> </div>
-        </div>
+    <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input onclick="return false" type="checkbox" v-model="editable.checked" name="" id="" :checked="a.checked === true" > </div>
+  </div>
 
         <button @click="resetActivityChecked()">Restart</button>
       </form>
     </div>
 
-    <div class="row text-center justify-content-around mt-4">
-      <div class="col-2 bg-light">
-        <section class="row">
-          <div class="col-12 my-2">{{ routineActivities[current - 1]?.name }}</div>
-          <div class="col-12 my-2">{{ routineActivities[current - 1]?.muscle }}</div>
-          <div class="col-12 my-2">{{ routineActivities[current - 1]?.difficulty }}</div>
-        </section>
-      </div>
-      <div class="col-6 bg-light">
-        <section class="row">
-          <div class="col-12 d-flex justify-content-between">
-            <button :disabled="current == 0" @click="prevActivity(routineActivities[current - 1])" class="btn btn-primary">back</button>
-            <button @click="nextActivity(routineActivities[current])" class="btn btn-primary">next</button>
-          </div>
-          <div class="col-12">{{ routineActivities[current]?.name }}</div>
-          <div class="col-12 m-2">Equipment: {{ routineActivities[current]?.equipment }}</div>
-          <div class="col-12 mb-2">Reps: 10 <span> Sets: 2</span></div>
-          <div class="col-12 mb-2">Instructions: <p>{{ routineActivities[current]?.instructions }}</p>
-          </div>
+<div class="row text-center justify-content-around mt-4">
+  <div class="col-2 bg-light">
+    <section class="row">
+      <div class="col-12 my-2">{{routineActivities[current-1]?.name}}</div>
+      <div class="col-12 my-2">{{routineActivities[current-1]?.muscle}}</div>
+      <div class="col-12 my-2">{{routineActivities[current-1]?.difficulty}}</div>
+    </section>
+  </div>
+  <div class="col-6 bg-light">
+    <section class="row">
+      <div class="col-12 d-flex justify-content-between">
+          <button :disabled="current==0" @click="prevActivity(routineActivities[current-1])" class="btn btn-primary">back</button>
+          <router-link :to="{ name: 'Home' }">
+            <button v-if="current == routineActivities.length-1"  @click="awardPoints(routineActivities[current])" class="btn btn-primary">Finish</button>
+            </router-link>
+
+          <button v-if="current < routineActivities.length-1"  @click="nextActivity(routineActivities[current])" class="btn btn-primary">next</button>
+        </div>
+        <div class="col-12">{{routineActivities[current]?.name}}</div>
+        <div class="col-12 m-2">Equipment: {{ routineActivities[current]?.equipment}}</div>
+        <div class="col-12 mb-2">Reps: 10 <span> Sets: 2</span></div>
+      <div class="col-12 mb-2">Instructions: <p>{{routineActivities[current]?.instructions}}</p></div>
 
         </section>
       </div>
@@ -58,6 +61,7 @@ import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
 import { activitiesService } from "../services/ActivitiesService"
 import Pop from "../utils/Pop"
+import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -72,9 +76,12 @@ export default {
         // logger.log(error)
       }
     }
+
+    // function toggleActivityOnLoad(routineActivities) {
+    //   routineActivities.checked == true
+    // }
     // onMounted(()=>{
-    //   // setRoutineActivities(),
-    //   setCurrentActivity()
+    //   toggleActivityOnLoad()
     // })
     watchEffect(() => {
       setRoutineActivities(AppState.activeRoutine?.activities)
@@ -87,6 +94,16 @@ export default {
       current,
       toggleActivity(activity) {
         activity.checked = !activity.checked
+      },
+      async awardPoints(activity) {
+        try {
+          this.nextActivity(activity)
+          await accountService.updateAccountPoints(10)
+          Pop.toast(`10 Points Awarded!`)
+        } catch (error) {
+          Pop.error(error.message)
+          logger.log(error)
+        }
       },
 
       nextActivity(activity) {
@@ -111,6 +128,7 @@ export default {
       resetActivityChecked() {
         try {
           current.value = 0
+          this.routineActivities.checked = false
           activitiesService.resetActivityChecked()
         } catch (error) {
           Pop.error(error.message)

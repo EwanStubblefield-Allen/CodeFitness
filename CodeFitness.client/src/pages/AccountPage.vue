@@ -99,6 +99,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
+      picture: computed(() => `url(${AppState.account.picture })`),
       // setActiveRoutine(routine) {
       //   try {
       //     routinesService.setActiveRoutine(routine)
@@ -145,6 +146,9 @@ export default {
   -webkit-text-stroke-color: black;
 }
 
+  .routine-bg {
+      background-image: v-bind(picture);
+  }
 .routine-bg {
   /* : v-bind(picture); */
 }
