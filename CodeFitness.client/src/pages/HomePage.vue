@@ -1,13 +1,15 @@
 <template>
-  <TeamComponent />
+  <div class="col-12 col-md-10 offset-md-2">
+    <TeamComponent />
 
-  <section v-if="account.community" class="row m-3">
-    <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
-      Routine</button>
-  </section>
-  <section class="row">
-    <ActivitySearch />
-  </section>
+    <section v-if="account.community" class="row m-3">
+      <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
+        Routine</button>
+    </section>
+    <section class="row">
+      <ActivitySearch />
+    </section>
+  </div>
 </template>
 
 <script>
