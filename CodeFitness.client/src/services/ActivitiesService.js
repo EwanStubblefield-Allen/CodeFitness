@@ -44,10 +44,6 @@ class ActivitiesService {
     AppState.template = template
   }
 
-  async setRoutineActivities() {
-    let act = AppState.activeRoutine?.activities
-    AppState.routineActivities = act?.map(a => new Activity(a))
-  }
   resetActivityChecked() {
     AppState.routineActivities.forEach(activity => {
       activity.checked = false
@@ -65,6 +61,12 @@ class ActivitiesService {
     activityData.routineId = AppState.activeRoutine.id
     const res = await api.post('api/activities', activityData)
     AppState.activeRoutine.activities.push(new Activity(res.data))
+  }
+
+  async updateActivity(activity) {
+    const res = await api.put(`api/activities/${activity.id}`, activity)
+    const foundIndex = AppState.activeRoutine.activities.findIndex(a => a.id == activity.id)
+    AppState.activeRoutine.activities.splice(foundIndex, new Activity(res.data.activity))
   }
 
   async removeActivity(activityId) {

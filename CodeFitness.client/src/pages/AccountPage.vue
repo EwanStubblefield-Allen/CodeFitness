@@ -40,7 +40,7 @@
         <section class="row">
           <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
-              <div class="reserved-space"></div>
+              <!-- <div class="reserved-space"></div> -->
               <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ r.title }}</h5>
@@ -57,7 +57,7 @@
       </div>
     </section>
     <section class="row">
-      <div class="col-12 bg-primary text-light text-center fs-1 py-3">
+      <div class="col-12 bg-neutral-light text-light text-center fs-1 py-3">
         Achievements
       </div>
       <div class="col-12 bg-secondary">
@@ -68,22 +68,29 @@
                 :title="`Achievement Name ${i}`">
             </div>
           </div> -->
-          <div v-for="achievement in achievements" :key="achievement.id" class="d-flex flex-column py-1">
+          <div v-for="achievement in  achievements " :key="achievement.id" class="d-flex flex-column py-1">
             <h2>
-              {{ achievement.type }}
+              {{ achievement.type }} Progress: {{ achievement.progress }}
             </h2>
             <div class="d-flex text-light">
-              <div v-for="tier in achievement.achievementTier" :key="tier._id"
+              <div v-for="tier in  achievement.achievementTier " :key="tier._id"
                 class="col-3 d-flex achievement-card border border-light">
                 <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture"
                   alt="" :title="tier.name">
-                <div v-if="achievement.tier >= tier.tier - 1">
+                <div v-if="achievement.tier >= tier.tier - 1" class="d-flex flex-column justify-content-between">
                   <h3>
                     {{ tier.name }}
                   </h3>
                   <p>
                     {{ tier.description }}
                   </p>
+                  <div v-if="achievement.tier == tier.tier - 1" class="progress" role="progressbar"
+                    aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    <!-- (achievement.requirement[tier.tier] / achievement.progress) * 10 -->
+                    <div class="progress-bar"
+                      :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
+                    </div>
+                  </div>
                 </div>
                 <div v-else class="d-flex flex-column justify-content-center">
                   <h3>
@@ -100,7 +107,7 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -110,6 +117,8 @@ import { achievementService } from "../services/AchievementService"
 
 export default {
   setup() {
+    const editable = ref({})
+
     async function getAchievementsByUserId() {
       try {
         const achievement = accountAchievementService.getAchievementsByUserId()
@@ -123,6 +132,7 @@ export default {
       }
     })
     return {
+      editable,
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       picture: computed(() => `url(${AppState.account.picture})`),
@@ -206,6 +216,6 @@ export default {
   height: 15vh;
   width: 15vh;
   padding: 1vh;
-  filter: contrast(1) saturate(1);
+  filter: drop-shadow(3px 3px var(--darkest)) drop-shadow(-3px -3px var(--neutral-dark));
 }
 </style>
