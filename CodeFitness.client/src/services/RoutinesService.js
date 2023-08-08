@@ -2,7 +2,6 @@ import { AppState } from "../AppState.js"
 import { Routine } from "../models/Routine.js"
 import { api } from "./AxiosService.js"
 import Pop from "../utils/Pop.js"
-import { logger } from "../utils/Logger.js"
 
 class RoutinesService {
   setActiveRoutine(routine) {
@@ -30,24 +29,17 @@ class RoutinesService {
     return routine
   }
 
-  async updateRoutine() {
-    AppState.activeRoutine.completeCount++
-    await api.put(`api/routines/${AppState.activeRoutine.id}`, { completeCount: AppState.activeRoutine.completeCount })
+  async updateRoutine(routineData) {
+    const res = await api.put(`api/routines/${routineData.id}`, routineData)
+    const routine = new Routine(res.data.routine)
+    AppState.activeRoutine = routine
+    const foundIndex = AppState.routines.findIndex(r => r.id == routineData.id)
+    AppState.routines.splice(foundIndex, 1, routine)
   }
 
-  async deleteRoutine(routineId) {
+  async removeRoutine(routineId) {
     await api.delete(`api/routines/${routineId}`)
     AppState.routines = AppState.routines.filter(r => r.id != routineId)
-  }
-
-  async editRoutine(routineData) {
-    const res = await api.put(`api/routines/${routineData.id}`, routineData)
-    logger.log('[EDIT ROUTINE]', res.data)
-    const routine = new Routine(res.data)
-
-    const routineIndex = AppState.routines.findIndex(r => r.id == routineData.id)
-
-    AppState.routines.splice(routineIndex, 1, routine)
   }
 
   setRoutineToEdit(routineToEdit) {

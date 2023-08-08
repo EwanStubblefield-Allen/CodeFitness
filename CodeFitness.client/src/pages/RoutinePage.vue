@@ -1,9 +1,28 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2 d-flex flex-column">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3">
-      <div class="d-flex justify-content-center align-items-center">
-        <h1>{{ activeRoutine.title }}</h1>
-        <p v-if="points > 0">Points: {{ points }}</p>
+      <div class="col-12 d-flex justify-content-between align-items-center dropdown">
+        <section class="row justify-content-between align-items-center flex-grow-1">
+          <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
+          <p class="col-6 fs-1">{{ activeRoutine.title }}</p>
+          <div class="col-3 text-end">
+            <button type="button" class="btn text-light selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-dots-horizontal info fs-3"></i>
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
+              <div class="list-group text-center">
+                <div class="list-group-item dropdown-item list-group-item-action selectable" data-bs-toggle="modal" data-bs-target="#routineForm">
+                  <p class="mdi mdi-pencil">Edit Routine</p>
+                </div>
+
+                <div @click="removeRoutine()" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                  <p class="mdi mdi-trash-can">Delete Routine</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
       <img :src="activeRoutine.picture" alt="User Selected Picture" class="mx-auto p-2">
       <p>{{ activeRoutine.description }}</p>
@@ -15,14 +34,19 @@
               <div class="d-flex flex-column justify-content-between flex-grow-1 card-text">
                 <div>
                   <div class="d-flex justify-content-center align-items-center">
-                    <h3>Level: {{ act.level }}</h3>
-                    <button v-if="points" @click="updateActivity(act)" class="btn btn-action mdi mdi-plus ms-2" type="button"></button>
+                    <h3 v-if="!points">Level: {{ act.level }}</h3>
+
+                    <button v-else @click="updateActivity(act)" class="btn btn-action fs-4" type="button">
+                      Level: {{ act.level }} +
+                    </button>
                   </div>
+
                   <div class="d-flex justify-content-between p-2">
                     <h4>Sets: {{ act.sets }}</h4>
                     <h4 v-if="act.type == ('Cardio' || 'Stretching')">Duration: {{ act.reps }}</h4>
                     <h4 v-else>Reps: {{ act.reps }}</h4>
                   </div>
+
                   <div v-if="act.equipment" class="p-2">
                     <h4>Equipment:</h4>
                     <h4>{{ act.equipment }}</h4>
@@ -43,14 +67,6 @@
       </div>
     </section>
 
-    <div class="row m-3">
-      <button @click="setRoutineToEdit()" class="btn btn-info mb-3" title="Edit Routine" type="button" data-bs-toggle="modal" data-bs-target="#editRoutineForm">Edit
-        Routine</button>
-      <button @click="deleteRoutine()" class="btn btn-danger">
-        Delete Routine
-      </button>
-    </div>
-
     <section class="row m-3">
       <ActivitySearch />
     </section>
@@ -58,20 +74,18 @@
 </template>
 
 <script>
-import { computed, ref, watchEffect } from "vue"
+import { computed, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute, useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop"
-import { logger } from "../utils/Logger.js"
 
 export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
-    const editable = ref({})
 
     watchEffect(() => {
       getRoutineById(route.params.routineId)
@@ -87,33 +101,24 @@ export default {
     }
 
     return {
-      editable,
       activeRoutine: computed(() => AppState.activeRoutine),
       points: computed(() => {
         let levels = 0
         AppState.activeRoutine.activities.forEach(a => levels += a.level)
-        logger.log(AppState.activeRoutine.completeCount - levels)
         return AppState.activeRoutine.completeCount - levels
       }),
 
-      setRoutineToEdit() {
-        const routineToEdit = route.params.id
-
-        routinesService.setRoutineToEdit(routineToEdit)
-      },
-
-      async deleteRoutine() {
+      async removeRoutine() {
         try {
-          const wantsToRemove = await Pop.confirm(`Are you sure you want to delete this routine?`)
+          const wantsToRemove = await Pop.confirm(`Are you sure you want to delete ${AppState.activeRoutine.title}?`)
 
           if (!wantsToRemove) {
             return
           }
-          const routineId = route.params.routineId
-          await routinesService.deleteRoutine(routineId)
+          await routinesService.removeRoutine(route.params.routineId)
           router.push('/')
         } catch (error) {
-          Pop.error(error.message)
+          Pop.error(error.message, '[DELETING ROUTINE]')
         }
       },
 
