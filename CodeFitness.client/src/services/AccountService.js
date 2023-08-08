@@ -1,10 +1,8 @@
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
-import { Achievement } from '../models/Achievement.js'
 import { logger } from '../utils/Logger'
 import { accountAchievementService } from './AccountAchievementService.js'
 import { api } from './AxiosService'
-import Pop from '../utils/Pop.js'
 
 class AccountService {
   async selectCommunity(community) {
@@ -28,16 +26,7 @@ class AccountService {
     if (!AppState.activeAchievements[0]) {
       await accountAchievementService.getAchievementsByUserId()
     } else {
-      const foundIndex = AppState.activeAchievements.findIndex(a => a.type == 'pointCount')
-
-      if (foundIndex == -1) {
-        throw new Error('[NO ACHIEVEMENT FOUND]')
-      }
-
-      if (AppState.activeAchievements[foundIndex].tier != res.data.accountAchievement.tier) {
-        AppState.activeAchievements.splice(foundIndex, new Achievement(res.data.accountAchievement))
-        Pop.success(`You have unlocked a new achievement`)
-      }
+      accountAchievementService.checkAchievement(res.data.accountAchievement, 'pointCount')
     }
     AppState.account = new Account(res.data.account)
   }

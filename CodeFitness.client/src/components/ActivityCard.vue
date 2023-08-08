@@ -41,6 +41,7 @@ export default {
       async createActivity(activityId) {
         try {
           await activitiesService.createActivity(activityId)
+          document.documentElement.scrollTop = 0
         } catch (error) {
           Pop.error(error.message, '[CREATING ACTIVITY]')
         }
