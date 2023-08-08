@@ -41,13 +41,13 @@
           <div v-for="r in 3" :key="r" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
-              <img :src="routines[r].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
+              <img :src="routines[r-1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
-                <h5 class="p-2 text-center"> {{ routines[r].title }}</h5>
-                <p class="p-2 mb-2">{{ routines[r].description }}</p>
+                <h5 class="p-2 text-center"> {{ routines[r-1].title }}</h5>
+                <p class="p-2 mb-2">{{ routines[r-1].description }}</p>
                 <div class="text-end">
-                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r].id } }">
-                    <button @click="getRoutineById(routines[r].id)" class="btn btn-action" type="button">Start Routine</button>
+                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r-1].id } }">
+                    <button @click="getRoutineById(routines[r-1].id)" class="btn btn-action" type="button">Start Routine</button>
                   </RouterLink>
                 </div>
               </div>
