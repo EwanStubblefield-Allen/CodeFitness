@@ -9,7 +9,7 @@
       <p>Difficulty: {{ activityProp.difficulty }}</p>
     </div>
     <div class="dark-bg text-end p-3">
-      <button @click="createActivity(activityProp)" class="btn btn-action">Add to Routine</button>
+      <button v-if="routine" @click="createActivity(activityProp)" class="btn btn-action">Add to Routine</button>
     </div>
   </div>
 </template>
@@ -18,6 +18,8 @@
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"
+import { computed } from "vue"
+import { AppState } from "../AppState"
 
 export default {
   props: {
@@ -29,6 +31,7 @@ export default {
 
   setup(props) {
     return {
+      routine: computed(()=> AppState.activeRoutine),
       async setActiveActivity() {
         try {
           await activitiesService.setActiveActivity(props.activityProp)

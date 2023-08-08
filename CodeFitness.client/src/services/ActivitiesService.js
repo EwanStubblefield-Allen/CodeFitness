@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
+import { logger } from "../utils/Logger.js"
 import { accountAchievementService } from "./AccountAchievementService.js"
 import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
@@ -62,6 +63,8 @@ class ActivitiesService {
     activityData.routineId = AppState.activeRoutine.id
     const res = await api.post('api/activities', activityData)
     AppState.activeRoutine.activities.push(new Activity(res.data))
+    const foundRoutine = AppState.routines.find(r => r.id == activityData.routineId)
+    AppState.activeRoutine = foundRoutine
   }
 
   async updateActivity(activity) {
