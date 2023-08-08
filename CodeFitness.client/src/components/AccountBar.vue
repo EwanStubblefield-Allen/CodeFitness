@@ -18,7 +18,8 @@
     </div>
 
     <div class="col-11">
-      <button class="btn btn-action mt-1">Achievements</button>
+      <button class="btn btn-action mt-1" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasAchievements">Achievements</button>
     </div>
   </section>
   <section v-else class="row justify-content-center align-items-center bar-height">
