@@ -1,138 +1,120 @@
 <template>
-  <div class="bg-dark">
+  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark">
+    <section class="row justify-content-center bg-neutral-dark">
+      <div class="col-12 p-3">
+        <div class="fs-1 text-center text-white">{{ routine.title }}</div>
 
-    <div class="col-9 m-auto bg-primary">
+        <section class="row justify-content-around text-center my-4">
+          <div class="col-2 bg-light">
+            <div v-if="current > 0" class="d-flex flex-column justify-content-around h-100">
+              <p class="fs-5 fw-bold">{{ routine.activities[current - 1].name }}</p>
+              <p>{{ routine.activities[current - 1].muscle }}</p>
+              <p>{{ routine.activities[current - 1].difficulty }}</p>
+            </div>
+          </div>
 
-<section class="row mt-4">
-<div class="col-12 text-center text-white mt-4">{{activeRoutine?.title}}</div>
-</section>
+          <div class="col-6 bg-light p-3">
+            <div v-if="current < routine.activities.length">
+              <p class="fs-5 fw-bold">{{ routine.activities[current].name }}</p>
+              <p>Reps: 10 <span> Sets: 2</span></p>
+              <p>Equipment: {{ routine.activities[current].equipment }}</p>
+              <p>Instructions:{{ routine.activities[current].instructions }}</p>
+            </div>
+            <div v-else>
+              <p>Finish</p>
+            </div>
 
-      <form @submit.prevent="" action="">
-        <div class="row justify-content-around">
+            <div class="d-flex justify-content-between pt-3">
+              <button @click="changeActivity(-1)" class="btn btn-action" :disabled="current == 0">Back</button>
+              <button v-if="current == routine.activities.length" @click="awardPoints()" class="btn btn-action">Finish</button>
+              <button v-else @click="changeActivity(1)" class="btn btn-action">Next</button>
+            </div>
+          </div>
 
-    <div v-for="a in routineActivities" :key="a.id" class="col-5 bg-light d-flex justify-content-between my-2">{{a.name}} <input onclick="return false" type="checkbox" v-model="editable.checked" name="" id="" :checked="a.checked === true" > </div>
-  </div>
+          <div class="col-2 bg-light">
+            <div v-if="current < routine.activities.length - 1" class="d-flex flex-column justify-content-around h-100">
+              <p class="fs-5 fw-bold">{{ routine.activities[current + 1].name }}</p>
+              <p>{{ routine.activities[current + 1].muscle }}</p>
+              <p>{{ routine.activities[current + 1].difficulty }}</p>
+            </div>
+          </div>
+        </section>
 
-        <button @click="resetActivityChecked()">Restart</button>
-      </form>
-    </div>
-
-<div class="row text-center justify-content-around mt-4">
-  <div class="col-2 bg-light">
-    <section class="row">
-      <div class="col-12 my-2">{{routineActivities[current-1]?.name}}</div>
-      <div class="col-12 my-2">{{routineActivities[current-1]?.muscle}}</div>
-      <div class="col-12 my-2">{{routineActivities[current-1]?.difficulty}}</div>
+        <form @submit.prevent="" class="row justify-content-around">
+          <div v-for="a in routine.activities" :key="a.id" class="col-5 form-check">
+            <input v-model="editable[a.id]" class="fs-5 form-check-input" type="checkbox" :id="a.id">
+            <label class="fs-5 form-check-label" :for="a.id">
+              {{ a.name }}
+            </label>
+          </div>
+          <div class="text-end p-3">
+            <button @click="current = 0; editable = {}" class="btn btn-danger" type="reset">Restart</button>
+          </div>
+        </form>
+      </div>
     </section>
-  </div>
-  <div class="col-6 bg-light">
-    <section class="row">
-      <div class="col-12 d-flex justify-content-between">
-          <button :disabled="current==0" @click="prevActivity(routineActivities[current-1])" class="btn btn-primary">back</button>
-          <router-link :to="{ name: 'Home' }">
-            <button v-if="current == routineActivities.length-1"  @click="awardPoints(routineActivities[current])" class="btn btn-primary">Finish</button>
-            </router-link>
-
-          <button v-if="current < routineActivities.length-1"  @click="nextActivity(routineActivities[current])" class="btn btn-primary">next</button>
-        </div>
-        <div class="col-12">{{routineActivities[current]?.name}}</div>
-        <div class="col-12 m-2">Equipment: {{ routineActivities[current]?.equipment}}</div>
-        <div class="col-12 mb-2">Reps: 10 <span> Sets: 2</span></div>
-      <div class="col-12 mb-2">Instructions: <p>{{routineActivities[current]?.instructions}}</p></div>
-
-        </section>
-      </div>
-      <div class="col-2 bg-light">
-        <section class="row">
-
-          <div class="col-12 my-2">{{ routineActivities[current + 1]?.name }}</div>
-          <div class="col-12 my-2">{{ routineActivities[current + 1]?.muscle }}</div>
-          <div class="col-12 my-2">{{ routineActivities[current + 1]?.difficulty }}</div>
-        </section>
-      </div>
-    </div>
-
   </div>
 </template>
 
 <script>
-import { computed, onMounted, ref, watchEffect } from "vue"
+import { computed, ref, watchEffect } from "vue"
+import { useRoute, useRouter } from "vue-router"
 import { AppState } from "../AppState"
-import { logger } from "../utils/Logger"
-import { activitiesService } from "../services/ActivitiesService"
-import Pop from "../utils/Pop"
 import { accountService } from "../services/AccountService"
+import { routinesService } from "../services/RoutinesService.js"
+import Pop from "../utils/Pop"
+import { Modal } from "bootstrap"
 
 export default {
   setup() {
+    const route = useRoute()
+    const router = useRouter()
     const editable = ref({})
     let current = ref(0)
 
-    async function setRoutineActivities() {
+    watchEffect(() => {
+      getRoutineById()
+    })
+
+    async function getRoutineById() {
       try {
-        await activitiesService.setRoutineActivities()
+        await routinesService.getRoutineById(route.params.routineId)
       } catch (error) {
-        // Pop.error(error.message)
-        // logger.log(error)
+        Pop.error(error.message, '[GETTING ROUTINE BY ID]')
       }
     }
 
-    // function toggleActivityOnLoad(routineActivities) {
-    //   routineActivities.checked == true
-    // }
-    // onMounted(()=>{
-    //   toggleActivityOnLoad()
-    // })
-    watchEffect(() => {
-      setRoutineActivities(AppState.activeRoutine?.activities)
-    })
     return {
-      activeRoutine: computed(() => AppState.activeRoutine),
-      routineActivities: computed(() => AppState.routineActivities),
-      currentActivity: computed(() => AppState.activeActivity),
       editable,
       current,
+      routine: computed(() => AppState.activeRoutine),
+
       toggleActivity(activity) {
         activity.checked = !activity.checked
       },
-      async awardPoints(activity) {
+
+      changeActivity(change) {
+        if (change == 1) {
+          editable.value[this.routine.activities[current.value].id] = true
+        } else {
+          editable.value[this.routine.activities[current.value - 1].id] = false
+        }
+        current.value += change
+      },
+
+      async awardPoints() {
         try {
-          this.nextActivity(activity)
+          const isDone = await Pop.confirm('Finish Routine')
+
+          if (!isDone) {
+            return
+          }
           await accountService.updateAccountPoints(10)
-          Pop.toast(`10 Points Awarded!`)
-        } catch (error) {
-          Pop.error(error.message)
-          logger.log(error)
-        }
-      },
-
-      nextActivity(activity) {
-        current.value++
-        this.toggleActivity(activity)
-
-        if (current.value >= this.routineActivities.length) {
           current.value = 0
-        }
-      },
-      prevActivity(activity) {
-        if (current.value <= 0) {
-          return
-        }
-        current.value--
-        this.toggleActivity(activity)
-
-        if (current.value < 0) {
-          current.value = this.routineActivities.length - 1
-        }
-      },
-      resetActivityChecked() {
-        try {
-          current.value = 0
-          this.routineActivities.checked = false
-          activitiesService.resetActivityChecked()
+          Pop.success(`10 Points Awarded!`)
+          router.push({ name: 'Routines', params: { routineId: this.routine.id } })
         } catch (error) {
-          Pop.error(error.message)
-          logger.log(error)
+          Pop.error(error.message, '[UPDATING ACCOUNT POINTS]')
         }
       }
     }

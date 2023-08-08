@@ -44,10 +44,6 @@ class ActivitiesService {
     AppState.template = template
   }
 
-  async setRoutineActivities() {
-    let act = AppState.activeRoutine?.activities
-    AppState.routineActivities = act?.map(a => new Activity(a))
-  }
   resetActivityChecked() {
     AppState.routineActivities.forEach(activity => {
       activity.checked = false
