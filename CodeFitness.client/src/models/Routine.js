@@ -9,5 +9,6 @@ export class Routine {
     this.accountId = data.accountId
     this.profile = data.profile
     this.activities = data.activity
+    this.updatedAt = data.updatedAt
   }
 }
