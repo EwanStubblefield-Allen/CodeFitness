@@ -33,17 +33,17 @@
               <button v-else @click="changeActivity(1)" class="btn btn-action">Next</button> -->
             </div>
             <a class="prevArrow" @click="changeActivity(-1)" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only"></span>
-  </a>
-  <a class="nextArrow" v-if="current == routine.activities.length" @click="updateData()" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only"></span>
-  </a>
-  <a class="nextArrow" v-else @click="changeActivity(1)" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only"></span>
-  </a>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+            </a>
+            <a class="nextArrow" v-if="current == routine.activities.length" @click="updateData()" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+            </a>
+            <a class="nextArrow" v-else @click="changeActivity(1)" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+            </a>
           </div>
 
           <div class="col-2 bg-light">
@@ -131,7 +131,7 @@ export default {
           router.push({ name: 'Routines', params: { routineId: this.routine.id } })
           AppState.activeRoutine.activities.forEach(a => points += a.level + 1)
           await accountService.updateAccount({ points: AppState.account.points += points })
-          await routinesService.updateRoutine({ completeCount: AppState.activeRoutine.completeCount })
+          await routinesService.updateRoutine({ completeCount: AppState.activeRoutine.completeCount += 1 })
         } catch (error) {
           Pop.error(error.message, '[UPDATING ACCOUNT POINTS]')
         }
@@ -142,18 +142,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.parentContainer{
-  position: absolute;
-}
-.nextArrow{
-  position: absolute;
-  bottom: 70%;
-  left: 80%;
-}
-.prevArrow{
-  position: absolute;
-  bottom: 70%;
-  right: 63%;
-}
+  .parentContainer {
+    position: absolute;
+  }
 
+  .nextArrow {
+    position: absolute;
+    bottom: 70%;
+    left: 80%;
+  }
+
+  .prevArrow {
+    position: absolute;
+    bottom: 70%;
+    right: 63%;
+  }
 </style>

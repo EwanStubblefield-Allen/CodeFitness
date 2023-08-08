@@ -7,7 +7,7 @@
           <p class="col-6 fs-1">{{ activeRoutine.title }}</p>
           <div class="col-3 text-end">
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
-              <button type="button" class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
+              <button v-if="activeRoutine.activities[0]" type="button" class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
             </RouterLink>
             <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
 
