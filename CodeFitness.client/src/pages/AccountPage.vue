@@ -70,8 +70,10 @@
               {{ achievement.type }} Progress: {{ achievement.progress }}
             </h2>
             <div class="d-flex text-light">
-              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-3 d-flex achievement-card border border-light">
-                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture" alt="" :title="tier.name">
+              <div v-for="tier in  achievement.achievementTier " :key="tier._id"
+                class="col-3 d-flex achievement-card border border-light">
+                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture"
+                  alt="" :title="tier.name">
                 <div v-if="achievement.tier >= tier.tier - 1" class="d-flex flex-column justify-content-between">
                   <h3>
                     {{ tier.name }}
@@ -79,8 +81,10 @@
                   <p>
                     {{ tier.description }}
                   </p>
-                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 mb-2 border border-light" role="progressbar">
-                    <div class="progress-bar bg-success" :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
+                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 m-2 border border-light"
+                    role="progressbar">
+                    <div class="progress-bar bg-success"
+                      :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
                     </div>
                   </div>
                 </div>
@@ -223,6 +227,5 @@ export default {
   }
 
   .progress {
-    progress-bg: red
-  }
-</style>
+  progress-bg: red
+}</style>

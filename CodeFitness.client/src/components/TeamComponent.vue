@@ -18,7 +18,7 @@
     </div>
   </section>
 
-  <section v-else class="row justify-content-around bg-neutral-dark ">
+  <section v-else class="row justify-content-around bg-neutral-dark">
     <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
       <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
       <p class="fs-2 pt-3 fw-bold">Cardio Kings</p>
@@ -75,15 +75,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.flag {
-  image-rendering: pixelated;
-  color: var(--light);
-  border: solid 4px var(--light);
-  text-shadow: 0px 3px 7px black;
-}
+  .flag {
+    image-rendering: pixelated;
+    color: var(--light);
+    border: solid 4px var(--light);
+    text-shadow: 0px 3px 7px black;
+  }
 
-.flag img {
-  filter: drop-shadow(0 10px 10px black);
+  .flag img {
+    filter: drop-shadow(0 10px 10px black);
 
-}
+  }
 </style>
