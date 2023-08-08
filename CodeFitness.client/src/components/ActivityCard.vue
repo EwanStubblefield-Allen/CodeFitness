@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column justify-content-between text-center bg-neutral-dark text-light activity-card">
+  <div class="d-flex flex-column justify-content-between h-100 text-center bg-neutral-dark text-light activity-card">
     <div @click="setActiveActivity()" class="selectable p-3">
       <p class="fw-bold py-2">{{ activityProp.name }}</p>
       <p v-if="activityProp.category">Category: {{ activityProp.category }}</p>
@@ -50,8 +50,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  .activity-card {
-    min-height: 40vh;
-  }
-</style>
+<style lang="scss" scoped></style>

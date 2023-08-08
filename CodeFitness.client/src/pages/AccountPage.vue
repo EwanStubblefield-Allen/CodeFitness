@@ -56,6 +56,7 @@
         </section>
       </div>
     </section>
+
     <section class="row">
       <div class="col-12 bg-neutral-light text-light text-center fs-1 py-3">
         Achievements
@@ -69,8 +70,8 @@
             <h2>
               {{ achievement.type }} Progress: {{ achievement.progress }}
             </h2>
-            <div class="d-flex text-light">
-              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-3 d-flex achievement-card border border-light">
+            <div class="row text-light">
+              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-12 col-md-3 d-flex achievement-card border border-light">
                 <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture" alt="" :title="tier.name">
                 <div v-if="achievement.tier >= tier.tier - 1" class="d-flex flex-column justify-content-between">
                   <h3>
@@ -140,13 +141,7 @@ export default {
         })
         return complete
       }),
-      // setActiveRoutine(routine) {
-      //   try {
-      //     routinesService.setActiveRoutine(routine)
-      //   } catch (error) {
-      //     Pop.error(error.message)
-      //     logger.log(error)
-      //   }      },
+
       async getRoutineById(routineId) {
         try {
           await routinesService.getRoutineById(routineId)
@@ -220,9 +215,5 @@ export default {
     width: 15vh;
     padding: 1vh;
     filter: drop-shadow(3px 3px var(--darkest)) drop-shadow(-3px -3px var(--neutral-dark));
-  }
-
-  .progress {
-    progress-bg: red
   }
 </style>

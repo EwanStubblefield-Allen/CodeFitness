@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 d-flex flex-column flex-md-row justify-content-between p-3">
-    <form @submit.prevent="resetPage()">
+    <form @submit.prevent="resetPage()" id="form">
       <div class="form-group d-flex align-items-center">
         <label for="search" class="fw-bold w-100">Search for activity:</label>
         <div class="input-group">
@@ -16,18 +16,16 @@
   <div v-for="a in activities" :key="a.id" class="col-12 col-md-4 col-lg-3 p-3">
     <ActivityCard :activityProp="a" />
   </div>
-  <section class="row justify-content-center my-3">
-    <div class="col-10 d-flex justify-content-between no-select">
-      <div @click="changePage(page - 20)" :class="{ disabled: page == 0, 'text-secondary': page == 0 }" class="d-flex selectable py-1 px-3">
-        <i class="mdi mdi-arrow-left pe-3"></i>
-        <p>Last Page</p>
-      </div>
-      <div @click="changePage(page + 20)" :class="{ disabled: !nextPage, 'text-secondary': !nextPage }" class="d-flex selectable py-1 px-3">
-        <p>Next Page</p>
-        <i class="mdi mdi-arrow-right ps-3"></i>
-      </div>
+  <div class="col-10 d-flex justify-content-between no-select my-3">
+    <div @click="changePage(page - 20)" :class="{ disabled: page == 0, 'text-secondary': page == 0 }" class="d-flex selectable py-1 px-3">
+      <i class="mdi mdi-arrow-left pe-3"></i>
+      <p class="text-end">Last Page</p>
     </div>
-  </section>
+    <div @click="changePage(page + 20)" :class="{ disabled: !nextPage, 'text-secondary': !nextPage }" class="d-flex selectable py-1 px-3">
+      <p>Next Page</p>
+      <i class="mdi mdi-arrow-right ps-3"></i>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -64,6 +62,7 @@ export default {
       changePage(page) {
         AppState.page = page
         getActivitiesBySearch()
+        document.getElementById('form').scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
       },
 
       resetPage() {

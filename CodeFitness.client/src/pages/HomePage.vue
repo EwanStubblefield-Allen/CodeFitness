@@ -6,14 +6,14 @@
       <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
         Routine</button>
     </section>
-    <section class="row">
+    <section class="row justify-content-center">
       <ActivitySearch />
     </section>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from "vue"
+import { computed, onMounted, onUnmounted } from "vue"
 import { AppState } from "../AppState.js"
 import ActivitySearch from '../components/ActivitySearch.vue'
 import TeamComponent from '../components/TeamComponent.vue'
@@ -22,6 +22,10 @@ export default {
   setup() {
     onMounted(() => {
       AppState.activeRoutine = null
+    })
+
+    onUnmounted(() => {
+      document.documentElement.scrollTop = 0
     })
 
     return {

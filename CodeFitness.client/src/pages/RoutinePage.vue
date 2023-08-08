@@ -67,7 +67,7 @@
       </div>
     </section>
 
-    <section class="row m-3">
+    <section class="row m-3 justify-content-center">
       <ActivitySearch />
     </section>
   </div>
