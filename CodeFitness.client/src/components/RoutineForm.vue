@@ -23,7 +23,7 @@
 
 <script>
 import { ref, watchEffect } from "vue"
-import { useRouter } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"
@@ -32,6 +32,7 @@ import { AppState } from "../AppState.js"
 export default {
   setup() {
     const router = useRouter()
+    const route = useRoute
     const editable = ref({})
 
     watchEffect(() => {
