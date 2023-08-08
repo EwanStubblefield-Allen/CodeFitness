@@ -16,7 +16,7 @@ module.exports = {
     'comma-dangle': ['warn', 'never'],
     'comma-spacing': 'warn',
     'eol-last': ['warn', 'never'],
-    'indent': ['warn', 2],
+    'indent': ['warn', 2, { 'SwitchCase': 1 }],
     'jsx-quotes': ['warn', 'prefer-single'],
     'key-spacing': 'warn',
     'keyword-spacing': 'warn',

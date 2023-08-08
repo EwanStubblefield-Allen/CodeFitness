@@ -1,25 +1,20 @@
 <template>
-  <section v-if="account.id" class="row justify-content-center bar-height">
-    <div class="col-11 px-0 pb-1">
+  <section v-if="account.id" class="row justify-content-center">
+    <div class="col-11 px-0 py-1 community-banner">
       <img class="community-img w-100" :src="comIcon" alt="Yellow">
     </div>
 
-    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img">
-      <img class="account-picture " :src="account.picture" :alt="account.name" :title="account.name">
+    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img selectable" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements" title="My Achievements">
+      <img class="account-picture" :src="account.picture" :alt="account.name">
     </div>
 
     <div class="col-11 text-center text-dark bg-light fs-3 mb-1">
       <p class="text-break">Points: {{ account.points }}</p>
 
       <div class="mb-3">
-        <button class="btn btn-action text-break" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasRoutine">Routines</button>
+        <button class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
       </div>
-    </div>
-
-    <div class="col-11">
-      <button class="btn btn-action mt-1" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasAchievements">Achievements</button>
+      <!-- <button class="btn btn-action my-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Achievements</button> -->
     </div>
   </section>
   <section v-else class="row justify-content-center align-items-center bar-height">
@@ -31,10 +26,7 @@
 
 <script>
 import { AppState } from '../AppState.js'
-import { computed, onMounted, ref, watchEffect } from 'vue'
-import { routinesService } from "../services/RoutinesService.js"
-import { useRouter } from "vue-router"
-import Pop from "../utils/Pop.js"
+import { computed, ref, watchEffect } from 'vue'
 
 export default {
   setup() {
@@ -65,52 +57,36 @@ export default {
       routines: computed(() => AppState.routines),
       backgroundImg: computed(() => `url(${AppState.account.coverImg})`),
       achievements: computed(() => AppState.activeAchievements),
-      comIcon,
-
-      async deleteRoutine(routine) {
-        try {
-          const wantsToRemove = await Pop.confirm(`Are you sure you want to delete ${routine.title}`)
-
-          if (!wantsToRemove) {
-            return
-          }
-          const routineToRemove = AppState.routines.find(r => r.accountId == AppState.account.id)
-          const routineId = routineToRemove.id
-          await routinesService.deleteRoutine(routineId)
-          router.push('/')
-        } catch (error) {
-          Pop.error(error.message)
-        }
-      }
+      comIcon
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.bar-height {
-  height: 87vh;
-}
+  .bar-height {
+    height: 87vh;
+  }
 
-.account-picture {
-  height: 15vh;
-  width: 15vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
+  .account-picture {
+    height: 15vh;
+    width: 15vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
 
-.bg-cover-img {
-  background-image: v-bind(backgroundImg);
-  background-position: center;
-  background-size: cover;
-  border: 10px solid white;
-}
+  .bg-cover-img {
+    background-image: v-bind(backgroundImg);
+    background-position: center;
+    background-size: cover;
+    border: 10px solid white;
+  }
 
-.community-img {
-  image-rendering: pixelated;
-  background-color: var(--neutral-light);
-  border: 10px solid white;
-  padding: 2vh;
-}
+  .community-img {
+    image-rendering: pixelated;
+    background-color: var(--neutral-light);
+    border: 10px solid white;
+    padding: 2vh;
+  }
 </style>
