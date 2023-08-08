@@ -37,7 +37,7 @@
     </section>
     <section class="row justify-content-center">
       <div class="col-12 col-md-9">
-        <section v-if="account.id && routines.length >= 3" class="row">
+        <section v-if="account.id && (routines.length >= 3)" class="row">
           <div v-for="r in 3" :key="r" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
