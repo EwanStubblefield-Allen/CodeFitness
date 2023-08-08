@@ -1,7 +1,10 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2 d-flex flex-column">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3">
-      <h1>{{ activeRoutine.title }}</h1>
+      <div class="d-flex justify-content-center align-items-center">
+        <h1>{{ activeRoutine.title }}</h1>
+        <p v-if="points > 0">Points: {{ points }}</p>
+      </div>
       <img :src="activeRoutine.picture" alt="User Selected Picture" class="mx-auto p-2">
       <p>{{ activeRoutine.description }}</p>
       <div v-if="activeRoutine.activities[0]" class="col-12 d-flex flex-column flex-md-row overflow-auto p-0">
@@ -11,7 +14,10 @@
               <h2 class="card-title">{{ act.name }}</h2>
               <div class="d-flex flex-column justify-content-between flex-grow-1 card-text">
                 <div>
-                  <h3>Level: {{ act.level }}</h3>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <h3>Level: {{ act.level }}</h3>
+                    <button v-if="points" @click="updateActivity(act)" class="btn btn-action mdi mdi-plus ms-2" type="button"></button>
+                  </div>
                   <div class="d-flex justify-content-between p-2">
                     <h4>Sets: {{ act.sets }}</h4>
                     <h4 v-if="act.type == ('Cardio' || 'Stretching')">Duration: {{ act.reps }}</h4>
@@ -38,15 +44,13 @@
     </section>
 
     <div class="row m-3">
-      <button @click="setRoutineToEdit()" class="btn btn-info mb-3" title="Edit Routine" type="button"
-        data-bs-toggle="modal" data-bs-target="#editRoutineForm">Edit
+      <button @click="setRoutineToEdit()" class="btn btn-info mb-3" title="Edit Routine" type="button" data-bs-toggle="modal" data-bs-target="#editRoutineForm">Edit
         Routine</button>
       <button @click="deleteRoutine()" class="btn btn-danger">
         Delete Routine
       </button>
     </div>
 
-    <!-- {{ activeRoutine }} -->
     <section class="row m-3">
       <ActivitySearch />
     </section>
@@ -59,8 +63,9 @@ import { AppState } from "../AppState"
 import { useRoute, useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
 import { activitiesService } from "../services/ActivitiesService.js"
-import Pop from "../utils/Pop"
 import { Modal } from "bootstrap"
+import Pop from "../utils/Pop"
+import { logger } from "../utils/Logger.js"
 
 export default {
   setup() {
@@ -84,6 +89,12 @@ export default {
     return {
       editable,
       activeRoutine: computed(() => AppState.activeRoutine),
+      points: computed(() => {
+        let levels = 0
+        AppState.activeRoutine.activities.forEach(a => levels += a.level)
+        logger.log(AppState.activeRoutine.completeCount - levels)
+        return AppState.activeRoutine.completeCount - levels
+      }),
 
       setRoutineToEdit() {
         const routineToEdit = route.params.id
@@ -112,6 +123,15 @@ export default {
           Modal.getOrCreateInstance('#activeActivity').show()
         } catch (error) {
           Pop.error(error.message, '[SETTING ACTIVE ACTIVITY]')
+        }
+      },
+
+      async updateActivity(activity) {
+        try {
+          activity.level++
+          await activitiesService.updateActivity(activity)
+        } catch (error) {
+          Pop.error(error.message, '[UPDATING ACTIVITY]')
         }
       },
 

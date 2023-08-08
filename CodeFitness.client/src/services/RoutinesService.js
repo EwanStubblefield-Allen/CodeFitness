@@ -30,6 +30,11 @@ class RoutinesService {
     return routine
   }
 
+  async updateRoutine() {
+    AppState.activeRoutine.completeCount++
+    await api.put(`api/routines/${AppState.activeRoutine.id}`, { completeCount: AppState.activeRoutine.completeCount })
+  }
+
   async deleteRoutine(routineId) {
     await api.delete(`api/routines/${routineId}`)
     AppState.routines = AppState.routines.filter(r => r.id != routineId)
