@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from "vue"
+import { computed } from "vue"
 import { AppState } from "../AppState.js"
 import ActivitySearch from '../components/ActivitySearch.vue'
 import TeamComponent from '../components/TeamComponent.vue'

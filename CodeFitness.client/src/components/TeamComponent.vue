@@ -1,18 +1,15 @@
 <template>
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark text-light">
     <h2 class="text-center mt-2">Select a Community</h2>
-    <div @click="selectCommunity('Cardio Kings')"
-      class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
+    <div @click="selectCommunity('Cardio Kings')" class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
       <p class="fs-4 fw-bold">Cardio Kings</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
-    <div @click="selectCommunity('Weight Warriors')"
-      class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
+    <div @click="selectCommunity('Weight Warriors')" class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
       <p class="fs-4 fw-bold">Weight Warriors</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
-    <div @click="selectCommunity('Legion of Leisure')"
-      class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
+    <div @click="selectCommunity('Legion of Leisure')" class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
       <p class="fs-4 fw-bold">Legion of Leisure</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
@@ -22,17 +19,17 @@
     <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag-img">
       <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
       <p class="fs-4 fw-bold">Cardio Kings</p>
-      <p class="pt-3 fw-5">Global Points: {{ communities['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
     <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag-img">
       <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
       <p class="fs-4 fw-bold">Weight Warriors</p>
-      <p class="pt-3 fw-5">Global Points: {{ communities['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
     <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag-img">
       <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
       <p class="fs-4 fw-bold">Legion of Leisure</p>
-      <p class="pt-3 fw-5">Global Points: {{ communities['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
   </section>
 </template>
@@ -75,6 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.flag-img {
-  image-rendering: pixelated;
-}</style>
+  .flag-img {
+    image-rendering: pixelated;
+  }
+</style>
