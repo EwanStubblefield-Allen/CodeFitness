@@ -1,34 +1,37 @@
 <template>
-  <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark text-light">
+  <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark ">
     <h2 class="text-center mt-2">Select a Community</h2>
-    <div @click="selectCommunity('Cardio Kings')" class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
-      <p class="fs-4 fw-bold">Cardio Kings</p>
+    <div @click="selectCommunity('Cardio Kings')"
+      class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable flag">
+      <p class="fs-4 pt-3 fw-bold">Cardio Kings</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
-    <div @click="selectCommunity('Weight Warriors')" class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
-      <p class="fs-4 fw-bold">Weight Warriors</p>
+    <div @click="selectCommunity('Weight Warriors')"
+      class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable flag">
+      <p class="fs-4 pt-3 fw-bold">Weight Warriors</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
-    <div @click="selectCommunity('Legion of Leisure')" class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable">
-      <p class="fs-4 fw-bold">Legion of Leisure</p>
+    <div @click="selectCommunity('Legion of Leisure')"
+      class="col-10 col-md-2 bg-neutral-light my-4 p-3 text-center selectable flag">
+      <p class="fs-4 pt-3 fw-bold">Legion of Leisure</p>
       <p class="pt-3 fw-5">Global Points: 0</p>
     </div>
   </section>
 
-  <section v-else class="row justify-content-around bg-neutral-dark text-light">
-    <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag-img">
+  <section v-else class="row justify-content-around bg-neutral-dark ">
+    <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
       <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-      <p class="fs-4 fw-bold">Cardio Kings</p>
+      <p class="fs-2 pt-3 fw-bold">Cardio Kings</p>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag-img">
+    <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
       <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-      <p class="fs-4 fw-bold">Weight Warriors</p>
+      <p class="fs-2 pt-3 fw-bold">Weight Warriors</p>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag-img">
+    <div class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
       <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-      <p class="fs-4 fw-bold">Legion of Leisure</p>
+      <p class="fs-2 pt-3 fw-bold">Legion of Leisure</p>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
   </section>
@@ -72,7 +75,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .flag-img {
-    image-rendering: pixelated;
-  }
+.flag {
+  image-rendering: pixelated;
+  color: var(--light);
+  border: solid 4px var(--light);
+  text-shadow: 0px 3px 7px black;
+}
+
+.flag img {
+  filter: drop-shadow(0 10px 10px black);
+
+}
 </style>
