@@ -16,7 +16,10 @@
           <div class="col-6 bg-light p-3">
             <div v-if="current < routine.activities.length">
               <p class="fs-5 fw-bold">{{ routine.activities[current].name }}</p>
-              <p>Reps: 10 <span> Sets: 2</span></p>
+              <div class="d-flex justify-content-center fs-5">
+                <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets }}</span></p>
+                <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
+              </div>
               <p>Equipment: {{ routine.activities[current].equipment }}</p>
               <p>Instructions:{{ routine.activities[current].instructions }}</p>
             </div>
@@ -29,6 +32,7 @@
               <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action">Finish</button>
               <button v-else @click="changeActivity(1)" class="btn btn-action">Next</button>
             </div>
+
           </div>
 
           <div class="col-2 bg-light">
@@ -36,6 +40,9 @@
               <p class="fs-5 fw-bold">{{ routine.activities[current + 1].name }}</p>
               <p>{{ routine.activities[current + 1].muscle }}</p>
               <p>{{ routine.activities[current + 1].difficulty }}</p>
+            </div>
+            <div v-else>
+              Finish
             </div>
           </div>
         </section>
@@ -108,10 +115,12 @@ export default {
           if (!isDone) {
             return
           }
-          await accountService.updateAccount({ points: AppState.account.points += 10 })
+          let points = 0
+          AppState.activeRoutine.activities.forEach(a => points += a.level + 1)
+          await accountService.updateAccount({ points: AppState.account.points += points })
           await routinesService.updateRoutine()
           current.value = 0
-          Pop.success(`10 Points Awarded!`)
+          Pop.success(`${points} Points Awarded!`)
           router.push({ name: 'Routines', params: { routineId: this.routine.id } })
         } catch (error) {
           Pop.error(error.message, '[UPDATING ACCOUNT POINTS]')
