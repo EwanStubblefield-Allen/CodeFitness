@@ -30,22 +30,25 @@ import { computed, ref, watchEffect } from 'vue'
 
 export default {
   setup() {
+    const router = useRouter()
     const comIcon = ref(null)
 
     watchEffect(() => {
-      switch (AppState.account.community) {
-        case 'Cardio Kings':
-          comIcon.value = 'src/assets/img/iconCK.png'
-          break
-        case 'Weight Warriors':
-          comIcon.value = 'src/assets/img/iconWW.png'
-          break
-        case 'Legion of Leisure':
-          comIcon.value = 'src/assets/img/iconLL.png'
-          break
+      if (AppState.account.id) {
+        switch (AppState.account.community) {
+          case 'Cardio Kings':
+            comIcon.value = 'src/assets/img/iconCK.png'
+            break
+          case 'Weight Warriors':
+            comIcon.value = 'src/assets/img/iconWW.png'
+            break
+          case 'Legion of Leisure':
+            comIcon.value = 'src/assets/img/iconLL.png'
+            break
 
-        default: comIcon.value = 'src/assets/img/yellow-flag.png'
-          break
+          default: comIcon.value = 'src/assets/img/yellow-flag.png'
+            break
+        }
       }
     })
 
@@ -61,6 +64,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .bar-height {
+    height: 87vh;
+  }
+
   .account-picture {
     height: 15vh;
     width: 15vh;
@@ -81,7 +88,5 @@ export default {
     background-color: var(--neutral-light);
     border: 10px solid white;
     padding: 2vh;
-    object-fit: cover;
-    object-position: center;
   }
 </style>
