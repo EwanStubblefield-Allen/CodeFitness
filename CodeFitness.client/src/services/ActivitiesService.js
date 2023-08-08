@@ -66,7 +66,10 @@ class ActivitiesService {
 
   async updateActivity(activity) {
     const res = await api.put(`api/activities/${activity.id}`, activity)
-    accountAchievementService.checkAchievement(res.data.accountAchievement, 'levelCount')
+
+    if (res.data.accountAchievement) {
+      accountAchievementService.checkAchievement(res.data.accountAchievement, 'levelCount')
+    }
     const foundIndex = AppState.activeRoutine.activities.findIndex(a => a.id == activity.id)
     AppState.activeRoutine.activities.splice(foundIndex, 1, new Activity(res.data.activity))
   }

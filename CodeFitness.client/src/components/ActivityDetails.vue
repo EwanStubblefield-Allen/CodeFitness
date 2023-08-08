@@ -38,6 +38,7 @@ export default {
         try {
           await activitiesService.createActivity(this.activity)
           Modal.getOrCreateInstance('#activeActivity').hide()
+          document.documentElement.scrollTop = 0
         } catch (error) {
           Pop.error(error.message, '[CREATING ACTIVITY]')
         }

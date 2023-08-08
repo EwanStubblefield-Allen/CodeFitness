@@ -44,7 +44,7 @@
                   <div class="d-flex justify-content-between p-2">
                     <h4>Sets: {{ act.sets }}</h4>
                     <h4 v-if="act.type == ('Cardio' || 'Stretching')">Duration: {{ act.reps }}</h4>
-                    <h4 v-else>Reps: {{ act.reps }}</h4>
+                    <h4 v-else>Reps: {{ act.reps / act.sets }}</h4>
                   </div>
 
                   <div v-if="act.equipment" class="p-2">

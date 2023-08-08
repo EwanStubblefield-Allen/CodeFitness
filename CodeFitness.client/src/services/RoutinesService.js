@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js"
 import { Routine } from "../models/Routine.js"
 import { api } from "./AxiosService.js"
 import Pop from "../utils/Pop.js"
+import { accountAchievementService } from "./AccountAchievementService.js"
 
 class RoutinesService {
   setActiveRoutine(routine) {
@@ -24,6 +25,10 @@ class RoutinesService {
 
   async createRoutine(routineData) {
     const res = await api.post('api/routines', routineData)
+
+    if (res.data.accountAchievement) {
+      accountAchievementService.checkAchievement(res.data.accountAchievement, 'routineCount')
+    }
     const routine = new Routine(res.data.routine)
     AppState.routines.push(routine)
     return routine
@@ -31,6 +36,10 @@ class RoutinesService {
 
   async updateRoutine(routineData) {
     const res = await api.put(`api/routines/${AppState.activeRoutine.id}`, routineData)
+
+    if (res.data.accountAchievement) {
+      accountAchievementService.checkAchievement(res.data.accountAchievement, 'completeCount')
+    }
     const routine = new Routine(res.data.routine)
     AppState.activeRoutine = routine
     const foundIndex = AppState.routines.findIndex(r => r.id == routineData.id)
