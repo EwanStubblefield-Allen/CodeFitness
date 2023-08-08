@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid flex-grow-1">
-    <header class="row bg-neutral py-2 px-0 elevation-5 sticky-top">
+    <header class="row bg-neutral elevation-5 sticky-top">
       <Navbar />
     </header>
     <main class="row">
-      <div class="col-2 d-none d-md-block bg-neutral position-fixed">
+      <div class="col-2 d-none d-md-block bg-neutral position-fixed h-100">
         <AccountBar />
       </div>
 

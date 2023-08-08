@@ -9,5 +9,7 @@ export class Routine {
     this.accountId = data.accountId
     this.profile = data.profile
     this.activities = data.activity
+    this.updatedAt = new Date(data.updatedAt).valueOf()
+    this.createdAt = data.createdAt
   }
 }

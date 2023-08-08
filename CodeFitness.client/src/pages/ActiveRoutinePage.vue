@@ -253,7 +253,7 @@ export default {
           router.push({ name: 'Routines', params: { routineId: this.routine.id } })
           AppState.activeRoutine.activities.forEach(a => points += a.level + 1)
           await accountService.updateAccount({ points: AppState.account.points += points })
-          await routinesService.updateRoutine({ completeCount: AppState.activeRoutine.completeCount })
+          await routinesService.updateRoutine({ completeCount: AppState.activeRoutine.completeCount += 1 })
         } catch (error) {
           Pop.error(error.message, '[UPDATING ACCOUNT POINTS]')
         }

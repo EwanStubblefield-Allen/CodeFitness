@@ -60,8 +60,22 @@ class ActivitiesService {
       if (max < activityData.level) {
         accountAchievement = await accountAchievementsService.updateAccountAchievement(activityData.accountId, 'levelCount', activityData.level - max)
       }
-      // FIXME Add switch for type to adjust reps
-      updateActivity.reps += (activityData.level - max)
+      switch (activityData.type) {
+        case "Plyometrics":
+          updateActivity.reps += 2
+          break;
+        case "Strongman":
+        case "Powerlifting":
+        case "Cardio":
+          updateActivity.reps += 1
+          break;
+        case "Stretching":
+          updateActivity.reps += 5
+          break;
+        default:
+          updateActivity.reps += 3
+          break;
+      }
     }
     updateActivity.level = activityData.level || updateActivity.level
     updateActivity.sets = activityData.sets || updateActivity.sets

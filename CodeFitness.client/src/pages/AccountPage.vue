@@ -37,23 +37,40 @@
     </section>
     <section class="row justify-content-center">
       <div class="col-12 col-md-9">
-        <section class="row">
-          <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
+        <section v-if="account.id && (routines.length >= 3)" class="row">
+          <div v-for="r in 3" :key="r" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
-              <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
+              <img :src="routines[r-1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
-                <h5 class="p-2 text-center"> {{ r.title }}</h5>
-                <p class="p-2 mb-2">{{ r.description }}</p>
+                <h5 class="p-2 text-center"> {{ routines[r-1].title }}</h5>
+                <p class="p-2 mb-2">{{ routines[r-1].description }}</p>
                 <div class="text-end">
-                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
-                    <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
+                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r-1].id } }">
+                    <button @click="getRoutineById(routines[r-1].id)" class="btn btn-action" type="button">Start Routine</button>
                   </RouterLink>
                 </div>
               </div>
             </div>
           </div>
         </section>
+          <div v-else class="row">
+            <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
+              <div class="routine-bg rounded">
+                <!-- <div class="reserved-space"></div> -->
+                <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
+                <div class="routine-details p-2">
+                  <h5 class="p-2 text-center"> {{ r.title }}</h5>
+                  <p class="p-2 mb-2">{{ r.description }}</p>
+                  <div class="text-end">
+                    <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
+                      <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
+                    </RouterLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -131,9 +148,13 @@ export default {
     return {
       editable,
       account: computed(() => AppState.account),
-      routines: computed(() => AppState.routines),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
+      routines: computed(() => {
+        return AppState.routines.sort((a, b) => b.updatedAt - a.updatedAt)
+      }),
+
+
       completed: computed(() => {
         let complete = 0
         AppState.activeAchievements.forEach(a => {

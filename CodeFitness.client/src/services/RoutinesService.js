@@ -30,7 +30,7 @@ class RoutinesService {
   }
 
   async updateRoutine(routineData) {
-    const res = await api.put(`api/routines/${routineData.id}`, routineData)
+    const res = await api.put(`api/routines/${AppState.activeRoutine.id}`, routineData)
     const routine = new Routine(res.data.routine)
     AppState.activeRoutine = routine
     const foundIndex = AppState.routines.findIndex(r => r.id == routineData.id)
