@@ -18,7 +18,8 @@ import { computed } from 'vue'
 export default {
   setup() {
     return {
-      routines: computed(() => AppState.routines)
+      routines: computed(() => AppState.routines),
+      activeRoutine: computed(()=> AppState.activeRoutine)
     }
   }
 }
