@@ -1,7 +1,7 @@
 <template>
   <section v-if="account.id" class="row justify-content-center bar-height">
     <div class="col-11 px-0 pb-1">
-      <img class="community-img w-100" src="../assets/img/yellow-flag.png" alt="Yellow">
+      <img class="community-img w-100" :src="comIcon" alt="Yellow">
     </div>
 
     <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img">
@@ -31,7 +31,7 @@
 
 <script>
 import { AppState } from '../AppState.js'
-import { computed } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { routinesService } from "../services/RoutinesService.js"
 import { useRouter } from "vue-router"
 import Pop from "../utils/Pop.js"
@@ -39,11 +39,32 @@ import Pop from "../utils/Pop.js"
 export default {
   setup() {
     const router = useRouter()
+    const comIcon = ref (null)
+    
+    
+    watchEffect(() => {
+      switch (AppState.account.community) {
+      case 'Cardio Kings':
+        comIcon.value = 'src/assets/img/iconCK.png'
+        break;
+      case 'Weight Warriors':
+        comIcon.value = 'src/assets/img/iconWW.png'
+        break;
+      case 'Legion of Leisure':
+        comIcon.value = 'src/assets/img/iconLL.png'
+        break;
+
+      default: comIcon.value = 'src/assets/img/yellow-flag.png'
+        break;
+      }
+    })
+
     return {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       backgroundImg: computed(() => `url(${AppState.account.coverImg})`),
       achievements: computed(() => AppState.activeAchievements),
+      comIcon,
 
       async deleteRoutine(routine) {
         try {

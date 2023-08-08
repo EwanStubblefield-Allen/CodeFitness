@@ -80,7 +80,7 @@
                   <p>
                     {{ tier.description }}
                   </p>
-                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 mb-2 border border-light" role="progressbar">
+                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 m-2 border border-light" role="progressbar">
                     <div class="progress-bar bg-success" :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
                     </div>
                   </div>

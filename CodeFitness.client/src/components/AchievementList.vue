@@ -6,11 +6,11 @@
     <p>Completed <span>{{ completed }}</span> out of 16</p>
   </div>
   <div v-for="achievement in achievements" :key="achievement.id">
-    <div>
-      <div v-for="tier in  achievement.achievementTier" :key="tier.id">
-        <div v-if="achievement.tier >= tier.tier" class="card bg-primary m-2 elevation">
-          <img :src="tier.picture" :alt="tier.name">
-        </div>
+
+    <div v-for="tier in achievement.achievementTier" :key="tier.id">
+      <div v-if="achievement.tier >= tier.tier" class="card bg-neutral-light m-2 elevation">
+        <!-- <p>{{ tier.description }}</p> -->
+        <img :src="tier.picture" :alt="tier.name">
       </div>
     </div>
   </div>
