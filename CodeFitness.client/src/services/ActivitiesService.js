@@ -1,5 +1,7 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
+import { logger } from "../utils/Logger.js"
+import { accountAchievementService } from "./AccountAchievementService.js"
 import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
 
@@ -61,12 +63,15 @@ class ActivitiesService {
     activityData.routineId = AppState.activeRoutine.id
     const res = await api.post('api/activities', activityData)
     AppState.activeRoutine.activities.push(new Activity(res.data))
+    const foundRoutine = AppState.routines.find(r => r.id == activityData.routineId)
+    AppState.activeRoutine = foundRoutine
   }
 
   async updateActivity(activity) {
     const res = await api.put(`api/activities/${activity.id}`, activity)
+    accountAchievementService.checkAchievement(res.data.accountAchievement, 'levelCount')
     const foundIndex = AppState.activeRoutine.activities.findIndex(a => a.id == activity.id)
-    AppState.activeRoutine.activities.splice(foundIndex, new Activity(res.data.activity))
+    AppState.activeRoutine.activities.splice(foundIndex, 1, new Activity(res.data.activity))
   }
 
   async removeActivity(activityId) {

@@ -19,19 +19,21 @@
   </section>
 
   <section v-else class="row justify-content-around bg-neutral-dark">
-    <div :class="{ 'highlight1': account.community == 'Cardio Kings' }"
+    <div :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }"
       class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
       <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
       <p class="fs-2 pt-3 fw-bold">Cardio Kings</p>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div :class="{ 'highlight2': account.community == 'Weight Warriors' }"
+    <div
+      :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
       class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
       <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
       <p class="fs-2 pt-3 fw-bold">Weight Warriors</p>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div :class="{ 'highlight3': account.community == 'Legion of Leisure' }"
+    <div
+      :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
       class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
       <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
       <p class="fs-2 pt-3 fw-bold">Legion of Leisure</p>
@@ -100,6 +102,7 @@ export default {
       0 0 50px #cfa6a6,
       -10px 0 80px rgb(255, 0, 0),
       10px 0 80px rgb(255, 119, 0);
+    transform: scale(1.10);
   }
 
   .highlight2 {
@@ -112,6 +115,7 @@ export default {
       0 0 50px #fff,
       -10px 0 80px #f0f,
       10px 0 80px #0ff;
+    transform: scale(1.10);
   }
 
   .highlight3 {
@@ -123,6 +127,7 @@ export default {
       inset -20px 0 300px rgb(231, 213, 109),
       0 0 50px #fff,
       -10px 0 80px rgb(255, 230, 0),
-      10px 0 80px rgb(231, 213, 109), ;
+      10px 0 80px rgb(231, 213, 109);
+    transform: scale(1.10);
   }
 </style>
