@@ -1,8 +1,8 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2 d-flex flex-column">
-    <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3">
+    <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3 bg-img">
       <div class="col-12 d-flex justify-content-between align-items-center dropdown">
-        <section class="row justify-content-between align-items-center flex-grow-1">
+        <section class="row justify-content-between align-items-center flex-grow-1 bg-title">
           <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
           <p class="col-6 fs-1">{{ activeRoutine.title }}</p>
           <div class="col-3 text-end">
@@ -22,10 +22,9 @@
               </div>
             </div>
           </div>
+          <p class="col-12">{{ activeRoutine.description }}</p>
         </section>
       </div>
-      <img :src="activeRoutine.picture" alt="User Selected Picture" class="mx-auto p-2">
-      <p>{{ activeRoutine.description }}</p>
       <div v-if="activeRoutine.activities[0]" class="col-12 d-flex flex-column flex-md-row overflow-auto p-0">
         <div v-for="act in activeRoutine.activities" :key="act.id" class="d-flex justify-content-center p-3">
           <div class="card card-size text-center fw-bold elevation-5">
@@ -102,6 +101,7 @@ export default {
 
     return {
       activeRoutine: computed(() => AppState.activeRoutine),
+      routineBackground: computed(() => `url(${AppState.activeRoutine?.picture})`),
       points: computed(() => {
         let levels = 0
         AppState.activeRoutine.activities.forEach(a => levels += a.level)
@@ -163,8 +163,18 @@ export default {
     width: 250px;
   }
 
-  img {
-    height: 25vh;
-    width: 25vh;
+  .bg-img {
+    background-image: v-bind(routineBackground);
+    background-position: center;
+    background-size: cover;
+    background-repeat: none;
+  }
+
+  .bg-title {
+    background: rgba(64, 107, 110, .6);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(64, 107, 110, 0.3);
   }
 </style>
