@@ -39,23 +39,24 @@ import Pop from "../utils/Pop.js"
 export default {
   setup() {
     const router = useRouter()
-    const comIcon = ref (null)
-    
-    
-    watchEffect(() => {
-      switch (AppState.account.community) {
-      case 'Cardio Kings':
-        comIcon.value = 'src/assets/img/iconCK.png'
-        break;
-      case 'Weight Warriors':
-        comIcon.value = 'src/assets/img/iconWW.png'
-        break;
-      case 'Legion of Leisure':
-        comIcon.value = 'src/assets/img/iconLL.png'
-        break;
+    const comIcon = ref(null)
 
-      default: comIcon.value = 'src/assets/img/yellow-flag.png'
-        break;
+    watchEffect(() => {
+      if (AppState.account.id) {
+        switch (AppState.account.community) {
+          case 'Cardio Kings':
+            comIcon.value = 'src/assets/img/iconCK.png'
+            break
+          case 'Weight Warriors':
+            comIcon.value = 'src/assets/img/iconWW.png'
+            break
+          case 'Legion of Leisure':
+            comIcon.value = 'src/assets/img/iconLL.png'
+            break
+
+          default: comIcon.value = 'src/assets/img/yellow-flag.png'
+            break
+        }
       }
     })
 
@@ -87,29 +88,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .bar-height {
-    height: 87vh;
-  }
+.bar-height {
+  height: 87vh;
+}
 
-  .account-picture {
-    height: 15vh;
-    width: 15vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-  }
+.account-picture {
+  height: 15vh;
+  width: 15vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
 
-  .bg-cover-img {
-    background-image: v-bind(backgroundImg);
-    background-position: center;
-    background-size: cover;
-    border: 10px solid white;
-  }
+.bg-cover-img {
+  background-image: v-bind(backgroundImg);
+  background-position: center;
+  background-size: cover;
+  border: 10px solid white;
+}
 
-  .community-img {
-    image-rendering: pixelated;
-    background-color: var(--neutral-light);
-    border: 10px solid white;
-    padding: 2vh;
-  }
+.community-img {
+  image-rendering: pixelated;
+  background-color: var(--neutral-light);
+  border: 10px solid white;
+  padding: 2vh;
+}
 </style>
