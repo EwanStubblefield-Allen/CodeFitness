@@ -28,6 +28,12 @@ class AccountAchievementsService {
 
   async getAccountAchievementByAccountIdAndAchievementId(accountId, achievementId) {
     const accountAchievement = await dbContext.AccountAchievements.findOne({ accountId: accountId, achievementId: achievementId })
+      .populate({
+        path: 'achievement',
+        populate: {
+          path: 'tier',
+        }
+      })
     if (!accountAchievement) {
       throw new BadRequest(`[NO ACCOUNT ACHIEVEMENT MATCHES THE IDS: ${accountId}, ${achievementId}]`)
     }

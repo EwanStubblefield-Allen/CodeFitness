@@ -2,9 +2,9 @@ import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { Achievement } from '../models/Achievement.js'
 import { logger } from '../utils/Logger'
-import Pop from '../utils/Pop.js'
 import { accountAchievementService } from './AccountAchievementService.js'
 import { api } from './AxiosService'
+import Pop from '../utils/Pop.js'
 
 class AccountService {
   async selectCommunity(community) {
@@ -23,7 +23,6 @@ class AccountService {
   }
 
   async updateAccount(formData) {
-    debugger
     const res = await api.put('/account', formData)
 
     if (!AppState.activeAchievements[0]) {
