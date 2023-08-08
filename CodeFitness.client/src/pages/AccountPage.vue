@@ -81,8 +81,8 @@
                   <p>
                     {{ tier.description }}
                   </p>
-                  <div v-if="achievement.tier == tier.tier - 1"
-                    class="progress bg-dark rounded-0 mb-2 border border-light" role="progressbar">
+                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 m-2 border border-light"
+                    role="progressbar">
                     <div class="progress-bar bg-success"
                       :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
                     </div>
@@ -103,13 +103,11 @@
 </template>
 
 <script>
-import { computed, onMounted, ref, watchEffect } from 'vue'
+import { computed, onUnmounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
-import { logger } from "../utils/Logger"
-import Pop from "../utils/Pop"
 import { routinesService } from "../services/RoutinesService"
 import { accountAchievementService } from "../services/AccountAchievementService"
-import { achievementService } from "../services/AchievementService"
+import Pop from "../utils/Pop"
 
 export default {
   setup() {
@@ -117,16 +115,22 @@ export default {
 
     async function getAchievementsByUserId() {
       try {
-        const achievement = accountAchievementService.getAchievementsByUserId()
+        await accountAchievementService.getAchievementsByUserId()
       } catch (error) {
         Pop.error(error.message, '[]')
       }
     }
+
+    onUnmounted(() => {
+      document.documentElement.scrollTop = 0
+    })
+
     watchEffect(() => {
       if (AppState.account.id) {
         getAchievementsByUserId()
       }
     })
+
     return {
       editable,
       account: computed(() => AppState.account),
@@ -160,69 +164,68 @@ export default {
 </script>
 
 <style scoped>
-.account-picture {
-  width: 20vh;
-  height: 20vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
+  .account-picture {
+    width: 20vh;
+    height: 20vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
 
-.position {
-  position: absolute;
-  bottom: -10vh;
-  left: 5vw;
-}
+  .position {
+    position: absolute;
+    bottom: -10vh;
+    left: 5vw;
+  }
 
-.cover-image {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 50vh;
-}
+  .cover-image {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 50vh;
+  }
 
-.text-stroke {
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black;
-}
+  .text-stroke {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+  }
 
-.routine-pic {
-  background-image: v-bind(picture);
-}
+  .routine-pic {
+    background-image: v-bind(picture);
+  }
 
-.reserved-space {
-  height: 30vh;
-}
+  .reserved-space {
+    height: 30vh;
+  }
 
-.routine-details {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 16px 16px;
-  /* border-bottom: 1px solid black; */
-  backdrop-filter: blur(13.6px);
-  -webkit-backdrop-filter: blur(13.6px);
-}
+  .routine-details {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 16px 16px;
+    /* border-bottom: 1px solid black; */
+    backdrop-filter: blur(13.6px);
+    -webkit-backdrop-filter: blur(13.6px);
+  }
 
-.achievement-card {
-  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+  .achievement-card {
+    background-image: linear-gradient(var(--darkest), var(--neutral-dark));
 
-}
+  }
 
-.locked {
-  height: 15vh;
-  width: 15vh;
-  padding: 1vh;
-  filter: contrast(0) brightness(0) drop-shadow(3px 3px var(--action)) drop-shadow(-3px -3px var(--light));
-}
+  .locked {
+    height: 15vh;
+    width: 15vh;
+    padding: 1vh;
+    filter: contrast(0) brightness(0) drop-shadow(3px 3px var(--action)) drop-shadow(-3px -3px var(--light));
+  }
 
-.unlocked {
-  height: 15vh;
-  width: 15vh;
-  padding: 1vh;
-  filter: drop-shadow(3px 3px var(--darkest)) drop-shadow(-3px -3px var(--neutral-dark));
-}
+  .unlocked {
+    height: 15vh;
+    width: 15vh;
+    padding: 1vh;
+    filter: drop-shadow(3px 3px var(--darkest)) drop-shadow(-3px -3px var(--neutral-dark));
+  }
 
-.progress {
+  .progress {
   progress-bg: red
-}
-</style>
+}</style>

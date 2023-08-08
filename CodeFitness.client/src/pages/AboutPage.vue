@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue"
+import { onMounted, onUnmounted, ref } from "vue"
 
 export default {
   setup() {
@@ -129,6 +129,10 @@ export default {
     onMounted(() =>
       selectedDev.value = 0
     )
+
+    onUnmounted(() => {
+      document.documentElement.scrollTop = 0
+    })
 
     return {
       selectedDev

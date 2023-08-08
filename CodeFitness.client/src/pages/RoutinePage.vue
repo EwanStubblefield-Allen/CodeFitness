@@ -1,14 +1,15 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2 d-flex flex-column">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3 bg-img">
-      <div class="col-12 d-flex justify-content-between align-items-center dropdown">
-        <section class="row justify-content-between align-items-center flex-grow-1 bg-title">
+      <div class="col-12 d-flex justify-content-between align-items-center dropdown z-1">
+        <section class="row justify-content-between align-items-center flex-grow-1 p-2 bg-title">
           <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
           <p class="col-6 fs-1">{{ activeRoutine.title }}</p>
           <div class="col-3 text-end">
-            <button type="button" class="btn text-light selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="mdi mdi-dots-horizontal info fs-3"></i>
-            </button>
+            <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
+              <button type="button" class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
+            </RouterLink>
+            <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
 
             <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
               <div class="list-group text-center">
@@ -73,7 +74,7 @@
 </template>
 
 <script>
-import { computed, watchEffect } from "vue"
+import { computed, onUnmounted, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute, useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
@@ -85,6 +86,10 @@ export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
+
+    onUnmounted(() => {
+      document.documentElement.scrollTop = 0
+    })
 
     watchEffect(() => {
       getRoutineById(route.params.routineId)

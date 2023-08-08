@@ -2,15 +2,19 @@
   <div class="d-flex justify-content-center">
     <p class="fs-5">Achievements</p>
   </div>
+  <div class="fs-6">
+    <p>Completed <span>{{ completed }}</span> out of 16</p>
+  </div>
   <div v-for="achievement in achievements" :key="achievement.id">
-    <div class="">
-      <div v-for="tier in  achievement.achievementTier " :key="tier.id" class="card bg-primary m-2 elevation">
+
+    <div v-for="tier in achievement.achievementTier" :key="tier.id">
+      <div v-if="achievement.tier >= tier.tier" class="card bg-neutral-light m-2 elevation">
+        <!-- <p>{{ tier.description }}</p> -->
         <img :src="tier.picture" :alt="tier.name">
       </div>
     </div>
   </div>
 </template>
-
 <script>
 // @ts-ignore
 import { computed } from "vue"
@@ -20,8 +24,14 @@ import { AppState } from "../AppState.js"
 export default {
   setup() {
     return {
-      achievements: computed(() => AppState.activeAchievements)
-
+      achievements: computed(() => AppState.activeAchievements),
+      completed: computed(() => {
+        let complete = 0
+        AppState.activeAchievements.forEach(a => {
+          complete += a.tier
+        })
+        return complete
+      })
     }
   }
 }
