@@ -13,7 +13,7 @@
 
       <div class="mb-3">
         <button class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
-        <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Achievements</button>
+        <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Badges</button>
       </div>
     </div>
   </section>
