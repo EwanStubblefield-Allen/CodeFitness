@@ -30,7 +30,6 @@ import { computed, ref, watchEffect } from 'vue'
 
 export default {
   setup() {
-    const router = useRouter()
     const comIcon = ref(null)
 
     watchEffect(() => {
