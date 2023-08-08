@@ -8,8 +8,10 @@
   <div v-for="achievement in achievements" :key="achievement.id">
 
     <div v-for="tier in achievement.achievementTier" :key="tier.id">
-      <div v-if="achievement.tier >= tier.tier" class="card bg-neutral-light m-2 elevation">
-        <!-- <p>{{ tier.description }}</p> -->
+      <div v-if="achievement.tier >= tier.tier" class="card bg-neutral-light m-2 elevation border-light">
+        <!-- <div>
+          <p>{{ tier.description }}</p>
+        </div> -->
         <img :src="tier.picture" :alt="tier.name">
       </div>
     </div>
