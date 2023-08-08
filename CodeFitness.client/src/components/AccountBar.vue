@@ -1,14 +1,14 @@
 <template>
   <section v-if="account.id" class="row justify-content-center bar-height">
-    <div class="col-11 px-0 pb-3">
+    <div class="col-11 px-0 pb-1">
       <img class="community-img w-100" src="../assets/img/yellow-flag.png" alt="Yellow">
     </div>
 
-    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-3 bg-cover-img">
+    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img">
       <img class="account-picture " :src="account.picture" :alt="account.name" :title="account.name">
     </div>
 
-    <div class="col-11 text-center text-dark bg-light fs-3 mb-3">
+    <div class="col-11 text-center text-dark bg-light fs-3 mb-1">
       <p class="text-break">Points: {{ account.points }}</p>
 
       <div class="mb-3">
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="col-11 text-center bg-light">
+    <div class="col-11">
       <button class="btn btn-action mt-1">Achievements</button>
     </div>
   </section>
