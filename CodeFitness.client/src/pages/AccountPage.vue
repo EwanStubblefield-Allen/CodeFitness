@@ -62,12 +62,9 @@
       </div>
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
-          <!-- <div v-for="i in 18" :key="i" class="col-6 col-md-2 pb-5 mb-3">
-            <div class="d-flex justify-content-center">
-              <img class="achievement-img" src="https://cdn.filestackcontent.com/4rXt91EuR7m88pBaQaZE" alt=""
-                :title="`Achievement Name ${i}`">
-            </div>
-          </div> -->
+          <h1>
+            {{ completed }} Achievements out of 16
+          </h1>
           <div v-for="achievement in  achievements " :key="achievement.id" class="d-flex flex-column py-1">
             <h2>
               {{ achievement.type }} Progress: {{ achievement.progress }}
@@ -84,10 +81,9 @@
                   <p>
                     {{ tier.description }}
                   </p>
-                  <div v-if="achievement.tier == tier.tier - 1" class="progress" role="progressbar"
-                    aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                    <!-- (achievement.requirement[tier.tier] / achievement.progress) * 10 -->
-                    <div class="progress-bar"
+                  <div v-if="achievement.tier == tier.tier - 1"
+                    class="progress bg-dark rounded-0 mb-2 border border-light" role="progressbar">
+                    <div class="progress-bar bg-success"
                       :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
                     </div>
                   </div>
@@ -137,6 +133,13 @@ export default {
       routines: computed(() => AppState.routines),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
+      completed: computed(() => {
+        let complete = 0
+        AppState.activeAchievements.forEach(a => {
+          complete += a.tier
+        })
+        return complete
+      }),
       // setActiveRoutine(routine) {
       //   try {
       //     routinesService.setActiveRoutine(routine)
@@ -217,5 +220,9 @@ export default {
   width: 15vh;
   padding: 1vh;
   filter: drop-shadow(3px 3px var(--darkest)) drop-shadow(-3px -3px var(--neutral-dark));
+}
+
+.progress {
+  progress-bg: red
 }
 </style>
