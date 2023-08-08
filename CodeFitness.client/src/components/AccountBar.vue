@@ -4,7 +4,7 @@
       <img class="community-img w-100" :src="comIcon" alt="Yellow">
     </div>
 
-    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img selectable" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements" title="My Achievements">
+    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img selectable" title="My Achievements">
       <img class="account-picture" :src="account.picture" :alt="account.name">
     </div>
 
@@ -13,8 +13,8 @@
 
       <div class="mb-3">
         <button class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
+        <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Achievements</button>
       </div>
-      <!-- <button class="btn btn-action my-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Achievements</button> -->
     </div>
   </section>
   <section v-else class="row justify-content-center align-items-center bar-height">

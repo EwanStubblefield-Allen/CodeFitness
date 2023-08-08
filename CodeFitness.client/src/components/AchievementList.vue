@@ -18,9 +18,7 @@
   </div>
 </template>
 <script>
-// @ts-ignore
 import { computed } from "vue"
-// @ts-ignore
 import { AppState } from "../AppState.js"
 
 export default {

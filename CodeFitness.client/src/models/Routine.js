@@ -10,5 +10,6 @@ export class Routine {
     this.profile = data.profile
     this.activities = data.activity
     this.updatedAt = data.updatedAt
+    this.createdAt = data.createdAt
   }
 }
