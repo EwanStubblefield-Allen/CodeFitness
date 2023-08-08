@@ -47,6 +47,9 @@
   <Offcanvas id="offcanvasRoutine">
     <RoutineList />
   </Offcanvas>
+  <Offcanvas id="offcanvasAchievements">
+    <AchievementList />
+  </Offcanvas>
 </template>
 
 <script>

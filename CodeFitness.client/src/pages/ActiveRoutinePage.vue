@@ -21,18 +21,29 @@
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
               </div>
               <p>Equipment: {{ routine.activities[current].equipment }}</p>
-              <p>Instructions:{{ routine.activities[current].instructions }}</p>
+              <p class="">Instructions:{{ routine.activities[current].instructions }}</p>
             </div>
             <div v-else>
               <p>Finish</p>
             </div>
 
             <div class="d-flex justify-content-between pt-3">
-              <button @click="changeActivity(-1)" class="btn btn-action" :disabled="current == 0">Back</button>
+              <!-- <button @click="changeActivity(-1)" class="btn btn-action" :disabled="current == 0">Back</button>
               <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action">Finish</button>
-              <button v-else @click="changeActivity(1)" class="btn btn-action">Next</button>
+              <button v-else @click="changeActivity(1)" class="btn btn-action">Next</button> -->
             </div>
-
+            <a class="prevArrow" @click="changeActivity(-1)" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+  <a class="nextArrow" v-if="current == routine.activities.length" @click="updateData()" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+  <a class="nextArrow" v-else @click="changeActivity(1)" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
           </div>
 
           <div class="col-2 bg-light">
@@ -130,4 +141,19 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.parentContainer{
+  position: absolute;
+}
+.nextArrow{
+  position: absolute;
+  bottom: 70%;
+  left: 80%;
+}
+.prevArrow{
+  position: absolute;
+  bottom: 70%;
+  right: 63%;
+}
+
+</style>
