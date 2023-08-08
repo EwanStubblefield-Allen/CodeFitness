@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center">
-    <p class="fs-5">Achievements</p>
+    <p class="fs-5 text-break">Achievements</p>
   </div>
   <div class="fs-6">
     <p>Completed <span>{{ completed }}</span> out of 16</p>
