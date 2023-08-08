@@ -16,7 +16,8 @@
                 <div>
                   <div class="d-flex justify-content-center align-items-center">
                     <h3>Level: {{ act.level }}</h3>
-                    <button v-if="points" @click="updateActivity(act)" class="btn btn-action mdi mdi-plus ms-2" type="button"></button>
+                    <button v-if="points" @click="updateActivity(act)" class="btn btn-action mdi mdi-plus ms-2"
+                      type="button"></button>
                   </div>
                   <div class="d-flex justify-content-between p-2">
                     <h4>Sets: {{ act.sets }}</h4>
@@ -44,7 +45,8 @@
     </section>
 
     <div class="row m-3">
-      <button @click="setRoutineToEdit()" class="btn btn-info mb-3" title="Edit Routine" type="button" data-bs-toggle="modal" data-bs-target="#editRoutineForm">Edit
+      <button @click="setRoutineToEdit()" class="btn btn-action mb-3" title="Edit Routine" type="button"
+        data-bs-toggle="modal" data-bs-target="#editRoutineForm">Edit
         Routine</button>
       <button @click="deleteRoutine()" class="btn btn-danger">
         Delete Routine
