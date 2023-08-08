@@ -12,8 +12,13 @@
       <p class="text-break">Points: {{ account.points }}</p>
 
       <div class="mb-3">
-        <button class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
+        <button class="btn btn-action text-break" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRoutine">Routines</button>
       </div>
+    </div>
+
+    <div class="col-11 text-center bg-light">
+      <button class="btn btn-action mt-1">Achievements</button>
     </div>
   </section>
   <section v-else class="row justify-content-center align-items-center bar-height">
@@ -37,6 +42,7 @@ export default {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       backgroundImg: computed(() => `url(${AppState.account.coverImg})`),
+      achievements: computed(() => AppState.activeAchievements),
 
       async deleteRoutine(routine) {
         try {

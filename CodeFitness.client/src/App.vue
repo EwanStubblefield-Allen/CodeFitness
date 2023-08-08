@@ -118,6 +118,10 @@ export default {
     background-color: var(--neutral-light);
   }
 
+  .text-neutral {
+    color: var(--neutral);
+  }
+
   .btn-action:hover {
     color: black;
     background-color: var(--light);

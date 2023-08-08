@@ -4,7 +4,6 @@ export class Achievement {
     this.tier = data.tier
     this.progress = data.progress
     this.achievementId = data.achievementId
-
     this.requirement = data.achievement.requirement
     this.type = data.achievement.type
     this.achievementTier = data.achievement.tier
