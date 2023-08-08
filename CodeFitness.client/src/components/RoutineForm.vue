@@ -36,7 +36,7 @@ export default {
     const editable = ref({})
 
     watchEffect(() => {
-      if (AppState.activeRoutine && route.params == null) {
+      if (AppState.activeRoutine) {
         const routineWithBrokenReference = { ...AppState.activeRoutine }
         editable.value = routineWithBrokenReference
       }
