@@ -54,6 +54,23 @@
             </div>
           </div>
         </section>
+          <div v-else class="row">
+            <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
+              <div class="routine-bg rounded">
+                <!-- <div class="reserved-space"></div> -->
+                <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
+                <div class="routine-details p-2">
+                  <h5 class="p-2 text-center"> {{ r.title }}</h5>
+                  <p class="p-2 mb-2">{{ r.description }}</p>
+                  <div class="text-end">
+                    <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
+                      <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
+                    </RouterLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
 
