@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { computed } from "vue"
+import { computed, onMounted } from "vue"
 import { AppState } from "../AppState.js"
 import ActivitySearch from '../components/ActivitySearch.vue'
 import TeamComponent from '../components/TeamComponent.vue'
@@ -22,6 +22,7 @@ export default {
   setup() {
     return {
       account: computed(() => AppState.account)
+
     }
   },
   components: { TeamComponent, ActivitySearch }

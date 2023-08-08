@@ -63,6 +63,12 @@ class ActivitiesService {
     AppState.activeRoutine.activities.push(new Activity(res.data))
   }
 
+  async updateActivity(activity) {
+    const res = await api.put(`api/activities/${activity.id}`, activity)
+    const foundIndex = AppState.activeRoutine.activities.findIndex(a => a.id == activity.id)
+    AppState.activeRoutine.activities.splice(foundIndex, new Activity(res.data.activity))
+  }
+
   async removeActivity(activityId) {
     await api.delete(`api/activities/${activityId}`)
     AppState.activeRoutine.activities = AppState.activeRoutine.activities.filter(a => a.id != activityId)

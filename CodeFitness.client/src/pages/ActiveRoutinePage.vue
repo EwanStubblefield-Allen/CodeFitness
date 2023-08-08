@@ -26,7 +26,7 @@
 
             <div class="d-flex justify-content-between pt-3">
               <button @click="changeActivity(-1)" class="btn btn-action" :disabled="current == 0">Back</button>
-              <button v-if="current == routine.activities.length" @click="awardPoints()" class="btn btn-action">Finish</button>
+              <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action">Finish</button>
               <button v-else @click="changeActivity(1)" class="btn btn-action">Next</button>
             </div>
           </div>
@@ -63,7 +63,6 @@ import { AppState } from "../AppState"
 import { accountService } from "../services/AccountService"
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop"
-import { Modal } from "bootstrap"
 
 export default {
   setup() {
@@ -102,14 +101,15 @@ export default {
         current.value += change
       },
 
-      async awardPoints() {
+      async updateData() {
         try {
           const isDone = await Pop.confirm('Finish Routine')
 
           if (!isDone) {
             return
           }
-          await accountService.updateAccountPoints(10)
+          await accountService.updateAccount({ points: AppState.account.points += 10 })
+          await routinesService.updateRoutine()
           current.value = 0
           Pop.success(`10 Points Awarded!`)
           router.push({ name: 'Routines', params: { routineId: this.routine.id } })

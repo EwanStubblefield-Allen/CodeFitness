@@ -30,6 +30,11 @@ class RoutinesService {
     return routine
   }
 
+  async updateRoutine() {
+    AppState.activeRoutine.completeCount++
+    await api.put(`api/routines/${AppState.activeRoutine.id}`, { completeCount: AppState.activeRoutine.completeCount })
+  }
+
   async deleteRoutine(routineId) {
     await api.delete(`api/routines/${routineId}`)
     AppState.routines = AppState.routines.filter(r => r.id != routineId)
@@ -38,6 +43,11 @@ class RoutinesService {
   async editRoutine(routineData) {
     const res = await api.put(`api/routines/${routineData.id}`, routineData)
     logger.log('[EDIT ROUTINE]', res.data)
+    const routine = new Routine(res.data)
+
+    const routineIndex = AppState.routines.findIndex(r => r.id == routineData.id)
+
+    AppState.routines.splice(routineIndex, 1, routine)
   }
 
   setRoutineToEdit(routineToEdit) {
