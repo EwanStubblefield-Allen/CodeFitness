@@ -16,6 +16,10 @@
           data-bs-target="#offcanvasRoutine">Routines</button>
       </div>
     </div>
+
+    <div class="col-11 text-center bg-light">
+      <button class="btn btn-action mt-1">Achievements</button>
+    </div>
   </section>
   <section v-else class="row justify-content-center align-items-center bar-height">
     <div class="col-11 text-light">
