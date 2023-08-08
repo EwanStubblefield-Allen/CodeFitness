@@ -25,19 +25,25 @@
   </section>
 
   <section v-else class="row justify-content-around bg-neutral-dark">
-    <div :class="{ 'bg-light': account.community == 'Cardio Kings' }" class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
-      <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-      <p class="fs-2 pt-3 fw-bold">Cardio Kings</p>
+    <div :class="{ 'bg-light': account.community == 'Cardio Kings' }" class="col-10 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 p-3 text-center flag">
+      <div>
+        <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
+        <p class="fs-2 pt-3 fw-bold">Cardio Kings</p>
+      </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div :class="{ 'bg-light': account.community == 'Weight Warriors' }" class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
-      <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-      <p class="fs-2 pt-3 fw-bold">Weight Warriors</p>
+    <div :class="{ 'bg-light': account.community == 'Weight Warriors' }" class="col-10 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 p-3 text-center flag">
+      <div>
+        <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
+        <p class="fs-2 pt-3 fw-bold">Weight Warriors</p>
+      </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div :class="{ 'highlight': account.community == 'Legion of Leisure' }" class="col-10 col-md-3 bg-neutral-light my-4 p-3 text-center flag">
-      <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-      <p class="fs-2 pt-3 fw-bold">Legion of Leisure</p>
+    <div :class="{ 'highlight': account.community == 'Legion of Leisure' }" class="col-10 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 p-3 text-center flag">
+      <div>
+        <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
+        <p class="fs-2 pt-3 fw-bold">Legion of Leisure</p>
+      </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
   </section>
