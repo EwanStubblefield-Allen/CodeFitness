@@ -8,7 +8,7 @@
       <button type="button" class="btn mdi mdi-close text-reset fs-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body container-fluid">
-      <section class="row justify-content-center">
+      <section class="row justify-content-center h-100">
         <slot name="body"></slot>
       </section>
     </div>

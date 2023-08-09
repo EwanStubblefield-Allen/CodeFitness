@@ -2,10 +2,10 @@
   <div class="col-12 col-md-10 offset-md-2">
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
-        <img class="cover-image" :src="account.coverImg" onerror="randomCoverImg()" :alt="account.name">
+        <img class="cover-image" :src="account.coverImg" @error="randomCoverImg()" :alt="account.name">
 
         <div class="d-md-flex justify-content-between align-items-end position">
-          <img class="account-picture" :src="account.picture" onerror="randomProfileImg()" :alt="account.name">
+          <img class="account-picture" :src="account.picture" @error="randomProfileImg()" :alt="account.name">
           <div class="d-flex justify-content-end">
             <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
             <div class=" text-start text-stroke fs-1 ps-3 mdi mdi-star-four-points text-warning"></div>
@@ -56,6 +56,7 @@
               <img :src="routines[r - 1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ routines[r - 1].title }}</h5>
+
                 <p class="p-2 mb-2">{{ routines[r - 1].description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r - 1].id } }">
@@ -179,14 +180,14 @@ export default {
     watchEffect(() => {
       if (AppState.account.id) {
         getAchievementsByUserId()
-        randomCoverImg()
-        randomProfileImg()
       }
     })
 
     return {
       editable,
       showAmount,
+      randomCoverImg,
+      randomProfileImg,
       account: computed(() => AppState.account),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
