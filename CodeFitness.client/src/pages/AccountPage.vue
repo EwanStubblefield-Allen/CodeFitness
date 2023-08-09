@@ -12,12 +12,12 @@
           </div>
         </div>
       </div>
+      <div class="text-end">
+        <button class="btn btn-sm mt-3 mb-5 py-3" data-bs-toggle="modal" data-bs-target="#accountForm">
+          <i class="mdi mdi-pencil"></i>
+        </button>
+      </div>
     </section>
-
-    <div class="text-end">
-      <button class="btn btn-action mt-3 mb-5 py-3" data-bs-toggle="modal" data-bs-target="#accountForm"> Edit Account
-      </button>
-    </div>
 
     <section class="row justify-content-center">
       <div class="col-12 col-md-9 mt-5 mb-3 fs-5 text-break">
