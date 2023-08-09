@@ -1,7 +1,9 @@
 <template>
   <section v-if="account.id" class="row justify-content-center">
     <div class="col-11 px-0 py-1 community-banner">
-      <img class="community-img w-100" :src="comIcon" alt="Yellow">
+      <div v-if="!comIcon == ''">
+        <img class="community-img w-100" :src="comIcon" alt="Yellow">
+      </div>
     </div>
 
     <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img">
@@ -12,9 +14,12 @@
       <p class="text-break">Points: {{ account.points }}</p>
 
       <div class="d-flex flex-column mb-3">
-        <button v-if="routines[0]" class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
-        <button v-else class="btn btn-action text-break" data-bs-toggle="modal" data-bs-target="#routineForm">Routines</button>
-        <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Badges</button>
+        <button v-if="routines[0]" class="btn btn-action text-break" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRoutine">Routines</button>
+        <button v-else class="btn btn-action text-break" data-bs-toggle="modal"
+          data-bs-target="#routineForm">Routines</button>
+        <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasAchievements">Badges</button>
       </div>
     </div>
   </section>
@@ -46,7 +51,7 @@ export default {
             comIcon.value = 'src/assets/img/iconLL.png'
             break
 
-          default: comIcon.value = 'src/assets/img/yellow-flag.png'
+          default: comIcon.value = null
             break
         }
       }
@@ -64,29 +69,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .bar-height {
-    height: 87vh;
-  }
+.bar-height {
+  height: 87vh;
+}
 
-  .account-picture {
-    height: 15vh;
-    width: 15vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-  }
+.account-picture {
+  height: 15vh;
+  width: 15vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
 
-  .bg-cover-img {
-    background-image: v-bind(backgroundImg);
-    background-position: center;
-    background-size: cover;
-    border: 10px solid white;
-  }
+.bg-cover-img {
+  background-image: v-bind(backgroundImg);
+  background-position: center;
+  background-size: cover;
+  border: 10px solid white;
+}
 
-  .community-img {
-    image-rendering: pixelated;
-    background-color: var(--neutral-light);
-    border: 10px solid white;
-    padding: 2vh;
-  }
+.community-img {
+  image-rendering: pixelated;
+  background-color: var(--neutral-light);
+  border: 10px solid white;
+  padding: 2vh;
+}
 </style>
