@@ -28,96 +28,96 @@
     </div>
     <!-- Activity Search -->
     <p class="col-12 fw-bold">Body Group:</p>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="abs" value="abdominals">
       <label class="form-check-label" for="abs">Abs</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="innerThigh" value="abductors">
       <label class="form-check-label" for="innerThigh">Inner Thigh</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="biceps" value="biceps">
       <label class="form-check-label" for="biceps">Biceps</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="calves" value="calves">
       <label class="form-check-label" for="calves">Calves</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="chest" value="chest">
       <label class="form-check-label" for="chest">Chest</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="forearms" value="forearms">
       <label class="form-check-label" for="forearms">Forearms</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="glutes" value="glutes">
       <label class="form-check-label" for="glutes">Glutes</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="hamstrings" value="hamstrings">
       <label class="form-check-label" for="hamstrings">Hamstrings</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="lats" value="lats">
       <label class="form-check-label" for="lats">Lats</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="lowerBack" value="lower_back">
       <label class="form-check-label" for="lowerBack">Lower Back</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="middleBack" value="middle_back">
       <label class="form-check-label" for="middleBack">Middle Back</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="neck" value="neck">
       <label class="form-check-label" for="neck">Neck</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="quads" value="quadriceps">
       <label class="form-check-label" for="quads">Quads</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="traps" value="traps">
       <label class="form-check-label" for="traps">Traps</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="editable" class="form-check-input" type="radio" name="muscle" id="triceps" value="triceps">
       <label class="form-check-label" for="triceps">Triceps</label>
     </div>
     <p class="col-12 pt-2 fw-bold">Type:</p>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="cardio" value="cardio">
       <label class="form-check-label" for="cardio">Cardio</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="weightlifting" value="olympic_weightlifting">
       <label class="form-check-label" for="weightlifting">Weightlifting</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="plyometrics" value="plyometrics">
       <label class="form-check-label" for="plyometrics">High Intensity</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="powerLifting" value="powerlifting">
       <label class="form-check-label" for="powerLifting">Power Lifting</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="strength" value="strength">
       <label class="form-check-label" for="strength">Strength</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="stretching" value="stretching">
       <label class="form-check-label" for="stretching">Stretching</label>
     </div>
-    <div class="col-4 form-check">
+    <div class="col-6 col-md-4 form-check">
       <input v-model="adaptable" class="form-check-input" type="radio" name="type" id="strongman" value="strongman">
       <label class="form-check-label" for="strongman">Strongman</label>
     </div>
-    <div class="text-end">
+    <div class="text-end pt-2">
       <button @click="resetTemplate()" class="btn btn-secondary mx-3" type="reset">Reset</button>
       <button class="btn btn-action" type="submit">Submit</button>
     </div>
@@ -381,19 +381,20 @@ export default {
     transform: translate(-50%, -50%);
     width: 50px;
     height: 100px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
 
-.tricepsTwo-overlay {
-  position: absolute;
-  top: 30%;
-  left: 38%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}</style>
+  .tricepsTwo-overlay {
+    position: absolute;
+    top: 30%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
+</style>
