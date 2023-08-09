@@ -1,8 +1,8 @@
 import { AppState } from "../AppState.js"
 import { Routine } from "../models/Routine.js"
 import { api } from "./AxiosService.js"
-import Pop from "../utils/Pop.js"
 import { accountAchievementService } from "./AccountAchievementService.js"
+import Pop from "../utils/Pop.js"
 
 class RoutinesService {
   setActiveRoutine(routine) {
@@ -49,10 +49,6 @@ class RoutinesService {
   async removeRoutine(routineId) {
     await api.delete(`api/routines/${routineId}`)
     AppState.routines = AppState.routines.filter(r => r.id != routineId)
-  }
-
-  setRoutineToEdit(routineToEdit) {
-    AppState.activeRoutine = new Routine(routineToEdit)
   }
 }
 

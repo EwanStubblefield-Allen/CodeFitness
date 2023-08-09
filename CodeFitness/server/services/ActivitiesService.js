@@ -49,7 +49,7 @@ class ActivitiesService {
     if (updateActivity.accountId != activityData.accountId) {
       throw new Forbidden(`[YOU CAN NOT CHANGE SOMEONE ELSES ACTIVITY]`)
     }
-    if (activityData.level) {
+    if (activityData.level != updateActivity.level) {
       const activities = await this.getActivitiesByAccountId(activityData.accountId)
       let max = activities[0].level
       for (let i = 1; i < activities.length; i++) {

@@ -31,20 +31,24 @@
           <div class="card card-size text-center fw-bold elevation-5">
             <div class="d-flex flex-column card-body">
               <h2 class="card-title">{{ act.name }}</h2>
+
               <div class="d-flex flex-column justify-content-between flex-grow-1 card-text">
                 <div>
                   <div class="d-flex justify-content-center align-items-center">
                     <h3 v-if="!points">Level: {{ act.level }}</h3>
 
-                    <button v-else @click="updateActivity(act)" class="btn btn-action fs-4" type="button">
+                    <button v-else @click="updateActivity(act, 1)" class="btn btn-action fs-4" type="button">
                       Level: {{ act.level }} +
                     </button>
                   </div>
 
                   <div class="d-flex justify-content-between p-2">
-                    <h4>Sets: {{ act.sets }}</h4>
+                    <h4 v-if="edit != act.id">Sets: {{ act.sets }}</h4>
+                    <h4 v-else class="d-flex align-items-center">Sets:
+                      <input v-model="editable" type="number" class="form-control" min="1" :max="act.reps" required>
+                    </h4>
                     <h4 v-if="act.type == ('Cardio' || 'Stretching')">Duration: {{ act.reps }}</h4>
-                    <h4 v-else>Reps: {{ act.reps / act.sets }}</h4>
+                    <h4 v-else>Reps: {{ Math.ceil(act.reps / act.sets) }}</h4>
                   </div>
 
                   <div v-if="act.equipment" class="p-2">
@@ -54,7 +58,20 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <button @click="setActiveActivity(act)" class="fs-6 btn btn-action">Activity Details</button>
-                  <button class="fs-6 btn btn-danger mdi mdi-trash-can" @click="removeActivity(act)"></button>
+                  <button v-if="edit != act.id" type="button" class="btn selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
+                  <button v-else @click="updateActivity(act, 0), edit = ''" type="button" class="btn btn-action selectable no-select fs-6">Save</button>
+
+                  <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
+                    <div class="list-group text-center">
+                      <div @click="edit = act.id" class="list-group-item dropdown-item list-group-item-action selectable">
+                        <p class="mdi mdi-pencil">Edit Sets</p>
+                      </div>
+
+                      <div @click="removeActivity(act)" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                        <p class="mdi mdi-trash-can">Delete Activity</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,7 +91,7 @@
 </template>
 
 <script>
-import { computed, onUnmounted, watchEffect } from "vue"
+import { computed, onUnmounted, ref, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute, useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService"
@@ -86,6 +103,8 @@ export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
+    const editable = ref('')
+    const edit = ref('')
 
     onUnmounted(() => {
       document.documentElement.scrollTop = 0
@@ -105,6 +124,8 @@ export default {
     }
 
     return {
+      editable,
+      edit,
       activeRoutine: computed(() => AppState.activeRoutine),
       routineBackground: computed(() => `url(${AppState.activeRoutine?.picture})`),
       points: computed(() => {
@@ -112,20 +133,6 @@ export default {
         AppState.activeRoutine.activities.forEach(a => levels += a.level)
         return AppState.activeRoutine.completeCount - levels
       }),
-
-      async removeRoutine() {
-        try {
-          const wantsToRemove = await Pop.confirm(`Are you sure you want to delete ${AppState.activeRoutine.title}?`)
-
-          if (!wantsToRemove) {
-            return
-          }
-          await routinesService.removeRoutine(route.params.routineId)
-          router.push('/')
-        } catch (error) {
-          Pop.error(error.message, '[DELETING ROUTINE]')
-        }
-      },
 
       async setActiveActivity(act) {
         try {
@@ -136,9 +143,13 @@ export default {
         }
       },
 
-      async updateActivity(activity) {
+      async updateActivity(activity, level) {
         try {
-          activity.level++
+          if (!level) {
+            activity.sets = editable.value
+          } else {
+            activity.level += level
+          }
           await activitiesService.updateActivity(activity)
         } catch (error) {
           Pop.error(error.message, '[UPDATING ACTIVITY]')
@@ -155,6 +166,20 @@ export default {
           await activitiesService.removeActivity(activity.id)
         } catch (error) {
           Pop.error(error.message, '[DELETING ACTIVITY]')
+        }
+      },
+
+      async removeRoutine() {
+        try {
+          const wantsToRemove = await Pop.confirm(`Are you sure you want to delete ${AppState.activeRoutine.title}?`)
+
+          if (!wantsToRemove) {
+            return
+          }
+          await routinesService.removeRoutine(route.params.routineId)
+          router.push('/')
+        } catch (error) {
+          Pop.error(error.message, '[DELETING ROUTINE]')
         }
       }
     }

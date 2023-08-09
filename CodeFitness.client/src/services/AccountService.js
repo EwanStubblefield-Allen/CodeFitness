@@ -3,12 +3,12 @@ import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
 import { accountAchievementService } from './AccountAchievementService.js'
 import { api } from './AxiosService'
+import Pop from '../utils/Pop.js'
 
 class AccountService {
   async selectCommunity(community) {
     AppState.account.community = community
-    const updatedAccount = new Account(AppState.account)
-    logger.log('updated account', updatedAccount)
+    Pop.success(`You have chosen the ${community}`)
   }
 
   async getAccount() {

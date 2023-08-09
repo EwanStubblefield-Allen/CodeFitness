@@ -30,20 +30,20 @@
           Recent Routines
         </div>
 
-      <div v-if="routines.length > 3" >
-        <div v-if="showAmount == 3">
-          <button @click="showAmount = routines.length" class="btn btn-action">
-            See more
-            <i class="mdi mdi-plus-thick"></i>
-          </button>
+        <div v-if="routines.length > 3">
+          <div v-if="showAmount == 3">
+            <button @click="showAmount = routines.length" class="btn btn-action">
+              See more
+              <i class="mdi mdi-plus-thick"></i>
+            </button>
+          </div>
+          <div v-else>
+            <button @click="showAmount = 3" class="btn btn-action">
+              See less
+              <i class="mdi mdi-minus-thick"></i>
+            </button>
+          </div>
         </div>
-        <div v-else>
-          <button @click="showAmount = 3" class="btn btn-action">
-            See less
-            <i class="mdi mdi-minus-thick"></i>
-          </button>
-        </div>
-      </div>
 
       </div>
     </section>
@@ -53,36 +53,36 @@
           <div v-for="r in showAmount" :key="r" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
-              <img :src="routines[r-1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
+              <img :src="routines[r - 1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
-                <h5 class="p-2 text-center"> {{ routines[r-1].title }}</h5>
-                <p class="p-2 mb-2">{{ routines[r-1].description }}</p>
+                <h5 class="p-2 text-center"> {{ routines[r - 1].title }}</h5>
+                <p class="p-2 mb-2">{{ routines[r - 1].description }}</p>
                 <div class="text-end">
-                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r-1].id } }">
-                    <button @click="getRoutineById(routines[r-1].id)" class="btn btn-action" type="button">Start Routine</button>
+                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r - 1].id } }">
+                    <button @click="getRoutineById(routines[r - 1].id)" class="btn btn-action" type="button">Start Routine</button>
                   </RouterLink>
                 </div>
               </div>
             </div>
           </div>
         </section>
-          <div v-else class="row">
-            <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
-              <div class="routine-bg rounded">
-                <!-- <div class="reserved-space"></div> -->
-                <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
-                <div class="routine-details p-2">
-                  <h5 class="p-2 text-center"> {{ r.title }}</h5>
-                  <p class="p-2 mb-2">{{ r.description }}</p>
-                  <div class="text-end">
-                    <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
-                      <button @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
-                    </RouterLink>
-                  </div>
+        <div v-else class="row">
+          <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
+            <div class="routine-bg rounded">
+              <!-- <div class="reserved-space"></div> -->
+              <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top w-100">
+              <div class="routine-details p-2">
+                <h5 class="p-2 text-center"> {{ r.title }}</h5>
+                <p class="p-2 mb-2">{{ r.description }}</p>
+                <div class="text-end">
+                  <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
+                    <button v-if="r.activities[0]" @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
+                  </RouterLink>
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </section>
 
@@ -171,7 +171,6 @@ export default {
         return AppState.routines.sort((a, b) => b.updatedAt - a.updatedAt)
       }),
 
-
       completed: computed(() => {
         let complete = 0
         AppState.activeAchievements.forEach(a => {
@@ -221,6 +220,9 @@ export default {
 
   .routine-pic {
     background-image: v-bind(picture);
+    object-fit: cover;
+    object-position: center;
+    height: 30vh;
   }
 
   .reserved-space {

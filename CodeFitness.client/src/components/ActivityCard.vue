@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column justify-content-between h-100 text-center bg-neutral-dark text-light activity-card">
+  <div class="d-flex flex-column justify-content-between h-100 text-center bg-neutral-dark text-light elevation-5 rounded activity-card">
     <div @click="setActiveActivity()" class="selectable p-3">
       <p class="fw-bold py-2">{{ activityProp.name }}</p>
       <p v-if="activityProp.category">Category: {{ activityProp.category }}</p>
@@ -8,8 +8,8 @@
       <p>Equipment: {{ activityProp.equipment }}</p>
       <p>Difficulty: {{ activityProp.difficulty }}</p>
     </div>
-    <div class="dark-bg text-end p-3">
-      <button v-if="routine" @click="createActivity(activityProp)" class="btn btn-action">Add to Routine</button>
+    <div class="dark-bg text-end p-3 rounded">
+      <button v-if="routine" @click="createActivity()" class="btn btn-action">Add to Routine</button>
     </div>
   </div>
 </template>
@@ -17,9 +17,9 @@
 <script>
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
-import Pop from "../utils/Pop.js"
 import { computed } from "vue"
 import { AppState } from "../AppState"
+import Pop from "../utils/Pop.js"
 
 export default {
   props: {
@@ -31,7 +31,7 @@ export default {
 
   setup(props) {
     return {
-      routine: computed(()=> AppState.activeRoutine),
+      routine: computed(() => AppState.activeRoutine),
       async setActiveActivity() {
         try {
           await activitiesService.setActiveActivity(props.activityProp)
@@ -41,9 +41,9 @@ export default {
         }
       },
 
-      async createActivity(activityId) {
+      async createActivity() {
         try {
-          await activitiesService.createActivity(activityId)
+          await activitiesService.createActivity(props.activityProp)
           document.documentElement.scrollTop = 0
         } catch (error) {
           Pop.error(error.message, '[CREATING ACTIVITY]')

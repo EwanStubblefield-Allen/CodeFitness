@@ -1,6 +1,5 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
-import { logger } from "../utils/Logger.js"
 import { accountAchievementService } from "./AccountAchievementService.js"
 import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
@@ -14,9 +13,11 @@ class ActivitiesService {
   }
 
   async getActivities(template = AppState.template) {
-    const res1 = await activityApi.get(`exercises?offset=${AppState.page}&${template}`)
-    const res2 = await activityApi.get(`exercises?offset=${AppState.page + 10}&${template}`)
-    const res3 = await activityApi.get(`exercises?offset=${AppState.page + 20}&${template}`)
+    const page = AppState.page
+
+    const res1 = await activityApi.get(`exercises?offset=${page}&${template}`)
+    const res2 = await activityApi.get(`exercises?offset=${page + 10}&${template}`)
+    const res3 = await activityApi.get(`exercises?offset=${page + 20}&${template}`)
     let res = res1.data.concat(res2.data)
 
     if (!res3.data[0] || !res3.data[res3.data.length - 1].instructions) {
@@ -46,40 +47,42 @@ class ActivitiesService {
     AppState.template = template
   }
 
-  resetActivityChecked() {
-    AppState.routineActivities.forEach(activity => {
-      activity.checked = false
-    })
-  }
-
   async createActivity(activityData) {
+    const activeRoutine = AppState.activeRoutine
+
     if (!activityData.picture) {
       activityData.picture = await picturesService.getPictures(activityData.name)
     }
 
-    if (!AppState.activeRoutine) {
+    if (!activeRoutine) {
       throw new Error(`Please Select a Routine to Add the ${activityData.name} to!`)
     }
-    activityData.routineId = AppState.activeRoutine.id
+    activityData.routineId = activeRoutine.id
     const res = await api.post('api/activities', activityData)
-    AppState.activeRoutine.activities.push(new Activity(res.data))
-    const foundRoutine = AppState.routines.find(r => r.id == activityData.routineId)
-    AppState.activeRoutine = foundRoutine
+    const activity = new Activity(res.data)
+    activeRoutine.activities.push(activity)
+    const foundIndex = AppState.routines.findIndex(r => r.id == activeRoutine.id)
+    AppState.routines[foundIndex].activities.push(activity)
   }
 
   async updateActivity(activity) {
+    const activeRoutine = AppState.activeRoutine
     const res = await api.put(`api/activities/${activity.id}`, activity)
 
     if (res.data.accountAchievement) {
       accountAchievementService.checkAchievement(res.data.accountAchievement, 'levelCount')
     }
-    const foundIndex = AppState.activeRoutine.activities.findIndex(a => a.id == activity.id)
-    AppState.activeRoutine.activities.splice(foundIndex, 1, new Activity(res.data.activity))
+    const foundIndex = activeRoutine.activities.findIndex(a => a.id == activity.id)
+    activeRoutine.activities.splice(foundIndex, 1, new Activity(res.data.activity))
   }
 
   async removeActivity(activityId) {
+    const activeRoutine = AppState.activeRoutine
     await api.delete(`api/activities/${activityId}`)
-    AppState.activeRoutine.activities = AppState.activeRoutine.activities.filter(a => a.id != activityId)
+    activeRoutine.activities = activeRoutine.activities.filter(a => a.id != activityId)
+    const foundIndex = AppState.routines.findIndex(r => r.id == activeRoutine.id)
+    const foundRoutine = AppState.routines[foundIndex]
+    foundRoutine.activities = foundRoutine.activities.filter(a => a.id != activityId)
   }
 }
 

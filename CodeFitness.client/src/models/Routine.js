@@ -1,3 +1,5 @@
+import { Activity } from "./Activity.js"
+
 export class Routine {
   constructor(data) {
     this.id = data.id
@@ -8,7 +10,7 @@ export class Routine {
     this.completeCount = data.completeCount
     this.accountId = data.accountId
     this.profile = data.profile
-    this.activities = data.activity
+    this.activities = data.activity.map(a => new Activity(a))
     this.updatedAt = new Date(data.updatedAt).valueOf()
     this.createdAt = data.createdAt
   }

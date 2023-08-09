@@ -12,7 +12,6 @@ export class Activity {
     this.sets = data.sets
     this.reps = data.reps
     this.weight = data.weight
-    this.checked = data.checked || false
   }
 
   computedData(input) {

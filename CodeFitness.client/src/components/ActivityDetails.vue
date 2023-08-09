@@ -14,7 +14,7 @@
       <p class="fw-bold">Instructions:</p>
       <p class="px-2">{{ activity.instructions }}</p>
     </div>
-    <div v-if="account.id" class="d-flex justify-content-end align-items-center pt-3">
+    <div v-if="!activity.id" class="d-flex justify-content-end align-items-center pt-3">
       <p>Add to Routine</p>
       <button @click="createActivity()" class="mdi mdi-plus mx-2 btn btn-action"></button>
     </div>
@@ -32,7 +32,7 @@ export default {
   setup() {
     return {
       activity: computed(() => AppState.activeActivity),
-      account: computed(() => AppState.account),
+      activeRoutine: computed(() => AppState.activeRoutine),
 
       async createActivity() {
         try {

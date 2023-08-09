@@ -5,14 +5,15 @@ import Pop from "../utils/Pop.js"
 
 class AccountAchievementService {
   checkAchievement(accountAchievement, type) {
-    const foundIndex = AppState.activeAchievements.findIndex(a => a.type == type)
+    const activeAchievements = AppState.activeAchievements
+    const foundIndex = activeAchievements.findIndex(a => a.type == type)
 
     if (foundIndex == -1) {
       throw new Error('[NO ACHIEVEMENT FOUND]')
     }
 
-    if (AppState.activeAchievements[foundIndex].tier != accountAchievement.tier) {
-      AppState.activeAchievements.splice(foundIndex, 1, new Achievement(accountAchievement))
+    if (activeAchievements[foundIndex].tier != accountAchievement.tier) {
+      activeAchievements.splice(foundIndex, 1, new Achievement(accountAchievement))
       Pop.success(`You have unlocked a new achievement`)
     }
   }

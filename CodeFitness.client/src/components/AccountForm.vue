@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="updateAccount()">
     <div class="form-group py-2">
-      <label for="name">Picture</label>
-      <input v-model="editable.name" id="name" class="form-control" type="text" minlength="3" maxlength="300" placeholder="Name">
+      <label for="name">Name</label>
+      <input v-model="editable.name" id="name" class="form-control" type="text" minlength="3" maxlength="300" placeholder="Name...">
     </div>
     <div class="form-group py-2">
       <label for="picture">Picture</label>

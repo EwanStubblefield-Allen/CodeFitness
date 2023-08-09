@@ -4,14 +4,14 @@
       <img class="community-img w-100" :src="comIcon" alt="Yellow">
     </div>
 
-    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img selectable" title="My Achievements">
+    <div class="col-11 bg-light d-flex justify-content-center p-3 mb-1 bg-cover-img">
       <img class="account-picture" :src="account.picture" :alt="account.name">
     </div>
 
     <div class="col-11 text-center text-dark bg-light fs-3 mb-1">
       <p class="text-break">Points: {{ account.points }}</p>
 
-      <div class="mb-3">
+      <div class="d-flex flex-column mb-3">
         <button v-if="routines[0]" class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
         <button v-else class="btn btn-action text-break" data-bs-toggle="modal" data-bs-target="#routineForm">Routines</button>
         <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Badges</button>
