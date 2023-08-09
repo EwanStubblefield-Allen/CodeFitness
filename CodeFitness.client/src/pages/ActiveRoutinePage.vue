@@ -1,5 +1,5 @@
 <template>
-  <div v-if="current == routine.activities.length" class="confetti-container">
+  <div v-if="current == routine.activities.length" class="confetti-container ">
     <div class="confetti">
       <i style="--speed: 10; --bg: yellow" class="mdi mdi-star-four-points text-success fs-4"></i>
       <i style="--speed: 29; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info fs-4"></i>
@@ -67,18 +67,18 @@
       <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 45; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
-      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary"></i>
+      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
       <i style="--speed: 23;  " class="text-warning mdi mdi-star"> </i>
-      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary"></i>
+      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
       <i style="--speed: 37;  " class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 26; --bg: white" class="mdi mdi-hexagram text-secondary"></i>
       <i style="--speed: 32;  " class="text-warning mdi mdi-star"></i>
       <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 45; --bg: white" class="mdi mdi-star-four-points text-success"></i>
-      <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
-      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary"></i>
+      <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
+      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
       <i style="--speed: 23;  " class="text-warning mdi mdi-star"> </i>
-      <i style="--speed: 50; --bg: pink" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
+      <i style="--speed: 50; --bg: pink" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
       <i style="--speed: 30; --bg: red" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 19; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
@@ -86,68 +86,78 @@
       <i style="--speed: 23;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 33; --bg: yellow" class="mdi mdi-asterisk text-primary"></i>
       <i style="--speed: 39; - " class="text-warning mdi mdi-star"></i>
-      <i style="--speed: 40; --bg: orange" class="mdi mdi-star-four-points text-success"></i>
-      <i style="--speed: 21; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
+      <i style="--speed: 40; --bg: orange" class="mdi mdi-star-four-points fs-4 text-success"></i>
+      <i style="--speed: 21; --bg: green" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
       <i style="--speed: 14; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 38; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
-      <i style="--speed: 19; --bg: red" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 29;  " class="text-warning mdi mdi-star"> </i>
-      <i style="--speed: 34; --bg: white" class="mdi mdi-hexagram text-secondary"></i>
-      <i style="--speed: 17; -- " class="text-warning mdi mdi-star"></i>
-      <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
-      <i style="--speed: 23; --bg: white" class="mdi mdi-star-four-points text-success"></i>
-      <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
-      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 48;  " class="text-warning mdi mdi-star"> </i>
-      <i style="--speed: 38; --bg: pink" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
-      <i style="--speed: 13;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
-      <i style="--speed: 49; --bg: yellow" class="mdi mdi-asterisk text-primary"></i>
+      <i style="--speed: 19; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
+      <i style="--speed: 29;  " class="text-warning mdi mdi-star fs-4"> </i>
+      <i style="--speed: 34; --bg: white" class="mdi mdi-hexagram text-secondary fs-4"></i>
+      <i style="--speed: 17; -- " class="text-warning mdi mdi-star fs-4"></i>
+      <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave fs-4 mdi-rotate-130"></i>
+      <i style="--speed: 23; --bg: white" class="mdi mdi-star-four-points fs-4 text-success"></i>
+      <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
+      <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk fs-4 text-primary"></i>
+      <i style="--speed: 48;  " class="text-warning fs-4 mdi mdi-star"> </i>
+      <i style="--speed: 38; --bg: pink" class="mdi fs-4 mdi-chart-line-variant mdi-rotate-80 text-info"></i>
+      <i style="--speed: 13;" class="text-danger mdi fs-4 mdi-sine-wave mdi-rotate-130"></i>
+      <i style="--speed: 49; --bg: yellow" class="mdi fs-4 mdi-asterisk text-primary"></i>
       <i style="--speed: 19; -- " class="text-warning mdi mdi-star"></i>
       <i style="--speed: 15; --bg: cyan" class="mdi mdi-star-four-points text-success"></i>
     </div>
   </div>
-  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark">
+  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark ">
     <section class="row justify-content-center bg-neutral-dark">
       <div class="col-12 p-3">
 
         <div class="fs-1 text-center text-white">{{ routine.title }}</div>
 
         <section class="row justify-content-around text-center my-4">
-          <div class="col-md-2 d-none d-md-block bg-light">
+          <!-- First activity card -->
+          <div class="col-md-2 d-none d-md-block bg-light secondaryCard rounded elevation-5">
             <div v-if="current > 0" class="d-flex flex-column justify-content-around h-100">
               <p class="fs-5 fw-bold">{{ routine.activities[current - 1].name }}</p>
-              <p>{{ routine.activities[current - 1].muscle }}</p>
-              <p>{{ routine.activities[current - 1].difficulty }}</p>
+              <div class="d-flex justify-content-center fs-5">
+                <p>Sets: <span class="text-neutral">{{ routine.activities[current - 1].sets }}</span></p>
+                <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current - 1].reps }}</span></p>
+              </div>
+              <p class="text-neutral-light">{{ routine.activities[current - 1].equipment }}</p>
+
             </div>
           </div>
-
-          <div class="col-md-6 col-12 bg-light p-3">
+          <!-- Main activity card -->
+          <div class="col-md-6 col-12 bg-light p-3 activeCard rounded elevation-5">
             <div v-if="current < routine.activities.length">
               <div class="d-flex justify-content-between">
                 <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block" :disabled="current == 0">Back</button>
                 <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-md-none d-block">Finish</button>
                 <button v-else @click="changeActivity(1)" class="btn btn-action d-md-none d-block">Next</button>
               </div>
-              <p class="fs-5 fw-bold">{{ routine.activities[current].name }}</p>
+              <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
               <div class="d-flex justify-content-center fs-5">
                 <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
               </div>
-              <p>Equipment: {{ routine.activities[current].equipment }}</p>
-              <p class="">Instructions:{{ routine.activities[current].instructions }}</p>
+              <p class="">Equipment: <span class="text-neutral-light"> {{ routine.activities[current].equipment }}</span> </p>
+              <!-- Collapsable -->
+              <p><button @click="toggleCollapse()" class="btn btn-outline-info" type="button">Show Instructions</button></p>
+              <div class="" v-if="showCollapse">
+                <div class="card card-body">
+                  <p class="p-2">Instructions:{{ routine.activities[current].instructions }}</p>
+                </div>
+              </div>
             </div>
             <div v-else class="d-flex justify-content-center">
               <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-md-none d-block">Finish</button>
-
             </div>
             <div v-if="current == routine.activities.length" class="">
               <h3>Routine Complete!</h3>
-              <i class="mdi mdi-party-popper mdi-rotate-270 mdi-spin "></i>
               <i class="mdi mdi-axe mdi-spin"></i>
-              <i class="mdi mdi-party-popper mdi-spin"></i>
+              <i class="mdi mdi-axe mdi-spin"></i>
+              <i class="mdi mdi-axe mdi-spin"></i>
             </div>
-
-            <a class="prevArrow d-none d-md-block" @click="changeActivity(-1)" role="button" data-slide="prev">
+            <!-- < Next Prev button arrows > -->
+            <a v-if="current != 0" class="prevArrow d-none d-md-block" @click="changeActivity(-1)" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only"></span>
             </a>
@@ -160,22 +170,21 @@
               <span class="sr-only"></span>
             </a>
           </div>
-
-          <div class="col-md-2 d-none d-md-block bg-light">
+          <!-- Next activity Card -->
+          <div class="col-md-2 d-none d-md-block bg-light secondaryCard rounded elevation-5">
             <div v-if="current < routine.activities.length - 1" class="d-flex flex-column justify-content-around h-100">
               <p class="fs-5 fw-bold">{{ routine.activities[current + 1].name }}</p>
-              <p>{{ routine.activities[current + 1].muscle }}</p>
-              <p>{{ routine.activities[current + 1].difficulty }}</p>
-            </div>
-            <div v-else class="d pt-3">
-              <p class="-flex justify-content-center">
-
-                Done!
-              </p>
-              <div class="">
-                <i class="mdi mdi-party-popper mdi-rotate-270 "></i>
-                <i class="mdi mdi-party-popper"></i>
+              <div class="d-flex justify-content-center fs-5">
+                <p>Sets: <span class="text-neutral">{{ routine.activities[current + 1].sets }}</span></p>
+                <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current + 1].reps }}</span></p>
               </div>
+              <p class="text-neutral-light">{{ routine.activities[current + 1].equipment }}</p>
+
+            </div>
+            <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-around flex-column h-100">
+              <p class=" "><i class="mdi mdi-party-popper mdi-rotate-270 text-warning"></i> Done!<i class="mdi mdi-party-popper text-warning"></i></p>
+              <p>🎈🎊🥳🎊🎈</p>
+              <p>🎉🎊🎁🎊🎉</p>
             </div>
           </div>
         </section>
@@ -209,11 +218,17 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const editable = ref({})
+    const showCollapse = ref(false)
+
     let current = ref(0)
 
     watchEffect(() => {
       getRoutineById()
     })
+
+    function toggleCollapse() {
+      showCollapse.value = !showCollapse.value
+    }
 
     async function getRoutineById() {
       try {
@@ -227,7 +242,8 @@ export default {
       editable,
       current,
       routine: computed(() => AppState.activeRoutine),
-
+      toggleCollapse,
+      showCollapse,
       toggleActivity(activity) {
         activity.checked = !activity.checked
       },
@@ -264,6 +280,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .btn-outline-info {
+    border-color: #406B6E;
+    color: #406B6E;
+  }
+
+  .activeCard {
+    min-height: 40vh;
+
+  }
+
+  .secondaryCard {
+    min-height: 40vh;
+    max-height: 40vh;
+    transform: scale(.90);
+  }
+
   .parentContainer {
     position: absolute;
   }
@@ -278,10 +310,6 @@ export default {
     position: absolute;
     bottom: 70%;
     right: 63%;
-  }
-
-  :root {
-    --bg: yellow;
   }
 
   .confetti-container {
