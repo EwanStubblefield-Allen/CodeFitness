@@ -2,10 +2,10 @@
   <div class="col-12 col-md-10 offset-md-2">
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
-        <img class="cover-image" :src="account.coverImg" :alt="account.name">
+        <img class="cover-image" :src="account.coverImg" @error="randomCoverImg()" :alt="account.name">
 
         <div class="d-md-flex justify-content-between align-items-end position">
-          <img class="account-picture" :src="account.picture" :alt="account.name">
+          <img class="account-picture" :src="account.picture" @error="randomProfileImg()" :alt="account.name">
           <div class="d-flex justify-content-end">
             <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
             <div class=" text-start text-stroke fs-1 ps-3 mdi mdi-star-four-points text-warning"></div>
@@ -186,6 +186,8 @@ export default {
     return {
       editable,
       showAmount,
+      randomCoverImg,
+      randomProfileImg,
       account: computed(() => AppState.account),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
