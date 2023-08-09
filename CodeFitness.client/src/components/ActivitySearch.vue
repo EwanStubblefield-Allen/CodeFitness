@@ -10,18 +10,18 @@
       </div>
     </form>
     <div class="text-end">
-      <button @click="editable = ''" class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter Activities</button>
+      <button @click="editable = ''" class="btn btn-action my-2" type="button" data-bs-toggle="modal" data-bs-target="#filterForm">Filter Activities</button>
     </div>
   </div>
   <div v-for="a in activities" :key="a.id" class="col-12 col-md-4 col-lg-3 p-3">
     <ActivityCard :activityProp="a" />
   </div>
   <div class="col-10 d-flex justify-content-between no-select my-3">
-    <div @click="changePage(page - 20)" :class="{ disabled: page == 0, 'text-secondary': page == 0 }" class="d-flex selectable py-1 px-3">
+    <div @click="changePage(page - 20)" :class="{ disabled: page == 0, 'text-secondary': page == 0 }" class="d-flex align-items-center selectable py-1 px-3">
       <i class="mdi mdi-arrow-left pe-3"></i>
       <p class="text-end">Last Page</p>
     </div>
-    <div @click="changePage(page + 20)" :class="{ disabled: !nextPage, 'text-secondary': !nextPage }" class="d-flex selectable py-1 px-3">
+    <div @click="changePage(page + 20)" :class="{ disabled: !nextPage, 'text-secondary': !nextPage }" class="d-flex align-items-center selectable py-1 px-3">
       <p>Next Page</p>
       <i class="mdi mdi-arrow-right ps-3"></i>
     </div>
