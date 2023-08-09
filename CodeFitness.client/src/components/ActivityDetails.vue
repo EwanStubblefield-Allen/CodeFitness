@@ -1,8 +1,10 @@
 <template>
   <div>
-    <!-- <img class="img-fluid" :src="activity.picture" :alt="activity.name"> -->
-    <img v-if="activity.picture" class="img-fluid w-100" :src="activity.picture" alt="">
-    <img src="" alt="">
+    <div class="text-center">
+      <!-- <img class="img-fluid" :src="activity.picture" :alt="activity.name"> -->
+      <img v-if="activity.picture" class="img-fluid activity-image" :src="activity.picture" alt="" >
+    </div>
+
     <div class="d-flex flex-column flex-md-row justify-content-around text-center pt-2">
       <p>{{ activity.difficulty }}</p>
       <p>{{ activity.type }}</p>
@@ -36,6 +38,8 @@ import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import { useRoute } from "vue-router"
 import Pop from "../utils/Pop.js"
+import { logger } from "../utils/Logger"
+import { picturesService } from "../services/PicturesService"
 
 export default {
   setup() {
@@ -46,6 +50,7 @@ export default {
       activity: computed(() => AppState.activeActivity),
       routines: computed(() => AppState.routines),
       activeRoutine: computed(() => AppState.activeRoutine),
+      activeActivity: computed(()=> AppState.activeActivity),
 
       async createActivity(routineId) {
         try {
@@ -56,9 +61,24 @@ export default {
           Pop.error(error.message, '[CREATING ACTIVITY]')
         }
       }
+      // async getNewImage(activityName) {
+      //   try {
+      //     await picturesService.getNewImage(activityName)
+      //   } catch (error) {
+      //     Pop.error(error.message)
+      //     logger.log(error)
+      //   }
+      // }
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.activity-image{
+max-height: 50vh;
+max-width: 100vh;
+
+}
+
+</style>
