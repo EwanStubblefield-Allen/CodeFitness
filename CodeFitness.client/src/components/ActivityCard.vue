@@ -9,7 +9,16 @@
       <p>Difficulty: {{ activityProp.difficulty }}</p>
     </div>
     <div class="dark-bg text-end p-3 rounded">
-      <button v-if="routine" @click="createActivity()" class="btn btn-action">Add to Routine</button>
+      <button v-if="routines[0] && !route.params.routineId" class="btn btn-action" data-bs-toggle="dropdown">Add to Routine</button>
+      <button v-else @click="createActivity(activeRoutine.id)" class="btn btn-action">Add to Routine</button>
+
+      <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
+        <div class="list-group text-center">
+          <div v-for="r in routines" :key="r.id" @click="createActivity(r.id)" class="list-group-item dropdown-item list-group-item-action selectable">
+            <p>{{ r.title }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +29,7 @@ import { Modal } from "bootstrap"
 import { computed } from "vue"
 import { AppState } from "../AppState"
 import Pop from "../utils/Pop.js"
+import { useRoute } from "vue-router"
 
 export default {
   props: {
@@ -30,8 +40,12 @@ export default {
   },
 
   setup(props) {
+    const route = useRoute()
+
     return {
-      routine: computed(() => AppState.activeRoutine),
+      route,
+      routines: computed(() => AppState.routines),
+      activeRoutine: computed(() => AppState.activeRoutine),
       async setActiveActivity() {
         try {
           await activitiesService.setActiveActivity(props.activityProp)
@@ -41,10 +55,11 @@ export default {
         }
       },
 
-      async createActivity() {
+      async createActivity(routineId) {
         try {
-          await activitiesService.createActivity(props.activityProp)
-          document.documentElement.scrollTop = 0
+          const activity = props.activityProp
+          activity.routineId = routineId
+          await activitiesService.createActivity(activity)
         } catch (error) {
           Pop.error(error.message, '[CREATING ACTIVITY]')
         }

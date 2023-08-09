@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 960px) {
     .offcanvas-width {
       max-width: 16.7vw;
     }
