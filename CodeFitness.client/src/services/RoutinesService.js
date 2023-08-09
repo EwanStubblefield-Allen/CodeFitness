@@ -31,6 +31,7 @@ class RoutinesService {
     }
     const routine = new Routine(res.data.routine)
     AppState.routines.push(routine)
+    Pop.success(`${routine.title} was created!`)
     return routine
   }
 
@@ -44,11 +45,13 @@ class RoutinesService {
     AppState.activeRoutine = routine
     const foundIndex = AppState.routines.findIndex(r => r.id == routineData.id)
     AppState.routines.splice(foundIndex, 1, routine)
+    Pop.success(`${routine.title} was updated!`)
   }
 
   async removeRoutine(routineId) {
-    await api.delete(`api/routines/${routineId}`)
+    const res = await api.delete(`api/routines/${routineId}`)
     AppState.routines = AppState.routines.filter(r => r.id != routineId)
+    Pop.toast(`${res.data.title} was deleted!`)
   }
 }
 
