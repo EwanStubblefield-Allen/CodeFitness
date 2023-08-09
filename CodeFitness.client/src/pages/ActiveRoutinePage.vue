@@ -124,13 +124,21 @@
               <p class="text-neutral-light">{{ routine.activities[current - 1].equipment }}</p>
 
             </div>
+            <div v-else>
+              <div class="bg-success rounded text-light">
+                Start
+              </div>
+              Your routine has begun, press the > to advance throught the steps of the routine
+            </div>
           </div>
           <!-- Main activity card -->
           <div class="col-md-6 col-12 bg-light p-3 activeCard rounded elevation-5">
             <div v-if="current < routine.activities.length">
               <div class="d-flex justify-content-between">
-                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block" :disabled="current == 0">Back</button>
-                <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-md-none d-block">Finish</button>
+                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block"
+                  :disabled="current == 0">Back</button>
+                <button v-if="current == routine.activities.length" @click="updateData()"
+                  class="btn btn-action d-md-none d-block">Finish</button>
                 <button v-else @click="changeActivity(1)" class="btn btn-action d-md-none d-block">Next</button>
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
@@ -138,9 +146,11 @@
                 <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
               </div>
-              <p class="">Equipment: <span class="text-neutral-light"> {{ routine.activities[current].equipment }}</span> </p>
+              <p class="">Equipment: <span class="text-neutral-light"> {{ routine.activities[current].equipment }}</span>
+              </p>
               <!-- Collapsable -->
-              <p><button @click="toggleCollapse()" class="btn btn-outline-info" type="button">Show Instructions</button></p>
+              <p><button @click="toggleCollapse()" class="btn btn-outline-info" type="button">Show Instructions</button>
+              </p>
               <div class="" v-if="showCollapse">
                 <div class="card card-body">
                   <p class="p-2">Instructions:{{ routine.activities[current].instructions }}</p>
@@ -148,20 +158,25 @@
               </div>
             </div>
             <div v-else class="d-flex justify-content-center">
-              <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-md-none d-block">Finish</button>
+              <button v-if="current == routine.activities.length" @click="updateData()"
+                class="btn btn-action d-md-none d-block selectable">Finish</button>
             </div>
             <div v-if="current == routine.activities.length" class="">
-              <h3>Routine Complete!</h3>
+              <a class="bg-success rounded text-light fs-1 selectable">
+                Complete Routine
+              </a>
+              <!-- <i class="mdi mdi-axe mdi-spin"></i>
               <i class="mdi mdi-axe mdi-spin"></i>
-              <i class="mdi mdi-axe mdi-spin"></i>
-              <i class="mdi mdi-axe mdi-spin"></i>
+              <i class="mdi mdi-axe mdi-spin"></i> -->
             </div>
             <!-- < Next Prev button arrows > -->
-            <a v-if="current != 0" class="prevArrow d-none d-md-block" @click="changeActivity(-1)" role="button" data-slide="prev">
+            <a v-if="current != 0" class="prevArrow d-none d-md-block" @click="changeActivity(-1)" role="button"
+              data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only"></span>
             </a>
-            <a class="nextArrow d-none d-md-block" v-if="current == routine.activities.length" @click="updateData()" role="button" data-slide="next">
+            <a class="nextArrow d-none d-md-block" v-if="current == routine.activities.length" @click="updateData()"
+              role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only"></span>
             </a>
@@ -182,9 +197,14 @@
 
             </div>
             <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-around flex-column h-100">
-              <p class=" "><i class="mdi mdi-party-popper mdi-rotate-270 text-warning"></i> Done!<i class="mdi mdi-party-popper text-warning"></i></p>
+              <!-- <p class=" "><i class="mdi mdi-party-popper mdi-rotate-270 text-warning"></i> Done!<i
+                  class="mdi mdi-party-popper text-warning"></i></p>
               <p>🎈🎊🥳🎊🎈</p>
-              <p>🎉🎊🎁🎊🎉</p>
+              <p>🎉🎊🎁🎊🎉</p> -->
+
+              <div class="bg-success rounded text-light">
+                Finish
+              </div>
             </div>
           </div>
         </section>
@@ -280,84 +300,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .btn-outline-info {
-    border-color: #406B6E;
-    color: #406B6E;
+.btn-outline-info {
+  border-color: #406B6E;
+  color: #406B6E;
+}
+
+.activeCard {
+  min-height: 40vh;
+
+}
+
+.secondaryCard {
+  min-height: 40vh;
+  max-height: 40vh;
+  transform: scale(.90);
+}
+
+.parentContainer {
+  position: absolute;
+}
+
+.nextArrow {
+  position: absolute;
+  bottom: 70%;
+  left: 80%;
+}
+
+.prevArrow {
+  position: absolute;
+  bottom: 70%;
+  right: 63%;
+}
+
+.confetti-container {
+  user-select: none;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.confetti {
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+.confetti .square {
+  width: 3rem;
+  height: 1rem;
+  background-color: orange;
+  transform: rotate(140deg);
+
+  .confetti .rectangle {
+    width: 1rem;
+    height: 0.5rem;
+    background-color: red;
   }
+}
 
-  .activeCard {
-    min-height: 40vh;
+.confetti i {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.2rem;
+  animation-name: confetti;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: calc(60s / var(--speed));
+}
 
+.confetti i:nth-child(even) {
+  transform: rotate(90deg);
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(-100vh);
   }
-
-  .secondaryCard {
-    min-height: 40vh;
-    max-height: 40vh;
-    transform: scale(.90);
-  }
-
-  .parentContainer {
-    position: absolute;
-  }
-
-  .nextArrow {
-    position: absolute;
-    bottom: 70%;
-    left: 80%;
-  }
-
-  .prevArrow {
-    position: absolute;
-    bottom: 70%;
-    right: 63%;
-  }
-
-  .confetti-container {
-    user-select: none;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  .confetti {
-    position: fixed;
-    left: 0;
-    right: 0;
-    display: flex;
-  }
-
-  .confetti .square {
-    width: 3rem;
-    height: 1rem;
-    background-color: orange;
-    transform: rotate(140deg);
-
-    .confetti .rectangle {
-      width: 1rem;
-      height: 0.5rem;
-      background-color: red;
-    }
-  }
-
-  .confetti i {
-    width: 3rem;
-    height: 3rem;
-    margin: 0 0.2rem;
-    animation-name: confetti;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-duration: calc(60s / var(--speed));
-  }
-
-  .confetti i:nth-child(even) {
-    transform: rotate(90deg);
-  }
-
-  @keyframes confetti {
-    0% {
-      transform: translateY(-100vh);
-    }
 
   100% {
     transform: translateY(100vh);
   }
-}</style>
+}
+</style>
