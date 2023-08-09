@@ -2,12 +2,12 @@
   <div class="col-12 col-md-10 offset-md-2">
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
-        <img class="cover-image" :src="account.coverImg" :alt="account.name">
+        <img class="cover-image" :src="account.coverImg" onerror="randomCoverImg()" :alt="account.name">
 
         <div class="d-md-flex justify-content-between align-items-end position">
-          <img class="account-picture" :src="account.picture" :alt="account.name">
+          <img class="account-picture" :src="account.picture" onerror="randomProfileImg()" :alt="account.name">
           <div class="d-flex justify-content-end">
-            <div class="fs-1 fs-bold text-center text-uppercase">{{ account.name }}</div>
+            <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
             <div class=" text-start text-stroke fs-1 ps-3 mdi mdi-star-four-points text-warning"></div>
           </div>
         </div>
@@ -20,7 +20,7 @@
     </div>
 
     <section class="row justify-content-center">
-      <div class="col-12 col-md-9 mt-5 mb-3 fs-5">
+      <div class="col-12 col-md-9 mt-5 mb-3 fs-5 text-break">
         {{ account.bio }}
       </div>
     </section>
@@ -47,7 +47,7 @@
 
       </div>
     </section>
-    <section class="row justify-content-center">
+    <section class="row justify-content-center text-break">
       <div class="col-12 col-md-9">
         <section v-if="account.id && (routines.length >= 3)" class="row">
           <div v-for="r in showAmount" :key="r" class="col-12 col-md-4 pb-3">
@@ -59,7 +59,8 @@
                 <p class="p-2 mb-2">{{ routines[r - 1].description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r - 1].id } }">
-                    <button @click="getRoutineById(routines[r - 1].id)" class="btn btn-action" type="button">Start Routine</button>
+                    <button @click="getRoutineById(routines[r - 1].id)" class="btn btn-action" type="button">Start
+                      Routine</button>
                   </RouterLink>
                 </div>
               </div>
@@ -76,7 +77,8 @@
                 <p class="p-2 mb-2">{{ r.description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
-                    <button v-if="r.activities[0]" @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
+                    <button v-if="r.activities[0]" @click="getRoutineById(r.id)" class="btn btn-action"
+                      type="button">Start Routine</button>
                   </RouterLink>
                 </div>
               </div>
@@ -100,8 +102,10 @@
               {{ achievement.type }} Progress: {{ achievement.progress }}
             </h2>
             <div class="row text-light">
-              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-12 col-md-6 col-lg-3 d-flex achievement-card border border-light">
-                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture" alt="" :title="tier.name">
+              <div v-for="tier in  achievement.achievementTier " :key="tier._id"
+                class="col-12 col-md-6 col-lg-3 d-flex achievement-card border border-light">
+                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture"
+                  alt="" :title="tier.name">
                 <div v-if="achievement.tier >= tier.tier - 1" class="d-flex flex-column justify-content-between">
                   <h3>
                     {{ tier.name }}
@@ -109,8 +113,10 @@
                   <p>
                     {{ tier.description }}
                   </p>
-                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 m-2 border border-light" role="progressbar">
-                    <div class="progress-bar bg-success" :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
+                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 m-2 border border-light"
+                    role="progressbar">
+                    <div class="progress-bar bg-success"
+                      :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
                     </div>
                   </div>
                 </div>
@@ -134,6 +140,7 @@ import { AppState } from '../AppState'
 import { routinesService } from "../services/RoutinesService"
 import { accountAchievementService } from "../services/AccountAchievementService"
 import Pop from "../utils/Pop"
+import { accountService } from "../services/AccountService.js"
 
 export default {
   setup() {
@@ -151,6 +158,20 @@ export default {
       }
     }
 
+    function randomCoverImg() {
+      let array = AppState.randomImgForCover
+      let randomNum = Math.floor(Math.random() * array.length)
+      AppState.account.coverImg = array[randomNum]
+      Pop.error('Invalid Image URL for Cover Image')
+    }
+
+    function randomProfileImg() {
+      let array = AppState.randomImgForProfile
+      let randomNum = Math.floor(Math.random() * array.length)
+      AppState.account.picture = array[randomNum]
+      Pop.error('Invalid Image URL for Profile Image')
+    }
+
     onUnmounted(() => {
       document.documentElement.scrollTop = 0
     })
@@ -158,6 +179,8 @@ export default {
     watchEffect(() => {
       if (AppState.account.id) {
         getAchievementsByUserId()
+        randomCoverImg()
+        randomProfileImg()
       }
     })
 
@@ -177,15 +200,8 @@ export default {
           complete += a.tier
         })
         return complete
-      }),
+      })
 
-      async getRoutineById(routineId) {
-        try {
-          await routinesService.getRoutineById(routineId)
-        } catch (error) {
-          Pop.error(error.message, '[GETTING ROUTINE BY ID]')
-        }
-      }
     }
   }
 }

@@ -6,6 +6,7 @@ import { api } from './AxiosService'
 import Pop from '../utils/Pop.js'
 
 class AccountService {
+
   async selectCommunity(community) {
     AppState.account.community = community
     Pop.success(`You have chosen the ${community}`)
