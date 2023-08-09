@@ -1,9 +1,9 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
-import Pop from "../utils/Pop.js"
 import { accountAchievementService } from "./AccountAchievementService.js"
 import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
+import Pop from "../utils/Pop.js"
 
 class ActivitiesService {
   async setActiveActivity(activity) {
@@ -55,6 +55,7 @@ class ActivitiesService {
     const res = await api.post('api/activities', activityData)
     const activity = new Activity(res.data)
     const foundIndex = AppState.routines.findIndex(r => r.id == activityData.routineId)
+    AppState.activeRoutine = AppState.routines[foundIndex]
     AppState.routines[foundIndex].activities.push(activity)
     Pop.success(`${activity.name} was added to ${AppState.routines[foundIndex].title}!`)
   }
