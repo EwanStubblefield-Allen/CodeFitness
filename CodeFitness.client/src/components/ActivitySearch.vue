@@ -39,9 +39,9 @@ export default {
   setup() {
     const editable = ref('')
 
-    // onMounted(() => {
-    //   getActivitiesBySearch('')
-    // })
+    onMounted(() => {
+      getActivitiesBySearch('')
+    })
 
     async function getActivitiesBySearch(template) {
       try {
