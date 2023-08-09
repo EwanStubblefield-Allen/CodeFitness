@@ -2,7 +2,7 @@
   <div class="col-12 col-md-10 offset-md-2 bg-neutral-dark">
     <section class="row justify-content-center">
       <div class="col-11 fs-1 p-0 d-flex justify-content-center text-light my-3">
-        <section v-if="selectedDev == 0" class="row reserved-space d-flex justify-content-center flex-grow-1">
+        <section v-if="selectedDev == 0" class="row d-flex justify-content-center flex-grow-1">
           <div class="text-center fs-1 p-5">
             Select your developer!
           </div>
@@ -116,6 +116,13 @@
         </div>
       </div>
     </section>
+    <div class="bg-neutral-dark text-center mt-4 p-5 text-light">
+      <h1>Program your Fitness</h1>
+      <div class="d-flex justify-content-center me-5 pe-3">
+        <img class="me-5" src="../assets/img/CFTee.png" alt="logo" height="355" />
+        <img class="mt-5 me-5" src="../assets/img/CFHat.png" alt="logo" height="155" />
+      </div>
+    </div>
   </div>
 </template>
 
