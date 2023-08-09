@@ -56,6 +56,7 @@
               <img :src="routines[r - 1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ routines[r - 1].title }}</h5>
+
                 <p class="p-2 mb-2">{{ routines[r - 1].description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r - 1].id } }">
@@ -179,8 +180,6 @@ export default {
     watchEffect(() => {
       if (AppState.account.id) {
         getAchievementsByUserId()
-        randomCoverImg()
-        randomProfileImg()
       }
     })
 
