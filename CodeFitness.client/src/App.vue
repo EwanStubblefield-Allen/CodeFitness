@@ -117,7 +117,12 @@ export default {
   .text-neutral {
     color: var(--neutral);
   }
-
+  .text-neutral-light {
+    color: var(--neutral-light);
+  }
+  .text-dark-theme {
+    color: var(--dark);
+  }
   .btn-action:hover {
     color: black;
     background-color: var(--light);
