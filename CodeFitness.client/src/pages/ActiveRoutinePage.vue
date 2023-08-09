@@ -143,7 +143,8 @@
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets - completedSets }}</span></p>
+                <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets - completedSets }} / {{
+                  routine.activities[current].sets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
               </div>
               <p class="">Equipment: <span class="text-neutral-light"> {{ routine.activities[current].equipment }}</span>
@@ -162,16 +163,10 @@
                 class="btn btn-action d-block selectable">Complete Routine</button>
             </div>
             <div v-if="current == routine.activities.length" class="">
-              <!-- <a class="bg-success rounded text-light fs-1 selectable" @click="updateData()">
-                Complete Routine
-              </a> -->
-              <!-- <i class="mdi mdi-axe mdi-spin"></i>
-              <i class="mdi mdi-axe mdi-spin"></i>
-              <i class="mdi mdi-axe mdi-spin"></i> -->
             </div>
             <!-- < Next Prev button arrows > -->
-            <a v-if="current != 0" class="prevArrow d-none d-md-block" @click="changeActivity(-1)" role="button"
-              data-slide="prev">
+            <a v-if="current != 0 || completedSets != 0" class="prevArrow d-none d-md-block" @click="changeActivity(-1)"
+              role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only"></span>
             </a>
@@ -252,6 +247,7 @@ import { AppState } from "../AppState"
 import { accountService } from "../services/AccountService"
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop"
+import { logger } from "../utils/Logger.js"
 
 export default {
   setup() {
@@ -298,16 +294,23 @@ export default {
 
       changeActivity(change) {
         if (change == 1) {
-          editable.value[this.routine.activities[current.value].id] = true
           completedSets.value += 1
-        } else {
-          editable.value[this.routine.activities[current.value - 1].id] = false
-          completedSets.value -= 1
-        }
 
-        if (completedSets.value == this.routine.activities[current.value].sets) {
-          current.value += change
-          completedSets.value = 0
+          if (completedSets.value == this.routine.activities[current.value].sets) {
+            editable.value[this.routine.activities[current.value].id] = true
+            current.value += change
+            completedSets.value = 0
+          }
+        } else {
+          if (current.value != 0) {
+            editable.value[this.routine.activities[current.value - 1].id] = false
+          }
+          completedSets.value -= 1
+
+          if (completedSets.value < 0) {
+            current.value += change
+            completedSets.value = this.routine.activities[current.value].sets - 1
+          }
         }
       },
 
