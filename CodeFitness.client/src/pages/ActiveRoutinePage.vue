@@ -1,5 +1,5 @@
 <template>
-  <div v-if="current == routine.activities.length" class="confetti-container ">
+  <div v-if="current == routine?.activities.length" class="confetti-container ">
     <div class="confetti">
       <i style="--speed: 10; --bg: yellow" class="mdi mdi-star-four-points text-success fs-4"></i>
       <i style="--speed: 29; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info fs-4"></i>
@@ -110,7 +110,7 @@
     <section class="row justify-content-center bg-neutral-dark">
       <div class="col-12 p-3">
 
-        <div class="fs-1 text-center text-white">{{ routine.title }}</div>
+        <h1 class="fs-1 text-center text-white">{{ routine.title }}</h1>
 
         <section class="row justify-content-around text-center my-4">
           <!-- First activity card -->
@@ -118,7 +118,7 @@
             <div v-if="current > 0" class="d-flex flex-column justify-content-around h-100">
               <p class="fs-5 fw-bold">{{ routine.activities[current - 1].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p>Sets: <span class="text-neutral">{{ routine.activities[current - 1].sets }}</span></p>
+                <p>Sets: <span class="text-neutral">{{ routine.activities[current - 1].sets - completedSets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current - 1].reps }}</span></p>
               </div>
               <p class="text-neutral-light">{{ routine.activities[current - 1].equipment }}</p>
@@ -143,7 +143,7 @@
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets }}</span></p>
+                <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets - completedSets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
               </div>
               <p class="">Equipment: <span class="text-neutral-light"> {{ routine.activities[current].equipment }}</span>
@@ -159,12 +159,12 @@
             </div>
             <div v-else class="d-flex justify-content-center">
               <button v-if="current == routine.activities.length" @click="updateData()"
-                class="btn btn-action d-md-none d-block selectable">Finish</button>
+                class="btn btn-action d-block selectable">Complete Routine</button>
             </div>
             <div v-if="current == routine.activities.length" class="">
-              <a class="bg-success rounded text-light fs-1 selectable">
+              <!-- <a class="bg-success rounded text-light fs-1 selectable" @click="updateData()">
                 Complete Routine
-              </a>
+              </a> -->
               <!-- <i class="mdi mdi-axe mdi-spin"></i>
               <i class="mdi mdi-axe mdi-spin"></i>
               <i class="mdi mdi-axe mdi-spin"></i> -->
@@ -175,10 +175,10 @@
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only"></span>
             </a>
-            <a class="nextArrow d-none d-md-block" v-if="current == routine.activities.length" @click="updateData()"
-              role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
+            <a class="nextArrow d-none d-md-block" v-if="current == routine.activities.length" role="button"
+              data-slide="next">
+              <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span> -->
             </a>
             <a class="nextArrow d-none d-md-block" v-else @click="changeActivity(1)" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -208,16 +208,36 @@
             </div>
           </div>
         </section>
-
-        <form @submit.prevent="" class="row justify-content-around">
-          <div v-for="a in routine.activities" :key="a.id" class="col-5 form-check">
-            <input v-model="editable[a.id]" class="fs-5 form-check-input" type="checkbox" :id="a.id">
+        <section class="row">
+          <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-action" title="No Functionality yet">Timer</button>
+          </div>
+        </section>
+        <form @submit.prevent="" class="row justify-content-around ps-2">
+          <section class="row">
+            <div class="col-12 d-flex mb-3 justify-content-center">
+              <div v-if="!superSet">
+                <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action "
+                  title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Super
+                  Set</button>
+              </div>
+              <div v-else>
+                <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action"
+                  title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Regular
+                  Routine</button>
+              </div>
+            </div>
+          </section>
+          <div v-for="a in routine.activities" :key="a.id" class="col-5 form-check ">
+            <input onclick="return false" v-model="editable[a.id]" class="fs-5 form-check-input" type="checkbox"
+              :id="a.id">
             <label class="fs-5 form-check-label" :for="a.id">
               {{ a.name }}
             </label>
           </div>
           <div class="text-end p-3">
-            <button @click="current = 0; editable = {}" class="btn btn-danger" type="reset">Restart</button>
+            <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger"
+              type="reset">Restart</button>
           </div>
         </form>
       </div>
@@ -226,7 +246,7 @@
 </template>
 
 <script>
-import { computed, ref, watchEffect } from "vue"
+import { computed, onMounted, ref, watchEffect } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { AppState } from "../AppState"
 import { accountService } from "../services/AccountService"
@@ -239,11 +259,17 @@ export default {
     const router = useRouter()
     const editable = ref({})
     const showCollapse = ref(false)
+    const completedSets = ref({})
+    const superSet = ref({})
 
     let current = ref(0)
 
     watchEffect(() => {
       getRoutineById()
+    })
+    onMounted(() => {
+      superSet.value = false
+      completedSets.value = 0
     })
 
     function toggleCollapse() {
@@ -261,6 +287,8 @@ export default {
     return {
       editable,
       current,
+      superSet,
+      completedSets,
       routine: computed(() => AppState.activeRoutine),
       toggleCollapse,
       showCollapse,
@@ -271,10 +299,16 @@ export default {
       changeActivity(change) {
         if (change == 1) {
           editable.value[this.routine.activities[current.value].id] = true
+          completedSets.value += 1
         } else {
           editable.value[this.routine.activities[current.value - 1].id] = false
+          completedSets.value -= 1
         }
-        current.value += change
+
+        if (completedSets.value == this.routine.activities[current.value].sets) {
+          current.value += change
+          completedSets.value = 0
+        }
       },
 
       async updateData() {
