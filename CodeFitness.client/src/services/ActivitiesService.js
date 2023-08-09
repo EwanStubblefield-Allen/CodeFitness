@@ -54,7 +54,6 @@ class ActivitiesService {
     }
     const res = await api.post('api/activities', activityData)
     const activity = new Activity(res.data)
-    AppState.activeRoutine?.activities.push(activity)
     const foundIndex = AppState.routines.findIndex(r => r.id == activityData.routineId)
     AppState.routines[foundIndex].activities.push(activity)
     Pop.success(`${activity.name} was added to ${AppState.routines[foundIndex].title}!`)
