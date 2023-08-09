@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 col-md-10 offset-md-2 p-0 bg-neutral-dark">
+  <div class="col-12 col-md-10 offset-md-2 bg-neutral-dark">
     <section class="row justify-content-center">
       <div class="col-11 fs-1 p-0 d-flex justify-content-center text-light my-3">
         <section v-if="selectedDev == 0" class="row reserved-space d-flex justify-content-center flex-grow-1">
@@ -9,7 +9,7 @@
         </section>
 
         <section v-if="selectedDev == 1" class="row reserved-space">
-          <h1 class="col-4  d-flex flex-column justify-content-between fs-3 mb-0 ewan-space">
+          <h1 class="col-4 d-flex flex-column justify-content-between fs-3 mb-0 ewan-space">
             <div>Ewan</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
@@ -25,7 +25,7 @@
         </section>
 
         <section v-if="selectedDev == 2" class="row reserved-space">
-          <h1 class="col-4  d-flex flex-column justify-content-between fs-3 mb-0 faith-space">
+          <h1 class="col-4 d-flex flex-column justify-content-between fs-3 mb-0 faith-space">
             <div>Faith</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
@@ -41,7 +41,7 @@
         </section>
 
         <section v-if="selectedDev == 3" class="row reserved-space">
-          <h1 class="col-4  d-flex flex-column justify-content-between fs-3 mb-0 jasper-space ">
+          <h1 class="col-4 d-flex flex-column justify-content-between fs-3 mb-0 jasper-space ">
             <div>Jasper</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
@@ -58,7 +58,7 @@
         </section>
 
         <section v-if="selectedDev == 4" class="row reserved-space">
-          <h1 class="col-4  d-flex flex-column justify-content-between fs-3 mb-0 josh-space">
+          <h1 class="col-4 d-flex flex-column justify-content-between fs-3 mb-0 josh-space">
             <div>Josh</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
@@ -74,7 +74,7 @@
         </section>
 
         <section v-if="selectedDev == 5" class="row reserved-space">
-          <h1 class="col-4  d-flex flex-column justify-content-between fs-3 mb-0 kyle-space">
+          <h1 class="col-4 d-flex flex-column justify-content-between fs-3 mb-0 kyle-space">
             <div>Kyle Peppersack</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
@@ -93,7 +93,7 @@
     </section>
 
     <section class="row">
-      <div class=" col-12  d-flex flex-column flex-md-row justify-content-around dev-select ">
+      <div class=" col-12 d-flex flex-column flex-md-row justify-content-around dev-select ">
         <div style="background-image: url('src/assets/img/ewan-icon.jpg'); " class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 1 }" @click="selectedDev = 1">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
@@ -258,8 +258,8 @@ export default {
   .dev-select {
     background-color: var(--neutral-light);
     text-align: center;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 
   }
 
