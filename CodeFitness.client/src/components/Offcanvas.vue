@@ -1,9 +1,15 @@
 <template>
   <!-- SECTION Off Canvas -->
-  <div class="offcanvas offcanvas-start  text-light offcanvas-width top-margin" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" aria-labelledby="offcanvasScrollingLabel">
-    <div class="offcanvas-body container-fluid bg-neutral-dark ">
+  <div class="offcanvas offcanvas-start bg-neutral-dark text-light offcanvas-width" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+        <slot name="title"></slot>
+      </h5>
+      <button type="button" class="btn mdi mdi-close text-reset fs-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body container-fluid">
       <section class="row justify-content-center">
-        <slot></slot>
+        <slot name="body"></slot>
       </section>
     </div>
   </div>
@@ -18,10 +24,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .top-margin {
-    margin-top: 80px;
-  }
-
   @media screen and (min-width: 768px) {
     .offcanvas-width {
       max-width: 16.7vw;

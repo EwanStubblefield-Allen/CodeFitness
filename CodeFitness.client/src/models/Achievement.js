@@ -1,6 +1,7 @@
 export class Achievement {
   constructor(data) {
     this.id = data.id
+    this.name = data.type
     this.tier = data.tier
     this.progress = data.progress
     this.achievementId = data.achievementId
