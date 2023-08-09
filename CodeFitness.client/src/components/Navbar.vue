@@ -1,19 +1,30 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-neutral px-3">
-    <!-- <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }"> -->
-    <div class="d-flex flex-column align-items-center">
-      <img type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" alt="logo" src="../assets/img/codeFitness.png" height="55" />
-    </div>
-    <!-- </router-link> -->
+    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+      <div class="d-flex flex-column align-items-center">
+        <img src="../assets/img/codeFitness.png" alt="logo" height="55" />
+      </div>
+    </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav ms-auto">
         <li>
-          <!-- <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase">
+            Home
+          </router-link>
+          <router-link :to="{ name: 'Account' }" class="btn text-success lighten-30 selectable text-uppercase">
+            Account
+          </router-link>
+          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
-          </router-link> -->
+          </router-link>
+          <div class="d-flex d-md-none justify-content-between align-items-center pt-2">
+            <button v-if="routines[0]" class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
+            <button v-else class="btn btn-action text-break" data-bs-toggle="modal" data-bs-target="#routineForm">Routines</button>
+            <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Badges</button>
+          </div>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -30,7 +41,8 @@ import Login from './Login.vue'
 export default {
   setup() {
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      routines: computed(() => AppState.routines)
     }
   },
   components: { Login }

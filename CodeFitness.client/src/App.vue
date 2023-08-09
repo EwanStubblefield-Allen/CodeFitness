@@ -34,21 +34,30 @@
   </ModalComponent>
 
   <ModalComponent v-if="appState.activeActivity" id="activeActivity" class="modal-lg">
-    <template #title>{{ appState.activeActivity.name }}</template>
+    <template #title>
+      {{ appState.activeActivity.name }}
+    </template>
     <template #body>
       <ActivityDetails />
     </template>
   </ModalComponent>
 
-  <Offcanvas id="offcanvasScrolling">
-    <SideBarNav />
+  <Offcanvas id="offcanvasRoutine">
+    <template #title>
+      Routines
+    </template>
+    <template #body>
+      <RoutineList />
+    </template>
   </Offcanvas>
 
-  <Offcanvas id="offcanvasRoutine">
-    <RoutineList />
-  </Offcanvas>
   <Offcanvas id="offcanvasAchievements">
-    <AchievementList />
+    <template #title>
+      Badges
+    </template>
+    <template #body>
+      <AchievementList />
+    </template>
   </Offcanvas>
 </template>
 
@@ -62,7 +71,6 @@ import ActivityDetails from "./components/ActivityDetails.vue"
 import ActivityFilter from "./components/ActivityFilter.vue"
 import AccountForm from "./components/AccountForm.vue"
 import Offcanvas from './components/Offcanvas.vue'
-import SideBarNav from './components/SideBarNav.vue'
 import RoutineList from './components/RoutineList.vue'
 
 export default {
@@ -72,7 +80,7 @@ export default {
       account: computed(() => AppState.account)
     }
   },
-  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter, AccountForm, Offcanvas, SideBarNav, RoutineList }
+  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter, AccountForm, Offcanvas, RoutineList }
 }
 </script>
 <style lang="scss">
@@ -117,12 +125,15 @@ export default {
   .text-neutral {
     color: var(--neutral);
   }
+
   .text-neutral-light {
     color: var(--neutral-light);
   }
+
   .text-dark-theme {
     color: var(--dark);
   }
+
   .btn-action:hover {
     color: black;
     background-color: var(--light);

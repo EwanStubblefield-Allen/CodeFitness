@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Activity } from "../models/Activity.js"
+import Pop from "../utils/Pop.js"
 import { accountAchievementService } from "./AccountAchievementService.js"
 import { activityApi, api } from "./AxiosService.js"
 import { picturesService } from "./PicturesService.js"
@@ -48,21 +49,15 @@ class ActivitiesService {
   }
 
   async createActivity(activityData) {
-    const activeRoutine = AppState.activeRoutine
-
     if (!activityData.picture) {
       activityData.picture = await picturesService.getPictures(activityData.name)
     }
-
-    if (!activeRoutine) {
-      throw new Error(`Please Select a Routine to Add the ${activityData.name} to!`)
-    }
-    activityData.routineId = activeRoutine.id
     const res = await api.post('api/activities', activityData)
     const activity = new Activity(res.data)
-    activeRoutine.activities.push(activity)
-    const foundIndex = AppState.routines.findIndex(r => r.id == activeRoutine.id)
+    AppState.activeRoutine?.activities.push(activity)
+    const foundIndex = AppState.routines.findIndex(r => r.id == activityData.routineId)
     AppState.routines[foundIndex].activities.push(activity)
+    Pop.success(`${activity.name} was added to ${AppState.routines[foundIndex].title}!`)
   }
 
   async updateActivity(activity) {
@@ -74,15 +69,17 @@ class ActivitiesService {
     }
     const foundIndex = activeRoutine.activities.findIndex(a => a.id == activity.id)
     activeRoutine.activities.splice(foundIndex, 1, new Activity(res.data.activity))
+    Pop.success(`${activity.name} was updated!`)
   }
 
   async removeActivity(activityId) {
     const activeRoutine = AppState.activeRoutine
-    await api.delete(`api/activities/${activityId}`)
+    const res = await api.delete(`api/activities/${activityId}`)
     activeRoutine.activities = activeRoutine.activities.filter(a => a.id != activityId)
     const foundIndex = AppState.routines.findIndex(r => r.id == activeRoutine.id)
     const foundRoutine = AppState.routines[foundIndex]
     foundRoutine.activities = foundRoutine.activities.filter(a => a.id != activityId)
+    Pop.toast(`${res.data.name} was removed from ${foundRoutine.title}!`)
   }
 }
 
