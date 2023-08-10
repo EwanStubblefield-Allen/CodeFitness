@@ -46,7 +46,6 @@ class RoutinesService {
     AppState.activeRoutine = routine
     const foundIndex = AppState.routines.findIndex(r => r.id == routineData.id)
     AppState.routines.splice(foundIndex, 1, routine)
-    Pop.success(`${routine.title} was updated!`)
   }
 
   async removeRoutine(routineId) {

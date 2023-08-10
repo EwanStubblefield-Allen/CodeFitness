@@ -3,7 +3,7 @@
     <TeamComponent />
 
     <section v-if="account.community" class="row m-3">
-      <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
+      <button class="btn btn-action p-3 fs-3" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
         Routine</button>
     </section>
     <section class="row justify-content-center">

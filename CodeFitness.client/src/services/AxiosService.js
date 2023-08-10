@@ -14,6 +14,8 @@ export const activityApi = Axios.create({
 })
 
 export const pictureApi = Axios.create({
+  // baseURL: 'https://customsearch.googleapis.com/customsearch/v1',
+
   baseURL: 'https://api.pexels.com/videos/',
   headers: { 'Authorization': 'uvMRboBqFGX0nUAxq6yoLvvO4dXCmqTuREGtQ2PqdtK3AfR3qDwNUcwb' },
   timeout: 8000

@@ -2,25 +2,28 @@
   <div class="col-12 col-md-10 offset-md-2">
     <section class="row">
       <div class="col-12 col-md-12 p-0 position-relative">
-        <img class="cover-image" :src="account.coverImg" :alt="account.name">
+        <img class="cover-image" :src="account.coverImg" @error="randomCoverImg()" :alt="account.name">
 
         <div class="d-md-flex justify-content-between align-items-end position">
-          <img class="account-picture" :src="account.picture" :alt="account.name">
-          <div class="d-flex justify-content-end">
-            <div class="fs-1 fs-bold text-center text-uppercase">{{ account.name }}</div>
-            <div class=" text-start text-stroke fs-1 ps-3 mdi mdi-star-four-points text-warning"></div>
-          </div>
+          <img class="account-picture" :src="account.picture" @error="randomProfileImg()" :alt="account.name">
         </div>
       </div>
     </section>
 
-    <div class="text-end">
-      <button class="btn btn-action mt-3 mb-5 py-3" data-bs-toggle="modal" data-bs-target="#accountForm"> Edit Account
-      </button>
-    </div>
+    <section class="row justify-content-between">
+      <div class="offset-md-3 offset-xl-2 col-10 col-md-7 order-2 order-md-1 d-flex align-items-center pt-3">
+        <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
+        <img v-if="account.community == 'Cardio Kings'" class="text-stroke px-3" src="../assets/img/flagCK.png" alt="Cardio Kings">
+        <img v-else-if="account.community == 'Weight Warriors'" class="text-stroke px-3" src="../assets/img/flagWW.png" alt="Weight Warriors">
+        <img v-else-if="account.community == 'Legion of Leisure'" class="text-stroke px-3" src="../assets/img/flagLL.png" alt="Legion of Leisure">
+      </div>
+      <div class="col-12 col-md-2 order-1 order-md-2 text-end">
+        <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm" title="Edit Account"></button>
+      </div>
+    </section>
 
     <section class="row justify-content-center">
-      <div class="col-12 col-md-9 mt-5 mb-3 fs-5">
+      <div class="col-12 col-md-9 py-3 fs-5 text-break">
         {{ account.bio }}
       </div>
     </section>
@@ -47,7 +50,7 @@
 
       </div>
     </section>
-    <section class="row justify-content-center">
+    <section class="row justify-content-center text-break">
       <div class="col-12 col-md-9">
         <section v-if="account.id && (routines.length >= 3)" class="row">
           <div v-for="r in showAmount" :key="r" class="col-12 col-md-4 pb-3">
@@ -56,10 +59,12 @@
               <img :src="routines[r - 1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ routines[r - 1].title }}</h5>
+
                 <p class="p-2 mb-2">{{ routines[r - 1].description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routines[r - 1].id } }">
-                    <button @click="getRoutineById(routines[r - 1].id)" class="btn btn-action" type="button">Start Routine</button>
+                    <button @click="getRoutineById(routines[r - 1].id)" class="btn btn-action" type="button">Start
+                      Routine</button>
                   </RouterLink>
                 </div>
               </div>
@@ -97,10 +102,10 @@
           </h1>
           <div v-for="achievement in  achievements " :key="achievement.id" class="d-flex flex-column py-1">
             <h2>
-              {{ achievement.type }} Progress: {{ achievement.progress }}
+              {{ achievement.name }} Progress: {{ achievement.progress }}
             </h2>
             <div class="row text-light">
-              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-12 col-md-6 col-lg-3 d-flex achievement-card border border-light">
+              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-12 col-md-6 col-xl-3 d-flex achievement-card border border-light">
                 <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture" alt="" :title="tier.name">
                 <div v-if="achievement.tier >= tier.tier - 1" class="d-flex flex-column justify-content-between">
                   <h3>
@@ -131,7 +136,6 @@
 <script>
 import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
-import { routinesService } from "../services/RoutinesService"
 import { accountAchievementService } from "../services/AccountAchievementService"
 import Pop from "../utils/Pop"
 
@@ -151,6 +155,20 @@ export default {
       }
     }
 
+    function randomCoverImg() {
+      let array = AppState.randomImgForCover
+      let randomNum = Math.floor(Math.random() * array.length)
+      AppState.account.coverImg = array[randomNum]
+      Pop.error('Invalid Image URL for Cover Image')
+    }
+
+    function randomProfileImg() {
+      let array = AppState.randomImgForProfile
+      let randomNum = Math.floor(Math.random() * array.length)
+      AppState.account.picture = array[randomNum]
+      Pop.error('Invalid Image URL for Profile Image')
+    }
+
     onUnmounted(() => {
       document.documentElement.scrollTop = 0
     })
@@ -164,6 +182,8 @@ export default {
     return {
       editable,
       showAmount,
+      randomCoverImg,
+      randomProfileImg,
       account: computed(() => AppState.account),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
@@ -177,15 +197,8 @@ export default {
           complete += a.tier
         })
         return complete
-      }),
+      })
 
-      async getRoutineById(routineId) {
-        try {
-          await routinesService.getRoutineById(routineId)
-        } catch (error) {
-          Pop.error(error.message, '[GETTING ROUTINE BY ID]')
-        }
-      }
     }
   }
 }
@@ -214,6 +227,7 @@ export default {
   }
 
   .text-stroke {
+    height: 8vh;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
   }
