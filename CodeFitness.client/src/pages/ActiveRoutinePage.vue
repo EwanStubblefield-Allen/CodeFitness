@@ -107,11 +107,32 @@
     </div>
   </div>
   <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark ">
-    <section class="row justify-content-center bg-neutral-dark">
+    <section class="row justify-content-center bg-active-routine">
       <div class="col-12 p-3">
 
         <h1 class="fs-1 text-center text-white">{{ routine.title }}</h1>
-
+        <div class="pt-1">
+          <div v-if="!superSet">
+            <div class="text-center pb-2">
+              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2"
+                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Regular
+                Routine</button>
+              <div>
+                -Progress through the activity and all of its sets before going on to the next activity-
+              </div>
+            </div>
+          </div>
+          <div v-else>
+            <div class="text-center pb-2">
+              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2"
+                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Super
+                Set</button>
+              <div>
+                -Progress through a loop of every activity for the number of sets you it has-
+              </div>
+            </div>
+          </div>
+        </div>
         <section class="row justify-content-around text-center my-4">
           <!-- First activity card -->
           <div class="col-md-2 d-none d-md-block bg-light secondaryCard rounded elevation-5">
@@ -215,22 +236,15 @@
         <form @submit.prevent="" class="row justify-content-around ps-2">
           <section class="row">
             <div class="col-12 d-flex mb-3 justify-content-center">
-              <div v-if="!superSet">
-                <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action "
-                  title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Super
-                  Set</button>
-              </div>
-              <div v-else>
-                <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action"
-                  title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Regular
-                  Routine</button>
-              </div>
+              <!-- There was stuff here -->
             </div>
           </section>
           <div v-for="a in routine.activities" :key="a.tempId" class="col-5 form-check ">
+            <div class="control-checks"></div>
             <input onclick="return false" v-model="editable[a.tempId]" class="fs-5 form-check-input" type="checkbox"
               :id="a.tempId">
             <label class="fs-5 form-check-label" :for="a.tempId">
+              <i class="mdi mdi-weight"></i>
               {{ a.name }}
             </label>
           </div>
@@ -289,7 +303,6 @@ export default {
       current,
       superSet,
       completedSets,
-      // routine: computed(() => AppState.activeRoutine),
       routine: computed(() => {
         const routine = AppState.activeRoutine
         const superRoutine = AppState.activeSuperRoutine
@@ -320,11 +333,6 @@ export default {
               superRoutine.activities.forEach((a, index) => {
                 a.tempId = index
               })
-
-              // if (superRoutine.activities.length == 0) {
-              //   Pop.error('Empty array while loop')
-              //   return
-              // }
             })
           }
 
@@ -424,6 +432,11 @@ export default {
 
 }
 
+.bg-active-routine {
+  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+
+}
+
 .secondaryCard {
   min-height: 40vh;
   max-height: 40vh;
@@ -444,6 +457,18 @@ export default {
   position: absolute;
   bottom: 70%;
   right: 63%;
+}
+
+input {
+  display: none;
+}
+
+label>i {
+  color: var(--darkest);
+}
+
+input[type=checkbox]:checked+label>i {
+  color: var(--action);
 }
 
 .confetti-container {
