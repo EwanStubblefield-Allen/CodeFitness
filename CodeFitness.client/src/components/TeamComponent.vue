@@ -138,12 +138,12 @@ export default {
     border: solid 4px whitesmoke;
     box-shadow:
       inset 0 0 50px #fff,
-      inset 20px 0 80px rgb(255, 230, 0),
+      inset 20px 0 80px rgb(255, 247, 0),
       inset -20px 0 300px rgb(231, 213, 109),
-      inset 20px 0 300px rgb(255, 230, 0),
+      inset 20px 0 300px rgb(255, 247, 0),
       inset -20px 0 300px rgb(231, 213, 109),
       0 0 50px #fff,
-      -10px 0 80px rgb(255, 230, 0),
+      -10px 0 80px rgb(255, 247, 0),
       10px 0 80px rgb(231, 213, 109);
     transform: scale(1.10);
   }
