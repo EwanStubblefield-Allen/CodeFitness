@@ -7,6 +7,7 @@ import { AccountAchievementSchema } from "../models/AccountAchievment.js";
 import { ActivitySchema } from "../models/Activity.js";
 import { TierSchema } from "../models/Tier.js";
 import { CopyRoutineSchema } from '../models/CopyRoutine.js';
+import { CommentSchema } from "../models/Comment.js";
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
@@ -17,6 +18,8 @@ class DbContext {
   AccountAchievements = mongoose.model('AccountAchievement', AccountAchievementSchema)
   Activities = mongoose.model('Activity', ActivitySchema)
   Tiers = mongoose.model('Tier', TierSchema)
+
+  Comments = mongoose.model('Comment', CommentSchema)
 }
 
 export const dbContext = new DbContext()
