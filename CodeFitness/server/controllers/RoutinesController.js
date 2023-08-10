@@ -2,6 +2,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import { routinesService } from "../services/RoutinesService.js";
 import { activitiesService } from "../services/ActivitiesService.js";
 import BaseController from "../utils/BaseController.js";
+import { commentsService } from "../services/CommentsService.js";
 
 export class RoutinesController extends BaseController {
   constructor() {
@@ -10,10 +11,20 @@ export class RoutinesController extends BaseController {
       .get('', this.getRoutines)
       .get('/:routineId', this.getRoutineById)
       .get('/:routineId/activities', this.getActivitiesByRoutineId)
+      .get('/:routineId/comments', this.getCommentsByRoutineId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createRoutine)
       .put('/:routineId', this.updateRoutine)
       .delete('/:routineId', this.removeRoutine)
+  }
+  async getCommentsByRoutineId(req, res, next) {
+    try {
+      const routineId = req.params.routineId
+      const comment = await commentsService.getCommentsByRoutineId(routineId)
+      return res.send(comment)
+    } catch (error) {
+      next(error);
+    }
   }
 
   async getRoutines(req, res, next) {

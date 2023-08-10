@@ -1,4 +1,5 @@
 import { accountAchievementsService } from '../services/AccountAchievementsService.js'
+import { commentsService } from "../services/CommentsService.js"
 import { copyRoutineService } from '../services/CopyRoutinesService.js'
 import { profileService } from '../services/ProfileService.js'
 import { routinesService } from '../services/RoutinesService.js'
@@ -13,6 +14,16 @@ export class ProfilesController extends BaseController {
       .get('/:accountId/routines', this.getRoutinesByAccountId)
       .get('/:accountId/accountAchievements', this.getAccountAchievementsByAccountId)
       .get('/:accountId/copyRoutines', this.getCopyRoutinesByAccountId)
+      .get('/:accountId/comments', this.getCommentsByAccountId)
+  }
+  async getCommentsByAccountId(req, res, next) {
+    try {
+      const accountId = req.params.accountId
+      const comment = await commentsService.getCommentsByAccountId(accountId)
+      return res.send(comment)
+    } catch (error) {
+      next(error);
+    }
   }
 
   async getProfiles(req, res, next) {
