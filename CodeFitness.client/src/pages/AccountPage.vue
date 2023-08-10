@@ -11,13 +11,13 @@
     </section>
 
     <section class="row justify-content-between">
-      <div class="offset-md-3 offset-xl-2 col-10 col-md-7 d-flex align-items-center mt-3 pt-5 pt-md-0">
+      <div class="offset-md-3 offset-xl-2 col-10 col-md-7 order-2 order-md-1 d-flex align-items-center pt-3">
         <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
         <img v-if="account.community == 'Cardio Kings'" class="text-stroke px-3" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <img v-else-if="account.community == 'Weight Warriors'" class="text-stroke px-3" src="../assets/img/flagWW.png" alt="Weight Warriors">
         <img v-else-if="account.community == 'Legion of Leisure'" class="text-stroke px-3" src="../assets/img/flagLL.png" alt="Legion of Leisure">
       </div>
-      <div class="col-2 text-end">
+      <div class="col-12 col-md-2 order-1 order-md-2 text-end">
         <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm" title="Edit Account"></button>
       </div>
     </section>
