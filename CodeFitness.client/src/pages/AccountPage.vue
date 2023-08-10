@@ -56,7 +56,7 @@
           <div v-for="r in showAmount" :key="r" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
-              <img :src="routines[r - 1].picture" alt="Routine Image" class="img-fluid routine-pic rounded-top">
+              <img :src="routines[r - 1].picture" @error="randomRoutineImg()" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ routines[r - 1].title }}</h5>
 
@@ -75,13 +75,13 @@
           <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
-              <img :src="r.picture" alt="Routine Image" class="img-fluid routine-pic rounded-top w-100">
+              <img :src="r.picture" @error="randomRoutineImg()" alt=" Routine Image" class="img-fluid routine-pic rounded-top w-100">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ r.title }}</h5>
                 <p class="p-2 mb-2">{{ r.description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
-                    <button v-if="r.activities[0]" @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
+                    <button v-if="r.activities.length" @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
                   </RouterLink>
                 </div>
               </div>
@@ -93,7 +93,7 @@
 
     <section class="row">
       <div class="col-12 bg-neutral-light text-light text-center fs-1 py-3">
-        Achievements
+        Badges
       </div>
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
@@ -172,6 +172,13 @@ export default {
       Pop.error('Invalid Image URL for Profile Image')
     }
 
+    function randomRoutineImg() {
+      // let array = AppState.randomImgForRoutine
+      // let randomNum = Math.floor(Math.random() * array.length)
+      // AppState.routines.picture = array[randomNum]
+      Pop.error('Invalid Image URL for Routine Image. Please update the URL on your routine!')
+    }
+
     onUnmounted(() => {
       document.documentElement.scrollTop = 0
     })
@@ -187,6 +194,7 @@ export default {
       showAmount,
       randomCoverImg,
       randomProfileImg,
+      randomRoutineImg,
       account: computed(() => AppState.account),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
