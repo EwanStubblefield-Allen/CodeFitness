@@ -3,8 +3,7 @@
     <TeamComponent />
 
     <section v-if="account.community" class="row m-3">
-      <button class="btn btn-action p-3 fs-3" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create
-        Routine</button>
+      <button @click="isEditing()" class="btn btn-action p-3 fs-3" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
     </section>
     <section class="row justify-content-center">
       <ActivitySearch />
@@ -29,8 +28,11 @@ export default {
     })
 
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
 
+      isEditing() {
+        AppState.isEditing = false
+      }
     }
   },
   components: { TeamComponent, ActivitySearch }

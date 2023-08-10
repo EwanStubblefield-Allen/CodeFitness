@@ -20,7 +20,7 @@
   </ModalComponent>
 
   <ModalComponent id="routineForm">
-    <template #title>Create Routine</template>
+    <template #title>Routine Form</template>
     <template #body>
       <RoutineForm />
     </template>
