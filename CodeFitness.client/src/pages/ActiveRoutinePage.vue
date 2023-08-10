@@ -147,7 +147,7 @@
 
             </div>
             <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-start flex-column h-100">
-              <div class="bg-success rounded text-light">
+              <div class="bg-success rounded text-dark">
                 Start
               </div>
               Your routine has begun, press the > to advance throught the steps of the routine
@@ -160,7 +160,7 @@
                 <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block"
                   :disabled="current == 0">Back</button>
                 <button v-if="current == routine.activities.length" @click="updateData()"
-                  class="btn btn-action d-md-none d-block">Finish</button>
+                  class="btn btn-action d-md-none d-block text-dark">Finish</button>
                 <button v-else @click="changeActivity(1)" class="btn btn-action d-md-none d-block">Next</button>
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
@@ -218,7 +218,7 @@
             </div>
             <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-start flex-column h-100">
 
-              <div class="bg-success rounded text-light">
+              <div class="bg-success rounded text-dark">
                 Finish
               </div>
               Your routine is finished, Complete the Routine to earn points and level up your activities
@@ -431,6 +431,10 @@ export default {
 
 }
 
+.shadowed-text {
+  text-shadow: 1px 1px 2px black;
+}
+
 .bg-active-routine {
   background-image: linear-gradient(var(--darkest), var(--neutral-dark));
 
@@ -508,10 +512,6 @@ input[type=checkbox]:checked+label>i {
 
 .confetti i:nth-child(even) {
   transform: rotate(90deg);
-}
-
-.shadowed-text {
-  text-shadow: 1px 1px 2px black;
 }
 
 @keyframes confetti {
