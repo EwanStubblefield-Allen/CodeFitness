@@ -3,6 +3,7 @@ import { Routine } from "../models/Routine.js"
 import { api } from "./AxiosService.js"
 import { accountAchievementService } from "./AccountAchievementService.js"
 import Pop from "../utils/Pop.js"
+import { logger } from "../utils/Logger.js"
 
 class RoutinesService {
   setActiveRoutine(routine) {
@@ -22,6 +23,12 @@ class RoutinesService {
     const res = await api.get(`api/routines/${routineId}`)
     AppState.activeRoutine = new Routine(res.data)
     AppState.activeSuperRoutine = new Routine(res.data)
+  }
+
+  async getRoutinesByProfileId(profileId) {
+    const res = await api.get(`api/profiles/${profileId}/routines`)
+    logger.log(res.data)
+    
   }
 
   async createRoutine(routineData) {

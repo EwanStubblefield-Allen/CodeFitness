@@ -31,17 +31,21 @@
     <div :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }"
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
-        <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }">
+          <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
+          <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        </RouterLink>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
     <div
-      :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
-      <div>
-        <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
+    :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
+    class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <div>
+        <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }">
+          <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
+          <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
+        </RouterLink>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
@@ -49,8 +53,10 @@
       :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
-        <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        <RouterLink :to="{ name: 'Communities', params: { communityId: teams[2].name } }">
+          <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
+          <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        </RouterLink>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
@@ -81,6 +87,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       communities: computed(() => AppState.communities),
+      teams: computed(() => AppState.teams),
 
       async selectCommunity(community) {
         try {
