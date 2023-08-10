@@ -13,16 +13,12 @@
     <section class="row justify-content-between">
       <div class="offset-md-3 offset-xl-2 col-10 col-md-7 order-2 order-md-1 d-flex align-items-center pt-3">
         <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
-        <img v-if="account.community == 'Cardio Kings'" class="text-stroke px-3" src="../assets/img/flagCK.png"
-          alt="Cardio Kings">
-        <img v-else-if="account.community == 'Weight Warriors'" class="text-stroke px-3" src="../assets/img/flagWW.png"
-          alt="Weight Warriors">
-        <img v-else-if="account.community == 'Legion of Leisure'" class="text-stroke px-3" src="../assets/img/flagLL.png"
-          alt="Legion of Leisure">
+        <img v-if="account.community == 'Cardio Kings'" class="text-stroke px-3" src="../assets/img/flagCK.png" alt="Cardio Kings">
+        <img v-else-if="account.community == 'Weight Warriors'" class="text-stroke px-3" src="../assets/img/flagWW.png" alt="Weight Warriors">
+        <img v-else-if="account.community == 'Legion of Leisure'" class="text-stroke px-3" src="../assets/img/flagLL.png" alt="Legion of Leisure">
       </div>
       <div class="col-12 col-md-2 order-1 order-md-2 text-end">
-        <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm"
-          title="Edit Account"></button>
+        <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm" title="Edit Account"></button>
       </div>
     </section>
 
@@ -60,8 +56,7 @@
           <div v-for="r in showAmount" :key="r" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
-              <img :src="routines[r - 1].picture" @error="randomRoutineImg()" alt="Routine Image"
-                class="img-fluid routine-pic rounded-top">
+              <img :src="routines[r - 1].picture" @error="randomRoutineImg()" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ routines[r - 1].title }}</h5>
 
@@ -80,15 +75,13 @@
           <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
               <!-- <div class="reserved-space"></div> -->
-              <img :src="r.picture" @error="randomRoutineImg()" alt=" Routine Image"
-                class="img-fluid routine-pic rounded-top w-100">
+              <img :src="r.picture" @error="randomRoutineImg()" alt=" Routine Image" class="img-fluid routine-pic rounded-top w-100">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ r.title }}</h5>
                 <p class="p-2 mb-2">{{ r.description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
-                    <button v-if="r.activities[0]" @click="getRoutineById(r.id)" class="btn btn-action"
-                      type="button">Start Routine</button>
+                    <button v-if="r.activities.length" @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
                   </RouterLink>
                 </div>
               </div>
@@ -112,10 +105,8 @@
               {{ achievement.name }} Progress: {{ achievement.progress }}
             </h2>
             <div class="row text-light">
-              <div v-for="tier in  achievement.achievementTier " :key="tier._id"
-                class="col-12 col-md-6 col-xl-3 d-flex achievement-card border border-light">
-                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture"
-                  alt="" :title="tier.name">
+              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-12 col-md-6 col-xl-3 d-flex achievement-card border border-light">
+                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture" alt="" :title="tier.name">
                 <div v-if="achievement.tier >= tier.tier - 1" class="d-flex flex-column justify-content-between">
                   <h3>
                     {{ tier.name }}
@@ -123,10 +114,8 @@
                   <p>
                     {{ tier.description }}
                   </p>
-                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 m-2 border border-light"
-                    role="progressbar">
-                    <div class="progress-bar bg-success"
-                      :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
+                  <div v-if="achievement.tier == tier.tier - 1" class="progress bg-dark rounded-0 m-2 border border-light" role="progressbar">
+                    <div class="progress-bar bg-success" :style="{ 'width': (achievement.progress / achievement.requirement[tier.tier - 1]) * 100 + '%' }">
                     </div>
                   </div>
                 </div>

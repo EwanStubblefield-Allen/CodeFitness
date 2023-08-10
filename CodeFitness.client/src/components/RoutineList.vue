@@ -6,7 +6,7 @@
           <p class="text-dark">{{ routine.title }}</p>
           <div class="d-flex align-items-center">
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routine.id } }">
-              <button v-if="routine.activities[0]" type="button" class="btn text-light selectable no-select text-dark mdi mdi-play fs-3" title="Start Routine"></button>
+              <button v-if="routine.activities.length" type="button" class="btn text-light selectable no-select text-dark mdi mdi-play fs-3" title="Start Routine"></button>
             </RouterLink>
             <span class="badge bg-primary rounded-pill">{{ routine.activities.length }}</span>
           </div>
