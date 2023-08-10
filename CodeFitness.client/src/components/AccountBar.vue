@@ -14,14 +14,14 @@
       <p class="text-break">Points: {{ account.points }}</p>
 
       <div v-if="account.community" class="d-flex flex-column mb-3">
-        <button v-if="routines[0]" class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
+        <button v-if="routines.length" class="btn btn-action text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRoutine">Routines</button>
         <button v-else class="btn btn-action text-break" data-bs-toggle="modal" data-bs-target="#routineForm">Routines</button>
         <button class="btn btn-action mt-1 text-break" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAchievements">Badges</button>
       </div>
     </div>
   </section>
   <section v-else class="row justify-content-center align-items-center bar-height">
-    <div class="col-11 text-light">
+    <div class="col-11 text-dark">
       <p class="fs-5">Log in to View Account Details</p>
     </div>
   </section>

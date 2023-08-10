@@ -8,21 +8,17 @@
 
           <div class="col-3 text-end">
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
-              <button v-if="activeRoutine.activities[0]" type="button"
-                class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
+              <button v-if="activeRoutine.activities.length" type="button" class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
             </RouterLink>
-            <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3"
-              data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
+            <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
 
             <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
               <div class="list-group text-center">
-                <div class="list-group-item dropdown-item list-group-item-action selectable" data-bs-toggle="modal"
-                  data-bs-target="#routineForm">
+                <div class="list-group-item dropdown-item list-group-item-action selectable" data-bs-toggle="modal" data-bs-target="#routineForm">
                   <p class="mdi mdi-pencil">Edit Routine</p>
                 </div>
 
-                <div @click="removeRoutine()"
-                  class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                <div @click="removeRoutine()" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
                   <p class="mdi mdi-trash-can">Delete Routine</p>
                 </div>
               </div>
@@ -32,7 +28,7 @@
         </section>
       </div>
 
-      <div v-if="activeRoutine.activities[0]" class="col-12 d-flex overflow-auto p-0">
+      <div v-if="activeRoutine.activities.length" class="col-12 d-flex overflow-auto p-0">
         <div v-for="act in activeRoutine.activities" :key="act.id" class="d-flex justify-content-center p-3">
           <div class="card card-size text-center fw-bold elevation-5">
             <div class="d-flex flex-column card-body">
@@ -64,11 +60,8 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <button @click="setActiveActivity(act)" class="fs-6 btn btn-action">Activity Details</button>
-                  <button v-if="edit != act.id" type="button"
-                    class="btn selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown"
-                    aria-expanded="false" title="More Options"></button>
-                  <button v-else @click="updateActivity(act, 0), edit = ''" type="button"
-                    class="btn btn-action selectable no-select fs-6">Save</button>
+                  <button v-if="edit != act.id" type="button" class="btn selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
+                  <button v-else @click="updateActivity(act, 0), edit = ''" type="button" class="btn btn-action selectable no-select fs-6">Save</button>
 
                   <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
                     <div class="list-group text-center">
@@ -76,8 +69,7 @@
                         <p class="mdi mdi-pencil">Edit Sets</p>
                       </div>
 
-                      <div @click="removeActivity(act)"
-                        class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                      <div @click="removeActivity(act)" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
                         <p class="mdi mdi-trash-can">Delete Activity</p>
                       </div>
                     </div>
@@ -89,7 +81,7 @@
         </div>
       </div>
 
-      <div v-else>
+      <div v-else class="bg-title mt-3">
         <h1>Please Select Activities Below</h1>
       </div>
     </section>

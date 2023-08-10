@@ -26,10 +26,18 @@ class AccountService {
 
     if (!AppState.activeAchievements[0]) {
       await accountAchievementService.getAchievementsByUserId()
-    } else {
+    } else if (res.data.accountAchievement) {
       accountAchievementService.checkAchievement(res.data.accountAchievement, 'pointCount')
     }
     AppState.account = new Account(res.data.account)
+  }
+  async updateBadPicture() {
+    let array = AppState.randomImgForProfile
+    let randomNum = Math.floor(Math.random() * array.length)
+    let randomPicture = array[randomNum]
+    AppState.account.picture = randomPicture
+    let newAccount = new Account(AppState.account)
+    const res = await api.put('/account', newAccount)
   }
 }
 
