@@ -6,6 +6,9 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   account: {},
   communities: null,
+  /** @type {import('./models/Profile.js').Profile[]} */
+  communityProfiles: [],
+  activeProfile: null,
   page: 0,
   nextPage: false,
   isEditing: false,
@@ -36,5 +39,6 @@ export const AppState = reactive({
   ],
   randomImgForProfile: [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUOeCy-zk0RQkaqSGA3BtgfcXMqSpPx5fitg&usqp=CAU"
-  ]
+  ],
+  teams: [{name: 'Cardio Kings'}, {name: 'Weight Warriors'}, {name: 'Legion of Leisure'}]
 })

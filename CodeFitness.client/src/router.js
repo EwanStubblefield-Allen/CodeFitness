@@ -28,6 +28,16 @@ const routes = [
     component: loadPage('RoutinePage')
   },
   {
+    path: '/communities/:communityId',
+    name: 'Communities',
+    component: loadPage('CommunitiesPage')
+  },
+  {
+    path: '/communities/:communityId/:profileId',
+    name: 'Profile',
+    component: loadPage('ProfilePage')
+  },
+  {
     path: '/routines/:routineId/active',
     name: 'ActiveRoutine',
     component: loadPage('ActiveRoutinePage')
