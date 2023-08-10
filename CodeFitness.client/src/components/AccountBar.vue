@@ -21,7 +21,7 @@
     </div>
   </section>
   <section v-else class="row justify-content-center align-items-center bar-height">
-    <div class="col-11 text-light">
+    <div class="col-11 text-dark">
       <p class="fs-5">Log in to View Account Details</p>
     </div>
   </section>

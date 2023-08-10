@@ -92,7 +92,7 @@
     </section>
 
     <section class="row">
-      <div class="col-12 bg-neutral-light text-light text-center fs-1 py-3">
+      <div class="col-12 bg-neutral-light text-center fs-1 py-3">
         Badges
       </div>
       <div class="col-12 bg-secondary">
