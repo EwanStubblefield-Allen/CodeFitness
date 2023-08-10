@@ -6,21 +6,24 @@
 
         <div class="d-md-flex justify-content-between align-items-end position">
           <img class="account-picture" :src="account.picture" @error="randomProfileImg()" :alt="account.name">
-          <div class="d-flex justify-content-end">
-            <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
-            <div class=" text-start text-stroke fs-1 ps-3 mdi mdi-star-four-points text-warning"></div>
-          </div>
         </div>
       </div>
     </section>
-    <div class="row">
-      <button class="btn btn-lg btn-block mt-5 mt-md-3 mb-5 py-5" data-bs-toggle="modal" data-bs-target="#accountForm">
-        <i class="mdi mdi-pencil"></i>
-      </button>
-    </div>
+
+    <section class="row justify-content-between">
+      <div class="offset-md-3 offset-xl-2 col-10 col-md-7 d-flex align-items-center mt-3 pt-5 pt-md-0">
+        <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
+        <img v-if="account.community == 'Cardio Kings'" class="text-stroke px-3" src="../assets/img/flagCK.png" alt="Cardio Kings">
+        <img v-else-if="account.community == 'Weight Warriors'" class="text-stroke px-3" src="../assets/img/flagWW.png" alt="Weight Warriors">
+        <img v-else-if="account.community == 'Legion of Leisure'" class="text-stroke px-3" src="../assets/img/flagLL.png" alt="Legion of Leisure">
+      </div>
+      <div class="col-2 text-end">
+        <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm" title="Edit Account"></button>
+      </div>
+    </section>
 
     <section class="row justify-content-center">
-      <div class="col-12 col-md-9 mt-5 mb-3 fs-5 text-break">
+      <div class="col-12 col-md-9 py-3 fs-5 text-break">
         {{ account.bio }}
       </div>
     </section>
@@ -99,7 +102,7 @@
           </h1>
           <div v-for="achievement in  achievements " :key="achievement.id" class="d-flex flex-column py-1">
             <h2>
-              {{ achievement.type }} Progress: {{ achievement.progress }}
+              {{ achievement.name }} Progress: {{ achievement.progress }}
             </h2>
             <div class="row text-light">
               <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-12 col-md-6 col-xl-3 d-flex achievement-card border border-light">
@@ -224,6 +227,7 @@ export default {
   }
 
   .text-stroke {
+    height: 8vh;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
   }

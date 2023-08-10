@@ -51,6 +51,7 @@ export default {
     async function updateRoutine() {
       try {
         await routinesService.updateRoutine(editable.value)
+        Pop.success(`${AppState.activeRoutine.title} was updated!`)
       } catch (error) {
         Pop.error(error.message, '[UPDATING ROUTINE]')
       }
