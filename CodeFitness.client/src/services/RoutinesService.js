@@ -21,6 +21,7 @@ class RoutinesService {
   async getRoutineById(routineId) {
     const res = await api.get(`api/routines/${routineId}`)
     AppState.activeRoutine = new Routine(res.data)
+    AppState.activeSuperRoutine = new Routine(res.data)
   }
 
   async createRoutine(routineData) {

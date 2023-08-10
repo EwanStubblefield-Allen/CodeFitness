@@ -1,5 +1,5 @@
 <template>
-  <div v-if="current == routine?.activities.length" class="confetti-container ">
+  <div v-if="current == routine?.activities?.length" class="confetti-container ">
     <div class="confetti">
       <i style="--speed: 10; --bg: yellow" class="mdi mdi-star-four-points text-success fs-4"></i>
       <i style="--speed: 29; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info fs-4"></i>
@@ -118,7 +118,8 @@
             <div v-if="current > 0" class="d-flex flex-column justify-content-around h-100">
               <p class="fs-5 fw-bold">{{ routine.activities[current - 1].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p>Sets: <span class="text-neutral">{{ routine.activities[current - 1].sets - completedSets }}</span></p>
+                <p v-if="!superSet">Sets: <span class="text-neutral">{{ routine.activities[current - 1].sets -
+                  completedSets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current - 1].reps }}</span></p>
               </div>
               <p class="text-neutral-light">{{ routine.activities[current - 1].equipment }}</p>
@@ -143,8 +144,11 @@
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p>Sets: <span class="text-neutral">{{ routine.activities[current].sets - completedSets }} / {{
-                  routine.activities[current].sets }}</span></p>
+                <div v-if="routine.activities[current].sets != 0">
+                  <p v-if="!superSet">Sets: <span class="text-neutral">{{ routine.activities[current].sets - completedSets
+                  }} / {{
+  routine.activities[current].sets }}</span></p>
+                </div>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
               </div>
               <p class="">Equipment: <span class="text-neutral-light"> {{ routine.activities[current].equipment }}</span>
@@ -185,7 +189,7 @@
             <div v-if="current < routine.activities.length - 1" class="d-flex flex-column justify-content-around h-100">
               <p class="fs-5 fw-bold">{{ routine.activities[current + 1].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p>Sets: <span class="text-neutral">{{ routine.activities[current + 1].sets }}</span></p>
+                <p v-if="!superSet">Sets: <span class="text-neutral">{{ routine.activities[current + 1].sets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current + 1].reps }}</span></p>
               </div>
               <p class="text-neutral-light">{{ routine.activities[current + 1].equipment }}</p>
@@ -253,11 +257,11 @@ export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
+
     const editable = ref({})
     const showCollapse = ref(false)
     const completedSets = ref({})
     const superSet = ref({})
-
     let current = ref(0)
 
     watchEffect(() => {
@@ -285,7 +289,61 @@ export default {
       current,
       superSet,
       completedSets,
-      routine: computed(() => AppState.activeRoutine),
+      // routine: computed(() => AppState.activeRoutine),
+      routine: computed(() => {
+        const routine = AppState.activeRoutine
+        const superRoutine = AppState.activeSuperRoutine
+
+        if (!superSet.value || !AppState.account.id) {
+          logger.log('[No Super Set]')
+          return routine
+        } else {
+          logger.log('[Super Set]')
+          let tempArr = [...AppState.activeRoutine.activities]
+          superRoutine.activities.length = 0
+          let temp = 0
+
+          tempArr.forEach(a => {
+            a.tempSets = a.sets
+            temp += a.sets
+          })
+
+          while (superRoutine.activities.length != temp) {
+            tempArr.forEach(a => {
+              if (a.tempSets > 0) {
+                a.tempSets -= 1
+                superRoutine.activities.push(a)
+              }
+
+              if (superRoutine.activities.length == 0) {
+                Pop.error('Empty array while loop')
+                return
+              }
+            })
+          }
+
+          return superRoutine
+        }
+      }),
+      // routineSuper: computed(() => {
+      //   let tempArr = AppState.activeRoutine.activities
+      //   let temp = 0
+      //   tempArr.forEach(a => {
+      //     a.tempSets = a.sets
+      //     temp += a.sets
+      //   })
+      //   let superArr = []
+
+      //   while (superArr.length != temp) {
+      //     tempArr.forEach(a => {
+      //       if (a.sets > 0) {
+      //         a.sets -= 1
+      //         superArr.push(a)
+      //       }
+      //     })
+      //   }
+      //   return superArr
+      // }),
       toggleCollapse,
       showCollapse,
       toggleActivity(activity) {
@@ -293,23 +351,36 @@ export default {
       },
 
       changeActivity(change) {
-        if (change == 1) {
-          completedSets.value += 1
+        if (!superSet.value) {
+          if (change == 1) {
+            completedSets.value += 1
 
-          if (completedSets.value == this.routine.activities[current.value].sets) {
+            if (completedSets.value == this.routine.activities[current.value].sets) {
+              editable.value[this.routine.activities[current.value].id] = true
+              current.value += change
+              completedSets.value = 0
+            }
+          } else {
+            if (current.value != 0) {
+              editable.value[this.routine.activities[current.value - 1].id] = false
+            }
+            completedSets.value -= 1
+
+            if (completedSets.value < 0) {
+              current.value += change
+              completedSets.value = this.routine.activities[current.value].sets - 1
+            }
+          }
+        }
+        else {
+          if (change == 1) {
             editable.value[this.routine.activities[current.value].id] = true
             current.value += change
-            completedSets.value = 0
-          }
-        } else {
-          if (current.value != 0) {
-            editable.value[this.routine.activities[current.value - 1].id] = false
-          }
-          completedSets.value -= 1
-
-          if (completedSets.value < 0) {
+          } else {
+            if (current.value != 0) {
+              editable.value[this.routine.activities[current.value - 1].id] = false
+            }
             current.value += change
-            completedSets.value = this.routine.activities[current.value].sets - 1
           }
         }
       },
