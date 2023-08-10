@@ -22,7 +22,7 @@
 import { ref, watchEffect } from "vue"
 import { useRouter } from "vue-router"
 import { routinesService } from "../services/RoutinesService.js"
-import { Modal } from "bootstrap"
+import { Modal, Offcanvas } from "bootstrap"
 import { AppState } from "../AppState.js"
 import Pop from "../utils/Pop.js"
 
@@ -69,6 +69,7 @@ export default {
         }
         editable.value = {}
         Modal.getOrCreateInstance('#routineForm').hide()
+        Offcanvas.getOrCreateInstance('#offcanvasRoutine').hide()
       }
 
     }
