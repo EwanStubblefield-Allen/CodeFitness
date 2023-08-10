@@ -32,7 +32,7 @@ export default {
     const editable = ref({})
 
     watchEffect(() => {
-      if (AppState.activeRoutine) {
+      if (AppState.isEditing) {
         editable.value = { ...AppState.activeRoutine }
       } else {
         editable.value = {}

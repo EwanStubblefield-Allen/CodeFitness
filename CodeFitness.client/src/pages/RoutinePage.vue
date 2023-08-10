@@ -14,7 +14,7 @@
 
             <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
               <div class="list-group text-center">
-                <div class="list-group-item dropdown-item list-group-item-action selectable" data-bs-toggle="modal" data-bs-target="#routineForm">
+                <div @click="isEditing()" class="list-group-item dropdown-item list-group-item-action selectable" data-bs-toggle="modal" data-bs-target="#routineForm">
                   <p class="mdi mdi-pencil">Edit Routine</p>
                 </div>
 
@@ -135,6 +135,10 @@ export default {
         AppState.activeRoutine.activities.forEach(a => levels += a.level)
         return AppState.activeRoutine.completeCount - levels
       }),
+
+      isEditing() {
+        AppState.isEditing = true
+      },
 
       async setActiveActivity(act) {
         try {

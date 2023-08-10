@@ -13,7 +13,7 @@
         </RouterLink>
       </div>
     </div>
-    <button class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
+    <button @click="isEditing()" class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
   </div>
 </template>
 
@@ -24,7 +24,11 @@ import { computed } from 'vue'
 export default {
   setup() {
     return {
-      routines: computed(() => AppState.routines)
+      routines: computed(() => AppState.routines),
+
+      isEditing() {
+        AppState.isEditing = false
+      }
     }
   }
 }
