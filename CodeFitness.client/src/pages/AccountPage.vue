@@ -151,7 +151,7 @@ export default {
       try {
         await accountAchievementService.getAchievementsByUserId()
       } catch (error) {
-        Pop.error(error.message, '[]')
+        Pop.error(error.message, '[GETTING ACHIEVEMENTS BY USER ID]')
       }
     }
 

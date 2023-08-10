@@ -26,7 +26,7 @@ class AccountService {
 
     if (!AppState.activeAchievements[0]) {
       await accountAchievementService.getAchievementsByUserId()
-    } else {
+    } else if (res.data.accountAchievement) {
       accountAchievementService.checkAchievement(res.data.accountAchievement, 'pointCount')
     }
     AppState.account = new Account(res.data.account)
