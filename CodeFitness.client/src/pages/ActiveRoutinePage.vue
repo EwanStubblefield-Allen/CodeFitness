@@ -227,10 +227,10 @@
               </div>
             </div>
           </section>
-          <div v-for="a in routine.activities" :key="a.id" class="col-5 form-check ">
-            <input onclick="return false" v-model="editable[a.id]" class="fs-5 form-check-input" type="checkbox"
-              :id="a.id">
-            <label class="fs-5 form-check-label" :for="a.id">
+          <div v-for="a in routine.activities" :key="a.tempId" class="col-5 form-check ">
+            <input onclick="return false" v-model="editable[a.tempId]" class="fs-5 form-check-input" type="checkbox"
+              :id="a.tempId">
+            <label class="fs-5 form-check-label" :for="a.tempId">
               {{ a.name }}
             </label>
           </div>
@@ -295,10 +295,11 @@ export default {
         const superRoutine = AppState.activeSuperRoutine
 
         if (!superSet.value || !AppState.account.id) {
-          logger.log('[No Super Set]')
+          routine.activities.forEach((a, index) => {
+            a.tempId = index
+          })
           return routine
         } else {
-          logger.log('[Super Set]')
           let tempArr = [...AppState.activeRoutine.activities]
           superRoutine.activities.length = 0
           let temp = 0
@@ -312,13 +313,18 @@ export default {
             tempArr.forEach(a => {
               if (a.tempSets > 0) {
                 a.tempSets -= 1
-                superRoutine.activities.push(a)
+
+                superRoutine.activities.push({ ...a })
               }
 
-              if (superRoutine.activities.length == 0) {
-                Pop.error('Empty array while loop')
-                return
-              }
+              superRoutine.activities.forEach((a, index) => {
+                a.tempId = index
+              })
+
+              // if (superRoutine.activities.length == 0) {
+              //   Pop.error('Empty array while loop')
+              //   return
+              // }
             })
           }
 
@@ -356,13 +362,13 @@ export default {
             completedSets.value += 1
 
             if (completedSets.value == this.routine.activities[current.value].sets) {
-              editable.value[this.routine.activities[current.value].id] = true
+              editable.value[this.routine.activities[current.value].tempId] = true
               current.value += change
               completedSets.value = 0
             }
           } else {
             if (current.value != 0) {
-              editable.value[this.routine.activities[current.value - 1].id] = false
+              editable.value[this.routine.activities[current.value - 1].tempId] = false
             }
             completedSets.value -= 1
 
@@ -374,11 +380,11 @@ export default {
         }
         else {
           if (change == 1) {
-            editable.value[this.routine.activities[current.value].id] = true
+            editable.value[this.routine.activities[current.value].tempId] = true
             current.value += change
           } else {
             if (current.value != 0) {
-              editable.value[this.routine.activities[current.value - 1].id] = false
+              editable.value[this.routine.activities[current.value - 1].tempId] = false
             }
             current.value += change
           }
@@ -479,9 +485,10 @@ export default {
 .confetti i:nth-child(even) {
   transform: rotate(90deg);
 }
-  .shadowed-text{
-    text-shadow: 1px 1px 2px black;
-  }
+
+.shadowed-text {
+  text-shadow: 1px 1px 2px black;
+}
 
 @keyframes confetti {
   0% {
