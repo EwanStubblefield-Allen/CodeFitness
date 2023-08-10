@@ -93,7 +93,7 @@
 
     <section class="row">
       <div class="col-12 bg-neutral-light text-light text-center fs-1 py-3">
-        Achievements
+        Badges
       </div>
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
