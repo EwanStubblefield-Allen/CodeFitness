@@ -104,7 +104,7 @@ export default {
     image-rendering: pixelated;
     color: var(--light);
     border: solid 4px var(--light);
-    text-shadow: 0px 3px 7px black;
+    text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
   }
 
   .flag img {
