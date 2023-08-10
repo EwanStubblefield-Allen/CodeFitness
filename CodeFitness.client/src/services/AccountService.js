@@ -31,6 +31,14 @@ class AccountService {
     }
     AppState.account = new Account(res.data.account)
   }
+  async updateBadPicture() {
+    let array = AppState.randomImgForProfile
+    let randomNum = Math.floor(Math.random() * array.length)
+    let randomPicture = array[randomNum]
+    AppState.account.picture = randomPicture
+    let newAccount = new Account(AppState.account)
+    const res = await api.put('/account', newAccount)
+  }
 }
 
 export const accountService = new AccountService()

@@ -138,6 +138,7 @@ import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { accountAchievementService } from "../services/AccountAchievementService"
 import Pop from "../utils/Pop"
+import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -162,10 +163,12 @@ export default {
       Pop.error('Invalid Image URL for Cover Image')
     }
 
-    function randomProfileImg() {
-      let array = AppState.randomImgForProfile
-      let randomNum = Math.floor(Math.random() * array.length)
-      AppState.account.picture = array[randomNum]
+    async function randomProfileImg() {
+      try {
+        await accountService.updateBadPicture()
+      } catch (error) {
+        Pop.error(error.message)
+      }
       Pop.error('Invalid Image URL for Profile Image')
     }
 
