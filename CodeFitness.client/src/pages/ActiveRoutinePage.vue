@@ -146,7 +146,7 @@
               <p class="text-neutral">{{ routine.activities[current - 1].equipment }}</p>
 
             </div>
-            <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-start flex-column h-100">
+            <div v-else class="pt-3 fs-md-5 fw-bold d-flex justify-content-start flex-column h-100">
               <div class="bg-success rounded text-dark">
                 Start
               </div>
@@ -216,7 +216,7 @@
               <p class="text-neutral">{{ routine.activities[current + 1].equipment }}</p>
 
             </div>
-            <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-start flex-column h-100">
+            <div v-else class="pt-3 fs-md-5 fw-bold d-flex justify-content-start flex-column h-100">
 
               <div class="bg-success rounded text-dark">
                 Finish
@@ -421,106 +421,106 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-outline-info {
-  border-color: #406B6E;
-  color: #406B6E;
-}
-
-.activeCard {
-  min-height: 40vh;
-
-}
-
-.shadowed-text {
-  text-shadow: 1px 1px 2px black;
-}
-
-.bg-active-routine {
-  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
-
-}
-
-.secondaryCard {
-  min-height: 40vh;
-  max-height: 40vh;
-  transform: scale(.90);
-}
-
-.parentContainer {
-  position: absolute;
-}
-
-.nextArrow {
-  position: absolute;
-  bottom: 70%;
-  left: 80%;
-}
-
-.prevArrow {
-  position: absolute;
-  bottom: 70%;
-  right: 63%;
-}
-
-input {
-  display: none;
-}
-
-label>i {
-  color: var(--darkest);
-}
-
-input[type=checkbox]:checked+label>i {
-  color: var(--action);
-}
-
-.confetti-container {
-  user-select: none;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.confetti {
-  position: fixed;
-  left: 0;
-  right: 0;
-  display: flex;
-}
-
-.confetti .square {
-  width: 3rem;
-  height: 1rem;
-  background-color: orange;
-  transform: rotate(140deg);
-
-  .confetti .rectangle {
-    width: 1rem;
-    height: 0.5rem;
-    background-color: red;
-  }
-}
-
-.confetti i {
-  width: 3rem;
-  height: 3rem;
-  margin: 0 0.2rem;
-  animation-name: confetti;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: calc(60s / var(--speed));
-}
-
-.confetti i:nth-child(even) {
-  transform: rotate(90deg);
-}
-
-@keyframes confetti {
-  0% {
-    transform: translateY(-100vh);
+  .btn-outline-info {
+    border-color: #406B6E;
+    color: #406B6E;
   }
 
-  100% {
-    transform: translateY(100vh);
+  .activeCard {
+    min-height: 40vh;
+
   }
-}
+
+  .shadowed-text {
+    text-shadow: 1px 1px 2px black;
+  }
+
+  .bg-active-routine {
+    background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+
+  }
+
+  .secondaryCard {
+    min-height: 40vh;
+    max-height: 40vh;
+    transform: scale(.90);
+  }
+
+  .parentContainer {
+    position: absolute;
+  }
+
+  .nextArrow {
+    position: absolute;
+    bottom: 70%;
+    left: 80%;
+  }
+
+  .prevArrow {
+    position: absolute;
+    bottom: 70%;
+    right: 63%;
+  }
+
+  input {
+    display: none;
+  }
+
+  label>i {
+    color: var(--darkest);
+  }
+
+  input[type=checkbox]:checked+label>i {
+    color: var(--action);
+  }
+
+  .confetti-container {
+    user-select: none;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .confetti {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+  }
+
+  .confetti .square {
+    width: 3rem;
+    height: 1rem;
+    background-color: orange;
+    transform: rotate(140deg);
+
+    .confetti .rectangle {
+      width: 1rem;
+      height: 0.5rem;
+      background-color: red;
+    }
+  }
+
+  .confetti i {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.2rem;
+    animation-name: confetti;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: calc(60s / var(--speed));
+  }
+
+  .confetti i:nth-child(even) {
+    transform: rotate(90deg);
+  }
+
+  @keyframes confetti {
+    0% {
+      transform: translateY(-100vh);
+    }
+
+    100% {
+      transform: translateY(100vh);
+    }
+  }
 </style>
