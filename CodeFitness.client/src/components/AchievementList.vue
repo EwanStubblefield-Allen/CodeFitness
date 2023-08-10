@@ -1,17 +1,21 @@
 <template>
-  <section class="fs-6">
-    <p>Completed {{ completed }} out of 16</p>
-  </section>
-  <section class="row" v-for="achievement in achievements" :key="achievement.id">
-    <div v-if="achievement.tier > 0">
-      {{ achievement.name }}
+  <div v-if="achievements">
+    <div class="fs-6">
+      <p>Completed {{ completed }} out of 16</p>
     </div>
-    <div class="col-6" v-for="tier in achievement.achievementTier" :key="tier.id">
-      <div v-if="achievement.tier >= tier.tier" class="card achievement-card mb-3 elevation border-light">
-        <img class="unlocked" :src="tier.picture" :alt="tier.name" :title="tier.name">
+    <div v-for="achievement in achievements" :key="achievement.id">
+      <div v-if="achievement.tier > 0">
+        {{ achievement.name }}
+        <section class="row">
+          <div class="col-6" v-for="tier in achievement.achievementTier" :key="tier.id">
+            <div v-if="achievement.tier >= tier.tier" class="card achievement-card mb-3 elevation border-light">
+              <img class="unlocked" :src="tier.picture" :alt="tier.name" :title="tier.name">
+            </div>
+          </div>
+        </section>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 <script>
 import { computed } from "vue"

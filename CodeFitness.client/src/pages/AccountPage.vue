@@ -98,7 +98,7 @@
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
           <h1>
-            {{ completed }} Achievements out of 16
+            Completed {{ completed }} out of 16
           </h1>
           <div v-for="achievement in  achievements " :key="achievement.id" class="d-flex flex-column py-1">
             <h2>
