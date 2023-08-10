@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 d-flex flex-column flex-md-row justify-content-between p-3">
+  <div class="col-12 d-flex flex-column flex-lg-row justify-content-between p-3">
     <form @submit.prevent="resetPage()" id="form">
       <div class="form-group d-flex align-items-center">
         <label for="search" class="fw-bold w-100">Search for activity:</label>

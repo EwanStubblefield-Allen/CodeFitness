@@ -14,9 +14,9 @@
       <p class="fw-bold">Instructions:</p>
       <p class="px-2">{{ activity.instructions }}</p>
     </div>
-    <div v-if="routines.length" class="d-flex justify-content-end align-items-center pt-3">
+    <div v-if="routines.length && !activity.id" class="d-flex justify-content-end align-items-center pt-3">
       <p>Add to Routine</p>
-      <button v-if="activeRoutine && route.params.routineId" @click="createActivity(activeRoutine.id)" class="mdi mdi-plus mx-2 btn btn-action"></button>
+      <button v-if="route.params.routineId" @click="createActivity(activeRoutine.id)" class="mdi mdi-plus mx-2 btn btn-action"></button>
       <button v-else class="mdi mdi-plus mx-2 btn btn-action" data-bs-toggle="dropdown"></button>
 
       <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">

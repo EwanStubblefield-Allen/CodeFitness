@@ -14,7 +14,7 @@ class AccountAchievementService {
 
     if (activeAchievements[foundIndex].tier != accountAchievement.tier) {
       activeAchievements.splice(foundIndex, 1, new Achievement(accountAchievement))
-      Pop.success(`You have unlocked a new achievement`)
+      Pop.success(`You have unlocked a new badge!`)
     }
   }
 

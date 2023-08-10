@@ -19,8 +19,9 @@
                 Chuck Norris tells Simon what to do. If Chuck Norris were to travel to an alternate dimension in which there was another Chuck Norris and they both fought, they would both win.
               </span>
             </p>
-            <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
-            <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
+            <a href="https://www.linkedin.com/in/ewan-stubblefield-allen/" class="mdi mdi-linkedin fs-3" target="_blank"> Ewan Stubblefield-Allen</a>
+            <a href="https://github.com/EwanStubblefield-Allen" class="mdi mdi-github fs-3" target="_blank"> EwanStubblefield-Allen
+            </a>
           </h2>
         </section>
 

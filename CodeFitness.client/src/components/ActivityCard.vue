@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column justify-content-between h-100 text-center bg-neutral-dark text-light elevation-5 rounded activity-card">
+  <div class="d-flex flex-column justify-content-between h-100 text-center bg-neutral-dark text-light elevation-5 rounded">
     <div @click="setActiveActivity()" class="selectable p-3">
       <p class="fw-bold py-2">{{ activityProp.name }}</p>
       <p v-if="activityProp.category">Category: {{ activityProp.category }}</p>
@@ -9,13 +9,15 @@
       <p>Difficulty: {{ activityProp.difficulty }}</p>
     </div>
     <div class="dark-bg text-end p-3 rounded">
-      <button v-if="routines[0] && !route.params.routineId" class="btn btn-action" data-bs-toggle="dropdown">Add to Routine</button>
-      <button v-else @click="createActivity(activeRoutine.id)" class="btn btn-action">Add to Routine</button>
+      <div v-if="routines.length">
+        <button v-if="route.params.routineId" @click="createActivity(activeRoutine.id)" class="btn btn-action">Add to Routine</button>
+        <button v-else class="btn btn-action" data-bs-toggle="dropdown">Add to Routine</button>
 
-      <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
-        <div class="list-group text-center">
-          <div v-for="r in routines" :key="r.id" @click="createActivity(r.id)" class="list-group-item dropdown-item list-group-item-action selectable">
-            <p>{{ r.title }}</p>
+        <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
+          <div class="list-group text-center">
+            <div v-for="r in routines" :key="r.id" @click="createActivity(r.id)" class="list-group-item dropdown-item list-group-item-action selectable">
+              <p>{{ r.title }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -28,8 +30,8 @@ import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import { computed } from "vue"
 import { AppState } from "../AppState"
-import Pop from "../utils/Pop.js"
 import { useRoute } from "vue-router"
+import Pop from "../utils/Pop.js"
 
 export default {
   props: {
@@ -44,6 +46,7 @@ export default {
 
     return {
       route,
+      account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       activeRoutine: computed(() => AppState.activeRoutine),
       async setActiveActivity() {

@@ -1,21 +1,21 @@
 <template>
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark ">
-    <h2 class="text-center mt-2">Select a Community</h2>
-    <div @click="selectCommunity('Cardio Kings')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable flag">
+    <h1 class="text-center text-light my-3">Select a Community to Earn Points For</h1>
+    <div @click="selectCommunity('Cardio Kings')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable flag highlight1">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3 fw-bold">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div @click="selectCommunity('Weight Warriors')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable flag">
+    <div @click="selectCommunity('Weight Warriors')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable flag highlight2">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3 fw-bold">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div @click="selectCommunity('Legion of Leisure')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable flag">
+    <div @click="selectCommunity('Legion of Leisure')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable flag highlight3">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3 fw-bold">Legion of Leisure</p>

@@ -5,6 +5,7 @@
         <section class="row justify-content-between align-items-center flex-grow-1 p-2 bg-title">
           <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
           <p class="col-6 fs-1">{{ activeRoutine.title }}</p>
+
           <div class="col-3 text-end">
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
               <button v-if="activeRoutine.activities[0]" type="button" class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
@@ -26,7 +27,8 @@
           <p class="col-12">{{ activeRoutine.description }}</p>
         </section>
       </div>
-      <div v-if="activeRoutine.activities[0]" class="col-12 d-flex flex-column flex-md-row overflow-auto p-0">
+
+      <div v-if="activeRoutine.activities[0]" class="col-12 d-flex overflow-auto p-0">
         <div v-for="act in activeRoutine.activities" :key="act.id" class="d-flex justify-content-center p-3">
           <div class="card card-size text-center fw-bold elevation-5">
             <div class="d-flex flex-column card-body">
