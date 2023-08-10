@@ -43,6 +43,17 @@ class ActivitiesService {
     return await dbContext.Activities.create(activityData)
   }
 
+  async createActivitiesByCopyRoutineId(copyRoutine, routineId) {
+    const activities = await this.getActivitiesByRoutineId(routineId)
+    activities.forEach(async a => {
+      a.routineId = copyRoutine.id
+      a.accountId = copyRoutine.accountId
+      a.level = 0
+      a.sets = 1
+      await this.createActivities(a)
+    })
+  }
+
   async updateActivity(activityData) {
     const updateActivity = await this.getActivityById(activityData.id)
     let accountAchievement

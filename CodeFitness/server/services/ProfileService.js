@@ -28,6 +28,15 @@ class ProfileService {
       .limit(20)
       .exec()
   }
+
+  async getProfilesByCommunityId(communityId) {
+    return await dbContext.Account
+      .aggregate([{
+        $match: {
+          community: communityId,
+        }
+      }])
+  }
 }
 
 export const profileService = new ProfileService()
