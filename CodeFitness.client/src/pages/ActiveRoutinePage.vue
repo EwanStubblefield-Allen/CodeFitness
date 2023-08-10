@@ -143,10 +143,10 @@
                   completedSets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current - 1].reps }}</span></p>
               </div>
-              <p class="text-neutral-light">{{ routine.activities[current - 1].equipment }}</p>
+              <p class="text-neutral">{{ routine.activities[current - 1].equipment }}</p>
 
             </div>
-            <div v-else>
+            <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-start flex-column h-100">
               <div class="bg-success rounded text-light">
                 Start
               </div>
@@ -172,7 +172,7 @@
                 </div>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
               </div>
-              <p class="">Equipment: <span class="text-neutral-light"> {{ routine.activities[current].equipment }}</span>
+              <p class="">Equipment: <span class="text-neutral"> {{ routine.activities[current].equipment }}</span>
               </p>
               <!-- Collapsable -->
               <p><button @click="toggleCollapse()" class="btn btn-outline-info" type="button">Show Instructions</button>
@@ -213,18 +213,15 @@
                 <p v-if="!superSet">Sets: <span class="text-neutral">{{ routine.activities[current + 1].sets }}</span></p>
                 <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current + 1].reps }}</span></p>
               </div>
-              <p class="text-neutral-light">{{ routine.activities[current + 1].equipment }}</p>
+              <p class="text-neutral">{{ routine.activities[current + 1].equipment }}</p>
 
             </div>
-            <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-around flex-column h-100">
-              <!-- <p class=" "><i class="mdi mdi-party-popper mdi-rotate-270 text-warning"></i> Done!<i
-                  class="mdi mdi-party-popper text-warning"></i></p>
-              <p>🎈🎊🥳🎊🎈</p>
-              <p>🎉🎊🎁🎊🎉</p> -->
+            <div v-else class="pt-3 fs-5 fw-bold d-flex justify-content-start flex-column h-100">
 
               <div class="bg-success rounded text-light">
                 Finish
               </div>
+              Your routine is finished, Complete the Routine to earn points and level up your activities
             </div>
           </div>
         </section>
@@ -239,15 +236,17 @@
               <!-- There was stuff here -->
             </div>
           </section>
-          <div v-for="a in routine.activities" :key="a.tempId" class="col-5 form-check ">
-            <div class="control-checks"></div>
-            <input onclick="return false" v-model="editable[a.tempId]" class="fs-5 form-check-input" type="checkbox"
-              :id="a.tempId">
-            <label class="fs-5 form-check-label" :for="a.tempId">
-              <i class="mdi mdi-weight"></i>
-              {{ a.name }}
-            </label>
-          </div>
+          <section class="row justify-content-center">
+
+            <div v-for="a in routine.activities" :key="a.tempId" class="col-2 col-md-1 ">
+              <div class="control-checks"></div>
+              <input onclick="return false" v-model="editable[a.tempId]" class="fs-5 " type="checkbox" :id="a.tempId">
+              <label class="fs-5  d-flex flex-column align-items-center " :for="a.tempId">
+                <i class="mdi mdi-weight fs-1" :title="a.name"></i>
+                <!-- {{ a.name }} -->
+              </label>
+            </div>
+          </section>
           <div class="text-end p-3">
             <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger"
               type="reset">Restart</button>
@@ -308,8 +307,8 @@ export default {
         const superRoutine = AppState.activeSuperRoutine
 
         if (!superSet.value || !AppState.account.id) {
-          routine.activities.forEach((a, index) => {
-            a.tempId = index
+          routine?.activities.forEach((a, index) => {
+            a.tempId = index + 1
           })
           return routine
         } else {
@@ -331,7 +330,7 @@ export default {
               }
 
               superRoutine.activities.forEach((a, index) => {
-                a.tempId = index
+                a.tempId = index + 1
               })
             })
           }
@@ -375,7 +374,7 @@ export default {
               completedSets.value = 0
             }
           } else {
-            if (current.value != 0) {
+            if (current.value != 0 && completedSets.value == 0) {
               editable.value[this.routine.activities[current.value - 1].tempId] = false
             }
             completedSets.value -= 1
