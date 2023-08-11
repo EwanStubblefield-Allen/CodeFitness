@@ -223,6 +223,7 @@ import { computed, onMounted, ref, watchEffect } from 'vue'
 import { accountService } from "../services/AccountService.js"
 import { communitiesService } from '../services/CommunitiesService.js'
 import Pop from "../utils/Pop.js"
+import { Modal } from "bootstrap"
 
 export default {
   setup() {
@@ -291,6 +292,7 @@ export default {
             return
           }
           await accountService.updateAccount({ community: community })
+          Modal.getOrCreateInstance('#exampleModal').hide()
         } catch (error) {
           Pop.error(error.message, '[SELECTING COMMUNITY]')
         }
