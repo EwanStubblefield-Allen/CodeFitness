@@ -8,7 +8,9 @@
         <h2>Communities Page</h2>
         <div v-for="p in profiles" :key="p.id">
           <RouterLink :to="{ name: 'Profile', params: { profileId: p.id } }">
-            {{ p.name }}
+            <p class="text-break">
+              {{ p.name }}
+            </p>
           </RouterLink>
         </div>
       </div>
