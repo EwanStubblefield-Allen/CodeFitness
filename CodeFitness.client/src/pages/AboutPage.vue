@@ -11,7 +11,7 @@
             <p class="fs-5">
               By providing a platform to find useful
               exercises, collect and organize them, that also allows you to indulge in the joy of leveling up and
-              achievements codeFitness strives to bring the power of the player to strength and fitness!
+              achievements, codeFitness strives to bring the power of the player to strength and fitness!
             </p>
           </div>
         </section>
@@ -88,8 +88,8 @@
                 you how many seconds you have left to live.
               </span>
             </p>
-            <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
-            <a href="" class="mdi mdi-github fs-3" target="_blank"> Username</a>
+            <a href="https://media.licdn.com/dms/image/C4D08AQGFQY2DdUn5rA/croft-frontend-shrinkToFit1024/0/1618354043908?e=2147483647&v=beta&t=ivuEAn9FyNhduPe2e1XoUj_wQR1Mi7AoTQBaPgvhNIM" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
+            <a href="https://datacuber.cl/images/github/meme_final.jpg" class="mdi mdi-github fs-3" target="_blank"> Username</a>
           </h2>
         </section>
 
