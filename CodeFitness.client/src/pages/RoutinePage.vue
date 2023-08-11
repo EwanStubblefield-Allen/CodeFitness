@@ -6,12 +6,12 @@
         <section class="row justify-content-between align-items-center flex-grow-1 p-2 bg-title">
           <p  class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
           <div class="col-6">
-
             <p  class=" fs-1 text-break">{{ activeRoutine.title }}</p>
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
               <button v-if="activeRoutine.activities.length" type="button"
                 class="btn text-light selectable no-select mdi mdi-play fs-1" title="Start Routine"></button>
             </RouterLink>
+            <Tour v-if="account.needsTour" :steps="steps" :callbacks="callbacks"/>
           </div>
 
           <div class="col-3 text-end">
@@ -94,13 +94,13 @@
         </div>
       </div>
 
-      <div data-v-step="2" id="v-step-0"   v-else  class="bg-title mt-3">
+      <div data-v-step="2"  v-else  class="bg-title mt-3">
         <h1  >Please Select Activities Below</h1>
       </div>
     </section >
 
-    <section  class="row m-3 justify-content-center"  >
-      <ActivitySearch />
+    <section id="v-step-0"   class="row m-3 justify-content-center"  >
+      <ActivitySearch   />
     </section>
   </div>
 
@@ -159,7 +159,7 @@ export default {
           },
           content: `Add activities to your routine! `,
           params: {
-            // placement: 'bottom-end',
+            placement: 'bottom-end',
             enableScrolling: false
           }
         },

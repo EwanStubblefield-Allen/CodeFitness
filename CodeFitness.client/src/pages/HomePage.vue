@@ -8,9 +8,9 @@
       <ActivitySearch />
     </section>
   </div>
-  <Tour  :steps="steps" :callbacks="callbacks"/>
+  <Tour v-if="account.needsTour" :steps="steps" :callbacks="callbacks"/>
 </template>
-<!-- v-if="account.needsTour" -->
+
 <script>
 import { computed, onMounted, onUnmounted } from "vue"
 import { AppState } from "../AppState.js"
