@@ -14,13 +14,8 @@ class CommunityRoutinesService {
     return communityRoutineData
   }
 
-  async getCommunityRoutinesByCommunity(communityId) {
-    return await dbContext.CommunityRoutines
-      .aggregate([{
-        $match: {
-          community: communityId
-        }
-      }])
+  async getCommunityRoutinesByCommunityId(communityId) {
+    return await dbContext.CommunityRoutines.find({ community: communityId }).populate('activity')
   }
 
   async createCommunityRoutine(communityRoutineData) {

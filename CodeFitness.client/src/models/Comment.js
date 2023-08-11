@@ -3,8 +3,8 @@ export class Comment {
     this.id = data.id
     this.body = data.body
     this.accountId = data.accountId
-    this.createdAt = data.createdAt
-    this.updatedAt = data.updatedAt
+    this.createdAt = new Date(data.createdAt).toLocaleString()
+    this.updatedAt = new Date(data.updatedAt).toLocaleString()
     this.profile = data.profile
     this.community = data.community
   }

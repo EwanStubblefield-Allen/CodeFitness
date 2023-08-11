@@ -1,18 +1,16 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2">
-    <div class="accordion" id="accordionExample">
+    <section class="accordion" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed bg-neutral-light" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <button class="accordion-button collapsed bg-neutral-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             Leaderboard
           </button>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             <div v-for="p in profiles" :key="p.id" class="card elevation-5 my-3 bg-neutral">
-              <RouterLink :to="{ name: 'Profile', params: { profileId: p.id } }"
-                class="card-body d-flex align-items-center">
+              <RouterLink :to="{ name: 'Profile', params: { profileId: p.id } }" class="card-body d-flex align-items-center">
                 <img class="profile-pic m-2" :src="p.picture" :alt="p.name">
                 <div>
                   <p class="text-break">{{ p.name }}</p>
@@ -25,11 +23,11 @@
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed bg-neutral-light" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <button class="accordion-button collapsed bg-neutral-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             Suggested Routines
           </button>
         </h2>
+
         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             <RoutineComponent v-if="communityRoutines.length" :routinesProp="communityRoutines">
@@ -38,18 +36,22 @@
           </div>
         </div>
       </div>
-    </div>
-    <section>
+    </section>
+
+    <section class="row pt-2">
       <h2>Community Chat</h2>
-      <form @submit.prevent="submitComment()">
-        <div class="input-group">
+      <div v-for="c in comments" :key="c.id" class="py-3">
+        <CommentComponent :commentProp="c" />
+      </div>
+    </section>
+
+    <section class="row sticky-bottom p-3">
+      <form v-if="account.community == route.params.communityId" @submit.prevent="submitComment()" class=" bg-neutral-light p-3 rounded elevation-5">
+        <div class="form-group">
           <label for="comment">Comment</label>
-          <input v-model="editable" id="comment" class="form-control" type="text" minlength="2" maxlength="100"
-            placeholder="Leave your comment...">
+          <input v-model="editable.body" id="comment" class="form-control" type="text" minlength="2" maxlength="100" placeholder="Leave your comment...">
         </div>
       </form>
-      <div v-for="c in comments" :key="c.id">
-        {{ c.body }}</div>
     </section>
   </div>
 </template>
@@ -59,13 +61,15 @@ import { communitiesService } from '../services/CommunitiesService.js'
 import { useRoute } from "vue-router"
 import { computed, onMounted, onUnmounted, ref } from "vue"
 import { AppState } from "../AppState.js"
-import Pop from "../utils/Pop.js"
 import { commentsService } from "../services/CommentsService.js"
+import CommentComponent from '../components/CommentComponent.vue'
+import Pop from "../utils/Pop.js"
 
 export default {
   setup() {
     const route = useRoute()
-    const editable = ref('')
+    const editable = ref({})
+
     onMounted(() => {
       getCommunityProfiles()
       getCommunityRoutinesByCommunity()
@@ -74,12 +78,14 @@ export default {
 
     onUnmounted(() => {
       document.documentElement.scrollTop = 0
+      AppState.comments = []
     })
 
     async function getCommunityProfiles() {
       try {
         await communitiesService.getCommunityProfiles(route.params.communityId)
-      } catch (error) {
+      }
+      catch (error) {
         Pop.error(error.message, '[GETTING COMMUNITY PROFILES]')
       }
     }
@@ -87,7 +93,8 @@ export default {
     async function getCommunityRoutinesByCommunity() {
       try {
         await communitiesService.getCommunityRoutinesByCommunity(route.params.communityId)
-      } catch (error) {
+      }
+      catch (error) {
         Pop.error(error.message, '[GETTING COMMUNITY ROUTINES BY COMMUNITY]')
       }
     }
@@ -96,35 +103,35 @@ export default {
       try {
         const communityId = route.params.communityId
         await commentsService.getComments(communityId)
-      } catch (error) {
+      }
+      catch (error) {
         Pop.error(error.message)
       }
     }
 
     return {
+      account: computed(() => AppState.account),
       profiles: computed(() => AppState.communityProfiles.sort((a, b) => b.points - a.points)),
       communityRoutines: computed(() => AppState.communityRoutines),
       comments: computed(() => AppState.comments),
       editable,
+      route,
 
       async submitComment() {
         try {
+          editable.value.community = route.params.communityId
           await commentsService.submitComment(editable.value)
-        } catch (error) {
+          editable.value = {}
+          document.documentElement.scrollTop = document.documentElement.scrollHeight
+        }
+        catch (error) {
           Pop.error(error.message)
         }
       }
     }
-  }
+  },
+  components: { CommentComponent }
 }
 </script>
 
-<style lang="scss" scoped>
-  .profile-pic {
-    height: 10vh;
-    width: 10vh;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-  }
-</style>
+<style lang="scss" scoped></style>
