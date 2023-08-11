@@ -110,7 +110,10 @@
     <section class="row justify-content-center bg-active-routine ">
       <div class="col-12 p-3 ">
         <section class="row justify-content-center">
-          <div class="offset-lg-4 col-12 col-lg-4 d-flex flex-lg-column align-items-center justify-content-center">
+          <div class="col-12 col-lg-4 d-flex justify-content-center">
+            <img class="img-fluid rounded img-size" :src="routine.picture" alt="">
+          </div>
+          <div class="col-12 col-lg-4 d-flex flex-lg-column align-items-center justify-content-center">
             <p class="fs-1 text-center text-white pe-3 pe-lg-0">{{ routine.title }}</p>
             <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger"
               type="reset">Restart</button>
@@ -425,7 +428,13 @@ export default {
 
 .activeCard {
   min-height: 40vh;
+}
 
+.img-size {
+  height: 15vh;
+  width: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 .shadowed-text {
@@ -435,7 +444,6 @@ export default {
 .bg-active-routine {
   background-image: linear-gradient(var(--darkest), var(--neutral-dark));
   min-height: 91.3vh;
-
 }
 
 .secondaryCard {
@@ -443,22 +451,6 @@ export default {
   max-height: 40vh;
   transform: scale(.90);
 }
-
-// .parentContainer {
-//   position: absolute;
-// }
-
-// .nextArrow {
-//   position: absolute;
-//   bottom: 70%;
-//   left: 80%;
-// }
-
-// .prevArrow {
-//   position: absolute;
-//   bottom: 70%;
-//   right: 63%;
-// }
 
 input {
   display: none;
