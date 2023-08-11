@@ -33,7 +33,7 @@ class ProfileService {
     return await dbContext.Account
       .aggregate([{
         $match: {
-          community: communityId,
+          community: communityId
         }
       }])
   }

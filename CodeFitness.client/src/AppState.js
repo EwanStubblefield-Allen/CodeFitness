@@ -18,8 +18,11 @@ export const AppState = reactive({
   activities: [],
   /** @type {import('./models/Activity.js').Activity[]} */
   activeActivity: [],
+  /** @type {import('./models/CopyRoutine.js').CopyRoutine[]} */
+  copyRoutines: [],
   /** @type {import('./models/Routine.js').Routine[]} */
   routines: [],
+  communityRoutines: [],
   /** @type {import('./models/Routine.js').Routine | null} */
   profileRoutines: [null],
   /** @type {import('./models/Routine.js').Routine | null} */

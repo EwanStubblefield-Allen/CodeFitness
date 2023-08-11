@@ -4,7 +4,7 @@ import BaseController from "../utils/BaseController.js";
 
 export class CopyRoutinesController extends BaseController {
   constructor() {
-    super('api/copyRoutine')
+    super('api/copyRoutines')
     this.router
       .get('/:copyRoutineId', this.getCopyRoutineById)
       .use(Auth0Provider.getAuthorizedUserInfo)
