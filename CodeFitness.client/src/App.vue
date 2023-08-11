@@ -136,6 +136,10 @@ export default {
     background-color: var(--light);
   }
 
+  .bg-action {
+    background-color: var(--action);
+  }
+
   .text-neutral {
     color: var(--neutral);
   }
