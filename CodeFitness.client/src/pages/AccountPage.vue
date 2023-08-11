@@ -54,7 +54,7 @@
                 <p class="p-2 mb-2">{{ r.description }}</p>
                 <div class="text-end">
                   <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: r.id } }">
-                    <button v-if="r.activities.length" @click="getRoutineById(r.id)" class="btn btn-action" type="button">Start Routine</button>
+                    <button v-if="r.activities.length" class="btn btn-action" type="button">Start Routine</button>
                   </RouterLink>
                 </div>
               </div>

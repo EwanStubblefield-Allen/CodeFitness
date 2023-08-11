@@ -320,7 +320,7 @@ export default {
             a.tempId = index + 1
           })
           return routine
-        } else {
+        } else if (AppState.activeRoutine) {
           let tempArr = [...AppState.activeRoutine.activities]
           superRoutine.activities.length = 0
           let temp = 0
@@ -345,6 +345,7 @@ export default {
           }
           return superRoutine
         }
+        return ''
       }),
 
       changeActivity(change) {
