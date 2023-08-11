@@ -1,14 +1,14 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2">
-    <TeamComponent />
-
-    <section v-if="account.community" class="row m-3">
-      <button @click="isEditing()" class="btn btn-action p-3 fs-3" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
+    <TeamComponent id="v-step-0" class="v-step-1"/>
+    <section v-if="account.community" class="row m-3" >
+      <button @click="isEditing()" class="btn btn-action p-3 fs-3" type="button" data-bs-toggle="modal" data-bs-target="#routineForm" >Create Routine</button>
     </section>
     <section class="row justify-content-center">
       <ActivitySearch />
     </section>
   </div>
+  <Tour :steps="steps" :callbacks="callbacks"/>
 </template>
 
 <script>
@@ -16,8 +16,12 @@ import { computed, onMounted, onUnmounted } from "vue"
 import { AppState } from "../AppState.js"
 import ActivitySearch from '../components/ActivitySearch.vue'
 import TeamComponent from '../components/TeamComponent.vue'
+import { logger } from "../utils/Logger"
+import { router } from "../router"
+import { useRoute } from "vue-router"
 
 export default {
+  name: 'my-tour',
   setup() {
     onMounted(() => {
       AppState.activeRoutine = null
@@ -29,13 +33,49 @@ export default {
 
     return {
       account: computed(() => AppState.account),
+      steps: [
+        {
+          target: '#v-step-0',  // We're using document.querySelector() under the hood
+          header: {
+            title: 'Get Started'
+          },
+          content: `Pick a community to earn points and create routines!`,
+          params: {
+            placement: 'top' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        },
+        {
+          target: '.v-step-1',
+          content: 'Create a Routine then add activities to it!',
+          params: {
+            placement: 'top-end' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        }
+        // {
+        //   target: '[data-v-step="2"]',
+        //   content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
+        //   params: {
+        //     placement: 'top' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+        //   }
+        // }
+      ],
+
+      callbacks: {
+        onFinish: (() => {
+          logger.log('finish')
+        }),
+        onSkip: (() => logger.log('skipped'))
+      },
 
       isEditing() {
         AppState.isEditing = false
       }
     }
   },
-  components: { TeamComponent, ActivitySearch }
+  components: { TeamComponent, ActivitySearch },
+  mounted: function() {
+    this.$tours['myTour'].start()
+  }
 }
 </script>
 
