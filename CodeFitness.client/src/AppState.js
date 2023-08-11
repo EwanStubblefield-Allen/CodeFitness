@@ -33,6 +33,7 @@ export const AppState = reactive({
   activeAchievements: [],
   /** @type {import('./models/Comment.js').Comment[]}} */
   comments: [],
+  wantsTour: false,
   /** @type {import('./models/Comment.js').Comment | null}} */
   activeComment: null,
   randomImgForCover: [

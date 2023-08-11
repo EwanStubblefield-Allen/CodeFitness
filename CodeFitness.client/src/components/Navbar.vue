@@ -11,13 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ms-auto">
         <li>
-          <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <span @click="getHelp()" class="lighten-30 selectable text-uppercase text-success me-5">
+            Help
+          </span>
+          <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase me-5">
             Home
           </router-link>
-          <router-link :to="{ name: 'Account' }" v-if="account.community" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Account' }" v-if="account.community" class="btn text-success lighten-30 selectable text-uppercase me-5">
             Account
           </router-link>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase me-5">
             About
           </router-link>
           <div v-if="account.community" class="d-flex d-md-none justify-content-between align-items-center pt-2">
@@ -34,19 +37,21 @@
 </template>
 
 <script>
-import { computed } from "vue"
+import { computed, ref } from "vue"
 import { AppState } from "../AppState.js"
 import Login from './Login.vue'
+import { logger } from "../utils/Logger"
 
 export default {
   setup() {
     return {
       account: computed(() => AppState.account),
-      routines: computed(() => AppState.routines)
-    }
+      routines: computed(() => AppState.routines),
+      wantsTour: computed(()=> AppState.wantsTour),
 
-    function getHelp() {
-      this.$tours['myTour'].start()
+      getHelp() {
+        AppState.wantsTour = !AppState.wantsTour
+      }
     }
   },
   components: { Login }
