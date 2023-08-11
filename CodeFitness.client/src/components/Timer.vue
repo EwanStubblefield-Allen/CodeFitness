@@ -35,8 +35,9 @@
       <div>
         <section class="row justify-content-center align-items-center">
           <div class="offset-2 col-2">
-            <!-- <i id="alarm" class="col-1 mdi mdi-timer-sand-empty me-3 alarm "></i> -->
-            <img id="alarm" class="img-fluid alarm" src="https://gcdn.thunderstore.io/live/repository/icons/mrchous-NoBossNoWait-1.0.0.png.256x256_q95.png" alt="alarm">
+            <img id="alarm" class="img-fluid alarm"
+              src="https://gcdn.thunderstore.io/live/repository/icons/mrchous-NoBossNoWait-1.0.0.png.256x256_q95.png"
+              alt="alarm">
           </div>
           <div class="col-4 me-auto text-center">
             <button @click="timerOn = false, controlTimer(-1)" class="btn btn-action">Timer Off</button>
@@ -83,19 +84,15 @@ export default {
 
         if (state == 1) {
           if (!this.intervalId) {
-            logger.log(this.intervalId, 'start')
             this.intervalId = setInterval(this.controlTiming, 1000, 1000)
           }
         } else {
           clearInterval(this.intervalId)
           this.intervalId = null
-          logger.log(this.intervalId, 'stop')
         }
       },
 
       controlTiming(change) {
-        logger.log(time.value)
-
         if (time.value <= 0) {
           document.getElementById('alarm').classList.add('shake')
           time.value = 0
@@ -150,74 +147,70 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  label {
-    font-size: 12px;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+label {
+  font-size: 12px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.timer-data {
+  height: 7vh;
+}
+
+.alarm {
+  filter: drop-shadow(3px 3px var(--darkest)) drop-shadow(-3px -3px var(--neutral-dark));
+}
+
+.shake {
+  color: var(--action);
+  filter: drop-shadow(2px 2px var(--action)) drop-shadow(-2px -2px var(--light));
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
   }
 
-  .timer-data {
-    height: 7vh;
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
   }
 
-  .alarm {
-    filter: drop-shadow(3px 3px var(--darkest)) drop-shadow(-3px -3px var(--neutral-dark));
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
   }
 
-  .shake {
-    color: var(--action);
-    filter: drop-shadow(2px 2px var(--action)) drop-shadow(-2px -2px var(--light));
-    // text-shadow: 0 0 20px var(--light);
-    /* Start the shake animation and make the animation last for 0.5 seconds */
-    animation: shake 0.5s;
-
-    /* When the animation is finished, start again */
-    animation-iteration-count: infinite;
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
   }
 
-  @keyframes shake {
-    0% {
-      transform: translate(1px, 1px) rotate(0deg);
-    }
-
-    10% {
-      transform: translate(-1px, -2px) rotate(-1deg);
-    }
-
-    20% {
-      transform: translate(-3px, 0px) rotate(1deg);
-    }
-
-    30% {
-      transform: translate(3px, 2px) rotate(0deg);
-    }
-
-    40% {
-      transform: translate(1px, -1px) rotate(1deg);
-    }
-
-    50% {
-      transform: translate(-1px, 2px) rotate(-1deg);
-    }
-
-    60% {
-      transform: translate(-3px, 1px) rotate(0deg);
-    }
-
-    70% {
-      transform: translate(3px, 1px) rotate(-1deg);
-    }
-
-    80% {
-      transform: translate(-1px, -1px) rotate(1deg);
-    }
-
-    90% {
-      transform: translate(1px, 2px) rotate(0deg);
-    }
-
-    100% {
-      transform: translate(1px, -2px) rotate(-1deg);
-    }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
   }
+
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
 </style>

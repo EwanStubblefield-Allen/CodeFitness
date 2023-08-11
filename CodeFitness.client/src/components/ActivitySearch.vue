@@ -86,9 +86,7 @@ export default {
       async getActivities(type) {
         try {
           AppState.page = 0
-          // await activitiesService.getActivities(`muscle=${editable.value}&type=${adaptable.value}`)
           await activitiesService.getActivities(`type=${type}`)
-          // Modal.getOrCreateInstance('#filterForm').hide()
           adaptable.value = ''
         }
         catch (error) {
