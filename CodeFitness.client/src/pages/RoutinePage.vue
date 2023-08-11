@@ -11,7 +11,7 @@
               <button v-if="activeRoutine.activities.length" type="button"
                 class="btn text-light selectable no-select mdi mdi-play fs-1" title="Start Routine"></button>
             </RouterLink>
-            <Tour v-if="account.needsTour" :steps="steps" :callbacks="callbacks"/>
+            <Tour v-if="activeRoutine.activities == 0" :steps="steps" :callbacks="callbacks"/>
           </div>
 
           <div class="col-3 text-end">
@@ -182,9 +182,9 @@ export default {
       ],
       callbacks: {
         onFinish: (() => {
-          accountService.editAccount({needsTour: false})
-        }),
-        onSkip: (() => accountService.editAccount({needsTour: false}))
+          // accountService.editAccount({needsTour: false})
+        })
+        // onSkip: (() => accountService.editAccount({needsTour: false}))
       },
 
       isEditing() {
