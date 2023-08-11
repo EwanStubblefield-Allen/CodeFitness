@@ -1,6 +1,5 @@
 import { AppState } from "../AppState.js"
 import { Profile } from "../models/Profile.js"
-import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CommunitiesService {
@@ -13,9 +12,13 @@ class CommunitiesService {
 
   async getCommunityProfiles(communityId) {
     const res = await api.get(`api/communities/${communityId}/profiles`)
-    logger.log(res.data)
     AppState.communityProfiles = res.data.map(p => new Profile(p))
-    logger.log(AppState.communityProfiles)
+  }
+
+  async getCommunityRoutinesByCommunity(communityId) {
+    const res = await api.get(`api/communities/${communityId}/routines`)
+    res.data.map(d => d.id = d._id)
+    AppState.communityRoutines = res.data
   }
 }
 

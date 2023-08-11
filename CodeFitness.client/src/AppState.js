@@ -20,6 +20,7 @@ export const AppState = reactive({
   activeActivity: [],
   /** @type {import('./models/Routine.js').Routine[]} */
   routines: [],
+  communityRoutines: [],
   /** @type {import('./models/Routine.js').Routine | null} */
   profileRoutines: [null],
   /** @type {import('./models/Routine.js').Routine | null} */

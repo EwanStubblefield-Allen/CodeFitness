@@ -1,10 +1,10 @@
 import { Schema } from "mongoose";
 
-export const RoutineSchema = new Schema({
-  accountId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: "Account"
+export const CommunityRoutineSchema = new Schema({
+  community: {
+    type: String,
+    enum: ['Cardio Kings', 'Weight Warriors', 'Legion of Leisure'],
+    required: true
   },
   title: {
     type: String,
@@ -23,28 +23,13 @@ export const RoutineSchema = new Schema({
     minlength: 10,
     maxlength: 1000,
     required: true
-  },
-  public: {
-    type: Boolean,
-    default: false
-  },
-  completeCount: {
-    type: Number,
-    default: 0
   }
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
 })
 
-RoutineSchema.virtual('profile', {
-  localField: 'accountId',
-  foreignField: '_id',
-  justOne: true,
-  ref: 'Account'
-})
-
-RoutineSchema.virtual('activity', {
+CommunityRoutineSchema.virtual('activity', {
   localField: '_id',
   foreignField: 'routineId',
   ref: 'Activity'

@@ -42,6 +42,15 @@
     </template>
   </ModalComponent>
 
+  <ModalComponent v-if="appState.activeRoutine" id="activeRoutine" class="modal-lg">
+    <template #title>
+      {{ appState.activeRoutine.title }}
+    </template>
+    <template #body>
+      hi
+    </template>
+  </ModalComponent>
+
   <Offcanvas id="offcanvasRoutine">
     <template #title>
       Routines
