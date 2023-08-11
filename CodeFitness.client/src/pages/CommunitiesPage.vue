@@ -42,9 +42,9 @@
       </div>
     </section>
 
-    <section class="row pt-2">
+    <section class="row pt-2 mt-5">
       <h2>Community Chat</h2>
-      <div v-for="c in comments" :key="c.id" class="py-3">
+      <div v-for="c in comments" :key="c.id" class="py-2">
         <CommentComponent :commentProp="c" />
       </div>
     </section>
