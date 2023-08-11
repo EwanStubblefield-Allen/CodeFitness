@@ -149,12 +149,12 @@
     </section>
     <section class="row   text-center mt-4 p-5 text-light">
       <h1 class="col-12">Program your Fitness</h1>
-      <section class="row">
-        <div class="col-md-4 col-12 me-5 pe-3">
-          <img class="img-fluid me-5" src="../assets/img/CFTee.png" alt="logo" height="355" />
+      <section class="row justify-content-center">
+        <div class="col-md-4 col-12 justify-content-center ">
+          <img class="img-fluid ms-3" src="../assets/img/CFTee.png" alt="logo" height="355" />
         </div>
-        <div class="col-md-4 col-12 me-5 pe-3">
-          <img class="img-fluid mt-5 me-5" src="../assets/img/CFHat.png" alt="logo" height="155" />
+        <div class="col-md-4 col-12 justify-content-center ">
+          <img class="img-fluid " src="../assets/img/CFHat.png" alt="logo" height="155" />
         </div>
       </section>
     </section>
