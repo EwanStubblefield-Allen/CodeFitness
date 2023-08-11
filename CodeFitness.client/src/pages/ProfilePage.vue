@@ -1,6 +1,10 @@
 <template>
   <div v-if="profile" class="col-12 col-md-10 offset-md-2">
     <ProfileDetails :profileProp="profile" />
+
+    <RoutineComponent :routinesProp="routines" v-if="routines[0]">
+      Their Recent Routines:
+    </RoutineComponent>
   </div>
 </template>
 
@@ -10,8 +14,8 @@ import { AppState } from "../AppState.js"
 import { useRoute } from "vue-router"
 import { profilesService } from '../services/ProfilesService.js'
 import { routinesService } from "../services/RoutinesService.js"
-import Pop from "../utils/Pop.js"
 import ProfileDetails from "../components/ProfileDetails.vue"
+import Pop from "../utils/Pop.js"
 
 export default {
   setup() {
@@ -45,7 +49,8 @@ export default {
     }
 
     return {
-      profile: computed(() => AppState.activeProfile)
+      profile: computed(() => AppState.activeProfile),
+      routines: computed(() => AppState.profileRoutines)
     }
   },
   components: { ProfileDetails }

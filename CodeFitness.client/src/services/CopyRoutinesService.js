@@ -13,9 +13,11 @@ class CopyRoutinesService {
     }
   }
 
-  async createCopyRoutine(routineId) {
-    const res = await api.post('api/copyRoutines', { routineId: routineId })
-    AppState.copyRoutines.push(new CopyRoutine(res.data))
+  async createCopyRoutine(routineData) {
+    const res = await api.post('api/copyRoutines', routineData)
+    const copyRoutine = new CopyRoutine(res.data)
+    AppState.copyRoutines.push(copyRoutine)
+    return copyRoutine
   }
 }
 

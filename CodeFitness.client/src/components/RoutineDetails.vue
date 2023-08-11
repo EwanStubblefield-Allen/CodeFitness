@@ -15,16 +15,27 @@
 import { AppState } from '../AppState.js'
 import { computed } from 'vue'
 import { copyRoutinesService } from '../services/CopyRoutinesService.js'
+import { useRouter } from 'vue-router'
+import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
 
 export default {
   setup() {
+    const router = useRouter()
     return {
       routine: computed(() => AppState.activeRoutine),
 
-      async createCopyRoutine(routineId) {
+      async createCopyRoutine(routine) {
         try {
-          await copyRoutinesService.createCopyRoutine(routineId)
+          const routineData = {}
+          routineData.routineId = routine.id
+
+          if (routine.accountId) {
+            routineData.authorId = routine.accountId
+          }
+          const copyRoutine = await copyRoutinesService.createCopyRoutine(routineData)
+          Modal.getOrCreateInstance('#activeRoutine').hide()
+          router.push({ name: 'Routines', params: { routineId: copyRoutine.routineId } })
         } catch (error) {
           Pop.error(error.message, '[CREATING COPY ROUTINE]')
         }

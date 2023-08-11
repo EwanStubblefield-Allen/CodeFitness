@@ -223,6 +223,7 @@ import { computed, onMounted, ref, watchEffect } from 'vue'
 import { accountService } from "../services/AccountService.js"
 import { communitiesService } from '../services/CommunitiesService.js'
 import Pop from "../utils/Pop.js"
+import { Modal } from "bootstrap"
 
 export default {
   setup() {
@@ -291,6 +292,7 @@ export default {
             return
           }
           await accountService.updateAccount({ community: community })
+          Modal.getOrCreateInstance('#exampleModal').hide()
         } catch (error) {
           Pop.error(error.message, '[SELECTING COMMUNITY]')
         }
@@ -378,6 +380,7 @@ button {
 }
 
 .highlight1 {
+  background: rgb(134, 98, 98);
   border: solid 4px whitesmoke;
   box-shadow: inset 0 0 50px #fff,
     inset 20px 0 80px rgb(255, 0, 0),
@@ -405,6 +408,7 @@ button {
 }
 
 .highlight3 {
+  background: rgb(164, 159, 128);
   border: solid 4px whitesmoke;
   box-shadow:
     inset 0 0 50px #fff,

@@ -3,7 +3,7 @@
     <ProfileDetails :profileProp="account" />
 
     <RoutineComponent v-if="routines.length" :routinesProp="routines">
-      Recent Routines
+      Your Recent Routines:
     </RoutineComponent>
 
     <section class="row">
