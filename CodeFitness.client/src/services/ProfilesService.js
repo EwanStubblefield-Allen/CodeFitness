@@ -1,11 +1,14 @@
 import { AppState } from "../AppState.js"
 import { Profile } from '../models/Profile.js'
+import { api } from "./AxiosService.js"
 
 class ProfilesService {
-  getActiveProfile(profileId) {
-    const foundProfile = AppState.communityProfiles.find(p => p.id == profileId)
-    AppState.activeProfile = new Profile(foundProfile)
+
+  async getProfileById(profileId) {
+    const res = await api.get(`api/profiles/${profileId}`)
+    AppState.activeProfile = new Profile(res.data)
   }
+
 }
 
 export const profilesService = new ProfilesService()

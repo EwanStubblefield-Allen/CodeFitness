@@ -113,13 +113,12 @@ export default {
     })
 
     watchEffect(() => {
-      getRoutineById(route.params.routineId)
+      getRoutineById()
     })
 
     async function getRoutineById() {
       try {
-        const routineId = route.params.routineId
-        await routinesService.getRoutineById(routineId)
+        await routinesService.getRoutineById(route.params.routineId)
       } catch (error) {
         Pop.error(error.message, '[GETTING ROUTINE BY ID]')
       }

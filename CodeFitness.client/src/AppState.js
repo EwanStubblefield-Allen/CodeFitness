@@ -8,6 +8,7 @@ export const AppState = reactive({
   communities: null,
   /** @type {import('./models/Profile.js').Profile[]} */
   communityProfiles: [],
+  /** @type {import('./models/Profile.js').Profile | null} */
   activeProfile: null,
   page: 0,
   nextPage: false,
@@ -15,10 +16,12 @@ export const AppState = reactive({
   template: {},
   /** @type {import('./models/Activity.js').Activity[]} */
   activities: [],
-  /** @type {import('./models/Activity.js').Activity | null} */
-  activeActivity: null,
+  /** @type {import('./models/Activity.js').Activity[]} */
+  activeActivity: [],
   /** @type {import('./models/Routine.js').Routine[]} */
   routines: [],
+  /** @type {import('./models/Routine.js').Routine | null} */
+  profileRoutines: [null],
   /** @type {import('./models/Routine.js').Routine | null} */
   activeRoutine: null,
   /** @type {import('./models/Routine.js').Routine | null} */
@@ -39,6 +42,5 @@ export const AppState = reactive({
   ],
   randomImgForProfile: [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUOeCy-zk0RQkaqSGA3BtgfcXMqSpPx5fitg&usqp=CAU"
-  ],
-  teams: [{name: 'Cardio Kings'}, {name: 'Weight Warriors'}, {name: 'Legion of Leisure'}]
+  ]
 })

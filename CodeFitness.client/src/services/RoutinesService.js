@@ -3,7 +3,6 @@ import { Routine } from "../models/Routine.js"
 import { api } from "./AxiosService.js"
 import { accountAchievementService } from "./AccountAchievementService.js"
 import Pop from "../utils/Pop.js"
-import { logger } from "../utils/Logger.js"
 
 class RoutinesService {
   setActiveRoutine(routine) {
@@ -27,8 +26,7 @@ class RoutinesService {
 
   async getRoutinesByProfileId(profileId) {
     const res = await api.get(`api/profiles/${profileId}/routines`)
-    logger.log(res.data)
-    
+    AppState.profileRoutines = res.data.map(d => new Routine(d))
   }
 
   async createRoutine(routineData) {

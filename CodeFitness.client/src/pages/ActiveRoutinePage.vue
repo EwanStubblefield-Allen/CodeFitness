@@ -262,7 +262,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref, watchEffect } from "vue"
+import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { AppState } from "../AppState"
 import { accountService } from "../services/AccountService"
@@ -286,6 +286,10 @@ export default {
     onMounted(() => {
       superSet.value = false
       completedSets.value = 0
+    })
+
+    onUnmounted(() => {
+      document.documentElement.scrollTop = 0
     })
 
     function toggleCollapse() {

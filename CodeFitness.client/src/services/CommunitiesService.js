@@ -14,8 +14,7 @@ class CommunitiesService {
   async getCommunityProfiles(communityId) {
     const res = await api.get(`api/communities/${communityId}/profiles`)
     logger.log(res.data)
-    const newProfiles = res.data.map(p => new Profile(p))
-    AppState.communityProfiles = newProfiles
+    AppState.communityProfiles = res.data.map(p => new Profile(p))
     logger.log(AppState.communityProfiles)
   }
 }

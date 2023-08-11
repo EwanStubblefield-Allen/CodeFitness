@@ -1,32 +1,7 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2">
-    <section class="row">
-      <div class="col-12 col-md-12 p-0 position-relative">
-        <img class="cover-image" :src="account.coverImg" @error="randomCoverImg()" :alt="account.name">
+    <ProfileDetails :profileProp="account" />
 
-        <div class="d-md-flex justify-content-between align-items-end position">
-          <img class="account-picture" :src="account.picture" @error="randomProfileImg()" :alt="account.name">
-        </div>
-      </div>
-    </section>
-
-    <section class="row justify-content-between">
-      <div class="offset-md-3 offset-xl-2 col-10 col-md-7 order-2 order-md-1 d-flex align-items-center pt-3">
-        <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ account.name }}</div>
-        <img v-if="account.community == 'Cardio Kings'" class="text-stroke px-3" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <img v-else-if="account.community == 'Weight Warriors'" class="text-stroke px-3" src="../assets/img/flagWW.png" alt="Weight Warriors">
-        <img v-else-if="account.community == 'Legion of Leisure'" class="text-stroke px-3" src="../assets/img/flagLL.png" alt="Legion of Leisure">
-      </div>
-      <div class="col-12 col-md-2 order-1 order-md-2 text-end">
-        <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm" title="Edit Account"></button>
-      </div>
-    </section>
-
-    <section class="row justify-content-center">
-      <div class="col-12 col-md-9 py-3 fs-5 text-break">
-        {{ account.bio }}
-      </div>
-    </section>
     <section class="row justify-content-center py-3">
       <div class="col-12 col-md-9 d-flex text-dark align-items-center justify-content-between">
         <div class="pe-3 fs-3">
@@ -55,7 +30,6 @@
         <section v-if="account.id && (routines.length >= 3)" class="row">
           <div v-for="r in showAmount" :key="r" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
-              <!-- <div class="reserved-space"></div> -->
               <img :src="routines[r - 1].picture" @error="randomRoutineImg()" alt="Routine Image" class="img-fluid routine-pic rounded-top">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ routines[r - 1].title }}</h5>
@@ -74,7 +48,6 @@
         <div v-else class="row">
           <div v-for="r in routines" :key="r.id" class="col-12 col-md-4 pb-3">
             <div class="routine-bg rounded">
-              <!-- <div class="reserved-space"></div> -->
               <img :src="r.picture" @error="randomRoutineImg()" alt=" Routine Image" class="img-fluid routine-pic rounded-top w-100">
               <div class="routine-details p-2">
                 <h5 class="p-2 text-center"> {{ r.title }}</h5>
@@ -134,49 +107,24 @@
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
+import { computed, onUnmounted, ref, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { accountAchievementService } from "../services/AccountAchievementService"
+import ProfileDetails from '../components/ProfileDetails.vue'
 import Pop from "../utils/Pop"
-import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
     const editable = ref({})
-
-    const showAmount = ref({})
-
-    onMounted(() => showAmount.value = 3)
+    const showAmount = ref(3)
 
     async function getAchievementsByUserId() {
       try {
         await accountAchievementService.getAchievementsByUserId()
-      } catch (error) {
+      }
+      catch (error) {
         Pop.error(error.message, '[GETTING ACHIEVEMENTS BY USER ID]')
       }
-    }
-
-    function randomCoverImg() {
-      let array = AppState.randomImgForCover
-      let randomNum = Math.floor(Math.random() * array.length)
-      AppState.account.coverImg = array[randomNum]
-      Pop.error('Invalid Image URL for Cover Image')
-    }
-
-    async function randomProfileImg() {
-      try {
-        await accountService.updateBadPicture()
-      } catch (error) {
-        Pop.error(error.message)
-      }
-      Pop.error('Invalid Image URL for Profile Image')
-    }
-
-    function randomRoutineImg() {
-      // let array = AppState.randomImgForRoutine
-      // let randomNum = Math.floor(Math.random() * array.length)
-      // AppState.routines.picture = array[randomNum]
-      Pop.error('Invalid Image URL for Routine Image. Please update the URL on your routine!')
     }
 
     onUnmounted(() => {
@@ -189,19 +137,22 @@ export default {
       }
     })
 
+    // function randomRoutineImg() {
+    //   // let array = AppState.randomImgForRoutine
+    //   // let randomNum = Math.floor(Math.random() * array.length)
+    //   // AppState.routines.picture = array[randomNum]
+    //   Pop.error('Invalid Image URL for Routine Image. Please update the URL on your routine!')
+    // }
+
     return {
       editable,
       showAmount,
-      randomCoverImg,
-      randomProfileImg,
-      randomRoutineImg,
       account: computed(() => AppState.account),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
       routines: computed(() => {
         return AppState.routines.sort((a, b) => b.updatedAt - a.updatedAt)
       }),
-
       completed: computed(() => {
         let complete = 0
         AppState.activeAchievements.forEach(a => {
@@ -209,48 +160,17 @@ export default {
         })
         return complete
       })
-
     }
-  }
+  },
+  components: { ProfileDetails }
 }
 </script>
 
 <style scoped>
-  .account-picture {
-    width: 20vh;
-    height: 20vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-  }
-
-  .position {
-    position: absolute;
-    bottom: -10vh;
-    left: 5vw;
-  }
-
-  .cover-image {
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-    height: 50vh;
-  }
-
-  .text-stroke {
-    height: 8vh;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-  }
-
   .routine-pic {
     background-image: v-bind(picture);
     object-fit: cover;
     object-position: center;
-    height: 30vh;
-  }
-
-  .reserved-space {
     height: 30vh;
   }
 

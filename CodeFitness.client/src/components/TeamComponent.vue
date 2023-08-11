@@ -39,7 +39,7 @@
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </RouterLink>
-    <RouterLink :to="{ name: 'Communities', params: { communityId: teams[2].name } }" :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }" :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
         <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
@@ -73,7 +73,6 @@ export default {
     return {
       account: computed(() => AppState.account),
       communities: computed(() => AppState.communities),
-      teams: computed(() => AppState.teams),
 
       async selectCommunity(community) {
         try {
