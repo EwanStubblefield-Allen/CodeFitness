@@ -11,16 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ms-auto">
         <li>
-          <span @click="getHelp()" class="lighten-30 selectable text-uppercase text-success">
+          <span @click="getHelp()" class="lighten-30 selectable text-uppercase text-success me-5">
             Help
           </span>
-          <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase me-5">
             Home
           </router-link>
           <router-link :to="{ name: 'Account' }" v-if="account.community" class="btn text-success lighten-30 selectable text-uppercase">
             Account
           </router-link>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase me-5">
             About
           </router-link>
           <div v-if="account.community" class="d-flex d-md-none justify-content-between align-items-center pt-2">
