@@ -53,6 +53,10 @@ export default {
     return {
       account: computed(() => AppState.account),
 
+      editComment() {
+        AppState.activeComment = props.commentProp
+      },
+
       async removeComment() {
         try {
           const isSure = await Pop.confirm('Are you sure you want to delete this comment?')

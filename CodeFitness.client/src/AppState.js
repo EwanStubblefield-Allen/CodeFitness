@@ -33,6 +33,8 @@ export const AppState = reactive({
   activeAchievements: [],
   /** @type {import('./models/Comment.js').Comment[]}} */
   comments: [],
+  /** @type {import('./models/Comment.js').Comment | null}} */
+  activeComment: null,
   randomImgForCover: [
     "https://img.freepik.com/free-vector/pixel-art-mystical-background_52683-87349.jpg?size=626&ext=jpg&ga=GA1.1.423495681.1687052097&semt=ais",
     "https://images.unsplash.com/photo-1495480393121-409eb65c7fbe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=05ea43dbe96aba57d48b792c93752068&auto=format&fit=crop&w=1351&q=80",

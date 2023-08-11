@@ -46,7 +46,7 @@
     </section>
 
     <section class="row sticky-bottom p-3">
-      <form v-if="account.community == route.params.communityId" @submit.prevent="submitComment()" class=" bg-neutral-light p-3 rounded elevation-5">
+      <form v-if="account.community == route.params.communityId" @submit.prevent="handleSubmit()" class=" bg-neutral-light p-3 rounded elevation-5">
         <div class="form-group">
           <label for="comment">Comment</label>
           <input v-model="editable.body" id="comment" class="form-control" type="text" minlength="2" maxlength="100" placeholder="Leave your comment...">
@@ -59,7 +59,7 @@
 <script>
 import { communitiesService } from '../services/CommunitiesService.js'
 import { useRoute } from "vue-router"
-import { computed, onMounted, onUnmounted, ref } from "vue"
+import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue"
 import { AppState } from "../AppState.js"
 import { commentsService } from "../services/CommentsService.js"
 import CommentComponent from '../components/CommentComponent.vue'
@@ -79,6 +79,12 @@ export default {
     onUnmounted(() => {
       document.documentElement.scrollTop = 0
       AppState.comments = []
+    })
+
+    watchEffect(() => {
+      if (AppState.activeComment) {
+        editable.value = { ...AppState.activeComment }
+      }
     })
 
     async function getCommunityProfiles() {
@@ -117,15 +123,31 @@ export default {
       editable,
       route,
 
+      handleSubmit() {
+        if (editable.value.id) {
+          this.editComment()
+        } else {
+          this.submitComment()
+        }
+        editable.value = {}
+      },
+
       async submitComment() {
         try {
           editable.value.community = route.params.communityId
           await commentsService.submitComment(editable.value)
-          editable.value = {}
           document.documentElement.scrollTop = document.documentElement.scrollHeight
         }
         catch (error) {
           Pop.error(error.message)
+        }
+      },
+
+      async editComment() {
+        try {
+          await commentsService.editComment(editable.value)
+        } catch (error) {
+          Pop.error(error.message, '[EDITING COMMENT]')
         }
       }
     }
