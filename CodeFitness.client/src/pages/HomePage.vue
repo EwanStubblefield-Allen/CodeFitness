@@ -1,15 +1,15 @@
 <template>
-  <div  class=" col-12 col-md-10 offset-md-2">
-    <TeamComponent/>
-    <Tour v-if="routines == 0" :steps="steps" :callbacks="callbacks"/>
-    <section v-if="account.community" class="row m-3" >
-      <button @click="isEditing()" id="v-step-0" class="btn btn-action p-3 fs-3 v-step-1" type="button" data-bs-toggle="modal" data-bs-target="#routineForm" >Create Routine</button>
+  <div class=" col-12 col-md-10 offset-md-2">
+    <TeamComponent />
+    <Tour v-if="routines == 0" :steps="steps" :callbacks="callbacks" />
+    <section v-if="account.community" class="row mx-1 my-3">
+      <button @click="isEditing()" id="v-step-0" class="btn btn-action p-3 fs-3 v-step-1" type="button"
+        data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
     </section>
     <section class="row justify-content-center">
       <ActivitySearch />
     </section>
   </div>
-
 </template>
 
 <script>

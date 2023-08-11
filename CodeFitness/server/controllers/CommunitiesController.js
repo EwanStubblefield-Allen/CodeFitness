@@ -10,17 +10,8 @@ export class CommunitiesController extends BaseController {
     this.router
       .get('', this.getCommunities)
       .get('/:communityId/profiles', this.getProfilesByCommunityId)
-      .get('/:communityId/routines', this.getCommunityRoutinesByCommunity)
+      .get('/:communityId/routines', this.getCommunityRoutinesByCommunityId)
       .get('/:communityId/comments', this.getCommentsByCommunityId)
-  }
-  async getCommentsByCommunityId(req, res, next) {
-    try {
-      const communityId = req.params.communityId
-      const comment = await commentsService.getCommentsByCommunityId(communityId)
-      return res.send(comment)
-    } catch (error) {
-      next(error);
-    }
   }
 
   async getCommunities(req, res, next) {
@@ -41,12 +32,21 @@ export class CommunitiesController extends BaseController {
     }
   }
 
-  async getCommunityRoutinesByCommunity(req, res, next) {
+  async getCommunityRoutinesByCommunityId(req, res, next) {
     try {
-      const communityRoutines = await communityRoutinesService.getCommunityRoutinesByCommunity(req.params.communityId)
+      const communityRoutines = await communityRoutinesService.getCommunityRoutinesByCommunityId(req.params.communityId)
       return res.send(communityRoutines)
     } catch (error) {
       next(error)
+    }
+  }
+
+  async getCommentsByCommunityId(req, res, next) {
+    try {
+      const comments = await commentsService.getCommentsByCommunityId(req.params.communityId)
+      return res.send(comments)
+    } catch (error) {
+      next(error);
     }
   }
 }

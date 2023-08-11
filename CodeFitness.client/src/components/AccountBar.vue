@@ -43,18 +43,26 @@ import { computed, ref, watchEffect } from 'vue'
 export default {
   setup() {
     const comIcon = ref(null)
+    const color1 = ref('')
+    const color2 = ref('')
 
     watchEffect(() => {
       if (AppState.account.id) {
         switch (AppState.account.community) {
           case 'Cardio Kings':
             comIcon.value = 'src/assets/img/iconCK.png'
+            color1.value = '#e21313'
+            color2.value = '#7c1a1a'
             break
           case 'Weight Warriors':
             comIcon.value = 'src/assets/img/iconWW.png'
+            color1.value = '#1222da'
+            color2.value = '#1a227c'
             break
           case 'Legion of Leisure':
             comIcon.value = 'src/assets/img/iconLL.png'
+            color1.value = '#dac612'
+            color2.value = '#776f26'
             break
 
           default: comIcon.value = null
@@ -68,7 +76,9 @@ export default {
       routines: computed(() => AppState.routines),
       backgroundImg: computed(() => `url(${AppState.account.coverImg})`),
       achievements: computed(() => AppState.activeAchievements),
-      comIcon
+      comIcon,
+      color1,
+      color2
     }
   }
 }
@@ -96,7 +106,7 @@ export default {
 
 .community-img {
   image-rendering: pixelated;
-  background-color: var(--neutral-light);
+  background-image: radial-gradient(v-bind(color1), v-bind(color2));
   border: 10px solid white;
   padding: 2vh;
 }
