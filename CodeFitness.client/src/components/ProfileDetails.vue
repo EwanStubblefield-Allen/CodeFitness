@@ -19,6 +19,7 @@
     <div v-if="account.id == profileProp.id" class="col-12 col-md-2 order-1 order-md-2 text-end">
       <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm" title="Edit Account"></button>
     </div>
+    <div v-else class="col-12 col-md-2 order-1 order-md-2 text-end py-4"></div>
   </section>
 
   <section class="row justify-content-center">

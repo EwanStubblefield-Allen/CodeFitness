@@ -301,120 +301,122 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  color: white;
-  font-family: 'Press Start 2P', cursive;
-  text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, -3px 0px 0 black, 3px 0px 0 black, 0px -3px 0 black, 0px 3px 0 black;
-}
+  .title {
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, -3px 0px 0 black, 3px 0px 0 black, 0px -3px 0 black, 0px 3px 0 black;
+  }
 
-.bg-modal {
-  border: 5px solid white;
-  height: 30vh;
-  background-image: v-bind(bgImage), radial-gradient(v-bind(color1), v-bind(color2));
-  background-position: 50% v-bind(imgPos);
-  background-size: cover;
-  image-rendering: pixelated;
-  font-family: 'Press Start 2P', cursive;
-  text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black;
-  color: #ffffff;
-}
+  .bg-modal {
+    border: 5px solid white;
+    height: 30vh;
+    background-image: v-bind(bgImage), radial-gradient(v-bind(color1), v-bind(color2));
+    background-position: 50% v-bind(imgPos);
+    background-size: cover;
+    image-rendering: pixelated;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black;
+    color: #ffffff;
+  }
 
-.bg-modal div {
-  // backdrop-filter: blur(10px) grayscale(80%);
+  .bg-modal div {
+    // backdrop-filter: blur(10px) grayscale(80%);
 
-}
+  }
 
-.bg-text-area {
-  color: var(--darkest);
-  /* From https://css.glass */
-  background: var(--background);
-  border-radius: 6px;
-}
+  .bg-text-area {
+    color: var(--darkest);
+    /* From https://css.glass */
+    background: var(--background);
+    border-radius: 6px;
+  }
 
-.button-modal {
-  border: 0;
-  line-height: 2.5;
-  padding: 0 20px;
-  font-size: 1rem;
-  text-align: center;
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
-  border-radius: 6px;
-  background-color: v-bind(color1);
-  background-image: linear-gradient(v-bind(color1), v-bind(color2));
-}
+  .button-modal {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 6px;
+    background-color: v-bind(color1);
+    background-image: linear-gradient(v-bind(color1), v-bind(color2));
+  }
 
-button {
-  cursor: pointer;
-}
+  button {
+    cursor: pointer;
+  }
 
-.flag {
-  image-rendering: pixelated;
-  color: var(--light);
-  border: solid 4px var(--light);
-  text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
-  transition: 1s;
-}
+  .flag {
+    image-rendering: pixelated;
+    color: var(--light);
+    border: solid 4px var(--light);
+    text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
+    transition: 1s;
+  }
 
-.flag img {
-  filter: drop-shadow(0 10px 10px black);
+  .flag img {
+    filter: drop-shadow(0 10px 10px black);
 
-}
+  }
 
-.flag-no-hover {
-  image-rendering: pixelated;
-  color: var(--light);
-  border: solid 4px var(--light);
-  text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
-}
+  .flag-no-hover {
+    image-rendering: pixelated;
+    color: var(--light);
+    border: solid 4px var(--light);
+    text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
+  }
 
-.flag-no-hover img {
-  filter: drop-shadow(0 10px 10px black);
+  .flag-no-hover img {
+    filter: drop-shadow(0 10px 10px black);
 
-}
+  }
 
-.flag:hover {
-  transform: scale(1.025);
-}
+  .flag:hover {
+    transform: scale(1.025);
+  }
 
-.highlight1 {
-  border: solid 4px whitesmoke;
-  box-shadow: inset 0 0 50px #fff,
-    inset 20px 0 80px rgb(255, 0, 0),
-    inset -20px 0 300px rgb(195, 0, 0),
-    inset 20px 0 300px rgb(255, 0, 0),
-    inset -20px 0 300px rgb(195, 0, 0),
-    0 0 50px #fff,
-    -10px 0 80px rgb(255, 0, 0),
-    10px 0 80px rgb(195, 0, 0);
-  transform: scale(1.10);
-}
+  .highlight1 {
+    background: rgb(134, 98, 98);
+    border: solid 4px whitesmoke;
+    box-shadow: inset 0 0 50px #fff,
+      inset 20px 0 80px rgb(255, 0, 0),
+      inset -20px 0 300px rgb(195, 0, 0),
+      inset 20px 0 300px rgb(255, 0, 0),
+      inset -20px 0 300px rgb(195, 0, 0),
+      0 0 50px #fff,
+      -10px 0 80px rgb(255, 0, 0),
+      10px 0 80px rgb(195, 0, 0);
+    transform: scale(1.10);
+  }
 
-.highlight2 {
-  border: solid 4px whitesmoke;
-  box-shadow:
-    inset 0 0 50px #fff,
-    inset 20px 0 80px #f0f,
-    inset -20px 0 300px #0ff,
-    inset 20px 0 300px #f0f,
-    inset -20px 0 300px #0ff,
-    0 0 50px #fff,
-    -10px 0 80px #f0f,
-    10px 0 80px #0ff;
-  transform: scale(1.10);
-}
+  .highlight2 {
+    border: solid 4px whitesmoke;
+    box-shadow:
+      inset 0 0 50px #fff,
+      inset 20px 0 80px #f0f,
+      inset -20px 0 300px #0ff,
+      inset 20px 0 300px #f0f,
+      inset -20px 0 300px #0ff,
+      0 0 50px #fff,
+      -10px 0 80px #f0f,
+      10px 0 80px #0ff;
+    transform: scale(1.10);
+  }
 
-.highlight3 {
-  border: solid 4px whitesmoke;
-  box-shadow:
-    inset 0 0 50px #fff,
-    inset 20px 0 80px rgb(255, 234, 0),
-    inset -20px 0 300px rgb(231, 213, 109),
-    inset 20px 0 300px rgb(255, 234, 0),
-    inset -20px 0 300px rgb(231, 213, 109),
-    0 0 50px #fff,
-    -10px 0 80px rgb(255, 234, 0),
-    10px 0 80px rgb(231, 213, 109);
-  transform: scale(1.10);
-}
+  .highlight3 {
+    background: rgb(164, 159, 128);
+    border: solid 4px whitesmoke;
+    box-shadow:
+      inset 0 0 50px #fff,
+      inset 20px 0 80px rgb(255, 234, 0),
+      inset -20px 0 300px rgb(231, 213, 109),
+      inset 20px 0 300px rgb(255, 234, 0),
+      inset -20px 0 300px rgb(231, 213, 109),
+      0 0 50px #fff,
+      -10px 0 80px rgb(255, 234, 0),
+      10px 0 80px rgb(231, 213, 109);
+    transform: scale(1.10);
+  }
 </style>

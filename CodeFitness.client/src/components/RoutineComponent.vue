@@ -47,7 +47,7 @@
       <section v-else class="row">
         <div v-for="r in routinesProp" :key="r.id" class="col-12 col-md-4 pb-3">
           <div class="routine-bg rounded">
-            <img :src="r.picture" @error="randomRoutineImg()" alt=" Routine Image" class="img-fluid routine-pic rounded-top w-100">
+            <img :src="r.picture" @error="randomRoutineImg()" :alt="r.title" class="img-fluid routine-pic rounded-top w-100">
             <div class="routine-details p-2">
               <h5 class="p-2 text-center"> {{ r.title }}</h5>
               <p class="p-2 mb-2">{{ r.description }}</p>
@@ -57,7 +57,7 @@
                 </RouterLink>
               </div>
               <div v-else class="text-end">
-                <button @click="setActiveRoutine(r.id)" class="btn btn-action" type="button">Routine Details</button>
+                <button @click="setActiveRoutine(r)" class="btn btn-action" type="button">Routine Details</button>
               </div>
             </div>
           </div>
@@ -72,7 +72,6 @@ import { AppState } from '../AppState.js'
 import { computed, ref } from 'vue'
 import { routinesService } from '../services/RoutinesService.js'
 import { Modal } from 'bootstrap'
-import Pop from '../utils/Pop.js'
 
 export default {
   props: {
@@ -89,13 +88,9 @@ export default {
       showAmount,
       account: computed(() => AppState.account),
 
-      async setActiveRoutine(routineId) {
-        try {
-          await routinesService.setActiveRoutine(routineId)
-          Modal.getOrCreateInstance('#activeRoutine').show()
-        } catch (error) {
-          Pop.error(error.message, '[SETTING ACTIVE ROUTINE]')
-        }
+      setActiveRoutine(routineData) {
+        routinesService.setActiveRoutine(routineData)
+        Modal.getOrCreateInstance('#activeRoutine').show()
       }
     }
   }
