@@ -3,7 +3,6 @@ import { Schema } from "mongoose";
 export const CopyRoutineSchema = new Schema({
   authorId: {
     type: Schema.Types.ObjectId,
-    required: true,
     ref: 'Account'
   },
   accountId: {
@@ -14,7 +13,6 @@ export const CopyRoutineSchema = new Schema({
   routineId: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: 'Routine'
   },
   completedCount: {
     type: Number,
@@ -37,6 +35,13 @@ CopyRoutineSchema.virtual('routine', {
   foreignField: '_id',
   justOne: true,
   ref: 'Routine'
+})
+
+CopyRoutineSchema.virtual('communityRoutine', {
+  localField: 'routineId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'CommunityRoutine'
 })
 
 CopyRoutineSchema.virtual('activity', {

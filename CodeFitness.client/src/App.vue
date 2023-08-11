@@ -47,7 +47,7 @@
       {{ appState.activeRoutine.title }}
     </template>
     <template #body>
-      hi
+      <RoutineDetails />
     </template>
   </ModalComponent>
 
@@ -81,6 +81,7 @@ import ActivityFilter from "./components/ActivityFilter.vue"
 import AccountForm from "./components/AccountForm.vue"
 import Offcanvas from './components/Offcanvas.vue'
 import RoutineList from './components/RoutineList.vue'
+import RoutineDetails from './components/RoutineDetails.vue'
 
 export default {
   setup() {
@@ -89,7 +90,7 @@ export default {
       account: computed(() => AppState.account)
     }
   },
-  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter, AccountForm, Offcanvas, RoutineList }
+  components: { Navbar, AccountBar, ModalComponent, ActivityDetails, ActivityFilter, AccountForm, Offcanvas, RoutineList, RoutineDetails }
 }
 </script>
 <style lang="scss">

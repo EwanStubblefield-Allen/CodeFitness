@@ -24,10 +24,6 @@ export const RoutineSchema = new Schema({
     maxlength: 1000,
     required: true
   },
-  public: {
-    type: Boolean,
-    default: false
-  },
   completeCount: {
     type: Number,
     default: 0
