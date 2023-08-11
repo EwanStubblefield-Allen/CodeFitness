@@ -17,7 +17,7 @@
           <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase me-5">
             Home
           </router-link>
-          <router-link :to="{ name: 'Account' }" v-if="account.community" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Account' }" v-if="account.community" class="btn text-success lighten-30 selectable text-uppercase me-5">
             Account
           </router-link>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase me-5">
