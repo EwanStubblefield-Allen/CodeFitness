@@ -94,66 +94,70 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import "./assets/scss/main.scss";
+@import "./assets/scss/main.scss";
 
-  :root {
-    --main-height: calc(100vh - 32px - 64px);
-    --darkest: #363737;
-    --dark: #334F52;
-    --neutral-dark: #406B6E;
-    --neutral: #308484;
-    --neutral-light: #67C5CB;
-    --light: #BEDFEC;
-    --background: #D9D9D9;
-    --action: #34DCE7;
-  }
+:root {
+  --main-height: calc(100vh - 32px - 64px);
+  --darkest: #363737;
+  --dark: #334F52;
+  --neutral-dark: #406B6E;
+  --neutral: #308484;
+  --neutral-light: #67C5CB;
+  --light: #BEDFEC;
+  --background: #D9D9D9;
+  --action: #34DCE7;
+}
 
-  body {
-    font-family: 'Aldrich', sans-serif;
-  }
+body {
+  font-family: 'Aldrich', sans-serif;
+}
 
-  p {
-    margin: 0;
-  }
+p {
+  margin: 0;
+}
 
-  .dark-bg {
-    background-color: var(--dark);
-  }
+.dark-bg {
+  background-color: var(--dark);
+}
 
-  .bg-neutral-dark {
-    background-color: var(--neutral-dark);
-  }
+.bg-neutral-dark {
+  background-color: var(--neutral-dark);
+}
 
-  .bg-neutral {
-    background-color: var(--neutral);
-  }
+.bg-neutral {
+  background-color: var(--neutral);
+}
 
-  .bg-neutral-light {
-    background-color: var(--neutral-light);
-  }
+.bg-neutral-light {
+  background-color: var(--neutral-light);
+}
 
-  .text-neutral {
-    color: var(--neutral);
-  }
+.bg-action {
+  background-color: var(--action);
+}
 
-  .text-neutral-light {
-    color: var(--neutral-light);
-  }
+.text-neutral {
+  color: var(--neutral);
+}
 
-  .text-dark-theme {
-    color: var(--dark);
-  }
+.text-neutral-light {
+  color: var(--neutral-light);
+}
 
-  .btn-action:hover {
-    color: black;
-    background-color: var(--light);
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12)
-  }
+.text-dark-theme {
+  color: var(--dark);
+}
 
-  .btn-action,
-  .btn-action:active {
-    color: black !important;
-    background-color: var(--action) !important;
-    box-shadow: none;
-  }
+.btn-action:hover {
+  color: black;
+  background-color: var(--light);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12)
+}
+
+.btn-action,
+.btn-action:active {
+  color: black !important;
+  background-color: var(--action) !important;
+  box-shadow: none;
+}
 </style>
