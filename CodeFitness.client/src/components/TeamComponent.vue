@@ -6,7 +6,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </RouterLink>
@@ -15,7 +15,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
-        <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
+        <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </RouterLink>
@@ -24,7 +24,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
-        <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </RouterLink>
@@ -37,7 +37,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
@@ -45,7 +45,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
+        <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
@@ -54,7 +54,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
@@ -67,7 +67,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
@@ -75,7 +75,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
+        <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
@@ -83,7 +83,7 @@
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-        <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
@@ -300,6 +300,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title {
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, -3px 0px 0 black, 3px 0px 0 black, 0px -3px 0 black, 0px 3px 0 black;
+}
+
 .bg-modal {
   border: 5px solid white;
   height: 30vh;
