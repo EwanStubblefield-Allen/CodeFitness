@@ -47,8 +47,8 @@ export class ActivitiesController extends BaseController {
   async updateActivity(req, res, next) {
     try {
       const activityData = req.body
-      activityData.accountId = req.userInfo.id
       activityData.id = req.params.activityId
+      activityData.accountId = req.userInfo.id
       const activity = await activitiesService.updateActivity(activityData)
       return res.send(activity)
     } catch (error) {

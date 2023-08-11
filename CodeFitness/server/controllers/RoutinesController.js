@@ -1,8 +1,8 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import { routinesService } from "../services/RoutinesService.js";
 import { activitiesService } from "../services/ActivitiesService.js";
-import BaseController from "../utils/BaseController.js";
 import { commentsService } from "../services/CommentsService.js";
+import BaseController from "../utils/BaseController.js";
 
 export class RoutinesController extends BaseController {
   constructor() {
@@ -17,15 +17,7 @@ export class RoutinesController extends BaseController {
       .put('/:routineId', this.updateRoutine)
       .delete('/:routineId', this.removeRoutine)
   }
-  async getCommentsByRoutineId(req, res, next) {
-    try {
-      const routineId = req.params.routineId
-      const comment = await commentsService.getCommentsByRoutineId(routineId)
-      return res.send(comment)
-    } catch (error) {
-      next(error);
-    }
-  }
+
 
   async getRoutines(req, res, next) {
     try {
@@ -54,6 +46,15 @@ export class RoutinesController extends BaseController {
     }
   }
 
+  async getCommentsByRoutineId(req, res, next) {
+    try {
+      const comments = await commentsService.getCommentsByRoutineId(req.params.routineId)
+      return res.send(comments)
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async createRoutine(req, res, next) {
     try {
       const routineData = req.body
@@ -68,8 +69,8 @@ export class RoutinesController extends BaseController {
   async updateRoutine(req, res, next) {
     try {
       const routineData = req.body
-      routineData.accountId = req.userInfo.id
       routineData.id = req.params.routineId
+      routineData.accountId = req.userInfo.id
       const routine = await routinesService.updateRoutine(routineData)
       return res.send(routine)
     } catch (error) {
@@ -78,7 +79,10 @@ export class RoutinesController extends BaseController {
   }
   async removeRoutine(req, res, next) {
     try {
-      const routine = await routinesService.removeRoutine(req.userInfo.id, req.params.routineId)
+      const routineData = {}
+      routineData.id = req.params.routineId
+      routineData.accountId = req.userInfo.id
+      const routine = await routinesService.removeRoutine(routineData)
       return res.send(routine)
     } catch (error) {
       next(error)

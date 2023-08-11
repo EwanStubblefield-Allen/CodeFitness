@@ -1,9 +1,14 @@
 import { dbContext } from "../db/DbContext.js"
+import { BadRequest } from "../utils/Errors.js"
 import { activitiesService } from "./ActivitiesService.js"
 
 class CopyRoutinesService {
   async getCopyRoutineById(copyRoutineId) {
-    return await dbContext.CopyRoutines.findById(copyRoutineId).populate('author', 'name picture').populate('routine activity')
+    const copyRoutine = await dbContext.CopyRoutines.findById(copyRoutineId).populate('author', 'name picture').populate('routine activity')
+    if (!copyRoutine) {
+      throw new BadRequest(`[NO ACTIVITIES MATCH THE COPY ROUTINE ID: ${copyRoutineId}]`)
+    }
+    return copyRoutine
   }
 
   async getCopyRoutinesByAccountId(accountId) {

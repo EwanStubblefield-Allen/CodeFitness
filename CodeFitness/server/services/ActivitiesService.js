@@ -55,11 +55,8 @@ class ActivitiesService {
   }
 
   async updateActivity(activityData) {
-    const updateActivity = await this.getActivityById(activityData.id)
+    const updateActivity = await this.getData(activityData)
     let accountAchievement
-    if (updateActivity.accountId != activityData.accountId) {
-      throw new Forbidden(`[YOU CAN NOT CHANGE SOMEONE ELSES ACTIVITY]`)
-    }
     if (activityData.level != updateActivity.level) {
       const activities = await this.getActivitiesByAccountId(activityData.accountId)
       let max = activities[0].level
@@ -95,10 +92,7 @@ class ActivitiesService {
   }
 
   async removeActivity(activityData) {
-    const activityToRemove = await this.getActivityById(activityData.id)
-    if (activityToRemove.accountId != activityData.accountId) {
-      throw new Forbidden(`[YOU CAN NOT REMOVE SOMEONE ELSES ACTIVITY]`)
-    }
+    const activityToRemove = await this.getData(activityData)
     await activityToRemove.remove()
     return activityToRemove
   }
@@ -112,6 +106,14 @@ class ActivitiesService {
       throw new Forbidden(`[YOU CAN NOT REMOVE SOMEONE ELSES ACTIVITY]`)
     }
     activities.forEach(async a => await a.remove())
+  }
+
+  async getData(activityData) {
+    const activity = await this.getActivityById(activityData.id)
+    if (activity.accountId != activityData.accountId) {
+      throw new Forbidden(`[YOU ARE NOT THE CREATOR OF ${activity.name}`)
+    }
+    return activity
   }
 }
 

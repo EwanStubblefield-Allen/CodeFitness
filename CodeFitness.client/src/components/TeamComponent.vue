@@ -1,24 +1,21 @@
 <template>
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
-    <div @click="selectCommunity('Cardio Kings')"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 scalable text-dark">
+    <div @click="selectCommunity('Cardio Kings')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div @click="selectCommunity('Weight Warriors')"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 scalable text-dark">
+    <div @click="selectCommunity('Weight Warriors')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div @click="selectCommunity('Legion of Leisure')"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 scalable text-dark">
+    <div @click="selectCommunity('Legion of Leisure')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
@@ -28,38 +25,27 @@
   </section>
 
   <section v-else class="row justify-content-around bg-neutral-dark">
-    <div :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }" :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
-        <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }">
-          <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-          <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
-        </RouterLink>
+        <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
+        <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
-    </div>
-    <div
-    :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
-    class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
-    <div>
-        <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }">
-          <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
-          <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
-        </RouterLink>
+    </RouterLink>
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }" :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+      <div>
+        <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
+        <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
-    </div>
-    <div
-      :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    </RouterLink>
+    <RouterLink :to="{ name: 'Communities', params: { communityId: teams[2].name } }" :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
-        <RouterLink :to="{ name: 'Communities', params: { communityId: teams[2].name } }">
-          <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
-          <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
-        </RouterLink>
+        <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
+        <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
-    </div>
+    </RouterLink>
   </section>
 </template>
 
@@ -160,7 +146,7 @@ export default {
     transform: scale(1.10);
   }
 
-  .scalable:hover {
-    transform: scale(1.15);
+  .flag:hover {
+    transform: scale(1.025);
   }
 </style>

@@ -6,13 +6,14 @@
 import { computed, onMounted } from "vue"
 import { AppState } from "../AppState.js"
 import { useRoute } from "vue-router"
-import { logger } from "../utils/Logger.js"
 import { profilesService } from '../services/ProfilesService.js'
-import Pop from "../utils/Pop.js"
 import { routinesService } from "../services/RoutinesService.js"
+import Pop from "../utils/Pop.js"
 
 export default {
   setup() {
+    const route = useRoute()
+
     onMounted(() => {
       getActiveProfile()
       getRoutinesByProfileId()
@@ -22,22 +23,19 @@ export default {
       try {
         await routinesService.getRoutinesByProfileId(route.params.profileId)
       } catch (error) {
-        Pop.error(error.message)
-        logger.log(error)
+        Pop.error(error.message, '[GETTING ROUTINES BY PROFILE ID]')
       }
     }
 
-    async function getActiveProfile() {
+    function getActiveProfile() {
       try {
         const profileId = route.params.profileId
-        await profilesService.getActiveProfile(profileId)
+        profilesService.getActiveProfile(profileId)
       } catch (error) {
-        Pop.error(error.message)
-        logger.log(error)
+        Pop.error(error.message, '[GETTING ACTIVE PROFILE]')
       }
     }
 
-    const route = useRoute()
     return {
       profiles: computed(() => AppState.profiles),
       activeProfile: computed(() => AppState.activeProfile)

@@ -33,7 +33,7 @@ const routes = [
     component: loadPage('CommunitiesPage')
   },
   {
-    path: '/communities/:communityId/:profileId',
+    path: '/profiles/:profileId',
     name: 'Profile',
     component: loadPage('ProfilePage')
   },

@@ -16,15 +16,6 @@ export class ProfilesController extends BaseController {
       .get('/:accountId/copyRoutines', this.getCopyRoutinesByAccountId)
       .get('/:accountId/comments', this.getCommentsByAccountId)
   }
-  async getCommentsByAccountId(req, res, next) {
-    try {
-      const accountId = req.params.accountId
-      const comment = await commentsService.getCommentsByAccountId(accountId)
-      return res.send(comment)
-    } catch (error) {
-      next(error);
-    }
-  }
 
   async getProfiles(req, res, next) {
     try {
@@ -68,6 +59,15 @@ export class ProfilesController extends BaseController {
       return res.send(copyRoutines)
     } catch (error) {
       next(error)
+    }
+  }
+
+  async getCommentsByAccountId(req, res, next) {
+    try {
+      const comment = await commentsService.getCommentsByAccountId(req.params.accountId)
+      return res.send(comment)
+    } catch (error) {
+      next(error);
     }
   }
 }

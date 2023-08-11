@@ -106,25 +106,22 @@
       <i style="--speed: 15; --bg: cyan" class="mdi mdi-star-four-points text-success"></i>
     </div>
   </div>
-  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark flex-grow-1">
+  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark">
     <section class="row justify-content-center bg-active-routine">
       <div class="col-12 p-3">
-        <section class="row">
-          <div class="col-4">
-
+        <section class="row justify-content-center">
+          <div class="offset-lg-4 col-12 col-lg-4 d-flex flex-lg-column align-items-center justify-content-center">
+            <p class="fs-1 text-center text-white pe-3 pe-lg-0">{{ routine.title }}</p>
+            <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger" type="reset">Restart</button>
           </div>
-          <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
-            <h1 class="fs-1 text-center text-white">{{ routine.title }}</h1>
-          </div>
-          <div class="col-md-4 col--12 pb-3 pb-md-0">
+          <div class="col-12 col-lg-4 pb-3 pb-md-0">
             <Timer />
           </div>
         </section>
-        <div class="pt-1">
+        <div>
           <div v-if="!superSet">
-            <div class="text-center pb-2">
-              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2"
-                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Regular
+            <div class="text-center py-2">
+              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Regular
                 Routine</button>
               <div>
                 -Progress through the activity and all of its sets before going on to the next activity-
@@ -133,27 +130,32 @@
           </div>
           <div v-else>
             <div class="text-center pb-2">
-              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2"
-                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant "></i> Super
-                Set</button>
+              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Super Set</button>
               <div>
                 -Progress through a loop of every activity for the number of sets you it has-
               </div>
             </div>
           </div>
         </div>
-        <section class="row justify-content-around text-center my-4">
-          <!-- First activity card -->
+        <section class="row justify-content-around text-center my-2">
+          <!-- SECTION First activity card -->
           <div class="col-md-2 d-none d-md-block bg-light secondaryCard rounded elevation-5">
             <div v-if="current > 0" class="d-flex flex-column justify-content-around h-100">
               <p class="fs-5 fw-bold">{{ routine.activities[current - 1].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p v-if="!superSet">Sets: <span class="text-neutral">{{ routine.activities[current - 1].sets -
-                  completedSets }}</span></p>
-                <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current - 1].reps }}</span></p>
+                <p v-if="!superSet">
+                  Sets:
+                  <span class="text-neutral"> {{ routine.activities[current - 1].sets - completedSets }}</span>
+                </p>
+                <p class="ps-3">
+                  Reps:
+                  <span class="text-neutral"> {{ routine.activities[current - 1].reps }}</span>
+                </p>
               </div>
-              <p class="text-neutral">{{ routine.activities[current - 1].equipment }}</p>
-
+              <div>
+                <p>Equipment:</p>
+                <p class="text-neutral">{{ routine.activities[current - 1].equipment }}</p>
+              </div>
             </div>
             <div v-else class="pt-3 fs-md-5 fw-bold d-flex justify-content-start flex-column h-100">
               <div class="bg-success rounded text-dark">
@@ -162,71 +164,80 @@
               Your routine has begun, press the > to advance through the steps of the routine
             </div>
           </div>
-          <!-- <  Prev button arrows > -->
-          <a v-if="current != 0 || completedSets != 0" class="prevArrow col-1 d-none d-md-block"
-            @click="changeActivity(-1)" role="button" data-slide="prev">
+          <!-- SECTION < Prev button arrows > -->
+          <a v-if="current != 0 || completedSets != 0" class="prevArrow col-1 d-none d-md-block" @click="changeActivity(-1)" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
           </a>
-          <a v-else disabled class="prevArrow col-1 d-none d-md-block" role="button" data-slide="prev">
-          </a>
-          <!-- Main activity card -->
+          <a v-else disabled class="prevArrow col-1 d-none d-md-block" role="button" data-slide="prev"></a>
+          <!-- SECTION Main activity card -->
           <div class="col-md-6 col-12 bg-light p-3 activeCard rounded elevation-5">
             <div v-if="current < routine.activities.length">
               <div class="d-flex justify-content-between">
-                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block"
-                  :disabled="current == 0">Back</button>
-                <button v-if="current == routine.activities.length" @click="updateData()"
-                  class="btn btn-action d-md-none d-block text-dark">Finish</button>
+                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block" :disabled="current == 0">Back</button>
+                <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-md-none d-block text-dark">Finish</button>
                 <button v-else @click="changeActivity(1)" class="btn btn-action d-md-none d-block">Next</button>
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
               <div class="d-flex justify-content-center fs-5">
                 <div v-if="routine.activities[current].sets != 0">
-                  <p v-if="!superSet">Sets: <span class="text-neutral">{{ routine.activities[current].sets - completedSets
-                  }} / {{
-  routine.activities[current].sets }}</span></p>
+                  <p v-if="!superSet">
+                    Sets:
+                    <span class="text-neutral"> {{ routine.activities[current].sets - completedSets }} / {{ routine.activities[current].sets }}</span>
+                  </p>
+                  <p v-else>
+                    Sets:
+                    <!-- FIXME add set -->
+                    <!-- <span class="text-neutral"> {{ superset }} / {{ routine.activities[current].sets }}</span> -->
+                  </p>
                 </div>
-                <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current].reps }}</span></p>
+                <p class="ps-3">
+                  Reps:
+                  <span class="text-neutral"> {{ routine.activities[current].reps }}</span>
+                </p>
               </div>
-              <p class="">Equipment: <span class="text-neutral"> {{ routine.activities[current].equipment }}</span>
+              <p>
+                Equipment:
+                <span class="text-neutral"> {{ routine.activities[current].equipment }}</span>
               </p>
-              <!-- Collapsable -->
-              <p><button @click="toggleCollapse()" class="btn btn-outline-info" type="button">Show Instructions</button>
-              </p>
-              <div class="" v-if="showCollapse">
+              <!-- SECTION Collapsable -->
+              <button @click="toggleCollapse()" class="btn btn-outline-info" type="button">Show Instructions</button>
+              <div v-if="showCollapse">
                 <div class="card card-body">
                   <p class="p-2">Instructions:{{ routine.activities[current].instructions }}</p>
                 </div>
               </div>
             </div>
             <div v-else class="d-flex justify-content-center">
-              <button v-if="current == routine.activities.length" @click="updateData()"
-                class="btn btn-action d-block selectable">Complete Routine</button>
+              <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-block selectable">Complete Routine</button>
             </div>
           </div>
-          <!-- STUB -->
-          <!-- < Next  button arrows > -->
-          <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button"
-            data-slide="next">
-          </a>
+          <!-- SECTION < Next button arrows > -->
+          <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button" data-slide="next"></a>
           <a class="nextArrow col-1 d-none d-md-block" v-else @click="changeActivity(1)" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
           </a>
-          <!-- Next activity Card -->
+          <!-- SECTION Next activity Card -->
           <div class="col-md-2 d-none d-md-block bg-light secondaryCard rounded elevation-5">
             <div v-if="current < routine.activities.length - 1" class="d-flex flex-column justify-content-around h-100">
               <p class="fs-5 fw-bold">{{ routine.activities[current + 1].name }}</p>
               <div class="d-flex justify-content-center fs-5">
-                <p v-if="!superSet">Sets: <span class="text-neutral">{{ routine.activities[current + 1].sets }}</span></p>
-                <p class="ps-3">Reps: <span class="text-neutral">{{ routine.activities[current + 1].reps }}</span></p>
+                <p v-if="!superSet">
+                  Sets:
+                  <span class="text-neutral"> {{ routine.activities[current + 1].sets }}</span>
+                </p>
+                <p class="ps-3">
+                  Reps:
+                  <span class="text-neutral"> {{ routine.activities[current + 1].reps }}</span>
+                </p>
               </div>
-              <p class="text-neutral">{{ routine.activities[current + 1].equipment }}</p>
-
+              <div>
+                <p>Equipment:</p>
+                <p class="text-neutral">{{ routine.activities[current + 1].equipment }}</p>
+              </div>
             </div>
             <div v-else class="pt-3 fs-md-5 fw-bold d-flex justify-content-start flex-column h-100">
-
               <div class="bg-success rounded text-dark">
                 Finish
               </div>
@@ -234,30 +245,16 @@
             </div>
           </div>
         </section>
-        <section class="row d-flex justify-content-end">
 
-        </section>
         <form @submit.prevent="" class="row justify-content-around ps-2">
-          <section class="row">
-            <div class="col-12 d-flex mb-3 justify-content-center">
-              <!-- There was stuff here -->
-            </div>
-          </section>
           <section class="row justify-content-center">
-
-            <div v-for="a in routine.activities" :key="a.tempId" class="col-2 col-md-1 ">
-              <div class="control-checks"></div>
-              <input onclick="return false" v-model="editable[a.tempId]" class="fs-5 " type="checkbox" :id="a.tempId">
-              <label class="fs-5  d-flex flex-column align-items-center " :for="a.tempId">
+            <div v-for="a in routine.activities" :key="a.tempId" class="col-2 col-md-1">
+              <input onclick="return false" v-model="editable[a.tempId]" class="fs-5" type="checkbox" :id="a.tempId">
+              <label class="d-flex flex-column align-items-center fs-5" :for="a.tempId">
                 <i class="mdi mdi-weight fs-1" :title="a.name"></i>
-                <!-- {{ a.name }} -->
               </label>
             </div>
           </section>
-          <div class="text-end p-3">
-            <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger"
-              type="reset">Restart</button>
-          </div>
         </form>
       </div>
     </section>
@@ -271,22 +268,21 @@ import { AppState } from "../AppState"
 import { accountService } from "../services/AccountService"
 import { routinesService } from "../services/RoutinesService.js"
 import Pop from "../utils/Pop"
-import { logger } from "../utils/Logger.js"
 
 export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
-
     const editable = ref({})
     const showCollapse = ref(false)
     const completedSets = ref({})
     const superSet = ref({})
-    let current = ref(0)
+    const current = ref(0)
 
     watchEffect(() => {
       getRoutineById()
     })
+
     onMounted(() => {
       superSet.value = false
       completedSets.value = 0
@@ -307,6 +303,8 @@ export default {
     return {
       editable,
       current,
+      toggleCollapse,
+      showCollapse,
       superSet,
       completedSets,
       routine: computed(() => {
@@ -341,15 +339,9 @@ export default {
               })
             })
           }
-
           return superRoutine
         }
       }),
-      toggleCollapse,
-      showCollapse,
-      toggleActivity(activity) {
-        activity.checked = !activity.checked
-      },
 
       changeActivity(change) {
         if (!superSet.value) {
@@ -376,13 +368,12 @@ export default {
         else {
           if (change == 1) {
             editable.value[this.routine.activities[current.value].tempId] = true
-            current.value += change
           } else {
             if (current.value != 0) {
               editable.value[this.routine.activities[current.value - 1].tempId] = false
             }
-            current.value += change
           }
+          current.value += change
         }
       },
 
@@ -409,106 +400,106 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-outline-info {
-  border-color: #406B6E;
-  color: #406B6E;
-}
-
-.activeCard {
-  min-height: 40vh;
-
-}
-
-.shadowed-text {
-  text-shadow: 1px 1px 2px black;
-}
-
-.bg-active-routine {
-  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
-
-}
-
-.secondaryCard {
-  min-height: 40vh;
-  max-height: 40vh;
-  transform: scale(.90);
-}
-
-// .parentContainer {
-//   position: absolute;
-// }
-
-// .nextArrow {
-//   position: absolute;
-//   bottom: 70%;
-//   left: 80%;
-// }
-
-// .prevArrow {
-//   position: absolute;
-//   bottom: 70%;
-//   right: 63%;
-// }
-
-input {
-  display: none;
-}
-
-label>i {
-  color: var(--darkest);
-}
-
-input[type=checkbox]:checked+label>i {
-  color: var(--action);
-}
-
-.confetti-container {
-  user-select: none;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.confetti {
-  position: fixed;
-  left: 0;
-  right: 0;
-  display: flex;
-}
-
-.confetti .square {
-  width: 3rem;
-  height: 1rem;
-  background-color: orange;
-  transform: rotate(140deg);
-
-  .confetti .rectangle {
-    width: 1rem;
-    height: 0.5rem;
-    background-color: red;
-  }
-}
-
-.confetti i {
-  width: 3rem;
-  height: 3rem;
-  margin: 0 0.2rem;
-  animation-name: confetti;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: calc(60s / var(--speed));
-}
-
-.confetti i:nth-child(even) {
-  transform: rotate(90deg);
-}
-
-@keyframes confetti {
-  0% {
-    transform: translateY(-100vh);
+  .btn-outline-info {
+    border-color: #406B6E;
+    color: #406B6E;
   }
 
-  100% {
-    transform: translateY(100vh);
+  .activeCard {
+    min-height: 40vh;
+
   }
-}
+
+  .shadowed-text {
+    text-shadow: 1px 1px 2px black;
+  }
+
+  .bg-active-routine {
+    background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+
+  }
+
+  .secondaryCard {
+    min-height: 40vh;
+    max-height: 40vh;
+    transform: scale(.90);
+  }
+
+  // .parentContainer {
+  //   position: absolute;
+  // }
+
+  // .nextArrow {
+  //   position: absolute;
+  //   bottom: 70%;
+  //   left: 80%;
+  // }
+
+  // .prevArrow {
+  //   position: absolute;
+  //   bottom: 70%;
+  //   right: 63%;
+  // }
+
+  input {
+    display: none;
+  }
+
+  label>i {
+    color: var(--darkest);
+  }
+
+  input[type=checkbox]:checked+label>i {
+    color: var(--action);
+  }
+
+  .confetti-container {
+    user-select: none;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .confetti {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+  }
+
+  .confetti .square {
+    width: 3rem;
+    height: 1rem;
+    background-color: orange;
+    transform: rotate(140deg);
+
+    .confetti .rectangle {
+      width: 1rem;
+      height: 0.5rem;
+      background-color: red;
+    }
+  }
+
+  .confetti i {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.2rem;
+    animation-name: confetti;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: calc(60s / var(--speed));
+  }
+
+  .confetti i:nth-child(even) {
+    transform: rotate(90deg);
+  }
+
+  @keyframes confetti {
+    0% {
+      transform: translateY(-100vh);
+    }
+
+    100% {
+      transform: translateY(100vh);
+    }
+  }
 </style>

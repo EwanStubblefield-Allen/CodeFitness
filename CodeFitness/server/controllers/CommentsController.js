@@ -1,66 +1,66 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
-import BaseController from "../utils/BaseController.js";
 import { commentsService } from "../services/CommentsService.js";
+import BaseController from "../utils/BaseController.js";
 
 export class CommentsController extends BaseController {
   constructor() {
     super('api/comments')
     this.router
-
       .get('', this.getComments)
-      .get('/:commentId', this.getCommentsById)
-
+      .get('/:commentId', this.getCommentById)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.postComment)
-      .put('/:commentId', this.editComment)
+      .post('', this.createComment)
+      .put('/:commentId', this.updateComment)
       .delete('/:commentId', this.removeComment)
+  }
 
-
-
-  }
-  async removeComment(req, res, next) {
-    try {
-      const commentId = req.params.commentId
-      const userId = req.userInfo.id
-      const comment = await commentsService.removeComment(commentId, userId)
-      return res.send(comment)
-    } catch (error) {
-      next(error);
-    }
-  }
-  async editComment(req, res, next) {
-    try {
-      const commentId = req.params.commentId
-      const userId = req.userInfo.id
-      const commentData = req.body
-      const comment = await commentsService.editComment(commentId, userId, commentData)
-      return res.send(comment)
-    } catch (error) {
-      next(error);
-    }
-  }
-  async getCommentsById(req, res, next) {
-    try {
-      const commentId = req.params.commentId
-      const comment = await commentsService.getCommentsById(commentId)
-      return res.send(comment)
-    } catch (error) {
-      next(error);
-    }
-  }
   async getComments(req, res, next) {
     try {
-      const comment = await commentsService.getComments()
+      const comments = await commentsService.getComments()
+      return res.send(comments)
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getCommentById(req, res, next) {
+    try {
+      const comment = await commentsService.getCommentById(req.params.commentId)
       return res.send(comment)
     } catch (error) {
       next(error);
     }
   }
-  async postComment(req, res, next) {
+
+  async createComment(req, res, next) {
     try {
       const commentData = req.body
       commentData.accountId = req.userInfo.id
-      const comment = await commentsService.postComment(commentData)
+      const comment = await commentsService.createComment(commentData)
+      return res.send(comment)
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async updateComment(req, res, next) {
+    try {
+      const commentData = req.body
+      commentData.id = req.params.commentId
+      commentData.accountId = req.userInfo.id
+      const comment = await commentsService.updateComment(commentData)
+      return res.send(comment)
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async removeComment(req, res, next) {
+    try {
+      const commentData = {}
+      commentData.id = req.params.commentId
+      commentData.accountId = req.userInfo.id
+      const comment = await commentsService.removeComment(commentData)
       return res.send(comment)
     } catch (error) {
       next(error);
