@@ -106,13 +106,14 @@
       <i style="--speed: 15; --bg: cyan" class="mdi mdi-star-four-points text-success"></i>
     </div>
   </div>
-  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark">
-    <section class="row justify-content-center bg-active-routine">
-      <div class="col-12 p-3">
+  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark ">
+    <section class="row justify-content-center bg-active-routine ">
+      <div class="col-12 p-3 ">
         <section class="row justify-content-center">
           <div class="offset-lg-4 col-12 col-lg-4 d-flex flex-lg-column align-items-center justify-content-center">
             <p class="fs-1 text-center text-white pe-3 pe-lg-0">{{ routine.title }}</p>
-            <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger" type="reset">Restart</button>
+            <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger"
+              type="reset">Restart</button>
           </div>
           <div class="col-12 col-lg-4 pb-3 pb-md-0">
             <Timer />
@@ -121,7 +122,8 @@
         <div>
           <div v-if="!superSet">
             <div class="text-center py-2">
-              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Regular
+              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2"
+                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Regular
                 Routine</button>
               <div>
                 -Progress through the activity and all of its sets before going on to the next activity-
@@ -130,7 +132,9 @@
           </div>
           <div v-else>
             <div class="text-center pb-2">
-              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Super Set</button>
+              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2"
+                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Super
+                Set</button>
               <div>
                 -Progress through a loop of every activity for the number of sets you it has-
               </div>
@@ -165,7 +169,8 @@
             </div>
           </div>
           <!-- SECTION < Prev button arrows > -->
-          <a v-if="current != 0 || completedSets != 0" class="prevArrow col-1 d-none d-md-block" @click="changeActivity(-1)" role="button" data-slide="prev">
+          <a v-if="current != 0 || completedSets != 0" class="prevArrow col-1 d-none d-md-block"
+            @click="changeActivity(-1)" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
           </a>
@@ -174,8 +179,10 @@
           <div class="col-md-6 col-12 bg-light p-3 activeCard rounded elevation-5">
             <div v-if="current < routine.activities.length">
               <div class="d-flex justify-content-between">
-                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block" :disabled="current == 0">Back</button>
-                <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-md-none d-block text-dark">Finish</button>
+                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block"
+                  :disabled="current == 0">Back</button>
+                <button v-if="current == routine.activities.length" @click="updateData()"
+                  class="btn btn-action d-md-none d-block text-dark">Finish</button>
                 <button v-else @click="changeActivity(1)" class="btn btn-action d-md-none d-block">Next</button>
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
@@ -183,12 +190,13 @@
                 <div v-if="routine.activities[current].sets != 0">
                   <p v-if="!superSet">
                     Sets:
-                    <span class="text-neutral"> {{ routine.activities[current].sets - completedSets }} / {{ routine.activities[current].sets }}</span>
+                    <span class="text-neutral"> {{ routine.activities[current].sets - completedSets }} / {{
+                      routine.activities[current].sets }}</span>
                   </p>
                   <p v-else>
                     Sets:
-                    <!-- FIXME add set -->
-                    <!-- <span class="text-neutral"> {{ superset }} / {{ routine.activities[current].sets }}</span> -->
+                    <span class="text-neutral">{{ routine.activities[current].iteration }} of {{
+                      routine.activities[current].sets }}</span>
                   </p>
                 </div>
                 <p class="ps-3">
@@ -209,11 +217,13 @@
               </div>
             </div>
             <div v-else class="d-flex justify-content-center">
-              <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-block selectable">Complete Routine</button>
+              <button v-if="current == routine.activities.length" @click="updateData()"
+                class="btn btn-action d-block selectable">Complete Routine</button>
             </div>
           </div>
           <!-- SECTION < Next button arrows > -->
-          <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button" data-slide="next"></a>
+          <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button"
+            data-slide="next"></a>
           <a class="nextArrow col-1 d-none d-md-block" v-else @click="changeActivity(1)" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
@@ -330,11 +340,13 @@ export default {
             temp += a.sets
           })
 
+          let iteration = 1
+
           while (superRoutine.activities.length != temp) {
             tempArr.forEach(a => {
               if (a.tempSets > 0) {
                 a.tempSets -= 1
-
+                a.iteration = iteration
                 superRoutine.activities.push({ ...a })
               }
 
@@ -342,6 +354,7 @@ export default {
                 a.tempId = index + 1
               })
             })
+            iteration += 1
           }
           return superRoutine
         }
@@ -405,106 +418,107 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .btn-outline-info {
-    border-color: #406B6E;
-    color: #406B6E;
+.btn-outline-info {
+  border-color: #406B6E;
+  color: #406B6E;
+}
+
+.activeCard {
+  min-height: 40vh;
+
+}
+
+.shadowed-text {
+  text-shadow: 1px 1px 2px black;
+}
+
+.bg-active-routine {
+  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+  min-height: 91.3vh;
+
+}
+
+.secondaryCard {
+  min-height: 40vh;
+  max-height: 40vh;
+  transform: scale(.90);
+}
+
+// .parentContainer {
+//   position: absolute;
+// }
+
+// .nextArrow {
+//   position: absolute;
+//   bottom: 70%;
+//   left: 80%;
+// }
+
+// .prevArrow {
+//   position: absolute;
+//   bottom: 70%;
+//   right: 63%;
+// }
+
+input {
+  display: none;
+}
+
+label>i {
+  color: var(--darkest);
+}
+
+input[type=checkbox]:checked+label>i {
+  color: var(--action);
+}
+
+.confetti-container {
+  user-select: none;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.confetti {
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+.confetti .square {
+  width: 3rem;
+  height: 1rem;
+  background-color: orange;
+  transform: rotate(140deg);
+
+  .confetti .rectangle {
+    width: 1rem;
+    height: 0.5rem;
+    background-color: red;
+  }
+}
+
+.confetti i {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.2rem;
+  animation-name: confetti;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: calc(60s / var(--speed));
+}
+
+.confetti i:nth-child(even) {
+  transform: rotate(90deg);
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(-100vh);
   }
 
-  .activeCard {
-    min-height: 40vh;
-
+  100% {
+    transform: translateY(100vh);
   }
-
-  .shadowed-text {
-    text-shadow: 1px 1px 2px black;
-  }
-
-  .bg-active-routine {
-    background-image: linear-gradient(var(--darkest), var(--neutral-dark));
-
-  }
-
-  .secondaryCard {
-    min-height: 40vh;
-    max-height: 40vh;
-    transform: scale(.90);
-  }
-
-  // .parentContainer {
-  //   position: absolute;
-  // }
-
-  // .nextArrow {
-  //   position: absolute;
-  //   bottom: 70%;
-  //   left: 80%;
-  // }
-
-  // .prevArrow {
-  //   position: absolute;
-  //   bottom: 70%;
-  //   right: 63%;
-  // }
-
-  input {
-    display: none;
-  }
-
-  label>i {
-    color: var(--darkest);
-  }
-
-  input[type=checkbox]:checked+label>i {
-    color: var(--action);
-  }
-
-  .confetti-container {
-    user-select: none;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  .confetti {
-    position: fixed;
-    left: 0;
-    right: 0;
-    display: flex;
-  }
-
-  .confetti .square {
-    width: 3rem;
-    height: 1rem;
-    background-color: orange;
-    transform: rotate(140deg);
-
-    .confetti .rectangle {
-      width: 1rem;
-      height: 0.5rem;
-      background-color: red;
-    }
-  }
-
-  .confetti i {
-    width: 3rem;
-    height: 3rem;
-    margin: 0 0.2rem;
-    animation-name: confetti;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-duration: calc(60s / var(--speed));
-  }
-
-  .confetti i:nth-child(even) {
-    transform: rotate(90deg);
-  }
-
-  @keyframes confetti {
-    0% {
-      transform: translateY(-100vh);
-    }
-
-    100% {
-      transform: translateY(100vh);
-    }
-  }
+}
 </style>

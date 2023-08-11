@@ -1,7 +1,20 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2 bg-neutral-dark">
     <section class="row justify-content-center">
-      <div class="col-11 fs-1 p-0 d-flex justify-content-center text-light my-3">
+      <div class="col-11 fs-1 p-0 d-flex flex-column justify-content-center text-light my-3">
+        <section class="row">
+          <div class=" text-center fs-2 p-5">
+            <p>
+              codeFitness seeks to bridge the gap between video games and gym gains.
+            </p>
+            <br>
+            <p class="fs-5">
+              By providing a platform to find useful
+              exercises, collect and organize them, that also allows you to indulge in the joy of leveling up and
+              achievements codeFitness strives to bring the power of the player to strength and fitness!
+            </p>
+          </div>
+        </section>
         <section v-if="selectedDev == 0" class="row d-flex justify-content-center flex-grow-1">
           <div class="text-center fs-1 p-5">
             Select your developer!
@@ -16,11 +29,14 @@
           <h2 class="col-12 col-md-8 fs-5 h-100 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
               <span style="--n:200">
-                Chuck Norris tells Simon what to do. If Chuck Norris were to travel to an alternate dimension in which there was another Chuck Norris and they both fought, they would both win.
+                Chuck Norris tells Simon what to do. If Chuck Norris were to travel to an alternate dimension in which
+                there was another Chuck Norris and they both fought, they would both win.
               </span>
             </p>
-            <a href="https://www.linkedin.com/in/ewan-stubblefield-allen/" class="mdi mdi-linkedin fs-3" target="_blank"> Ewan Stubblefield-Allen</a>
-            <a href="https://github.com/EwanStubblefield-Allen" class="mdi mdi-github fs-3" target="_blank"> EwanStubblefield-Allen
+            <a href="https://www.linkedin.com/in/ewan-stubblefield-allen/" class="mdi mdi-linkedin fs-3" target="_blank">
+              Ewan Stubblefield-Allen</a>
+            <a href="https://github.com/EwanStubblefield-Allen" class="mdi mdi-github fs-3" target="_blank">
+              EwanStubblefield-Allen
             </a>
           </h2>
         </section>
@@ -33,7 +49,8 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
               <span style="--n:200">
-                The flu gets a Chuck Norris shot every year. Chuck Norris does not use spell check. If he happens to misspell a word, Oxford will change the spelling.
+                The flu gets a Chuck Norris shot every year. Chuck Norris does not use spell check. If he happens to
+                misspell a word, Oxford will change the spelling.
               </span>
             </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
@@ -49,7 +66,8 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
               <span style="--n:200">
-                Chuck Norris once had a heart attack. His heart lost. Chuck Norris once roundhouse kicked someone so hard that his foot broke the speed of light.
+                Chuck Norris once had a heart attack. His heart lost. Chuck Norris once roundhouse kicked someone so hard
+                that his foot broke the speed of light.
               </span>
             </p>
             <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank">
@@ -66,7 +84,8 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
               <span style="--n:200">
-                Chuck Norris drinks napalm to fight his heartburn. When Chuck Norris gives you the finger, he’s telling you how many seconds you have left to live.
+                Chuck Norris drinks napalm to fight his heartburn. When Chuck Norris gives you the finger, he’s telling
+                you how many seconds you have left to live.
               </span>
             </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
@@ -82,7 +101,8 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0 ">
             <p class="fs-2">Major contributions:
               <span style="--n:200">
-                On New Year’s Eve, Chuck Norris promised that he’d lose 20 pounds. The next morning he shaved his chest and smiled as he realized that he’d lost 30.
+                On New Year’s Eve, Chuck Norris promised that he’d lose 20 pounds. The next morning he shaved his chest
+                and smiled as he realized that he’d lost 30.
               </span>
             </p>
             <a href="http://linkedin.com/in/kyle-peppersack-a39025285" class="mdi mdi-linkedin fs-3" target="_blank"> Kyle
@@ -95,35 +115,49 @@
 
     <section class="row">
       <div class=" col-12 d-flex flex-column flex-md-row justify-content-around dev-select ">
-        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); " class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
+        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); "
+          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/faith-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
+        <div style="background-image: url('src/assets/img/faith-icon.jpg');"
+          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
           <p class="fs-1">Faith</p>
           <!-- <img src="../assets/img/faith-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/jasper-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
+        <div style="background-image: url('src/assets/img/jasper-icon.jpg');"
+          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
           <p class="fs-1">Jasper</p>
           <!-- <img src="src/assets/img/jasper-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/josh-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
+        <div style="background-image: url('src/assets/img/josh-icon.jpg');"
+          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
           <p class="fs-1">Josh</p>
           <!-- <img src="src/assets/img/josh-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');" class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
+        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');"
+          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
           <p class="fs-1">Kyle</p>
           <!-- <img src="../assets/img/Kyle-icon.jpg" alt=""> -->
         </div>
       </div>
     </section>
-    <div class="bg-neutral-dark text-center mt-4 p-5 text-light">
-      <h1>Program your Fitness</h1>
-      <div class="d-flex justify-content-center me-5 pe-3">
-        <img class="me-5" src="../assets/img/CFTee.png" alt="logo" height="355" />
-        <img class="mt-5 me-5" src="../assets/img/CFHat.png" alt="logo" height="155" />
-      </div>
-    </div>
+    <section class="row   text-center mt-4 p-5 text-light">
+      <h1 class="col-12">Program your Fitness</h1>
+      <section class="row justify-content-center">
+        <div class="col-md-4 col-12 justify-content-center ">
+          <img class="img-fluid ms-3" src="../assets/img/CFTee.png" alt="logo" height="355" />
+        </div>
+        <div class="col-md-4 col-12 justify-content-center ">
+          <img class="img-fluid " src="../assets/img/CFHat.png" alt="logo" height="155" />
+        </div>
+      </section>
+    </section>
   </div>
 </template>
 
@@ -155,142 +189,142 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .reserved-space h1 {
-    background-size: cover;
+.reserved-space h1 {
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  text-shadow: 2px 2px black;
+  border-bottom: solid 2px #ffffff;
+  border-left: solid 2px #ffffff;
+  border-top: solid 2px #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .reserved-space span {
+    color: #0000;
+    background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
+      linear-gradient(white 0 0) 0 0;
+    background-size: calc(var(--n)*1ch) 200%;
+    -webkit-background-clip: padding-box,
+      text;
+    background-clip: padding-box,
+      text;
     background-repeat: no-repeat;
-
-    text-shadow: 2px 2px black;
-    border-bottom: solid 2px #ffffff;
-    border-left: solid 2px #ffffff;
-    border-top: solid 2px #ffffff;
+    animation: b .7s infinite steps(1),
+      t calc(var(--n)*.1s) steps(var(--n)) forwards;
   }
 
-  @media screen and (min-width: 768px) {
-    .reserved-space span {
-      color: #0000;
-      background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
-        linear-gradient(white 0 0) 0 0;
-      background-size: calc(var(--n)*1ch) 200%;
-      -webkit-background-clip: padding-box,
-        text;
-      background-clip: padding-box,
-        text;
-      background-repeat: no-repeat;
-      animation: b .7s infinite steps(1),
-        t calc(var(--n)*.1s) steps(var(--n)) forwards;
-    }
-
-    @keyframes t {
-      from {
-        background-size: 0 200%
-      }
-    }
-
-    @keyframes b {
-      50% {
-        background-position: 0 -100%, 0 0
-      }
-    }
-
-    @keyframes typing {
-      0% {
-        width: 0%
-      }
-
-      100% {
-        width: 100%
-      }
-    }
-
-  }
-
-  @keyframes type {
+  @keyframes t {
     from {
-      width: 0;
+      background-size: 0 200%
     }
   }
 
-  .reserved-space h2 {
-    border: thick double #ffffff;
+  @keyframes b {
+    50% {
+      background-position: 0 -100%, 0 0
+    }
   }
 
-  .ewan-space {
-    background-image: url('src/assets/img/ewan-bg.jpg');
-    min-height: 50vh;
+  @keyframes typing {
+    0% {
+      width: 0%
+    }
+
+    100% {
+      width: 100%
+    }
   }
 
-  .faith-space {
-    background-image: url('src/assets/img/faith-bg.jpg');
-    background-position: top;
-    min-height: 50vh;
-  }
+}
 
-  .jasper-space {
-    background-image: url('src/assets/img/jasper-bg.jpg');
-    background-position: top;
-    min-height: 50vh;
+@keyframes type {
+  from {
+    width: 0;
   }
+}
 
-  .josh-space {
-    background-image: url('src/assets/img/josh-bg.jpg');
-    background-position: top;
-    min-height: 50vh;
-  }
+.reserved-space h2 {
+  border: thick double #ffffff;
+}
 
-  .kyle-space {
-    background-image: url('src/assets/img/kyle-bg.jpg');
-    background-position: right top;
-    min-height: 50vh;
-  }
+.ewan-space {
+  background-image: url('src/assets/img/ewan-bg.jpg');
+  min-height: 50vh;
+}
 
-  .icon-space {
-    height: 30vh;
-    background-position: center;
-    background-size: cover;
-  }
+.faith-space {
+  background-image: url('src/assets/img/faith-bg.jpg');
+  background-position: top;
+  min-height: 50vh;
+}
 
-  .icon-space p {
-    color: #ffffff;
-    text-shadow: 2px 2px black;
-  }
+.jasper-space {
+  background-image: url('src/assets/img/jasper-bg.jpg');
+  background-position: top;
+  min-height: 50vh;
+}
 
-  .icon-space p:hover {
-    font-size: 100px;
-  }
+.josh-space {
+  background-image: url('src/assets/img/josh-bg.jpg');
+  background-position: top;
+  min-height: 50vh;
+}
 
-  .iconBorder {
-    border: 1rem solid #ffffff;
-  }
+.kyle-space {
+  background-image: url('src/assets/img/kyle-bg.jpg');
+  background-position: right top;
+  min-height: 50vh;
+}
 
-  .reserved-space {
-    background-image: linear-gradient(#4496b6, #2e728d, #10313e);
-  }
+.icon-space {
+  height: 30vh;
+  background-position: center;
+  background-size: cover;
+}
 
-  .reserved-space>div {
-    height: 55vh;
-  }
+.icon-space p {
+  color: #ffffff;
+  text-shadow: 2px 2px black;
+}
 
-  .reserved-space a {
-    color: white;
-  }
+.icon-space p:hover {
+  font-size: 100px;
+}
 
-  .dev-select {
-    background-color: var(--neutral-light);
-    text-align: center;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+.iconBorder {
+  border: 1rem solid #ffffff;
+}
 
-  }
+.reserved-space {
+  background-image: linear-gradient(#4496b6, #2e728d, #10313e);
+}
 
-  .dev-select img {
-    height: 10vh;
-    width: 10vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-  }
+.reserved-space>div {
+  height: 55vh;
+}
 
-  .dev-select img:hover {
-    scale: 1.05;
-  }
+.reserved-space a {
+  color: white;
+}
+
+.dev-select {
+  background-color: var(--neutral-light);
+  text-align: center;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+}
+
+.dev-select img {
+  height: 10vh;
+  width: 10vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.dev-select img:hover {
+  scale: 1.05;
+}
 </style>

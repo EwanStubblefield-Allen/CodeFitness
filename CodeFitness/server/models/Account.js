@@ -14,10 +14,14 @@ export const AccountSchema = new Schema(
     },
     name: {
       type: String,
-      required: true
+      required: true,
+      minlength: 3,
+      maxlength: 20
     },
     picture: {
-      type: String
+      type: String,
+      minlength: 3,
+      maxlength: 300
     },
     // NOTE If you wish to add additional properties do so here
     coverImg: {
