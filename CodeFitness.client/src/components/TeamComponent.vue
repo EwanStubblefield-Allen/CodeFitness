@@ -8,7 +8,7 @@
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
-      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </RouterLink>
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }"
       :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
@@ -17,7 +17,7 @@
         <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
         <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
-      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </RouterLink>
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }"
       :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
@@ -26,7 +26,7 @@
         <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
         <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
-      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </RouterLink>
   </section>
 
@@ -69,7 +69,7 @@
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
-      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
     <div
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
@@ -77,7 +77,7 @@
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
-      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
     <div
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
@@ -85,7 +85,7 @@
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
-      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
   </section>
 
@@ -304,7 +304,7 @@ export default {
 .title {
   color: white;
   font-family: 'Press Start 2P', cursive;
-  text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, -3px 0px 0 black, 3px 0px 0 black, 0px -3px 0 black, 0px 3px 0 black;
+  text-shadow: 3px 3px 1px black, -3px -3px 1px black, 3px -3px 1px black, -3px 3px 1px black, -3px 0px 1px black, 3px 0px 1px black, 0px -3px 1px black, 0px 3px 1px black;
 }
 
 .bg-modal {
