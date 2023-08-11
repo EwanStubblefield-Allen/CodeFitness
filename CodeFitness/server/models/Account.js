@@ -42,6 +42,10 @@ export const AccountSchema = new Schema(
     points: {
       type: Number,
       default: 0
+    },
+    needsTour: {
+      type: Boolean,
+      default: true
     }
   },
   {

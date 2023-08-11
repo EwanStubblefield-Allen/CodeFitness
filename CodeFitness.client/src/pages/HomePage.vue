@@ -1,16 +1,16 @@
 <template>
-  <div class="col-12 col-md-10 offset-md-2">
-    <TeamComponent id="v-step-0" class="v-step-1"/>
+  <div id="v-step-0" class=" col-12 col-md-10 offset-md-2">
+    <TeamComponent/>
     <section v-if="account.community" class="row m-3" >
-      <button @click="isEditing()" class="btn btn-action p-3 fs-3" type="button" data-bs-toggle="modal" data-bs-target="#routineForm" >Create Routine</button>
+      <button @click="isEditing()" class="btn btn-action p-3 fs-3 v-step-1" type="button" data-bs-toggle="modal" data-bs-target="#routineForm" >Create Routine</button>
     </section>
     <section class="row justify-content-center">
       <ActivitySearch />
     </section>
   </div>
-  <Tour :steps="steps" :callbacks="callbacks"/>
+  <Tour  :steps="steps" :callbacks="callbacks"/>
 </template>
-
+<!-- v-if="account.needsTour" -->
 <script>
 import { computed, onMounted, onUnmounted } from "vue"
 import { AppState } from "../AppState.js"
@@ -19,6 +19,7 @@ import TeamComponent from '../components/TeamComponent.vue'
 import { logger } from "../utils/Logger"
 import { router } from "../router"
 import { useRoute } from "vue-router"
+import { accountService } from "../services/AccountService"
 
 export default {
   name: 'my-tour',
@@ -41,14 +42,16 @@ export default {
           },
           content: `Pick a community to earn points and create routines!`,
           params: {
-            placement: 'top' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false
+            // placement: 'top'
           }
         },
         {
           target: '.v-step-1',
           content: 'Create a Routine then add activities to it!',
           params: {
-            placement: 'top-end' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+            placement: 'top'
           }
         }
         // {
@@ -72,10 +75,7 @@ export default {
       }
     }
   },
-  components: { TeamComponent, ActivitySearch },
-  mounted: function() {
-    this.$tours['myTour'].start()
-  }
+  components: { TeamComponent, ActivitySearch }
 }
 </script>
 
