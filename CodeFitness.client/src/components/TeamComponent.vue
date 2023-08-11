@@ -8,7 +8,7 @@
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </RouterLink>
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }"
       :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
@@ -17,7 +17,7 @@
         <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
         <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </RouterLink>
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }"
       :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
@@ -26,7 +26,7 @@
         <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
         <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </RouterLink>
   </section>
 
@@ -39,7 +39,7 @@
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
     <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Weight Warriors'"
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
@@ -47,7 +47,7 @@
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
     <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
       @click="activeCommunity = 'Legion of Leisure'"
@@ -56,7 +56,7 @@
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
   </section>
 
@@ -69,7 +69,7 @@
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
     <div
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
@@ -77,7 +77,7 @@
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
     <div
       class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
@@ -85,7 +85,7 @@
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
-      <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
   </section>
 
@@ -209,7 +209,8 @@
         </div>
         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
         <div class="d-flex justify-content-center py-3">
-          <button type="button" class="button-modal  py-3">Select Community</button>
+          <button @click="selectCommunity(activeCommunity)" type="button" class="button-modal  py-3">Select
+            Community</button>
         </div>
       </div>
     </div>
@@ -284,7 +285,7 @@ export default {
 
       async selectCommunity(community) {
         try {
-          const isSure = await Pop.confirm(`Are you sure you want to join ${community}? You will be fighting for their glory through activities awarding your community points!`)
+          const isSure = await Pop.confirm(`Are you sure you want to join ${community}?`)
 
           if (!isSure) {
             return
@@ -352,6 +353,7 @@ button {
   color: var(--light);
   border: solid 4px var(--light);
   text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
+  transition: 1s;
 }
 
 .flag img {
