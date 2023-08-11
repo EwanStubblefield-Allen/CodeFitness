@@ -1,7 +1,7 @@
 <template>
   <div class=" col-12 col-md-10 offset-md-2">
     <TeamComponent />
-    <Tour v-if="account.needsTour" :steps="steps" :callbacks="callbacks" />
+    <Tour v-if="routines == 0" :steps="steps" :callbacks="callbacks" />
     <section v-if="account.community" class="row mx-1 my-3">
       <button @click="isEditing()" id="v-step-0" class="btn btn-action p-3 fs-3 v-step-1" type="button"
         data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
@@ -35,6 +35,7 @@ export default {
 
     return {
       account: computed(() => AppState.account),
+      routines: computed(()=>AppState.routines),
       steps: [
         {
           target: '#v-step-0',  // We're using document.querySelector() under the hood

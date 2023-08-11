@@ -11,9 +11,6 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ms-auto">
         <li>
-          <button @click="getHelp()">
-          Help
-          </button>
           <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase">
             Home
           </router-link>

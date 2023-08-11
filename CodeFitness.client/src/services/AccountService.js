@@ -16,8 +16,8 @@ class AccountService {
     try {
       const res = await api.get('/account')
       AppState.account = new Account(res.data)
-    } catch (err) {
-      logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
+    } catch (error) {
+      logger.error('HAVE YOU STARTED YOUR SERVER YET???', error)
     }
   }
 
@@ -37,14 +37,17 @@ class AccountService {
     AppState.account.picture = randomPicture
     await api.put('/account', AppState.account)
   }
-  async editAccount(body) {
-    try {
-      const res = await api.put('/account', body)
-      AppState.account = new Account(res.data)
-    } catch (error) {
-      logger.error(error)
-    }
-  }
+  // async editAccount(body) {
+  //   try {
+  //     const res = await api.put('/account', body)
+  //     logger.log('flipping bool', res.data)
+  //     AppState.account = res.data
+  //     logger.log(AppState.account)
+  //   } catch (error) {
+  //     logger.error(error)
+  //   }
+  // }
+
 }
 
 export const accountService = new AccountService()
