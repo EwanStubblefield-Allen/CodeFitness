@@ -18,7 +18,7 @@ export const CommentSchema = new Schema({
     enum: ['Cardio Kings', 'Weight Warriors', 'Legion of Leisure']
   },
 }, {
-  timeStamps: true,
+  timestamps: true,
   toJSON: { virtuals: true }
 })
 

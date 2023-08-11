@@ -132,6 +132,10 @@ export default {
     background-color: var(--neutral-light);
   }
 
+  .background-light {
+    background-color: var(--light);
+  }
+
   .text-neutral {
     color: var(--neutral);
   }
@@ -155,5 +159,13 @@ export default {
     color: black !important;
     background-color: var(--action) !important;
     box-shadow: none;
+  }
+
+  .profile-pic {
+    height: 10vh;
+    width: 10vh;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
   }
 </style>
