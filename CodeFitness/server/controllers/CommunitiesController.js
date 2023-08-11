@@ -1,3 +1,4 @@
+import { commentsService } from "../services/CommentsService.js";
 import { communitiesService } from "../services/CommunitiesService.js";
 import { communityRoutinesService } from "../services/CommunityRoutinesService.js";
 import { profileService } from "../services/ProfileService.js";
@@ -10,6 +11,16 @@ export class CommunitiesController extends BaseController {
       .get('', this.getCommunities)
       .get('/:communityId/profiles', this.getProfilesByCommunityId)
       .get('/:communityId/routines', this.getCommunityRoutinesByCommunity)
+      .get('/:communityId/comments', this.getCommentsByCommunityId)
+  }
+  async getCommentsByCommunityId(req, res, next) {
+    try {
+      const communityId = req.params.communityId
+      const comment = await commentsService.getCommentsByCommunityId(communityId)
+      return res.send(comment)
+    } catch (error) {
+      next(error);
+    }
   }
 
   async getCommunities(req, res, next) {

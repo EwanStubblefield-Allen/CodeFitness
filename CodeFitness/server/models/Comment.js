@@ -6,17 +6,17 @@ export const CommentSchema = new Schema({
     required: true,
     ref: 'Account'
   },
-  routineId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'Routine'
-  },
   body: {
     type: String,
     required: true,
     minLength: 2,
     maxLength: 300
-  }
+  },
+  community: {
+    type: String,
+    required: true,
+    enum: ['Cardio Kings', 'Weight Warriors', 'Legion of Leisure']
+  },
 }, {
   timeStamps: true,
   toJSON: { virtuals: true }

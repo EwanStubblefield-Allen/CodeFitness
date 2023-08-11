@@ -27,12 +27,10 @@
     <div class="col-12 text-light">
       <p class="fs-2 text-center">Welcome to <strong>codeFitness</strong></p>
       <p class="fs-1 mdi mdi-dots-horizontal text-center"></p>
-      <p class="fs-4">Participate in the struggle for the highest points between the three different teams.
+      <p class="fs-6">Participate in the struggle for the highest points between the three different teams.
       </p>
       <br>
-      <ul>
-        <li>Login first to join the ranks of your favorite team</li>
-      </ul>
+      <p>Login first to join the ranks of your favorite team</p>
 
     </div>
   </section>
