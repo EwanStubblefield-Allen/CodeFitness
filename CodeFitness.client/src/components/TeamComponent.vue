@@ -1,21 +1,53 @@
 <template>
+  <section v-if="account.community && account.id" class="row justify-content-around bg-neutral-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }"
+      :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+      <div>
+        <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
+        <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
+      </div>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+    </RouterLink>
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }"
+      :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+      <div>
+        <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
+        <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
+      </div>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+    </RouterLink>
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }"
+      :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+      <div>
+        <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
+        <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+      </div>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+    </RouterLink>
+  </section>
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
-    <div @click="selectCommunity('Cardio Kings')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
+    <div @click="selectCommunity('Cardio Kings')"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div @click="selectCommunity('Weight Warriors')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
+    <div @click="selectCommunity('Weight Warriors')"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div @click="selectCommunity('Legion of Leisure')" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
+    <div @click="selectCommunity('Legion of Leisure')"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
@@ -24,28 +56,32 @@
     </div>
   </section>
 
-  <section v-else class="row justify-content-around bg-neutral-dark">
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }" :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+  <section v-if="!account.community && !account.id" class="row justify-content-around bg-neutral-dark">
+    <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
+    <div
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
-    </RouterLink>
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }" :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    </div>
+    <div
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
       <div>
-        <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
+        <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
-    </RouterLink>
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }" :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    </div>
+    <div
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
       <div>
-        <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
+        <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="fs-5 fs-md-2 pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
-    </RouterLink>
+    </div>
   </section>
 </template>
 
@@ -92,60 +128,72 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .flag {
-    image-rendering: pixelated;
-    color: var(--light);
-    border: solid 4px var(--light);
-    text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
-  }
+.flag {
+  image-rendering: pixelated;
+  color: var(--light);
+  border: solid 4px var(--light);
+  text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
+}
 
-  .flag img {
-    filter: drop-shadow(0 10px 10px black);
+.flag img {
+  filter: drop-shadow(0 10px 10px black);
 
-  }
+}
 
-  .highlight1 {
-    border: solid 4px whitesmoke;
-    box-shadow: inset 0 0 50px #fff,
-      inset 20px 0 80px rgb(255, 0, 0),
-      inset -20px 0 300px rgb(195, 0, 0),
-      inset 20px 0 300px rgb(255, 0, 0),
-      inset -20px 0 300px rgb(195, 0, 0),
-      0 0 50px #fff,
-      -10px 0 80px rgb(255, 0, 0),
-      10px 0 80px rgb(195, 0, 0);
-    transform: scale(1.10);
-  }
+.flag-no-hover {
+  image-rendering: pixelated;
+  color: var(--light);
+  border: solid 4px var(--light);
+  text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
+}
 
-  .highlight2 {
-    border: solid 4px whitesmoke;
-    box-shadow:
-      inset 0 0 50px #fff,
-      inset 20px 0 80px #f0f,
-      inset -20px 0 300px #0ff,
-      inset 20px 0 300px #f0f,
-      inset -20px 0 300px #0ff,
-      0 0 50px #fff,
-      -10px 0 80px #f0f,
-      10px 0 80px #0ff;
-    transform: scale(1.10);
-  }
+.flag-no-hover img {
+  filter: drop-shadow(0 10px 10px black);
 
-  .highlight3 {
-    border: solid 4px whitesmoke;
-    box-shadow:
-      inset 0 0 50px #fff,
-      inset 20px 0 80px rgb(255, 234, 0),
-      inset -20px 0 300px rgb(231, 213, 109),
-      inset 20px 0 300px rgb(255, 234, 0),
-      inset -20px 0 300px rgb(231, 213, 109),
-      0 0 50px #fff,
-      -10px 0 80px rgb(255, 234, 0),
-      10px 0 80px rgb(231, 213, 109);
-    transform: scale(1.10);
-  }
+}
 
-  .flag:hover {
-    transform: scale(1.025);
-  }
+.highlight1 {
+  border: solid 4px whitesmoke;
+  box-shadow: inset 0 0 50px #fff,
+    inset 20px 0 80px rgb(255, 0, 0),
+    inset -20px 0 300px rgb(195, 0, 0),
+    inset 20px 0 300px rgb(255, 0, 0),
+    inset -20px 0 300px rgb(195, 0, 0),
+    0 0 50px #fff,
+    -10px 0 80px rgb(255, 0, 0),
+    10px 0 80px rgb(195, 0, 0);
+  transform: scale(1.10);
+}
+
+.highlight2 {
+  border: solid 4px whitesmoke;
+  box-shadow:
+    inset 0 0 50px #fff,
+    inset 20px 0 80px #f0f,
+    inset -20px 0 300px #0ff,
+    inset 20px 0 300px #f0f,
+    inset -20px 0 300px #0ff,
+    0 0 50px #fff,
+    -10px 0 80px #f0f,
+    10px 0 80px #0ff;
+  transform: scale(1.10);
+}
+
+.highlight3 {
+  border: solid 4px whitesmoke;
+  box-shadow:
+    inset 0 0 50px #fff,
+    inset 20px 0 80px rgb(255, 234, 0),
+    inset -20px 0 300px rgb(231, 213, 109),
+    inset 20px 0 300px rgb(255, 234, 0),
+    inset -20px 0 300px rgb(231, 213, 109),
+    0 0 50px #fff,
+    -10px 0 80px rgb(255, 234, 0),
+    10px 0 80px rgb(231, 213, 109);
+  transform: scale(1.10);
+}
+
+.flag:hover {
+  transform: scale(1.025);
+}
 </style>

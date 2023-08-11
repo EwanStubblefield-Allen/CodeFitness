@@ -8,17 +8,21 @@
 
           <div class="col-3 text-end">
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
-              <button v-if="activeRoutine.activities.length" type="button" class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
+              <button v-if="activeRoutine.activities.length" type="button"
+                class="btn text-light selectable no-select mdi mdi-play fs-3" title="Start Routine"></button>
             </RouterLink>
-            <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
+            <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3"
+              data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
 
             <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
               <div class="list-group text-center">
-                <div @click="isEditing()" class="list-group-item dropdown-item list-group-item-action selectable" data-bs-toggle="modal" data-bs-target="#routineForm">
+                <div @click="isEditing()" class="list-group-item dropdown-item list-group-item-action selectable"
+                  data-bs-toggle="modal" data-bs-target="#routineForm">
                   <p class="mdi mdi-pencil">Edit Routine</p>
                 </div>
 
-                <div @click="removeRoutine()" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                <div @click="removeRoutine()"
+                  class="list-group-item dropdown-item list-group-item-action text-danger selectable">
                   <p class="mdi mdi-trash-can">Delete Routine</p>
                 </div>
               </div>
@@ -46,7 +50,7 @@
 
                   <div class="d-flex justify-content-between p-2">
                     <h4 v-if="edit != act.id">Sets: {{ act.sets }}</h4>
-                    <h4 v-else class="d-flex align-items-center">Sets:
+                    <h4 v-else>Sets:
                       <input v-model="editable" type="number" class="form-control" min="1" :max="act.reps" required>
                     </h4>
                     <h4 v-if="act.type == ('Cardio' || 'Stretching')">Duration: {{ act.reps }}</h4>
@@ -60,8 +64,11 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <button @click="setActiveActivity(act)" class="fs-6 btn btn-action">Activity Details</button>
-                  <button v-if="edit != act.id" type="button" class="btn selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
-                  <button v-else @click="updateActivity(act, 0), edit = ''" type="button" class="btn btn-action selectable no-select fs-6">Save</button>
+                  <button v-if="edit != act.id" type="button"
+                    class="btn selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown"
+                    aria-expanded="false" title="More Options"></button>
+                  <button v-else @click="updateActivity(act, 0), edit = ''" type="button"
+                    class="btn btn-action selectable no-select fs-6" data-bs-toggle="dropdown">Save</button>
 
                   <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
                     <div class="list-group text-center">
@@ -69,7 +76,8 @@
                         <p class="mdi mdi-pencil">Edit Sets</p>
                       </div>
 
-                      <div @click="removeActivity(act)" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                      <div @click="removeActivity(act)"
+                        class="list-group-item dropdown-item list-group-item-action text-danger selectable">
                         <p class="mdi mdi-trash-can">Delete Activity</p>
                       </div>
                     </div>
@@ -193,23 +201,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card-size {
-    height: 100%;
-    width: 250px;
-  }
+.card-size {
+  height: 100%;
+  width: 250px;
+}
 
-  .bg-img {
-    background-image: v-bind(routineBackground);
-    background-position: center;
-    background-size: cover;
-    background-repeat: none;
-  }
+.bg-img {
+  background-image: v-bind(routineBackground);
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+}
 
-  .bg-title {
-    background: rgba(64, 107, 110, .6);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(64, 107, 110, 0.3);
-  }
+.bg-title {
+  background: rgba(64, 107, 110, .6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(64, 107, 110, 0.3);
+}
 </style>
