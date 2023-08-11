@@ -3,8 +3,8 @@
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3 bg-img">
       <div class="col-12 d-flex justify-content-between align-items-center dropdown z-1">
         <section class="row justify-content-between align-items-center flex-grow-1 p-2 bg-title">
-          <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
-          <p class="col-6 fs-1 text-break">{{ activeRoutine.title }}</p>
+          <p  class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
+          <p id="v-step-0" class="col-6 fs-1 text-break">{{ activeRoutine.title }}</p>
 
           <div class="col-3 text-end">
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
@@ -89,15 +89,16 @@
         </div>
       </div>
 
-      <div v-else class="bg-title mt-3">
-        <h1>Please Select Activities Below</h1>
+      <div  v-else  class="bg-title mt-3">
+        <h1  >Please Select Activities Below</h1>
       </div>
-    </section>
+    </section >
 
-    <section class="row m-3 justify-content-center">
+    <section  class="row m-3 justify-content-center"  >
       <ActivitySearch />
     </section>
   </div>
+  <Tour :steps="steps" :callbacks="callbacks"/>
 </template>
 
 <script>
@@ -108,6 +109,7 @@ import { routinesService } from "../services/RoutinesService"
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop"
+import { logger } from "../utils/Logger"
 
 export default {
   setup() {
@@ -142,6 +144,38 @@ export default {
         AppState.activeRoutine.activities.forEach(a => levels += a.level)
         return AppState.activeRoutine.completeCount - levels
       }),
+      steps: [
+        {
+          target: '#v-step-0',  // We're using document.querySelector() under the hood
+          header: {
+            title: 'Get Started'
+          },
+          content: `Add activities to your routine! `,
+          params: {
+            placement: 'top-end' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        },
+        {
+          target: '.v-step-1',
+          content: 'Level up your activities and increase their reps and point value!',
+          params: {
+            placement: 'top-end' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          }
+        }
+        // {
+        //   target: '[data-v-step="2"]',
+        //   content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
+        //   params: {
+        //     placement: 'top' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+        //   }
+        // }
+      ],
+      callbacks: {
+        onFinish: (() => {
+          logger.log('finish')
+        }),
+        onSkip: (() => logger.log('skipped'))
+      },
 
       isEditing() {
         AppState.isEditing = true
@@ -196,6 +230,9 @@ export default {
         }
       }
     }
+  },
+  mounted: function() {
+    this.$tours['myTour'].start()
   }
 }
 </script>

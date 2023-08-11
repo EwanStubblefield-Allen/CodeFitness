@@ -49,6 +49,7 @@ export default {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       activeRoutine: computed(() => AppState.activeRoutine),
+
       async setActiveActivity() {
         try {
           await activitiesService.setActiveActivity(props.activityProp)

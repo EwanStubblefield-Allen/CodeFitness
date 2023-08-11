@@ -8,12 +8,14 @@ import { ActivitySchema } from "../models/Activity.js";
 import { TierSchema } from "../models/Tier.js";
 import { CopyRoutineSchema } from '../models/CopyRoutine.js';
 import { CommentSchema } from "../models/Comment.js";
+import { CommunityRoutineSchema } from '../models/CommunityRoutine.js';
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
   Routines = mongoose.model('Routine', RoutineSchema)
   CopyRoutines = mongoose.model('CopyRoutine', CopyRoutineSchema)
+  CommunityRoutines = mongoose.model('CommunityRoutine', CommunityRoutineSchema)
   Achievements = mongoose.model('Achievement', AchievementSchema)
   AccountAchievements = mongoose.model('AccountAchievement', AccountAchievementSchema)
   Activities = mongoose.model('Activity', ActivitySchema)
