@@ -11,7 +11,7 @@
             <p class="fs-5">
               By providing a platform to find useful
               exercises, collect and organize them, that also allows you to indulge in the joy of leveling up and
-              achievements codeFitness strives to bring the power of the player to strength and fitness!
+              achievements, codeFitness strives to bring the power of the player to strength and fitness!
             </p>
           </div>
         </section>
