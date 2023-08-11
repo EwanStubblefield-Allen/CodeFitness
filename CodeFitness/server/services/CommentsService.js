@@ -2,6 +2,10 @@ import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class CommentsService {
+  async getCommentsByCommunityId(communityId) {
+    return await dbContext.Comments.find({ community: communityId }).populate('profile', 'name picture')
+
+  }
   async getComments() {
     return await dbContext.Comments.find().populate('profile', 'name picture')
   }
