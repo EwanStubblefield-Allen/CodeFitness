@@ -11,6 +11,9 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ms-auto">
         <li>
+          <span @click="getHelp()" class="lighten-30 selectable text-uppercase text-success">
+            Help
+          </span>
           <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase">
             Home
           </router-link>
@@ -34,19 +37,21 @@
 </template>
 
 <script>
-import { computed } from "vue"
+import { computed, ref } from "vue"
 import { AppState } from "../AppState.js"
 import Login from './Login.vue'
+import { logger } from "../utils/Logger"
 
 export default {
   setup() {
     return {
       account: computed(() => AppState.account),
-      routines: computed(() => AppState.routines)
-    }
+      routines: computed(() => AppState.routines),
+      wantsTour: computed(()=> AppState.wantsTour),
 
-    function getHelp() {
-      this.$tours['myTour'].start()
+      getHelp() {
+        AppState.wantsTour = !AppState.wantsTour
+      }
     }
   },
   components: { Login }

@@ -11,7 +11,7 @@
               <button v-if="activeRoutine.activities.length" type="button"
                 class="btn text-light selectable no-select mdi mdi-play fs-1" title="Start Routine"></button>
             </RouterLink>
-            <Tour v-if="activeRoutine.activities == 0" :steps="steps" :callbacks="callbacks"/>
+            <Tour v-if="activeRoutine.activities == 0 || wantsTour == true " :steps="steps" :callbacks="callbacks"/>
           </div>
 
           <div class="col-3 text-end">
@@ -94,12 +94,12 @@
         </div>
       </div>
 
-      <div data-v-step="2"  v-else  class="bg-title mt-3">
+      <div data-v-step="5"  v-else  class="bg-title mt-3">
         <h1  >Please Select Activities Below</h1>
       </div>
     </section >
 
-    <section id="v-step-0"   class="row m-3 justify-content-center"  >
+    <section id="v-step-3"   class="row m-3 justify-content-center"  >
       <ActivitySearch   />
     </section>
   </div>
@@ -146,6 +146,7 @@ export default {
       activeRoutine: computed(() => AppState.activeRoutine),
       routineBackground: computed(() => `url(${AppState.activeRoutine?.picture})`),
       account: computed(()=> AppState.account),
+      wantsTour: computed(()=> AppState.wantsTour),
       points: computed(() => {
         let levels = 0
         AppState.activeRoutine.activities.forEach(a => levels += a.level)
@@ -153,7 +154,7 @@ export default {
       }),
       steps: [
         {
-          target: '#v-step-0',  // We're using document.querySelector() under the hood
+          target: '#v-step-3',  // We're using document.querySelector() under the hood
           header: {
             title: 'Get Started'
           },
@@ -164,7 +165,7 @@ export default {
           }
         },
         {
-          target: '.v-step-1',
+          target: '.v-step-4',
           content: 'Level up your activities and increase their reps and point value!',
           params: {
             placement: 'top-start',
@@ -172,7 +173,7 @@ export default {
           }
         },
         {
-          target: '[data-v-step="2"]',
+          target: '[data-v-step="5"]',
           content: 'After you have activities in your routine press the play button to start the routine! Get levels and points upon completion!',
           params: {
             placement: 'bottom-end',
