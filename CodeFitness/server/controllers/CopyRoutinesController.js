@@ -6,14 +6,15 @@ export class CopyRoutinesController extends BaseController {
   constructor() {
     super('api/copyRoutine')
     this.router
-      .get('/:copyRoutine', this.getCopyRoutineById)
+      .get('/:copyRoutineId', this.getCopyRoutineById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createCopyRoutine)
+      .delete('/:copyRoutineId', this.removeCopyRoutine)
   }
 
   async getCopyRoutineById(req, res, next) {
     try {
-      const copyRoutine = await copyRoutineService.getCopyRoutineById(req.params.copyRoutine)
+      const copyRoutine = await copyRoutineService.getCopyRoutineById(req.params.copyRoutineId)
       return res.send(copyRoutine)
     } catch (error) {
       next(error)
@@ -25,6 +26,18 @@ export class CopyRoutinesController extends BaseController {
       const copyRoutineData = req.body
       copyRoutineData.accountId = req.userInfo.id
       const copyRoutine = await copyRoutineService.createCopyRoutine(copyRoutineData)
+      return res.send(copyRoutine)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async removeCopyRoutine(req, res, next) {
+    try {
+      const copyRoutineData = {}
+      copyRoutineData.id = req.params.copyRoutineId
+      copyRoutineData.accountId = req.userInfo.id
+      const copyRoutine = await copyRoutineService.removeCopyRoutine(copyRoutineData)
       return res.send(copyRoutine)
     } catch (error) {
       next(error)

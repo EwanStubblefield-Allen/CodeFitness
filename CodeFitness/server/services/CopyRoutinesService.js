@@ -1,12 +1,12 @@
 import { dbContext } from "../db/DbContext.js"
-import { BadRequest } from "../utils/Errors.js"
+import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { activitiesService } from "./ActivitiesService.js"
 
 class CopyRoutinesService {
   async getCopyRoutineById(copyRoutineId) {
     const copyRoutine = await dbContext.CopyRoutines.findById(copyRoutineId).populate('author', 'name picture').populate('routine activity')
     if (!copyRoutine) {
-      throw new BadRequest(`[NO ACTIVITIES MATCH THE COPY ROUTINE ID: ${copyRoutineId}]`)
+      throw new BadRequest(`[NO COPY ROUTINES MATCH THE ID: ${copyRoutineId}]`)
     }
     return copyRoutine
   }
@@ -22,6 +22,15 @@ class CopyRoutinesService {
     await copyRoutine.populate('routine')
     await copyRoutine.populate('activity')
     return copyRoutine
+  }
+
+  async removeCopyRoutine(copyRoutineData) {
+    const copyRoutineToRemove = await this.getCopyRoutineById(copyRoutineData.id)
+    if (copyRoutineToRemove.accountId != copyRoutineData.accountId) {
+      throw new Forbidden(`[YOU ARE NOT THE CREATOR OF THIS COPIED ROUTINE`)
+    }
+    await copyRoutineToRemove.remove()
+    return copyRoutineToRemove
   }
 }
 
