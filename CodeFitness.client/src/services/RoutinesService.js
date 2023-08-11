@@ -5,9 +5,8 @@ import { accountAchievementService } from "./AccountAchievementService.js"
 import Pop from "../utils/Pop.js"
 
 class RoutinesService {
-  async setActiveRoutine(routineId) {
-    const res = await api.get(`api/communityRoutines/${routineId}`)
-    AppState.activeRoutine = res.data
+  setActiveRoutine(routineData) {
+    AppState.activeRoutine = routineData
   }
 
   async getRoutines() {

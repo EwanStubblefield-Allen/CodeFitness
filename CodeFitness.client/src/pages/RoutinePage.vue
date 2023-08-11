@@ -1,33 +1,28 @@
 <template>
-
-  <div  class="col-12 col-md-10 offset-md-2 d-flex flex-column ">
+  <div class="col-12 col-md-10 offset-md-2 d-flex flex-column ">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3 bg-img">
       <div class="col-12 d-flex justify-content-between align-items-center dropdown z-1">
         <section class="row justify-content-between align-items-center flex-grow-1 p-2 bg-title">
-          <p  class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
+          <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
           <div class="col-6">
-            <p  class=" fs-1 text-break">{{ activeRoutine.title }}</p>
+            <p class=" fs-1 text-break">{{ activeRoutine.title }}</p>
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
-              <button v-if="activeRoutine.activities.length" type="button"
-                class="btn text-light selectable no-select mdi mdi-play fs-1" title="Start Routine"></button>
+              <button v-if="activeRoutine.activities.length" type="button" class="btn text-light selectable no-select mdi mdi-play fs-1" title="Start Routine"></button>
             </RouterLink>
-            <Tour v-if="activeRoutine.activities == 0" :steps="steps" :callbacks="callbacks"/>
+            <Tour v-if="activeRoutine.activities == 0" :steps="steps" :callbacks="callbacks" />
           </div>
 
           <div class="col-3 text-end">
 
-            <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3"
-              data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
+            <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
 
             <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
               <div class="list-group text-center">
-                <div @click="isEditing()" class="list-group-item dropdown-item list-group-item-action selectable"
-                  data-bs-toggle="modal" data-bs-target="#routineForm">
+                <div @click="isEditing()" class="list-group-item dropdown-item list-group-item-action selectable" data-bs-toggle="modal" data-bs-target="#routineForm">
                   <p class="mdi mdi-pencil">Edit Routine</p>
                 </div>
 
-                <div @click="removeRoutine()"
-                  class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                <div @click="removeRoutine()" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
                   <p class="mdi mdi-trash-can">Delete Routine</p>
                 </div>
               </div>
@@ -69,11 +64,8 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <button @click="setActiveActivity(act)" class="fs-6 btn btn-action">Activity Details</button>
-                  <button v-if="edit != act.id" type="button"
-                    class="btn selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown"
-                    aria-expanded="false" title="More Options"></button>
-                  <button v-else @click="updateActivity(act, 0), edit = ''" type="button"
-                    class="btn btn-action selectable no-select fs-6" data-bs-toggle="dropdown">Save</button>
+                  <button v-if="edit != act.id" type="button" class="btn selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
+                  <button v-else @click="updateActivity(act, 0), edit = ''" type="button" class="btn btn-action selectable no-select fs-6" data-bs-toggle="dropdown">Save</button>
 
                   <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
                     <div class="list-group text-center">
@@ -81,8 +73,7 @@
                         <p class="mdi mdi-pencil">Edit Sets</p>
                       </div>
 
-                      <div @click="removeActivity(act)"
-                        class="list-group-item dropdown-item list-group-item-action text-danger selectable">
+                      <div @click="removeActivity(act)" class="list-group-item dropdown-item list-group-item-action text-danger selectable">
                         <p class="mdi mdi-trash-can">Delete Activity</p>
                       </div>
                     </div>
@@ -94,16 +85,15 @@
         </div>
       </div>
 
-      <div data-v-step="2"  v-else  class="bg-title mt-3">
-        <h1  >Please Select Activities Below</h1>
+      <div data-v-step="2" v-else class="bg-title mt-3">
+        <h1>Please Select Activities Below</h1>
       </div>
-    </section >
+    </section>
 
-    <section id="v-step-0"   class="row m-3 justify-content-center"  >
-      <ActivitySearch   />
+    <section id="v-step-0" class="row m-3 justify-content-center">
+      <ActivitySearch />
     </section>
   </div>
-
 </template>
 
 <script>
@@ -114,8 +104,6 @@ import { routinesService } from "../services/RoutinesService"
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop"
-import { logger } from "../utils/Logger"
-import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -129,12 +117,12 @@ export default {
     })
 
     watchEffect(() => {
-      getRoutineById()
+      getRoutineById(route.params.routineId)
     })
 
-    async function getRoutineById() {
+    async function getRoutineById(routineId) {
       try {
-        await routinesService.getRoutineById(route.params.routineId)
+        await routinesService.getRoutineById(routineId)
       } catch (error) {
         Pop.error(error.message, '[GETTING ROUTINE BY ID]')
       }
@@ -145,7 +133,7 @@ export default {
       edit,
       activeRoutine: computed(() => AppState.activeRoutine),
       routineBackground: computed(() => `url(${AppState.activeRoutine?.picture})`),
-      account: computed(()=> AppState.account),
+      account: computed(() => AppState.account),
       points: computed(() => {
         let levels = 0
         AppState.activeRoutine.activities.forEach(a => levels += a.level)
@@ -245,23 +233,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card-size {
-  height: 100%;
-  width: 250px;
-}
+  .card-size {
+    height: 100%;
+    width: 250px;
+  }
 
-.bg-img {
-  background-image: v-bind(routineBackground);
-  background-position: center;
-  background-size: cover;
-  background-repeat: none;
-}
+  .bg-img {
+    background-image: v-bind(routineBackground);
+    background-position: center;
+    background-size: cover;
+    background-repeat: none;
+  }
 
-.bg-title {
-  background: rgba(64, 107, 110, .6);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(64, 107, 110, 0.3);
-}
+  .bg-title {
+    background: rgba(64, 107, 110, .6);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(64, 107, 110, 0.3);
+  }
 </style>
