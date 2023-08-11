@@ -1,20 +1,20 @@
 <template>
   <section class="row justify-content-around pt-3 text-center">
 
-    <div @click="getActivities('cardio')"
-      class="col-1 border border-light flex-grow-1 bg-action selectable py-2 rounded-start">Cardio</div>
-    <div @click="getActivities('olympic_weightlifting')"
-      class="col-1 border border-light flex-grow-1 bg-action selectable py-2">Weightlifting</div>
-    <div @click="getActivities('plyometrics')" class="col-1 border border-light flex-grow-1 bg-action selectable py-2">
+    <div @click="getActivities('cardio')" class="col-1 border border-light flex-grow-1 bg-action py-2 rounded-start">
+      Cardio</div>
+    <div @click="getActivities('olympic_weightlifting')" class="col-1 border border-light flex-grow-1 bg-action py-2">
+      Weightlifting</div>
+    <div @click="getActivities('plyometrics')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       High Intensity</div>
-    <div @click="getActivities('powerlifting')" class="col-1 border border-light flex-grow-1 bg-action selectable py-2">
+    <div @click="getActivities('powerlifting')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       Power Lifting</div>
-    <div @click="getActivities('strength')" class="col-1 border border-light flex-grow-1 bg-action selectable py-2">
+    <div @click="getActivities('strength')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       Strength</div>
-    <div @click="getActivities('stretching')" class="col-1 border border-light flex-grow-1 bg-action selectable py-2">
+    <div @click="getActivities('stretching')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       Stretching</div>
-    <div @click="getActivities('strongman')"
-      class="col-1 border border-light flex-grow-1 bg-action selectable py-2 rounded-end">Strongman</div>
+    <div @click="getActivities('strongman')" class="col-1 border border-light flex-grow-1 bg-action py-2 rounded-end">
+      Strongman</div>
 
   </section>
   <div class="col-12 d-flex flex-column flex-lg-row justify-content-between p-3">
