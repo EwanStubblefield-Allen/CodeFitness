@@ -8,7 +8,7 @@ export class Routine {
     this.completeCount = data.completeCount
     this.accountId = data.accountId
     this.profile = data.profile
-    this.activities = data.activity
+    this.activities = data.activities
     this.updatedAt = new Date(data.updatedAt).valueOf()
     this.createdAt = data.createdAt
   }

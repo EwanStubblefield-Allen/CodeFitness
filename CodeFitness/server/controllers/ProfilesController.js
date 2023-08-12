@@ -13,7 +13,7 @@ export class ProfilesController extends BaseController {
       .get('/:profileId', this.getProfileById)
       .get('/:accountId/routines', this.getRoutinesByAccountId)
       .get('/:accountId/accountAchievements', this.getAccountAchievementsByAccountId)
-      .get('/:accountId/copyRoutines', this.getCopyRoutinesByAccountId)
+      // .get('/:accountId/copyRoutines', this.getCopyRoutinesByAccountId)
       .get('/:accountId/comments', this.getCommentsByAccountId)
   }
 
@@ -53,14 +53,14 @@ export class ProfilesController extends BaseController {
     }
   }
 
-  async getCopyRoutinesByAccountId(req, res, next) {
-    try {
-      const copyRoutines = await copyRoutineService.getCopyRoutinesByAccountId(req.params.accountId)
-      return res.send(copyRoutines)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async getCopyRoutinesByAccountId(req, res, next) {
+  //   try {
+  //     const copyRoutines = await copyRoutineService.getCopyRoutinesByAccountId(req.params.accountId)
+  //     return res.send(copyRoutines)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
   async getCommentsByAccountId(req, res, next) {
     try {

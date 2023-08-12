@@ -115,8 +115,7 @@
           </div>
           <div class="col-12 col-lg-4 d-flex flex-lg-column align-items-center justify-content-center">
             <p class="fs-1 text-center text-white pe-3 pe-lg-0">{{ routine.title }}</p>
-            <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger"
-              type="reset">Restart</button>
+            <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger" type="reset">Restart</button>
           </div>
           <div class="col-12 col-lg-4 pb-3 pb-md-0 v-step-8">
             <Timer />
@@ -127,8 +126,7 @@
         <div>
           <div v-if="!superSet">
             <div class="text-center py-2">
-              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2"
-                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Regular
+              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Regular
                 Routine</button>
               <div>
                 -Progress through the activity and all of its sets before going on to the next activity-
@@ -137,8 +135,7 @@
           </div>
           <div v-else>
             <div class="text-center pb-2">
-              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2"
-                title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Super
+              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Super
                 Set</button>
               <div>
                 -Progress through a loop of every activity for the number of sets you it has-
@@ -174,8 +171,7 @@
             </div>
           </div>
           <!-- SECTION < Prev button arrows > -->
-          <a v-if="current != 0 || completedSets != 0" class="prevArrow col-1 d-none d-md-block"
-            @click="changeActivity(-1)" role="button" data-slide="prev">
+          <a v-if="current != 0 || completedSets != 0" class="prevArrow col-1 d-none d-md-block" @click="changeActivity(-1)" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
           </a>
@@ -184,10 +180,8 @@
           <div class="col-md-6 col-12 bg-light p-3 activeCard rounded elevation-5">
             <div v-if="current < routine.activities.length">
               <div class="d-flex justify-content-between">
-                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block"
-                  :disabled="current == 0">Back</button>
-                <button v-if="current == routine.activities.length" @click="updateData()"
-                  class="btn btn-action d-md-none d-block text-dark">Finish</button>
+                <button @click="changeActivity(-1)" class="btn btn-action d-md-none d-block" :disabled="current == 0">Back</button>
+                <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-md-none d-block text-dark">Finish</button>
                 <button v-else @click="changeActivity(1)" class="btn btn-action d-md-none d-block">Next</button>
               </div>
               <p class="fs-5 fw-bold p-2">{{ routine.activities[current].name }}</p>
@@ -222,13 +216,11 @@
               </div>
             </div>
             <div v-else class="d-flex justify-content-center">
-              <button v-if="current == routine.activities.length" @click="updateData()"
-                class="btn btn-action d-block selectable">Complete Routine</button>
+              <button v-if="current == routine.activities.length" @click="updateData()" class="btn btn-action d-block selectable">Complete Routine</button>
             </div>
           </div>
           <!-- SECTION < Next button arrows > -->
-          <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button"
-            data-slide="next"></a>
+          <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button" data-slide="next"></a>
 
           <a class="nextArrow col-1 d-none d-md-block" v-else @click="changeActivity(1)" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -327,7 +319,7 @@ export default {
       showCollapse,
       superSet,
       completedSets,
-      wantsTour: computed(()=> AppState.wantsTour),
+      wantsTour: computed(() => AppState.wantsTour),
       steps: [
         {
           target: '.v-step-8',
@@ -425,6 +417,7 @@ export default {
           AppState.activeRoutine.activities.forEach(a => points += a.level + 1)
           await accountService.updateAccount({ points: AppState.account.points += points })
           await routinesService.updateRoutine({ completeCount: AppState.activeRoutine.completeCount += 1 })
+          Pop.success(`You earned ${points} points and ${AppState.activeRoutine.title} has an available level!`)
         } catch (error) {
           Pop.error(error.message, '[UPDATING ACCOUNT POINTS]')
         }
@@ -435,96 +428,96 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-outline-info {
-  border-color: #406B6E;
-  color: #406B6E;
-}
-
-.activeCard {
-  min-height: 40vh;
-}
-
-.img-size {
-  height: 15vh;
-  width: auto;
-  object-fit: cover;
-  object-position: center;
-}
-
-.shadowed-text {
-  text-shadow: 1px 1px 2px black;
-}
-
-.bg-active-routine {
-  background-image: linear-gradient(var(--darkest), var(--neutral-dark));
-  min-height: 91.3vh;
-}
-
-.secondaryCard {
-  min-height: 40vh;
-  max-height: 40vh;
-  transform: scale(.90);
-}
-
-input {
-  display: none;
-}
-
-label>i {
-  color: var(--darkest);
-}
-
-input[type=checkbox]:checked+label>i {
-  color: var(--action);
-}
-
-.confetti-container {
-  user-select: none;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.confetti {
-  position: fixed;
-  left: 0;
-  right: 0;
-  display: flex;
-}
-
-.confetti .square {
-  width: 3rem;
-  height: 1rem;
-  background-color: orange;
-  transform: rotate(140deg);
-
-  .confetti .rectangle {
-    width: 1rem;
-    height: 0.5rem;
-    background-color: red;
-  }
-}
-
-.confetti i {
-  width: 3rem;
-  height: 3rem;
-  margin: 0 0.2rem;
-  animation-name: confetti;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: calc(60s / var(--speed));
-}
-
-.confetti i:nth-child(even) {
-  transform: rotate(90deg);
-}
-
-@keyframes confetti {
-  0% {
-    transform: translateY(-100vh);
+  .btn-outline-info {
+    border-color: #406B6E;
+    color: #406B6E;
   }
 
-  100% {
-    transform: translateY(100vh);
+  .activeCard {
+    min-height: 40vh;
   }
-}
+
+  .img-size {
+    height: 15vh;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .shadowed-text {
+    text-shadow: 1px 1px 2px black;
+  }
+
+  .bg-active-routine {
+    background-image: linear-gradient(var(--darkest), var(--neutral-dark));
+    min-height: 91.3vh;
+  }
+
+  .secondaryCard {
+    min-height: 40vh;
+    max-height: 40vh;
+    transform: scale(.90);
+  }
+
+  input {
+    display: none;
+  }
+
+  label>i {
+    color: var(--darkest);
+  }
+
+  input[type=checkbox]:checked+label>i {
+    color: var(--action);
+  }
+
+  .confetti-container {
+    user-select: none;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .confetti {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+  }
+
+  .confetti .square {
+    width: 3rem;
+    height: 1rem;
+    background-color: orange;
+    transform: rotate(140deg);
+
+    .confetti .rectangle {
+      width: 1rem;
+      height: 0.5rem;
+      background-color: red;
+    }
+  }
+
+  .confetti i {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.2rem;
+    animation-name: confetti;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: calc(60s / var(--speed));
+  }
+
+  .confetti i:nth-child(even) {
+    transform: rotate(90deg);
+  }
+
+  @keyframes confetti {
+    0% {
+      transform: translateY(-100vh);
+    }
+
+    100% {
+      transform: translateY(100vh);
+    }
+  }
 </style>

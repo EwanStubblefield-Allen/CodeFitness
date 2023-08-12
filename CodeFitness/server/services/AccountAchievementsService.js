@@ -4,12 +4,12 @@ import { achievementsService } from "./AchievementsService.js"
 
 class AccountAchievementsService {
   async getAccountAchievement() {
-    const accountAchievements = await dbContext.AccountAchievements.find().populate('achievement')
+    const accountAchievements = await dbContext.AccountAchievements.find().populate('achievements')
     return accountAchievements
   }
 
   async getAccountAchievementById(accountAchievementId) {
-    const accountAchievement = await dbContext.AccountAchievements.findById(accountAchievementId).populate('achievement')
+    const accountAchievement = await dbContext.AccountAchievements.findById(accountAchievementId).populate('achievements')
     if (!accountAchievement) {
       throw new BadRequest(`[NO ACCOUNT ACHIEVEMENT MATCHES THE ID: ${accountAchievementId}]`)
     }
@@ -19,9 +19,9 @@ class AccountAchievementsService {
   async getAccountAchievementsByAccountId(accountId) {
     return await dbContext.AccountAchievements.find({ accountId: accountId })
       .populate({
-        path: 'achievement',
+        path: 'achievements',
         populate: {
-          path: 'tier',
+          path: 'tiers',
         }
       })
   }
@@ -29,9 +29,9 @@ class AccountAchievementsService {
   async getAccountAchievementByAccountIdAndAchievementId(accountId, achievementId) {
     const accountAchievement = await dbContext.AccountAchievements.findOne({ accountId: accountId, achievementId: achievementId })
       .populate({
-        path: 'achievement',
+        path: 'achievements',
         populate: {
-          path: 'tier',
+          path: 'tiers',
         }
       })
     if (!accountAchievement) {

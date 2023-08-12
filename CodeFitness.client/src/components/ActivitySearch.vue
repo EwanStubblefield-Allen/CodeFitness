@@ -82,6 +82,7 @@ export default {
           AppState.page = 0
           await activitiesService.getActivities(`type=${type}`)
           adaptable.value = ''
+          document.getElementById('form').scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
         }
         catch (error) {
           Pop.error(error.message, '[GETTING ACTIVITIES BY FILTER]')

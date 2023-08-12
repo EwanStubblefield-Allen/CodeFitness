@@ -3,12 +3,12 @@ import { BadRequest } from "../utils/Errors.js"
 
 class AchievementsService {
   async getAchievements() {
-    const achievements = await dbContext.Achievements.find().populate('tier')
+    const achievements = await dbContext.Achievements.find().populate('tiers')
     return achievements
   }
 
   async getAchievementsById(achievementId) {
-    const achievement = await dbContext.Achievements.findById(achievementId).populate('tier')
+    const achievement = await dbContext.Achievements.findById(achievementId).populate('tiers')
     if (!achievement) {
       throw new BadRequest(`[NO ACHIEVEMENT MATCHES THE ID: ${achievementId}]`)
     }

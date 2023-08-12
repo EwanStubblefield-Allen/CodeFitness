@@ -19,12 +19,6 @@ class CommentsService {
     return comment
   }
 
-  async getCommentsByRoutineId(routineId) {
-    const comment = await dbContext.Comments.find({ routineId: routineId }).populate('profile', 'name picture')
-    return comment
-  }
-
-
   async getCommentsByCommunityId(communityId) {
     return await dbContext.Comments.find({ community: communityId }).populate('profile', 'name picture')
   }

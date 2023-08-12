@@ -31,7 +31,7 @@ AccountAchievementSchema.index({
   unique: true
 })
 
-AccountAchievementSchema.virtual('achievement', {
+AccountAchievementSchema.virtual('achievements', {
   localField: 'achievementId',
   foreignField: '_id',
   justOne: true,
