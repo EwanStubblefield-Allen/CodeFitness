@@ -1,7 +1,7 @@
 <template>
   <section class="row justify-content-around pt-3 text-center">
 
-    <div @click="getActivities('cardio')" class="col-1 border border-light flex-grow-1 bg-action py-2 rounded-start">
+    <div @click="getActivities('cardio')" class="col-1 border border-light flex-grow-1 btn btn-action py-2 rounded-start">
       Cardio</div>
     <div @click="getActivities('olympic_weightlifting')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       Weightlifting</div>
@@ -13,7 +13,8 @@
       Strength</div>
     <div @click="getActivities('stretching')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       Stretching</div>
-    <div @click="getActivities('strongman')" class="col-1 border border-light flex-grow-1 bg-action py-2 rounded-end">
+    <div @click="getActivities('strongman')"
+      class="col-1 border border-light flex-grow-1 btn btn-action py-2 rounded-end">
       Strongman</div>
 
   </section>
@@ -30,7 +31,7 @@
       </div>
     </form>
     <div class="text-end">
-      <button @click="editable = ''" class="btn btn-action my-2" type="button" data-bs-toggle="modal"
+      <button @click="editable = ''" class="btn btn-background my-2" type="button" data-bs-toggle="modal"
         data-bs-target="#filterForm">Filter by Muscle</button>
     </div>
   </div>
@@ -110,4 +111,18 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  // .background-btn {
+  //   background: #363737;
+  //   background: linear-gradient(90deg, #363737 0%, #308484 35%, #34DCE7 100%);
+  // }
+
+  // .btn-background {
+  //   background: #55a0a5
+  // }
+
+  // .background-btn-reverse {
+  //   background: #363737;
+  //   background: linear-gradient(265deg, #363737 0%, #308484 35%, #34DCE7 100%)
+  // }
+</style>
