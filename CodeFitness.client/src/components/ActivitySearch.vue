@@ -1,7 +1,7 @@
 <template>
   <section class="row justify-content-around pt-3 text-center">
 
-    <div @click="getActivities('cardio')" class="col-1 border border-light flex-grow-1 btn btn-action py-2 rounded-start">
+    <div @click="getActivities('cardio')" class="col-1 border border-light flex-grow-1 btn-action py-2 rounded-start">
       Cardio</div>
     <div @click="getActivities('olympic_weightlifting')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       Weightlifting</div>
@@ -13,8 +13,7 @@
       Strength</div>
     <div @click="getActivities('stretching')" class="col-1 border border-light flex-grow-1 bg-action py-2">
       Stretching</div>
-    <div @click="getActivities('strongman')"
-      class="col-1 border border-light flex-grow-1 btn btn-action py-2 rounded-end">
+    <div @click="getActivities('strongman')" class="col-1 border border-light flex-grow-1 btn-action py-2 rounded-end">
       Strongman</div>
 
   </section>
