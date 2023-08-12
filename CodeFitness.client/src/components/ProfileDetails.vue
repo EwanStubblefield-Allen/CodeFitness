@@ -17,6 +17,7 @@
       <img v-else-if="profileProp.community == 'Legion of Leisure'" class="text-stroke px-3" src="../assets/img/flagLL.png" alt="Legion of Leisure">
     </div>
     <div v-if="account.id == profileProp.id" class="col-12 col-md-2 order-1 order-md-2 text-end">
+
       <button class="btn btn-lg btn-block mdi mdi-pencil fs-3" data-bs-toggle="modal" data-bs-target="#accountForm" title="Edit Account"></button>
     </div>
     <div v-else class="col-12 col-md-2 order-1 order-md-2 text-end py-4"></div>
@@ -64,7 +65,21 @@ export default {
     return {
       randomCoverImg,
       randomProfileImg,
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      wantsTour: computed(()=> AppState.wantsTour),
+      steps: [
+        {
+          target: '.v-step-6',  // We're using document.querySelector() under the hood
+          header: {
+            title: 'Get Started'
+          },
+          content: `Pick a community to earn points and create routines!`
+          // params: {
+          //   enableScrolling: true,
+          //   placement: 'right'
+          // }
+        }
+      ]
     }
   }
 }
