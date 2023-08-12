@@ -14,6 +14,7 @@ export class RoutinesController extends BaseController {
       .get('/:routineId/comments', this.getCommentsByRoutineId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createRoutine)
+      .post('/:routineId', this.createCopyRoutine)
       .put('/:routineId', this.updateRoutine)
       .delete('/:routineId', this.removeRoutine)
   }
@@ -59,8 +60,21 @@ export class RoutinesController extends BaseController {
     try {
       const routineData = req.body
       routineData.accountId = req.userInfo.id
+      routineData.authorId = routineData.accountId
       const routine = await routinesService.createRoutine(routineData)
       return res.send(routine)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async createCopyRoutine(req, res, next) {
+    try {
+      const copyRoutineData = {}
+      copyRoutineData.id = req.params.routineId
+      copyRoutineData.accountId = req.userInfo.id
+      const copyRoutine = await routinesService.createCopyRoutine(copyRoutineData)
+      return res.send(copyRoutine)
     } catch (error) {
       next(error)
     }

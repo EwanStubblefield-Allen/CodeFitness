@@ -88,8 +88,8 @@ export default {
       showAmount,
       account: computed(() => AppState.account),
 
-      setActiveRoutine(routineData) {
-        routinesService.setActiveRoutine(routineData)
+      async setActiveRoutine(routineData) {
+        await routinesService.setActiveRoutine(routineData)
         Modal.getOrCreateInstance('#activeRoutine').show()
       }
     }

@@ -43,15 +43,18 @@ class ActivitiesService {
     return await dbContext.Activities.create(activityData)
   }
 
-  async createActivitiesByCopyRoutineId(copyRoutine, routineId) {
-    const activities = await this.getActivitiesByRoutineId(routineId)
-    activities.forEach(async a => {
-      a.routineId = copyRoutine.id
-      a.accountId = copyRoutine.accountId
-      a.level = 0
-      a.sets = 1
-      await this.createActivities(a)
+  async createActivitiesByCopyRoutineId(routineData) {
+    const activities = await this.getActivitiesByRoutineId(routineData.routineId)
+    const newActivities = activities.map(a => {
+      const x = a.toObject()
+      delete x._id
+      x.routineId = routineData.id
+      x.accountId = routineData.accountId
+      x.level = 0
+      x.sets = 1
+      return x
     })
+    await dbContext.Activities.insertMany(newActivities)
   }
 
   async updateActivity(activityData) {
