@@ -29,6 +29,18 @@ class RoutinesService {
     return { routine: routine, accountAchievement: accountAchievement }
   }
 
+  async createCopyRoutine(routineData) {
+    const copyRoutineData = (await this.getRoutineById(routineData.id)).toObject()
+    delete copyRoutineData._id
+    copyRoutineData.accountId = routineData.accountId
+    copyRoutineData.completeCount = 0
+    const copyRoutine = await dbContext.Routines.create(copyRoutineData)
+    await activitiesService.createActivitiesByCopyRoutineId(routineData)
+    await copyRoutine.populate('profile', 'name picture')
+    await copyRoutine.populate('activity')
+    return copyRoutine
+  }
+
   async updateRoutine(routineData) {
     const updateRoutine = await this.getData(routineData)
     let accountAchievement

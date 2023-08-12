@@ -4,7 +4,12 @@ export const RoutineSchema = new Schema({
   accountId: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: "Account"
+    ref: 'Account'
+  },
+  authorId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'Account'
   },
   title: {
     type: String,
@@ -34,7 +39,7 @@ export const RoutineSchema = new Schema({
 })
 
 RoutineSchema.virtual('profile', {
-  localField: 'accountId',
+  localField: 'authorId',
   foreignField: '_id',
   justOne: true,
   ref: 'Account'
