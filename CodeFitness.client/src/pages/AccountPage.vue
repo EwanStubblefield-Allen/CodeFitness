@@ -2,7 +2,7 @@
   <div class="col-12 col-md-10 offset-md-2">
     <ProfileDetails :profileProp="account" />
 
-    <RoutineComponent v-if="routines.length" :routinesProp="routines">
+    <RoutineComponent v-if="routines.length" :routinesProp="routines" >
       Your Recent Routines:
     </RoutineComponent>
 
@@ -12,7 +12,8 @@
       </div>
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
-          <h1>
+          <Tour v-if="wantsTour == true" :steps="steps" />
+          <h1 class="v-step-7">
             Completed {{ completed }} out of 16
           </h1>
           <div v-for="achievement in  achievements " :key="achievement.id" class="d-flex flex-column py-1">
@@ -88,6 +89,18 @@ export default {
       account: computed(() => AppState.account),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
+      wantsTour: computed(()=> AppState.wantsTour),
+      steps: [
+
+        {
+          target: '.v-step-7',
+          content: 'Unlock Badges by doing Routines!',
+          params: {
+            enableScrolling: true,
+            placement: 'top'
+          }
+        }
+      ],
       routines: computed(() => {
         return AppState.routines.sort((a, b) => b.updatedAt - a.updatedAt)
       }),

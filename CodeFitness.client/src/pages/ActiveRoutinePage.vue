@@ -118,8 +118,10 @@
             <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger"
               type="reset">Restart</button>
           </div>
-          <div class="col-12 col-lg-4 pb-3 pb-md-0">
+          <div class="col-12 col-lg-4 pb-3 pb-md-0 v-step-8">
             <Timer />
+            <Tour v-if="wantsTour == true" :steps="steps" />
+
           </div>
         </section>
         <div>
@@ -227,6 +229,7 @@
           <!-- SECTION < Next button arrows > -->
           <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button"
             data-slide="next"></a>
+
           <a class="nextArrow col-1 d-none d-md-block" v-else @click="changeActivity(1)" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
@@ -324,6 +327,17 @@ export default {
       showCollapse,
       superSet,
       completedSets,
+      wantsTour: computed(()=> AppState.wantsTour),
+      steps: [
+        {
+          target: '.v-step-8',
+          content: 'Complete all activities in the routine to level up and earn points! Start by pressing the > Button',
+          params: {
+            enableScrolling: true,
+            placement: 'left'
+          }
+        }
+      ],
       routine: computed(() => {
         const routine = AppState.activeRoutine
         const superRoutine = AppState.activeSuperRoutine

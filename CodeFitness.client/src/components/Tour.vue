@@ -11,7 +11,7 @@ export default {
 
   props: {
     steps: {type: Array, required: true},
-    callbacks: {type: Object, required: true}
+    callbacks: {type: Object, required: false}
   },
 
   setup() {
