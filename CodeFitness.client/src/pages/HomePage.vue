@@ -68,9 +68,9 @@ export default {
 
       callbacks: {
         onFinish: (() => {
-          logger.log('finish')
+          AppState.wantsTour = false
         }),
-        onSkip: (() => logger.log('skipped'))
+        onSkip: (() => AppState.wantsTour = false)
       },
 
       isEditing() {

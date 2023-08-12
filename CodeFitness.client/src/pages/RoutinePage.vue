@@ -171,11 +171,10 @@ export default {
       ],
       callbacks: {
         onFinish: (() => {
-          // accountService.editAccount({needsTour: false})
-        })
-        // onSkip: (() => accountService.editAccount({needsTour: false}))
+          AppState.wantsTour = false
+        }),
+        onSkip: (() => AppState.wantsTour = false)
       },
-
       isEditing() {
         AppState.isEditing = true
       },

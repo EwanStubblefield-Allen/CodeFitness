@@ -12,7 +12,7 @@
       </div>
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
-          <Tour v-if="wantsTour == true" :steps="steps" />
+          <Tour v-if="wantsTour == true" :steps="steps" :callbacks="callbacks" />
           <h1 class="v-step-7">
             Completed {{ completed }} out of 16
           </h1>
@@ -101,6 +101,12 @@ export default {
           }
         }
       ],
+      callbacks: {
+        onFinish: (() => {
+          AppState.wantsTour = false
+        }),
+        onSkip: (() => AppState.wantsTour = false)
+      },
       routines: computed(() => {
         return AppState.routines.sort((a, b) => b.updatedAt - a.updatedAt)
       }),
