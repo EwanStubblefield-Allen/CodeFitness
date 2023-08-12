@@ -175,6 +175,10 @@ export default {
     color: var(--dark);
   }
 
+  .text-action {
+    color: var(--action);
+  }
+
   .btn-action:hover {
     color: black;
     background-color: var(--light);

@@ -7,7 +7,6 @@ import { api } from './AxiosService'
 import { socketService } from './SocketService'
 import { routinesService } from './RoutinesService.js'
 import { accountAchievementService } from './AccountAchievementService.js'
-import { copyRoutinesService } from './CopyRoutinesService.js'
 
 export const AuthService = initialize({
   domain,

@@ -28,16 +28,19 @@
       <section v-if="account.id && (routinesProp.length >= 3)" class="row">
         <div v-for="r in showAmount" :key="r" class="col-12 col-md-4 pb-3">
           <div class="routine-bg rounded">
-            <img :src="routinesProp[r - 1].picture" @error="randomRoutineImg()" alt="Routine Image" class="img-fluid routine-pic rounded-top">
+            <img :src="routinesProp[r - 1].picture" @error="randomRoutineImg()" alt="Routine Image" class="img-fluid routine-pic rounded-top w-100">
             <div class="routine-details p-2">
               <h5 class="p-2 text-center"> {{ routinesProp[r - 1].title }}</h5>
 
               <p class="p-2 mb-2">{{ routinesProp[r - 1].description }}</p>
-              <div class="text-end">
+              <div v-if="account.id == routinesProp[r - 1].accountId" class="text-end">
                 <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: routinesProp[r - 1].id } }">
-                  <button @click="getRoutineById(routinesProp[r - 1].id)" class="btn btn-action" type="button">Start
-                    Routine</button>
+                  <button @click="getRoutineById(routinesProp[r - 1].id)" class="btn btn-action" type="button">Start Routine</button>
                 </RouterLink>
+              </div>
+
+              <div v-else class="text-end">
+                <button @click="setActiveRoutine(routinesProp[r - 1])" class="btn btn-action" type="button">Routine Details</button>
               </div>
             </div>
           </div>

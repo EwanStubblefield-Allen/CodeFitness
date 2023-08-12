@@ -6,14 +6,13 @@
           <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
           <div class="col-6">
             <p class=" fs-1 text-break">{{ activeRoutine.title }}</p>
-            <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
-              <button v-if="activeRoutine.activities.length" type="button" class="btn text-light selectable no-select mdi mdi-play fs-1" title="Start Routine"></button>
-            </RouterLink>
-            <Tour v-if="activeRoutine.activities == 0 || wantsTour == true " :steps="steps" :callbacks="callbacks"/>
+            <Tour v-if="activeRoutine.activities == 0 || wantsTour == true" :steps="steps" :callbacks="callbacks" />
           </div>
 
           <div class="col-3 text-end">
-
+            <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
+              <button v-if="activeRoutine.activities.length" type="button" class="btn selectable no-select mdi mdi-play fs-3 text-action" title="Start Routine"></button>
+            </RouterLink>
             <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
 
             <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
@@ -85,13 +84,13 @@
         </div>
       </div>
 
-      <div data-v-step="5"  v-else  class="bg-title mt-3">
-        <h1  >Please Select Activities Below</h1>
+      <div data-v-step="5" v-else class="bg-title mt-3">
+        <h1>Please Select Activities Below</h1>
       </div>
     </section>
 
-    <section id="v-step-3"   class="row m-3 justify-content-center"  >
-      <ActivitySearch   />
+    <section id="v-step-3" class="row m-3 justify-content-center">
+      <ActivitySearch />
     </section>
   </div>
 </template>
@@ -133,8 +132,8 @@ export default {
       edit,
       activeRoutine: computed(() => AppState.activeRoutine),
       routineBackground: computed(() => `url(${AppState.activeRoutine?.picture})`),
-      account: computed(()=> AppState.account),
-      wantsTour: computed(()=> AppState.wantsTour),
+      account: computed(() => AppState.account),
+      wantsTour: computed(() => AppState.wantsTour),
       points: computed(() => {
         let levels = 0
         AppState.activeRoutine.activities.forEach(a => levels += a.level)

@@ -35,7 +35,7 @@ class RoutinesService {
     copyRoutineData.accountId = routineData.accountId
     copyRoutineData.completeCount = 0
     const copyRoutine = await dbContext.Routines.create(copyRoutineData)
-    await activitiesService.createActivitiesByCopyRoutineId(routineData)
+    await activitiesService.createActivitiesByCopyRoutineId(routineData.id, copyRoutine)
     await copyRoutine.populate('profile', 'name picture')
     await copyRoutine.populate('activity')
     return copyRoutine

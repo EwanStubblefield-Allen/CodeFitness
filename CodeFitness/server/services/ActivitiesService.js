@@ -43,13 +43,13 @@ class ActivitiesService {
     return await dbContext.Activities.create(activityData)
   }
 
-  async createActivitiesByCopyRoutineId(routineData) {
-    const activities = await this.getActivitiesByRoutineId(routineData.routineId)
+  async createActivitiesByCopyRoutineId(routineId, copyRoutine) {
+    const activities = await this.getActivitiesByRoutineId(routineId)
     const newActivities = activities.map(a => {
       const x = a.toObject()
       delete x._id
-      x.routineId = routineData.id
-      x.accountId = routineData.accountId
+      x.routineId = copyRoutine.id
+      x.accountId = copyRoutine.accountId
       x.level = 0
       x.sets = 1
       return x

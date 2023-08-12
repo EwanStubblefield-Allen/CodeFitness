@@ -3,8 +3,7 @@
     <TeamComponent />
     <Tour v-if="routines == 0 || wantsTour == true" :steps="steps" :callbacks="callbacks" />
     <section v-if="account.community" class="row mx-1 my-3">
-      <button @click="isEditing()" id="v-step-0" class="btn btn-background text-light p-3 fs-3 v-step-1" type="button"
-        data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
+      <button @click="isEditing()" id="v-step-0" class="btn btn-action text-light p-3 fs-3 v-step-1" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
     </section>
     <section class="row justify-content-center">
       <ActivitySearch />
@@ -17,10 +16,6 @@ import { computed, onMounted, onUnmounted } from "vue"
 import { AppState } from "../AppState.js"
 import ActivitySearch from '../components/ActivitySearch.vue'
 import TeamComponent from '../components/TeamComponent.vue'
-import { logger } from "../utils/Logger"
-import { router } from "../router"
-import { useRoute } from "vue-router"
-import { accountService } from "../services/AccountService"
 
 export default {
   name: 'my-tour',
@@ -57,13 +52,6 @@ export default {
             placement: 'top'
           }
         }
-        // {
-        //   target: '[data-v-step="2"]',
-        //   content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
-        //   params: {
-        //     placement: 'top' // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-        //   }
-        // }
       ],
 
       callbacks: {
@@ -82,8 +70,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .btn-background {
-    background: #308484;
-  }
-</style>
+<style scoped lang="scss"></style>

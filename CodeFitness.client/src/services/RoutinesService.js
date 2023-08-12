@@ -43,11 +43,7 @@ class RoutinesService {
 
   async createCopyRoutine(routineId) {
     const res = await api.post(`api/routines/${routineId}`)
-
-    if (res.data.accountAchievement) {
-      accountAchievementService.checkAchievement(res.data.accountAchievement, 'routineCount')
-    }
-    const routine = new Routine(res.data.routine)
+    const routine = new Routine(res.data)
     AppState.routines.push(routine)
     Pop.success(`${routine.title} was copied!`)
     return routine
