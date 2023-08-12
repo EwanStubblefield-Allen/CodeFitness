@@ -1,11 +1,11 @@
 <template>
-  <div class="col-12 col-md-10 offset-md-2 d-flex flex-column ">
+  <div class="col-12 col-md-10 offset-md-2 d-flex flex-column">
     <section v-if="activeRoutine" class="row text-center bg-neutral-dark text-light p-3 bg-img">
       <div class="col-12 d-flex justify-content-between align-items-center dropdown z-1">
         <section class="row justify-content-between align-items-center flex-grow-1 p-2 bg-title">
           <p class="col-3 text-start fs-5">Available Levels: {{ points }}</p>
           <div class="col-6">
-            <p class=" fs-1 text-break">{{ activeRoutine.title }}</p>
+            <p class="fs-1 text-break">{{ activeRoutine.title }}</p>
             <Tour v-if="activeRoutine.activities == 0 || wantsTour == true" :steps="steps" :callbacks="callbacks" />
           </div>
 
@@ -141,7 +141,7 @@ export default {
       }),
       steps: [
         {
-          target: '#v-step-3',  // We're using document.querySelector() under the hood
+          target: '#v-step-3', // We're using document.querySelector() under the hood
           header: {
             title: 'Get Started'
           },

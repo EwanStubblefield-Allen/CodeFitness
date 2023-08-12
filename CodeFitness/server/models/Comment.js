@@ -28,3 +28,9 @@ CommentSchema.virtual('profile', {
   justOne: true,
   ref: 'Account'
 })
+
+CommentSchema.virtual('emotes', {
+  localField: '_id',
+  foreignField: 'commentId',
+  ref: 'Emote'
+})

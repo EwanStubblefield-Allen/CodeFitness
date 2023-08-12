@@ -21,7 +21,7 @@ class AccountAchievementsService {
       .populate({
         path: 'achievements',
         populate: {
-          path: 'tiers',
+          path: 'tiers'
         }
       })
   }
@@ -31,7 +31,7 @@ class AccountAchievementsService {
       .populate({
         path: 'achievements',
         populate: {
-          path: 'tiers',
+          path: 'tiers'
         }
       })
     if (!accountAchievement) {

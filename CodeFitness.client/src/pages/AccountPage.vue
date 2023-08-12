@@ -16,13 +16,13 @@
           <h1 class="v-step-7">
             Completed {{ completed }} out of 16
           </h1>
-          <div v-for="achievement in  achievements " :key="achievement.id" class="d-flex flex-column py-1">
+          <div v-for="achievement in achievements" :key="achievement.id" class="d-flex flex-column py-1">
             <h2>
               {{ achievement.name }} Progress: {{ achievement.progress }}
             </h2>
             <div class="row text-light">
-              <div v-for="tier in  achievement.achievementTier " :key="tier._id" class="col-12 col-md-6 col-xl-3 d-flex achievement-card border border-light">
-                <img class=" img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture" alt="" :title="tier.name">
+              <div v-for="tier in achievement.achievementTier" :key="tier._id" class="col-12 col-md-6 col-xl-3 d-flex achievement-card border border-light">
+                <img class="img-fluid" :class="achievement.tier >= tier.tier ? 'unlocked' : 'locked'" :src="tier.picture" alt="" :title="tier.name">
                 <div v-if="achievement.tier >= tier.tier - 1" class="d-flex flex-column justify-content-between">
                   <h3>
                     {{ tier.name }}

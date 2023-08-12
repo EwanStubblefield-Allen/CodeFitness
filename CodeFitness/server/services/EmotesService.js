@@ -26,7 +26,9 @@ class EmotesService {
       }
       return await emote.remove()
     }
-    return await dbContext.Emotes.create(emoteData)
+    const newEmote = await dbContext.Emotes.create(emoteData)
+    await newEmote.populate('profile', 'name picture')
+    return newEmote
   }
 }
 

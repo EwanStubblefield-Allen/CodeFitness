@@ -7,5 +7,6 @@ export class Comment {
     this.updatedAt = new Date(data.updatedAt).toLocaleString()
     this.profile = data.profile
     this.community = data.community
+    this.emotes = data.emotes
   }
 }

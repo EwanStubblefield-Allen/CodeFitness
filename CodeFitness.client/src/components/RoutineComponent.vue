@@ -25,7 +25,7 @@
   <section class="row justify-content-center text-break">
     <div class="col-12 col-md-9">
       <section v-if="account.id && (routinesProp.length >= 3)" class="row">
-        <div v-for="r in  showAmount " :key="r" class="col-12 col-md-6 col-lg-4 pb-3">
+        <div v-for="r in  showAmount" :key="r" class="col-12 col-md-6 col-lg-4 pb-3">
           <div class="routine-bg rounded">
             <img :src="routinesProp[r - 1].picture" @error="randomRoutineImg()" alt="Routine Image" class="img-fluid routine-pic rounded-top w-100">
 

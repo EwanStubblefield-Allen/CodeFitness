@@ -1,30 +1,30 @@
 <template>
-  <div v-if="current == routine?.activities?.length" class="confetti-container ">
+  <div v-if="current == routine?.activities?.length" class="confetti-container">
     <div class="confetti">
       <i style="--speed: 10; --bg: yellow" class="mdi mdi-star-four-points text-success fs-4"></i>
       <i style="--speed: 29; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info fs-4"></i>
       <i style="--speed: 26;" class="mdi mdi-star text-warning fs-4"></i>
-      <i style="--speed: 24;  " class="text-warning mdi mdi-star fs-4"> </i>
-      <i style="--speed: 5;  " class="text-warning mdi mdi-star fs-4"></i>
+      <i style="--speed: 24;" class="text-warning mdi mdi-star fs-4"> </i>
+      <i style="--speed: 5;" class="text-warning mdi mdi-star fs-4"></i>
       <i style="--speed: 40; --bg: white" class="fs-4 mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 17; --bg: green" class="fs-4 mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 25; --bg: white" class="fs-4 mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="fs-4 mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
-      <i style="--speed: 15; -- " class="fs-4 text-warning mdi mdi-star"> </i>
+      <i style="--speed: 15; --" class="fs-4 text-warning mdi mdi-star"> </i>
       <i style="--speed: 32; --" class="fs-4 text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 25; --bg: white" class="fs-4 mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="fs-4 mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 37; --bg: yellow" class="fs-4 mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 23;  " class="text-warning fs-4 mdi mdi-star"></i>
+      <i style="--speed: 23;" class="text-warning fs-4 mdi mdi-star"></i>
       <i style="--speed: 37; --bg: red" class="mdi fs-4 mdi-asterisk text-primary"></i>
-      <i style="--speed: 37;  " class="text-warning mdi fs-4 mdi-star"></i>
+      <i style="--speed: 37;" class="text-warning mdi fs-4 mdi-star"></i>
       <i style="--speed: 36; --bg: white" class="mdi fs-4 mdi-hexagram text-secondary"></i>
-      <i style="--speed: 32; - " class="text-warning mdi fs-4 mdi-star"></i>
+      <i style="--speed: 32; -" class="text-warning mdi fs-4 mdi-star"></i>
       <i style="--speed: 32; --" class="text-danger mdi fs-4 mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 29; --bg: white" class="mdi fs-4 mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="mdi fs-4 mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 37; --bg: red" class="mdi fs-4 mdi-asterisk text-primary"></i>
-      <i style="--speed: 23;  " class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 23;" class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 30; --bg: pink" class="mdi fs-4 mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 30; --bg: red" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18;" class="text-danger mdi fs-4 mdi-sine-wave mdi-rotate-130"></i>
@@ -32,24 +32,24 @@
       <i style="--speed: 16; --bg: blue" class="mdi mdi-hexagram text-secondary"></i>
       <i style="--speed: 23;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 34; --bg: yellow" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 39;  " class="text-warning mdi mdi-star"></i>
+      <i style="--speed: 39;" class="text-warning mdi mdi-star"></i>
       <i style="--speed: 40; --bg: purple" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 21; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 14; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 38; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 19; --bg: red" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 29;  " class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 29;" class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 21; --bg: white" class="mdi mdi-hexagram text-secondary"></i>
-      <i style="--speed: 17; -- " class="text-warning mdi mdi-star"></i>
+      <i style="--speed: 17; --" class="text-warning mdi mdi-star"></i>
       <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 23; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 48;  " class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 48;" class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 38; --bg: pink" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 13;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 49; --bg: yellow" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 19;  " class="text-warning mdi mdi-star"></i>
+      <i style="--speed: 19;" class="text-warning mdi mdi-star"></i>
       <i style="--speed: 15; --bg: steelblue" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 10; --bg: yellow" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; -" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
@@ -57,27 +57,27 @@
       <i style="--speed: 17; --bg: blue" class="mdi mdi-hexagram text-secondary"></i>
       <i style="--speed: 33;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 26; --bg: yellow" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 24;  " class="text-warning mdi mdi-star"> </i>
-      <i style="--speed: 5; - " class="text-warning mdi mdi-star"></i>
+      <i style="--speed: 24;" class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 5; -" class="text-warning mdi mdi-star"></i>
       <i style="--speed: 40; --bg: purple" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 17; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 25; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
-      <i style="--speed: 15;  " class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 15;" class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 45; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
-      <i style="--speed: 23;  " class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 23;" class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
-      <i style="--speed: 37;  " class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 37;" class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 26; --bg: white" class="mdi mdi-hexagram text-secondary"></i>
-      <i style="--speed: 32;  " class="text-warning mdi mdi-star"></i>
+      <i style="--speed: 32;" class="text-warning mdi mdi-star"></i>
       <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 45; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
       <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
-      <i style="--speed: 23;  " class="text-warning mdi mdi-star"> </i>
+      <i style="--speed: 23;" class="text-warning mdi mdi-star"> </i>
       <i style="--speed: 50; --bg: pink" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
       <i style="--speed: 30; --bg: red" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 18;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
@@ -85,30 +85,30 @@
       <i style="--speed: 16; --bg: blue" class="mdi mdi-hexagram text-secondary"></i>
       <i style="--speed: 23;" class="text-danger mdi mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 33; --bg: yellow" class="mdi mdi-asterisk text-primary"></i>
-      <i style="--speed: 39; - " class="text-warning mdi mdi-star"></i>
+      <i style="--speed: 39; -" class="text-warning mdi mdi-star"></i>
       <i style="--speed: 40; --bg: orange" class="mdi mdi-star-four-points fs-4 text-success"></i>
       <i style="--speed: 21; --bg: green" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
       <i style="--speed: 14; --bg: white" class="mdi mdi-star-four-points text-success"></i>
       <i style="--speed: 38; --bg: green" class="mdi mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 19; --bg: red" class="mdi mdi-asterisk text-primary fs-4"></i>
-      <i style="--speed: 29;  " class="text-warning mdi mdi-star fs-4"> </i>
+      <i style="--speed: 29;" class="text-warning mdi mdi-star fs-4"> </i>
       <i style="--speed: 34; --bg: white" class="mdi mdi-hexagram text-secondary fs-4"></i>
-      <i style="--speed: 17; -- " class="text-warning mdi mdi-star fs-4"></i>
+      <i style="--speed: 17; --" class="text-warning mdi mdi-star fs-4"></i>
       <i style="--speed: 32; --" class="text-danger mdi mdi-sine-wave fs-4 mdi-rotate-130"></i>
       <i style="--speed: 23; --bg: white" class="mdi mdi-star-four-points fs-4 text-success"></i>
       <i style="--speed: 18; --bg: green" class="mdi mdi-chart-line-variant fs-4 mdi-rotate-80 text-info"></i>
       <i style="--speed: 37; --bg: red" class="mdi mdi-asterisk fs-4 text-primary"></i>
-      <i style="--speed: 48;  " class="text-warning fs-4 mdi mdi-star"> </i>
+      <i style="--speed: 48;" class="text-warning fs-4 mdi mdi-star"> </i>
       <i style="--speed: 38; --bg: pink" class="mdi fs-4 mdi-chart-line-variant mdi-rotate-80 text-info"></i>
       <i style="--speed: 13;" class="text-danger mdi fs-4 mdi-sine-wave mdi-rotate-130"></i>
       <i style="--speed: 49; --bg: yellow" class="mdi fs-4 mdi-asterisk text-primary"></i>
-      <i style="--speed: 19; -- " class="text-warning mdi mdi-star"></i>
+      <i style="--speed: 19; --" class="text-warning mdi mdi-star"></i>
       <i style="--speed: 15; --bg: cyan" class="mdi mdi-star-four-points text-success"></i>
     </div>
   </div>
-  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark ">
-    <section class="row justify-content-center bg-active-routine ">
-      <div class="col-12 p-3 ">
+  <div v-if="routine" class="col-12 col-md-10 offset-md-2 bg-dark">
+    <section class="row justify-content-center bg-active-routine">
+      <div class="col-12 p-3">
         <section class="row justify-content-center">
           <div class="col-12 col-lg-4 d-flex justify-content-center">
             <img class="img-fluid rounded img-size" :src="routine.picture" alt="">
@@ -126,7 +126,7 @@
         <div>
           <div v-if="!superSet">
             <div class="text-center py-2">
-              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Regular
+              <button @click="superSet = true; current = 0; editable = {}" class="btn btn-action mb-2" title="-This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Regular
                 Routine</button>
               <div>
                 -Progress through the activity and all of its sets before going on to the next activity-
@@ -135,7 +135,7 @@
           </div>
           <div v-else>
             <div class="text-center pb-2">
-              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2" title=" -This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Super
+              <button @click="superSet = false; current = 0; editable = {}" class="btn btn-action mb-2" title="-This will reset your current progress"> <i class="mdi mdi-rotate-3d-variant"></i> Super
                 Set</button>
               <div>
                 -Progress through a loop of every activity for the number of sets you it has-

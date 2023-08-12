@@ -3,7 +3,7 @@
     <section class="row justify-content-center">
       <div class="col-11 fs-1 p-0 d-flex flex-column justify-content-center text-light my-3">
         <section class="row">
-          <div class=" text-center fs-2 p-5">
+          <div class="text-center fs-2 p-5">
             <p>
               codeFitness seeks to bridge the gap between video games and gym gains.
             </p>
@@ -59,7 +59,7 @@
         </section>
 
         <section v-if="selectedDev == 3" class="row reserved-space">
-          <h1 class="col-12 col-md-4 vh-50 d-flex flex-column justify-content-between fs-3 mb-0 jasper-space ">
+          <h1 class="col-12 col-md-4 vh-50 d-flex flex-column justify-content-between fs-3 mb-0 jasper-space">
             <div>Jasper</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
@@ -98,7 +98,7 @@
             <div>Kyle Peppersack</div>
             <div class="text-end">Full Stack Developer</div>
           </h1>
-          <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0 ">
+          <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Major contributions:
               <span style="--n:200">
                 On New Year’s Eve, Chuck Norris promised that he’d lose 20 pounds. The next morning he shaved his chest
@@ -114,34 +114,24 @@
     </section>
 
     <section class="row">
-      <div class=" col-12 d-flex flex-column flex-md-row justify-content-around dev-select ">
-        <div style="background-image: url('src/assets/img/ewan-icon.jpg'); "
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
-          :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
+      <div class="col-12 d-flex flex-column flex-md-row justify-content-around dev-select">
+        <div style="background-image: url('src/assets/img/ewan-icon.jpg');" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/faith-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
-          :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
+        <div style="background-image: url('src/assets/img/faith-icon.jpg');" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
           <p class="fs-1">Faith</p>
           <!-- <img src="../assets/img/faith-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/jasper-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
-          :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
+        <div style="background-image: url('src/assets/img/jasper-icon.jpg');" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
           <p class="fs-1">Jasper</p>
           <!-- <img src="src/assets/img/jasper-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/josh-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
-          :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
+        <div style="background-image: url('src/assets/img/josh-icon.jpg');" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
           <p class="fs-1">Josh</p>
           <!-- <img src="src/assets/img/josh-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');"
-          class=" icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
-          :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
+        <div style="background-image: url('src/assets/img/Kyle-icon.jpg');" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
           <p class="fs-1">Kyle</p>
           <!-- <img src="../assets/img/Kyle-icon.jpg" alt=""> -->
         </div>
@@ -150,11 +140,11 @@
     <section class="row   text-center mt-4 p-5 text-light">
       <h1 class="col-12">Program your Fitness</h1>
       <section class="row justify-content-center">
-        <div class="col-md-4 col-12 justify-content-center ">
+        <div class="col-md-4 col-12 justify-content-center">
           <img class="img-fluid ms-3" src="../assets/img/CFTee.png" alt="logo" height="355" />
         </div>
-        <div class="col-md-4 col-12 justify-content-center ">
-          <img class="img-fluid " src="../assets/img/CFHat.png" alt="logo" height="155" />
+        <div class="col-md-4 col-12 justify-content-center">
+          <img class="img-fluid" src="../assets/img/CFHat.png" alt="logo" height="155" />
         </div>
       </section>
     </section>
@@ -189,142 +179,142 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.reserved-space h1 {
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  text-shadow: 2px 2px black;
-  border-bottom: solid 2px #ffffff;
-  border-left: solid 2px #ffffff;
-  border-top: solid 2px #ffffff;
-}
-
-@media screen and (min-width: 768px) {
-  .reserved-space span {
-    color: #0000;
-    background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
-      linear-gradient(white 0 0) 0 0;
-    background-size: calc(var(--n)*1ch) 200%;
-    -webkit-background-clip: padding-box,
-      text;
-    background-clip: padding-box,
-      text;
+  .reserved-space h1 {
+    background-size: cover;
     background-repeat: no-repeat;
-    animation: b .7s infinite steps(1),
-      t calc(var(--n)*.1s) steps(var(--n)) forwards;
+
+    text-shadow: 2px 2px black;
+    border-bottom: solid 2px #ffffff;
+    border-left: solid 2px #ffffff;
+    border-top: solid 2px #ffffff;
   }
 
-  @keyframes t {
+  @media screen and (min-width: 768px) {
+    .reserved-space span {
+      color: #0000;
+      background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
+        linear-gradient(white 0 0) 0 0;
+      background-size: calc(var(--n)*1ch) 200%;
+      -webkit-background-clip: padding-box,
+        text;
+      background-clip: padding-box,
+        text;
+      background-repeat: no-repeat;
+      animation: b .7s infinite steps(1),
+        t calc(var(--n)*.1s) steps(var(--n)) forwards;
+    }
+
+    @keyframes t {
+      from {
+        background-size: 0 200%
+      }
+    }
+
+    @keyframes b {
+      50% {
+        background-position: 0 -100%, 0 0
+      }
+    }
+
+    @keyframes typing {
+      0% {
+        width: 0%
+      }
+
+      100% {
+        width: 100%
+      }
+    }
+
+  }
+
+  @keyframes type {
     from {
-      background-size: 0 200%
+      width: 0;
     }
   }
 
-  @keyframes b {
-    50% {
-      background-position: 0 -100%, 0 0
-    }
+  .reserved-space h2 {
+    border: thick double #ffffff;
   }
 
-  @keyframes typing {
-    0% {
-      width: 0%
-    }
-
-    100% {
-      width: 100%
-    }
+  .ewan-space {
+    background-image: url('src/assets/img/ewan-bg.jpg');
+    min-height: 50vh;
   }
 
-}
-
-@keyframes type {
-  from {
-    width: 0;
+  .faith-space {
+    background-image: url('src/assets/img/faith-bg.jpg');
+    background-position: top;
+    min-height: 50vh;
   }
-}
 
-.reserved-space h2 {
-  border: thick double #ffffff;
-}
+  .jasper-space {
+    background-image: url('src/assets/img/jasper-bg.jpg');
+    background-position: top;
+    min-height: 50vh;
+  }
 
-.ewan-space {
-  background-image: url('src/assets/img/ewan-bg.jpg');
-  min-height: 50vh;
-}
+  .josh-space {
+    background-image: url('src/assets/img/josh-bg.jpg');
+    background-position: top;
+    min-height: 50vh;
+  }
 
-.faith-space {
-  background-image: url('src/assets/img/faith-bg.jpg');
-  background-position: top;
-  min-height: 50vh;
-}
+  .kyle-space {
+    background-image: url('src/assets/img/kyle-bg.jpg');
+    background-position: right top;
+    min-height: 50vh;
+  }
 
-.jasper-space {
-  background-image: url('src/assets/img/jasper-bg.jpg');
-  background-position: top;
-  min-height: 50vh;
-}
+  .icon-space {
+    height: 30vh;
+    background-position: center;
+    background-size: cover;
+  }
 
-.josh-space {
-  background-image: url('src/assets/img/josh-bg.jpg');
-  background-position: top;
-  min-height: 50vh;
-}
+  .icon-space p {
+    color: #ffffff;
+    text-shadow: 2px 2px black;
+  }
 
-.kyle-space {
-  background-image: url('src/assets/img/kyle-bg.jpg');
-  background-position: right top;
-  min-height: 50vh;
-}
+  .icon-space p:hover {
+    font-size: 100px;
+  }
 
-.icon-space {
-  height: 30vh;
-  background-position: center;
-  background-size: cover;
-}
+  .iconBorder {
+    border: 1rem solid #ffffff;
+  }
 
-.icon-space p {
-  color: #ffffff;
-  text-shadow: 2px 2px black;
-}
+  .reserved-space {
+    background-image: linear-gradient(#4496b6, #2e728d, #10313e);
+  }
 
-.icon-space p:hover {
-  font-size: 100px;
-}
+  .reserved-space>div {
+    height: 55vh;
+  }
 
-.iconBorder {
-  border: 1rem solid #ffffff;
-}
+  .reserved-space a {
+    color: white;
+  }
 
-.reserved-space {
-  background-image: linear-gradient(#4496b6, #2e728d, #10313e);
-}
+  .dev-select {
+    background-color: var(--neutral-light);
+    text-align: center;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 
-.reserved-space>div {
-  height: 55vh;
-}
+  }
 
-.reserved-space a {
-  color: white;
-}
+  .dev-select img {
+    height: 10vh;
+    width: 10vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
 
-.dev-select {
-  background-color: var(--neutral-light);
-  text-align: center;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-
-}
-
-.dev-select img {
-  height: 10vh;
-  width: 10vh;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
-
-.dev-select img:hover {
-  scale: 1.05;
-}
+  .dev-select img:hover {
+    scale: 1.05;
+  }
 </style>

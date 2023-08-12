@@ -1,5 +1,5 @@
 <template>
-  <div class=" col-12 col-md-10 offset-md-2">
+  <div class="col-12 col-md-10 offset-md-2">
     <TeamComponent />
     <Tour v-if="routines == 0 || wantsTour == true" :steps="steps" :callbacks="callbacks" />
     <section v-if="account.community" class="row mx-1 my-3">

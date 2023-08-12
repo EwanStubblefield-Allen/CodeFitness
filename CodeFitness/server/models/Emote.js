@@ -25,3 +25,10 @@ EmoteSchema.index({
 }, {
   unique: true
 })
+
+EmoteSchema.virtual('profile', {
+  localField: 'accountId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Account'
+})

@@ -47,7 +47,7 @@
     </section>
 
     <section class="row sticky-bottom p-3">
-      <form v-if="account.community == route.params.communityId" @submit.prevent="handleSubmit()" class=" bg-neutral-light p-3 rounded elevation-5">
+      <form v-if="account.community == route.params.communityId" @submit.prevent="handleSubmit()" class="bg-neutral-light p-3 rounded elevation-5">
         <div class="form-group">
           <label for="comment">Comment</label>
           <input v-model="editable.body" id="comment" class="form-control" type="text" minlength="2" maxlength="100" placeholder="Leave your comment...">

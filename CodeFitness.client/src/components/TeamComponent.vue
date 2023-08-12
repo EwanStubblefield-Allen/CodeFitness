@@ -1,60 +1,50 @@
 <template>
   <!-- SECTION Logged in with community -->
   <section v-if="account.community && account.id" class="row justify-content-around bg-neutral-dark">
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }"
-      :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }" :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        <p class="title pt-3">Cardio Kings</p>
       </div>
-      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </RouterLink>
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }"
-      :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }" :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
-        <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
+        <p class="title pt-3">Weight Warriors</p>
       </div>
-      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </RouterLink>
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }"
-      :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }" :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
-        <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        <p class="title pt-3">Legion of Leisure</p>
       </div>
-      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </RouterLink>
   </section>
 
   <!-- SECTION Logged in without community -->
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
-    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Cardio Kings'"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
+    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Cardio Kings'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        <p class="title pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Weight Warriors'"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
+    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Weight Warriors'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-        <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
+        <p class="title pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-      @click="activeCommunity = 'Legion of Leisure'"
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
+    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Legion of Leisure'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-        <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        <p class="title pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
@@ -63,42 +53,39 @@
   <!-- SECTION Not logged in without community -->
   <section v-if="!account.community && !account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
-    <div
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
+    <div class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="title fs-5 fs-md-2 pt-3">Cardio Kings</p>
+        <p class="title pt-3">Cardio Kings</p>
       </div>
-      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Cardio Kings'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
+    <div class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-        <p class="title fs-5 fs-md-2 pt-3">Weight Warriors</p>
+        <p class="title pt-3">Weight Warriors</p>
       </div>
-      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Weight Warriors'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div
-      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover  text-dark">
+    <div class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-        <p class="title fs-5 fs-md-2 pt-3">Legion of Leisure</p>
+        <p class="title pt-3">Legion of Leisure</p>
       </div>
-      <p class="pt-3 fw-5 ">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
+      <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
   </section>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-neutral-dark">
-        <div class="modal-body ">
+        <div class="modal-body">
 
-          <div v-if="activeCommunity == 'Cardio Kings'" class="bg-text-area ">
-            <h1 class="d-flex flex-column justify-content-between text-center p-3  bg-modal">
+          <div v-if="activeCommunity == 'Cardio Kings'" class="bg-text-area">
+            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal">
               <div class="text-end">
-                <p type="button" class=" mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
+                <p type="button" class="mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
               </div>
               <div>
                 Cardio kings
@@ -106,14 +93,14 @@
             </h1>
             <h4 class="ps-3">
               Team Objectives:
-              <div class="  py-3">
-                <div><i class="mdi mdi-circle-small "></i>Cardio</div>
-                <div><i class="mdi mdi-circle-small "></i>Being King</div>
-                <div><i class="mdi mdi-circle-small "></i>Cool shoes</div>
+              <div class="py-3">
+                <div><i class="mdi mdi-circle-small"></i>Cardio</div>
+                <div><i class="mdi mdi-circle-small"></i>Being King</div>
+                <div><i class="mdi mdi-circle-small"></i>Cool shoes</div>
               </div>
             </h4>
             <div class="rounded py-1">
-              <h5 class="ps-3 ">
+              <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
@@ -132,10 +119,10 @@
               </h6>
             </div>
           </div>
-          <div v-if="activeCommunity == 'Weight Warriors'" class="bg-text-area ">
-            <h1 class="d-flex flex-column justify-content-between text-center p-3  bg-modal">
+          <div v-if="activeCommunity == 'Weight Warriors'" class="bg-text-area">
+            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal">
               <div class="text-end">
-                <p type="button" class=" mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
+                <p type="button" class="mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
               </div>
               <div>
                 Weight Warriors
@@ -143,14 +130,14 @@
             </h1>
             <h4 class="ps-3">
               Team Objectives:
-              <div class="  py-3">
-                <div><i class="mdi mdi-circle-small "></i>Strength</div>
-                <div><i class="mdi mdi-circle-small "></i>More Plates</div>
-                <div><i class="mdi mdi-circle-small "></i>Heavy Things</div>
+              <div class="py-3">
+                <div><i class="mdi mdi-circle-small"></i>Strength</div>
+                <div><i class="mdi mdi-circle-small"></i>More Plates</div>
+                <div><i class="mdi mdi-circle-small"></i>Heavy Things</div>
               </div>
             </h4>
             <div class="rounded py-1">
-              <h5 class="ps-3 ">
+              <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
@@ -169,10 +156,10 @@
               </h6>
             </div>
           </div>
-          <div v-if="activeCommunity == 'Legion of Leisure'" class="bg-text-area ">
-            <h1 class="d-flex flex-column justify-content-between text-center p-3  bg-modal">
+          <div v-if="activeCommunity == 'Legion of Leisure'" class="bg-text-area">
+            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal">
               <div class="text-end">
-                <p type="button" class=" mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
+                <p type="button" class="mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
               </div>
               <div>
                 Legion of Leisure
@@ -180,14 +167,14 @@
             </h1>
             <h4 class="ps-3">
               Team Objectives:
-              <div class="  py-3">
-                <div><i class="mdi mdi-circle-small "></i>Health</div>
-                <div><i class="mdi mdi-circle-small "></i>Feeling good</div>
-                <div><i class="mdi mdi-circle-small "></i>Participation</div>
+              <div class="py-3">
+                <div><i class="mdi mdi-circle-small"></i>Health</div>
+                <div><i class="mdi mdi-circle-small"></i>Feeling good</div>
+                <div><i class="mdi mdi-circle-small"></i>Participation</div>
               </div>
             </h4>
             <div class="rounded py-1">
-              <h5 class="ps-3 ">
+              <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
@@ -209,7 +196,7 @@
         </div>
         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
         <div class="d-flex justify-content-center py-3">
-          <button @click="selectCommunity(activeCommunity)" type="button" class="button-modal  py-3">Select
+          <button @click="selectCommunity(activeCommunity)" type="button" class="button-modal py-3">Select
             Community</button>
         </div>
       </div>
@@ -222,8 +209,8 @@ import { AppState } from '../AppState.js'
 import { computed, onMounted, ref, watchEffect } from 'vue'
 import { accountService } from "../services/AccountService.js"
 import { communitiesService } from '../services/CommunitiesService.js'
-import Pop from "../utils/Pop.js"
 import { Modal } from "bootstrap"
+import Pop from "../utils/Pop.js"
 
 export default {
   setup() {
@@ -305,6 +292,7 @@ export default {
 <style lang="scss" scoped>
   .title {
     color: white;
+    font-size: x-small;
     font-family: 'Press Start 2P', cursive;
     text-shadow: 3px 3px 1px black, -3px -3px 1px black, 3px -3px 1px black, -3px 3px 1px black, -3px 0px 1px black, 3px 0px 1px black, 0px -3px 1px black, 0px 3px 1px black;
   }
@@ -323,7 +311,6 @@ export default {
 
   .bg-modal div {
     // backdrop-filter: blur(10px) grayscale(80%);
-
   }
 
   .bg-text-area {
@@ -420,5 +407,11 @@ export default {
       -10px 0 80px rgb(255, 234, 0),
       10px 0 80px rgb(231, 213, 109);
     transform: scale(1.10);
+  }
+
+  @media screen and (min-width: 768px) {
+    .title {
+      font-size: large;
+    }
   }
 </style>
