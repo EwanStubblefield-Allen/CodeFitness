@@ -5,8 +5,13 @@
         <router-link :to="{ name: 'Profile', params: { profileId: commentProp.accountId } }">
           <img class="profile-pic m-3" :src="commentProp.profile.picture" :alt="commentProp.profile.name">
         </router-link>
+
         <div>
-          <p class="fw-bold pb-2">{{ commentProp.profile.name }}</p>
+          <div class="d-flex">
+            <p class="fw-bold pb-2">{{ commentProp.profile.name }}</p>
+            <p v-if="commentProp.updatedAt != commentProp.createdAt" class="text-neutral px-3">edited</p>
+          </div>
+
           <div class="text-secondary">
             <p>{{ commentProp.createdAt }}</p>
           </div>

@@ -3,13 +3,13 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { activitiesService } from "./ActivitiesService.js"
 
 class CopyRoutinesService {
-  async getCopyRoutineById(copyRoutineId) {
-    const copyRoutine = await dbContext.CopyRoutines.findById(copyRoutineId).populate('author', 'name picture').populate('routine communityRoutine activity')
-    if (!copyRoutine) {
-      throw new BadRequest(`[NO COPY ROUTINES MATCH THE ID: ${copyRoutineId}]`)
-    }
-    return copyRoutine
-  }
+  // async getCopyRoutineById(copyRoutineId) {
+  //   const copyRoutine = await dbContext.CopyRoutines.findById(copyRoutineId).populate('author', 'name picture').populate('routine communityRoutine activity')
+  //   if (!copyRoutine) {
+  //     throw new BadRequest(`[NO COPY ROUTINES MATCH THE ID: ${copyRoutineId}]`)
+  //   }
+  //   return copyRoutine
+  // }
 
   // async getCopyRoutinesByAccountId(accountId) {
   //   return await dbContext.CopyRoutines.find({ accountId: accountId }).populate('author', 'name picture').populate('routine communityRoutine activity')

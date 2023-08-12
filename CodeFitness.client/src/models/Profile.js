@@ -7,5 +7,6 @@ export class Profile {
     this.bio = data.bio
     this.community = data.community
     this.points = data.points
+    this.achievements = data.achievements
   }
 }

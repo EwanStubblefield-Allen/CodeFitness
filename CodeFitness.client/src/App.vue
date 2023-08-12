@@ -33,21 +33,21 @@
     </template>
   </ModalComponent>
 
-  <ModalComponent v-if="appState.activeActivity" id="activeActivity" class="modal-lg">
-    <template #title>
-      {{ appState.activeActivity.name }}
-    </template>
-    <template #body>
-      <ActivityDetails />
-    </template>
-  </ModalComponent>
-
   <ModalComponent id="activeRoutine" class="modal-lg">
     <template #title>
       {{ appState.activeRoutine?.title }}
     </template>
     <template #body>
       <RoutineDetails />
+    </template>
+  </ModalComponent>
+
+  <ModalComponent v-if="appState.activeActivity" id="activeActivity" class="modal-lg">
+    <template #title>
+      {{ appState.activeActivity.name }}
+    </template>
+    <template #body>
+      <ActivityDetails />
     </template>
   </ModalComponent>
 

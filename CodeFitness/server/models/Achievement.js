@@ -22,7 +22,7 @@ AchievementSchema.index({
   unique: true
 })
 
-AchievementSchema.virtual('tier', {
+AchievementSchema.virtual('tiers', {
   localField: '_id',
   foreignField: 'achievementId',
   ref: 'Tier'

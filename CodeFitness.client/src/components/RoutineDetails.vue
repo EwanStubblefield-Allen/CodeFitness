@@ -7,9 +7,11 @@
     </div>
   </div>
 
-  <div v-for="a in routine?.activities" :key="a.id">
-    <ActivityCard :activityProp="a" />
-  </div>
+  <section class="row">
+    <div v-for="a in routine?.activities" :key="a.id" class="col-12 col-md-6 py-3">
+      <ActivityCard :activityProp="a" />
+    </div>
+  </section>
 
   <div class="d-flex justify-content-end align-items-center pt-3">
     <p>Copy Routine</p>

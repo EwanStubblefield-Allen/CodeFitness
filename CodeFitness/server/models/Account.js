@@ -53,3 +53,9 @@ export const AccountSchema = new Schema(
     toJSON: { virtuals: true }
   }
 )
+
+AccountSchema.virtual('achievements', {
+  localField: '_id',
+  foreignField: 'accountId',
+  ref: 'AccountAchievement'
+})

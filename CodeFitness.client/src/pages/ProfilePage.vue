@@ -5,6 +5,22 @@
     <RoutineComponent :routinesProp="routines" v-if="routines[0]">
       Their Recent Routines:
     </RoutineComponent>
+
+    <section class="row">
+      <div class="col-12 bg-neutral-light text-center fs-1 py-3">
+        Stats
+      </div>
+      <div class="col-12 bg-secondary">
+        <ul class="row justify-content-center pt-5">
+          <li class="col-10 col-md-5 fs-3">{{ completed }} Badges out of 16</li>
+          <li class="col-10 col-md-5 fs-3">Points: {{ profile.points }}</li>
+          <li class="col-10 col-md-5 fs-3">Routines Created: {{ profile.achievements[2].progress }}</li>
+          <li class="col-10 col-md-5 fs-3">Activities Count: {{ activityCount }}</li>
+          <li class="col-10 col-md-5 fs-3">Routine Complete Count: {{ profile.achievements[3].progress }}</li>
+          <li class="col-10 col-md-5 fs-3">Highest Activity Level: {{ profile.achievements[0].progress }}</li>
+        </ul>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -50,7 +66,21 @@ export default {
 
     return {
       profile: computed(() => AppState.activeProfile),
-      routines: computed(() => AppState.profileRoutines)
+      routines: computed(() => AppState.profileRoutines.sort((a, b) => b.updatedAt - a.updatedAt)),
+      activityCount: computed(() => {
+        let count = 0
+        AppState.profileRoutines.forEach(r => {
+          count += r.activities.length
+        })
+        return count
+      }),
+      completed: computed(() => {
+        let complete = 0
+        AppState.activeProfile.achievements.forEach(a => {
+          complete += a.tier
+        })
+        return complete
+      })
     }
   },
   components: { ProfileDetails }

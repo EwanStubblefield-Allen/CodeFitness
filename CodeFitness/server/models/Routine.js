@@ -45,7 +45,7 @@ RoutineSchema.virtual('profile', {
   ref: 'Account'
 })
 
-RoutineSchema.virtual('activity', {
+RoutineSchema.virtual('activities', {
   localField: '_id',
   foreignField: 'routineId',
   ref: 'Activity'

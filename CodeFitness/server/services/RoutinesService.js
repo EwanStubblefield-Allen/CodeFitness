@@ -5,11 +5,11 @@ import { activitiesService } from "./ActivitiesService.js"
 
 class RoutinesService {
   async getRoutines() {
-    return await dbContext.Routines.find().populate('profile').populate('activity')
+    return await dbContext.Routines.find().populate('profile').populate('activities')
   }
 
   async getRoutineById(routineId) {
-    const routine = await dbContext.Routines.findById(routineId).populate('profile', 'name picture').populate('activity')
+    const routine = await dbContext.Routines.findById(routineId).populate('profile', 'name picture').populate('activities')
     if (!routine) {
       throw new BadRequest(`[NO ROUTINES MATCH THE ID: ${routineId}]`)
     }
@@ -17,14 +17,14 @@ class RoutinesService {
   }
 
   async getRoutinesByAccountId(accountId) {
-    const routines = await dbContext.Routines.find({ accountId: accountId }).populate('profile', 'name picture').populate('activity')
+    const routines = await dbContext.Routines.find({ accountId: accountId }).populate('profile', 'name picture').populate('activities')
     return routines
   }
 
   async createRoutine(routineData) {
     const routine = await dbContext.Routines.create(routineData)
     await routine.populate('profile', 'name picture')
-    await routine.populate('activity')
+    await routine.populate('activities')
     const accountAchievement = await accountAchievementsService.updateAccountAchievement(routine.accountId, 'routineCount', 1)
     return { routine: routine, accountAchievement: accountAchievement }
   }
@@ -37,7 +37,7 @@ class RoutinesService {
     const copyRoutine = await dbContext.Routines.create(copyRoutineData)
     await activitiesService.createActivitiesByCopyRoutineId(routineData.id, copyRoutine)
     await copyRoutine.populate('profile', 'name picture')
-    await copyRoutine.populate('activity')
+    await copyRoutine.populate('activities')
     return copyRoutine
   }
 

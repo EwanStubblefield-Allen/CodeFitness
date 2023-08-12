@@ -13,7 +13,7 @@
         </RouterLink>
       </div>
     </div>
-    <button @click="isEditing()" class="btn btn-action" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
+    <button @click="isEditing()" class="btn btn-action my-3" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div class="col-12 col-md-10 offset-md-2">
     <ProfileDetails :profileProp="account" />
 
-    <RoutineComponent v-if="routines.length" :routinesProp="routines" >
+    <RoutineComponent v-if="routines.length" :routinesProp="routines">
       Your Recent Routines:
     </RoutineComponent>
 
@@ -89,7 +89,16 @@ export default {
       account: computed(() => AppState.account),
       picture: computed(() => `url(${AppState.account.picture})`),
       achievements: computed(() => AppState.activeAchievements),
-      wantsTour: computed(()=> AppState.wantsTour),
+      wantsTour: computed(() => AppState.wantsTour),
+      routines: computed(() => AppState.routines.sort((a, b) => b.updatedAt - a.updatedAt)),
+      completed: computed(() => {
+        let complete = 0
+        AppState.activeAchievements.forEach(a => {
+          complete += a.tier
+        })
+        return complete
+      }),
+
       steps: [
 
         {
@@ -101,22 +110,13 @@ export default {
           }
         }
       ],
+
       callbacks: {
         onFinish: (() => {
           AppState.wantsTour = false
         }),
         onSkip: (() => AppState.wantsTour = false)
-      },
-      routines: computed(() => {
-        return AppState.routines.sort((a, b) => b.updatedAt - a.updatedAt)
-      }),
-      completed: computed(() => {
-        let complete = 0
-        AppState.activeAchievements.forEach(a => {
-          complete += a.tier
-        })
-        return complete
-      })
+      }
     }
   },
   components: { ProfileDetails, RoutineComponent }

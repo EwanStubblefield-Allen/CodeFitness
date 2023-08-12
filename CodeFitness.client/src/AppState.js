@@ -23,8 +23,8 @@ export const AppState = reactive({
   /** @type {import('./models/Routine.js').Routine[]} */
   routines: [],
   communityRoutines: [],
-  /** @type {import('./models/Routine.js').Routine | null} */
-  profileRoutines: [null],
+  /** @type {import('./models/Routine.js').Routine[]} */
+  profileRoutines: [],
   /** @type {import('./models/Routine.js').Routine | null} */
   activeRoutine: null,
   /** @type {import('./models/Routine.js').Routine | null} */

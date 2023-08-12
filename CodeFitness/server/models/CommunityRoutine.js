@@ -29,7 +29,7 @@ export const CommunityRoutineSchema = new Schema({
   toJSON: { virtuals: true }
 })
 
-CommunityRoutineSchema.virtual('activity', {
+CommunityRoutineSchema.virtual('activities', {
   localField: '_id',
   foreignField: 'routineId',
   ref: 'Activity'
