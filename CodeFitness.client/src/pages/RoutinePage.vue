@@ -11,7 +11,7 @@
 
           <div class="col-3 text-end">
             <RouterLink :to="{ name: 'ActiveRoutine', params: { routineId: activeRoutine.id } }">
-              <button v-if="activeRoutine.activities.length" type="button" class="btn selectable no-select mdi mdi-play fs-3 text-action" title="Start Routine"></button>
+              <button v-if="activeRoutine.activities.length" data-v-step="5" type="button" class="btn selectable no-select mdi mdi-play fs-3 text-action" title="Start Routine"></button>
             </RouterLink>
             <button type="button" class="btn text-light selectable no-select mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown" aria-expanded="false" title="More Options"></button>
 
@@ -40,9 +40,9 @@
               <div class="d-flex flex-column justify-content-between flex-grow-1 card-text">
                 <div>
                   <div class="d-flex justify-content-center align-items-center">
-                    <h3 v-if="!points">Level: {{ act.level }}</h3>
+                    <h3 class="v-step-4" v-if="!points">Level: {{ act.level }}</h3>
 
-                    <button v-else @click="updateActivity(act, 1)" class="btn btn-action fs-4" type="button">
+                    <button v-else @click="updateActivity(act, 1)" class="btn btn-action fs-4 v-step-4" type="button">
                       Level: {{ act.level }} +
                     </button>
                   </div>
@@ -84,7 +84,7 @@
         </div>
       </div>
 
-      <div data-v-step="5" v-else class="bg-title mt-3">
+      <div v-else class="bg-title mt-3">
         <h1>Please Select Activities Below</h1>
       </div>
     </section>
@@ -148,7 +148,7 @@ export default {
           },
           content: `Add activities to your routine! `,
           params: {
-            placement: 'bottom-end',
+            placement: 'bottom-start',
             enableScrolling: false
           }
         },

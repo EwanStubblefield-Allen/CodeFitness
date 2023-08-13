@@ -117,7 +117,7 @@
             <p class="fs-1 text-center text-white pe-3 pe-lg-0">{{ routine.title }}</p>
             <button @click="current = 0; editable = {}; completedSets = 0" class="btn btn-danger" type="reset">Restart</button>
           </div>
-          <div class="col-12 col-lg-4 pb-3 pb-md-0 v-step-8">
+          <div class="col-12 col-lg-4 pb-3 pb-md-0 ">
             <Timer />
             <Tour v-if="wantsTour == true" :steps="steps" />
 
@@ -220,9 +220,9 @@
             </div>
           </div>
           <!-- SECTION < Next button arrows > -->
-          <a class="nextArrow col-1 d-none d-md-block" v-if="current == routine.activities.length" role="button" data-slide="next"></a>
+          <a class="nextArrow col-1 d-none d-md-block v-step-8" v-if="current == routine.activities.length" role="button" data-slide="next"></a>
 
-          <a class="nextArrow col-1 d-none d-md-block" v-else @click="changeActivity(1)" role="button" data-slide="next">
+          <a class="nextArrow col-1 d-none d-md-block v-step-8" v-else @click="changeActivity(1)" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only"></span>
           </a>

@@ -3,7 +3,7 @@
     <TeamComponent />
     <Tour v-if="wantsTour == true || account.needsTour == true" :steps="steps" :callbacks="callbacks" />
     <section v-if="account.community" class="row mx-1 my-3">
-      <button @click="isEditing()" id="v-step-0" class="btn btn-action p-3 fs-3 v-step-1" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
+      <button @click="isEditing()" id="v-step-0" class="btn btn-action p-3 fs-3 v-step-2" type="button" data-bs-toggle="modal" data-bs-target="#routineForm">Create Routine</button>
     </section>
 
     <section class="row justify-content-center">
@@ -46,8 +46,16 @@ export default {
             // placement: 'top'
           }
         },
+        // {
+        //   target: '.v-step-1',
+        //   content: 'After you choose a community click on a banner to see whose scoring the most points, or Copy the routines of other members!',
+        //   params: {
+        //     enableScrolling: false,
+        //     placement: 'top'
+        //   }
+        // },
         {
-          target: '.v-step-1',
+          target: '.v-step-2',
           content: 'Create a Routine then add activities to it!',
           params: {
             enableScrolling: false,
