@@ -5,6 +5,6 @@ export class Account extends Profile {
     super(data)
     this.email = data.email
     // TODO add additional properties if needed
-    this.needsTour = data.needsTour || true
+    this.needsTour = data.needsTour
   }
 }

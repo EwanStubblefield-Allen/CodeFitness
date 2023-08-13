@@ -8,5 +8,6 @@ export class Profile {
     this.community = data.community
     this.points = data.points
     this.achievements = data.achievements
+    this.needsTour = data.needsTour
   }
 }

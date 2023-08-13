@@ -12,7 +12,7 @@
       </div>
       <div class="col-12 bg-secondary">
         <section class="row pt-5">
-          <Tour v-if="wantsTour == true" :steps="steps" :callbacks="callbacks" />
+          <Tour v-if="wantsTour == true || account.needsTour == true" :steps="steps" :callbacks="callbacks" />
           <h1 class="v-step-7">
             Completed {{ completed }} out of 16
           </h1>
@@ -56,6 +56,7 @@ import { accountAchievementService } from "../services/AccountAchievementService
 import ProfileDetails from '../components/ProfileDetails.vue'
 import Pop from "../utils/Pop"
 import RoutineComponent from '../components/RoutineComponent.vue'
+import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -113,9 +114,13 @@ export default {
 
       callbacks: {
         onFinish: (() => {
-          AppState.wantsTour = false
+          AppState.wantsTour = false,
+          accountService.updateAccount({needsTour: false})
         }),
-        onSkip: (() => AppState.wantsTour = false)
+        onSkip: (() => {
+          AppState.wantsTour = false,
+          accountService.updateAccount({needsTour: false})
+        })
       }
     }
   },

@@ -37,16 +37,16 @@ class AccountService {
     AppState.account.picture = randomPicture
     await api.put('/account', AppState.account)
   }
-  // async editAccount(body) {
-  //   try {
-  //     const res = await api.put('/account', body)
-  //     logger.log('flipping bool', res.data)
-  //     AppState.account = res.data
-  //     logger.log(AppState.account)
-  //   } catch (error) {
-  //     logger.error(error)
-  //   }
-  // }
+  async editAccount(body) {
+    try {
+      const res = await api.put('/account', body)
+      logger.log('flipping bool', res.data)
+      AppState.account = res.data
+      logger.log(AppState.account)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
 
 }
 
