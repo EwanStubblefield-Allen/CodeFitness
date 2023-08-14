@@ -5,9 +5,9 @@
     </RouterLink>
 
     <div class="col-11 px-0 py-1 community-banner">
-      <div v-if="!comIcon == ''">
+      <RouterLink :to="{ name: 'Communities', params: { communityId: account.community } }" v-if="!comIcon == ''">
         <img class="community-img w-100" :src="comIcon" alt="Yellow">
-      </div>
+      </RouterLink>
     </div>
 
     <div class="col-11 text-center text-dark bg-light fs-3 mb-1">
