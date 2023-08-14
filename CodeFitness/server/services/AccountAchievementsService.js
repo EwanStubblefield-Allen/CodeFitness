@@ -49,7 +49,7 @@ class AccountAchievementsService {
         achievementId: a.id
       }
       const accountAchievement = await dbContext.AccountAchievements.create(data)
-      await accountAchievement.populate('achievement')
+      await accountAchievement.populate('achievements')
       accountAchievements.push(accountAchievement)
     }
     return accountAchievements

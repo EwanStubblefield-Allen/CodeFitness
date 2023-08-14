@@ -24,13 +24,6 @@ export const AccountAchievementSchema = new Schema({
   toJSON: { virtuals: true }
 })
 
-AccountAchievementSchema.index({
-  achievementId: 1,
-  accountId: 1
-}, {
-  unique: true
-})
-
 AccountAchievementSchema.virtual('achievements', {
   localField: 'achievementId',
   foreignField: '_id',
