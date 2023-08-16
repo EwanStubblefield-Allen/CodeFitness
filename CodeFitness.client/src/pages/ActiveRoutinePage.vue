@@ -119,7 +119,7 @@
           </div>
           <div class="col-12 col-lg-4 pb-3 pb-md-0 ">
             <Timer />
-            <Tour v-if="wantsTour == true" :steps="steps" />
+            <Tour v-if="wantsTour == true || account.needsTour == true" :steps="steps" :callbacks="callbacks" />
 
           </div>
         </section>
@@ -320,16 +320,26 @@ export default {
       superSet,
       completedSets,
       wantsTour: computed(() => AppState.wantsTour),
+      account: computed(()=> AppState.account),
       steps: [
         {
+          header: {
+            title: 'Complete Routine Activities!'
+          },
           target: '.v-step-8',
-          content: 'Complete all activities in the routine to level up and earn points! Start by pressing the > Button',
+          content: ' Start by pressing the > Button. Make sure to hit the complete routine button at the end for your points and level!',
           params: {
             enableScrolling: true,
-            placement: 'left'
+            placement: 'top-start'
           }
         }
       ],
+      callbacks: {
+        onFinish: (() => {
+          AppState.wantsTour = false,
+          accountService.updateAccount({needsTour: false})
+        })
+      },
       routine: computed(() => {
         const routine = AppState.activeRoutine
         const superRoutine = AppState.activeSuperRoutine

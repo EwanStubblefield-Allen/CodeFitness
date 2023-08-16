@@ -38,9 +38,9 @@ export default {
       steps: [
         // {
         //   target: '#v-step-0',  // We're using document.querySelector() under the hood
-        //   header: {
-        //     title: 'Get Started'
-        //   },
+        // header: {
+        //   title: 'Get Started'
+        // },
         //   content: `Pick a community to earn points and create routines!`,
         //   params: {
         //     enableScrolling: false
