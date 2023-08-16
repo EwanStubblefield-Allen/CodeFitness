@@ -63,7 +63,7 @@
       <div v-for="achievement in achievement" :key="achievement.id">
         <div class="d-flex justify-content-between py-1">
           <div v-for="tier in achievement.achievementTier" :key="tier.id" @click="createEmote(tier.picture)" class="selectable">
-            <img class="img-fluid" :src="tier.picture" :alt="tier.name" :title="tier.name">
+            <img v-if="achievement.tier >= tier.tier" class="img-fluid" :src="tier.picture" :alt="tier.name" :title="tier.name">
           </div>
         </div>
       </div>
