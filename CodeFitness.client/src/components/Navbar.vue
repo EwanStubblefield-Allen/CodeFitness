@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ms-auto">
         <li>
-          <span @click="getHelp()" class="lighten-30 selectable text-uppercase text-success me-md-5">
+          <span @click="getHelp()" class="btn lighten-30 selectable text-uppercase text-success me-md-5">
             Help
           </span>
           <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable text-uppercase me-md-5">
@@ -47,6 +47,7 @@ export default {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       wantsTour: computed(() => AppState.wantsTour),
+      firstStepTour: computed(()=> AppState.firstStepTour),
 
       getHelp() {
         AppState.wantsTour = !AppState.wantsTour

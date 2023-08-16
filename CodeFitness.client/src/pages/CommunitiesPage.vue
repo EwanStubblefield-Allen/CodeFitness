@@ -1,8 +1,9 @@
 <template>
   <div class="col-12 col-md-10 offset-md-2">
+    <Tour v-if="wantsTour == true || account.needsTour == true" :steps="steps" :callbacks="callbacks" />
     <section class="accordion py-3" id="accordionExample">
       <div class="accordion-item">
-        <h2 class="accordion-header">
+        <h2 class="accordion-header v-step-11">
           <button class="accordion-button collapsed bg-neutral-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             Leaderboard
           </button>
@@ -23,7 +24,7 @@
         </div>
       </div>
       <div class="accordion-item">
-        <h2 class="accordion-header">
+        <h2 class="accordion-header v-step-12">
           <button class="accordion-button collapsed bg-neutral-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             Suggested Routines
           </button>
@@ -40,7 +41,7 @@
     </section>
 
     <section class="row pt-2">
-      <h2>Community Chat</h2>
+      <h2 class="v-step-13">Community Chat</h2>
       <div v-for="c in comments" :key="c.id" class="py-2">
         <CommentComponent :commentProp="c" />
       </div>
@@ -66,6 +67,7 @@ import { commentsService } from "../services/CommentsService.js"
 import RoutineComponent from '../components/RoutineComponent.vue'
 import CommentComponent from '../components/CommentComponent.vue'
 import Pop from "../utils/Pop.js"
+import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -123,6 +125,50 @@ export default {
       profiles: computed(() => AppState.communityProfiles.sort((a, b) => b.points - a.points)),
       communityRoutines: computed(() => AppState.communityRoutines),
       comments: computed(() => AppState.comments),
+      wantsTour: computed(()=> AppState.wantsTour),
+      steps: [
+        {
+          target: '.v-step-11',  // We're using document.querySelector() under the hood
+          header: {
+            title: 'Leaderboard'
+          },
+          content: `See the top earners of each community!`,
+          params: {
+            enableScrolling: false,
+            placement: 'bottom'
+          }
+        },
+        {
+          target: '.v-step-12',
+          content: 'Add premade routines from each community!',
+          params: {
+            enableScrolling: false,
+            placement: 'bottom'
+          }
+        },
+        {
+          target: '.v-step-13',
+          header: {
+            title: 'Chat with members of your community!'
+          },
+          content: 'NOTE: You can only chat with your community members but view the chat of other communities.',
+          params: {
+            enableScrolling: false,
+            placement: 'bottom'
+          }
+        }
+      ],
+
+      callbacks: {
+        onFinish: (() => {
+          AppState.wantsTour = false,
+          accountService.updateAccount({needsTour: false})
+        }),
+        onSkip: (() => {
+          AppState.wantsTour = false,
+          accountService.updateAccount({needsTour: false})
+        })
+      },
 
       handleSubmit() {
         if (editable.value.id) {

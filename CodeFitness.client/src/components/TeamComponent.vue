@@ -1,4 +1,5 @@
 <template>
+
   <!-- SECTION Logged in with community -->
   <section v-if="account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }" :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
@@ -11,40 +12,40 @@
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }" :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
-        <p class="title pt-3">Weight Warriors</p>
+        <p class="title pt-3 v-step-0 ">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </RouterLink>
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }" :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
-        <p class="title pt-3">Legion of Leisure</p>
+        <p id="v-step-18" class="title pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </RouterLink>
   </section>
-
+  <Tour v-if="wantsTour == true || account.needsTour == true" :steps="steps" :callbacks="callbacks" />
   <!-- SECTION Logged in without community -->
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
     <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Cardio Kings'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
-        <p class="title pt-3">Cardio Kings</p>
+        <p class="title pt-3 v-step-0">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
     <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Weight Warriors'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
-        <p class="title pt-3">Weight Warriors</p>
+        <p id="v-step-18" class="title pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
     <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Legion of Leisure'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-        <p class="title pt-3">Legion of Leisure</p>
+        <p  class="title pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
@@ -270,6 +271,50 @@ export default {
       imgPos,
       account: computed(() => AppState.account),
       communities: computed(() => AppState.communities),
+      wantsTour: computed(()=> AppState.wantsTour),
+      firstStepTour: computed(()=> AppState.firstStepTour),
+      steps: [
+        {
+          target: '.v-step-0',  // We're using document.querySelector() under the hood
+          header: {
+            title: 'Get Started'
+          },
+          content: `Pick a community to earn points and create routines!`,
+          params: {
+            enableScrolling: false,
+            placement: 'bottom'
+          }
+        },
+        // {
+        //   target: '.v-step-1',
+        //   content: 'After you choose a community click on a banner to see whose scoring the most points, or Copy the routines of other members!',
+        //   params: {
+        //     enableScrolling: false,
+        //     placement: 'top'
+        //   }
+        // },
+        {
+          target: '#v-step-18',
+          content: 'After you chose a community click on the community banners to go to the each communities page and see the top scorers!',
+          params: {
+            enableScrolling: false,
+            placement: 'bottom'
+          }
+        }
+      ],
+
+      callbacks: {
+        onFinish: (() => {
+          // AppState.wantsTour = false,
+          AppState.firstStepTour = true,
+
+          accountService.updateAccount({needsTour: false})
+        }),
+        onSkip: (() => {
+          AppState.wantsTour = false,
+          accountService.updateAccount({needsTour: false})
+        })
+      },
 
       async selectCommunity(community) {
         try {

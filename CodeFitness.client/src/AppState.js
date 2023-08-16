@@ -48,5 +48,6 @@ export const AppState = reactive({
   ],
   randomImgForProfile: [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUOeCy-zk0RQkaqSGA3BtgfcXMqSpPx5fitg&usqp=CAU"
-  ]
+  ],
+  firstStepTour: false
 })
