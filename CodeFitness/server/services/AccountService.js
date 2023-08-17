@@ -79,7 +79,7 @@ class AccountService {
   async updateAccount(user, body) {
     let accountAchievement
     const profile = await profileService.getProfileById(user.id)
-    if (!profile.community) {
+    if (!profile.community && body.community) {
       await accountAchievementsService.createAccountAchievement(user.id)
     } else {
       body.community = profile.community

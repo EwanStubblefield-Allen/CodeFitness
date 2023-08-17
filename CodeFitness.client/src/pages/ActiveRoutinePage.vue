@@ -320,7 +320,7 @@ export default {
       superSet,
       completedSets,
       wantsTour: computed(() => AppState.wantsTour),
-      account: computed(()=> AppState.account),
+      account: computed(() => AppState.account),
       steps: [
         {
           header: {
@@ -336,8 +336,8 @@ export default {
       ],
       callbacks: {
         onFinish: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         })
       },
       routine: computed(() => {

@@ -52,11 +52,11 @@
 <script>
 import { computed, onUnmounted, watchEffect } from 'vue'
 import { AppState } from '../AppState'
+import { accountService } from "../services/AccountService"
 import { accountAchievementService } from "../services/AccountAchievementService"
 import ProfileDetails from '../components/ProfileDetails.vue'
 import Pop from "../utils/Pop"
 import RoutineComponent from '../components/RoutineComponent.vue'
-import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -114,12 +114,12 @@ export default {
 
       callbacks: {
         onFinish: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         }),
         onSkip: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         })
       }
     }

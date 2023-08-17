@@ -1,5 +1,4 @@
 <template>
-
   <!-- SECTION Logged in with community -->
   <section v-if="account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }" :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
@@ -25,6 +24,7 @@
     </RouterLink>
   </section>
   <Tour v-if="wantsTour == true || account.needsTour == true" :steps="steps" :callbacks="callbacks" />
+
   <!-- SECTION Logged in without community -->
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
@@ -45,7 +45,7 @@
     <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Legion of Leisure'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
-        <p  class="title pt-3">Legion of Leisure</p>
+        <p class="title pt-3">Legion of Leisure</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Legion of Leisure'] }}</p>
     </div>
@@ -271,8 +271,8 @@ export default {
       imgPos,
       account: computed(() => AppState.account),
       communities: computed(() => AppState.communities),
-      wantsTour: computed(()=> AppState.wantsTour),
-      firstStepTour: computed(()=> AppState.firstStepTour),
+      wantsTour: computed(() => AppState.wantsTour),
+      firstStepTour: computed(() => AppState.firstStepTour),
       steps: [
         {
           target: '.v-step-0',  // We're using document.querySelector() under the hood
@@ -306,13 +306,12 @@ export default {
       callbacks: {
         onFinish: (() => {
           // AppState.wantsTour = false,
-          AppState.firstStepTour = true,
-
-          accountService.updateAccount({needsTour: false})
+          AppState.firstStepTour = true
+          accountService.updateAccount({ needsTour: false })
         }),
         onSkip: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         })
       },
 
@@ -354,9 +353,9 @@ export default {
     color: #ffffff;
   }
 
-  .bg-modal div {
-    // backdrop-filter: blur(10px) grayscale(80%);
-  }
+  // .bg-modal div {
+  //   backdrop-filter: blur(10px) grayscale(80%);
+  // }
 
   .bg-text-area {
     color: var(--darkest);
@@ -404,11 +403,6 @@ export default {
 
   .flag-no-hover img {
     filter: drop-shadow(0 10px 10px black);
-
-  }
-
-  .flag:hover {
-    transform: scale(1.025);
   }
 
   .highlight1 {
@@ -422,7 +416,6 @@ export default {
       0 0 50px #fff,
       -10px 0 80px rgb(255, 0, 0),
       10px 0 80px rgb(195, 0, 0);
-    transform: scale(1.10);
   }
 
   .highlight2 {
@@ -436,7 +429,6 @@ export default {
       0 0 50px #fff,
       -10px 0 80px #f0f,
       10px 0 80px #0ff;
-    transform: scale(1.10);
   }
 
   .highlight3 {
@@ -451,12 +443,21 @@ export default {
       0 0 50px #fff,
       -10px 0 80px rgb(255, 234, 0),
       10px 0 80px rgb(231, 213, 109);
-    transform: scale(1.10);
   }
 
   @media screen and (min-width: 768px) {
     .title {
       font-size: large;
+    }
+
+    .flag:hover {
+      transform: scale(1.025);
+    }
+
+    .highlight1,
+    .highlight2,
+    .highlight3 {
+      transform: scale(1.10);
     }
   }
 </style>

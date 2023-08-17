@@ -162,242 +162,242 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.image-container {
-  position: relative;
-  display: inline-block;
-}
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
 
-.image-container img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+  .image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 
-.abs-overlay {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 77px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .abs-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 77px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.innerThigh-overlay {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .innerThigh-overlay {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.biceps-overlay {
-  position: absolute;
-  top: 30%;
-  left: 62%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .biceps-overlay {
+    position: absolute;
+    top: 30%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.bicepsTwo-overlay {
-  position: absolute;
-  top: 30%;
-  left: 38%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .bicepsTwo-overlay {
+    position: absolute;
+    top: 30%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.calves-overlay {
-  position: absolute;
-  top: 80%;
-  left: 54%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .calves-overlay {
+    position: absolute;
+    top: 80%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.calvesTwo-overlay {
-  position: absolute;
-  top: 80%;
-  left: 48%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .calvesTwo-overlay {
+    position: absolute;
+    top: 80%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.chest-overlay {
-  position: absolute;
-  top: 27%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .chest-overlay {
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.forearms-overlay {
-  position: absolute;
-  top: 40%;
-  left: 65%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .forearms-overlay {
+    position: absolute;
+    top: 40%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.forearmsTwo-overlay {
-  position: absolute;
-  top: 40%;
-  left: 35%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .forearmsTwo-overlay {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.glutes-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}
+  .glutes-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
 
-.hamstrings-overlay {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}
+  .hamstrings-overlay {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
 
-.lats-overlay {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .lats-overlay {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.lowerBack-overlay {
-  position: absolute;
-  top: 44%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}
+  .lowerBack-overlay {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
 
-.middleBack-overlay {
-  position: absolute;
-  top: 37%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}
+  .middleBack-overlay {
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
 
-.neck-overlay {
-  position: absolute;
-  top: 17%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .neck-overlay {
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.quads-overlay {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .quads-overlay {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.traps-overlay {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(135, 206, 250, 0.5);
-  pointer-events: none;
-}
+  .traps-overlay {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(135, 206, 250, 0.5);
+    pointer-events: none;
+  }
 
-.triceps-overlay {
-  position: absolute;
-  top: 30%;
-  left: 62%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}
+  .triceps-overlay {
+    position: absolute;
+    top: 30%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
 
-.tricepsTwo-overlay {
-  position: absolute;
-  top: 30%;
-  left: 38%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(231, 135, 250, 0.5);
-  pointer-events: none;
-}
+  .tricepsTwo-overlay {
+    position: absolute;
+    top: 30%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(231, 135, 250, 0.5);
+    pointer-events: none;
+  }
 </style>

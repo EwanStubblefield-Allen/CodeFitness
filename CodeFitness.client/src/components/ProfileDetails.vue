@@ -66,7 +66,7 @@ export default {
       randomCoverImg,
       randomProfileImg,
       account: computed(() => AppState.account),
-      wantsTour: computed(()=> AppState.wantsTour),
+      wantsTour: computed(() => AppState.wantsTour),
       steps: [
         {
           target: '.v-step-6',  // We're using document.querySelector() under the hood

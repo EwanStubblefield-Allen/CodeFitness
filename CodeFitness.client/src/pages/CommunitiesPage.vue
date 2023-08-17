@@ -59,15 +59,15 @@
 </template>
 
 <script>
-import { communitiesService } from '../services/CommunitiesService.js'
 import { useRoute } from "vue-router"
 import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue"
 import { AppState } from "../AppState.js"
+import { accountService } from "../services/AccountService"
+import { communitiesService } from '../services/CommunitiesService.js'
 import { commentsService } from "../services/CommentsService.js"
 import RoutineComponent from '../components/RoutineComponent.vue'
 import CommentComponent from '../components/CommentComponent.vue'
 import Pop from "../utils/Pop.js"
-import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -125,7 +125,7 @@ export default {
       profiles: computed(() => AppState.communityProfiles.sort((a, b) => b.points - a.points)),
       communityRoutines: computed(() => AppState.communityRoutines),
       comments: computed(() => AppState.comments),
-      wantsTour: computed(()=> AppState.wantsTour),
+      wantsTour: computed(() => AppState.wantsTour),
       steps: [
         {
           target: '.v-step-11',  // We're using document.querySelector() under the hood
@@ -161,12 +161,12 @@ export default {
 
       callbacks: {
         onFinish: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         }),
         onSkip: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         })
       },
 

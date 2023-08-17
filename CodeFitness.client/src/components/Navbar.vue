@@ -47,7 +47,7 @@ export default {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       wantsTour: computed(() => AppState.wantsTour),
-      firstStepTour: computed(()=> AppState.firstStepTour),
+      firstStepTour: computed(() => AppState.firstStepTour),
 
       getHelp() {
         AppState.wantsTour = !AppState.wantsTour

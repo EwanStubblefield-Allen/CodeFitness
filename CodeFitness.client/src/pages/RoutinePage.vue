@@ -99,11 +99,11 @@
 import { computed, onUnmounted, ref, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { useRoute, useRouter } from "vue-router"
+import { accountService } from "../services/AccountService"
 import { routinesService } from "../services/RoutinesService"
 import { activitiesService } from "../services/ActivitiesService.js"
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop"
-import { accountService } from "../services/AccountService"
 
 export default {
   setup() {
@@ -171,12 +171,12 @@ export default {
       ],
       callbacks: {
         onFinish: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         }),
         onSkip: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         })
       },
       isEditing() {

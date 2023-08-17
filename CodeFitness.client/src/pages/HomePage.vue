@@ -15,9 +15,9 @@
 <script>
 import { computed, onMounted, onUnmounted } from "vue"
 import { AppState } from "../AppState.js"
+import { accountService } from "../services/AccountService"
 import ActivitySearch from '../components/ActivitySearch.vue'
 import TeamComponent from '../components/TeamComponent.vue'
-import { accountService } from "../services/AccountService"
 
 export default {
   name: 'my-tour',
@@ -34,7 +34,7 @@ export default {
       account: computed(() => AppState.account),
       routines: computed(() => AppState.routines),
       wantsTour: computed(() => AppState.wantsTour),
-      firstStepTour: computed(()=> AppState.firstStepTour),
+      firstStepTour: computed(() => AppState.firstStepTour),
       steps: [
         // {
         //   target: '#v-step-0',  // We're using document.querySelector() under the hood
@@ -67,13 +67,13 @@ export default {
 
       callbacks: {
         onFinish: (() => {
-          AppState.wantsTour = false,
+          AppState.wantsTour = false
           // AppState.firstStepTour = true,
-          accountService.updateAccount({needsTour: false})
+          accountService.updateAccount({ needsTour: false })
         }),
         onSkip: (() => {
-          AppState.wantsTour = false,
-          accountService.updateAccount({needsTour: false})
+          AppState.wantsTour = false
+          accountService.updateAccount({ needsTour: false })
         })
       },
 

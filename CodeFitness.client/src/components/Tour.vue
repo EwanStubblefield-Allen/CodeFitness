@@ -3,19 +3,17 @@
 </template>
 
 <script>
-import { AppState } from '../AppState'
-import { computed, reactive, onMounted } from 'vue'
 
 export default {
   name: 'my-tour',
 
   props: {
-    steps: {type: Array, required: true},
-    callbacks: {type: Object, required: false}
+    steps: { type: Array, required: true },
+    callbacks: { type: Object, required: false }
   },
 
   setup() {
-    return {  }
+    return {}
   },
 
   mounted: function() {
@@ -24,6 +22,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

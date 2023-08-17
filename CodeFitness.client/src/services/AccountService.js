@@ -31,23 +31,13 @@ class AccountService {
     }
     AppState.account = new Account(res.data.account)
   }
+
   async updateBadPicture() {
     const array = AppState.randomImgForProfile
     const randomPicture = array[Math.floor(Math.random() * array.length)]
     AppState.account.picture = randomPicture
     await api.put('/account', AppState.account)
   }
-  async editAccount(body) {
-    try {
-      const res = await api.put('/account', body)
-      logger.log('flipping bool', res.data)
-      AppState.account = res.data
-      logger.log(AppState.account)
-    } catch (error) {
-      logger.error(error)
-    }
-  }
-
 }
 
 export const accountService = new AccountService()
