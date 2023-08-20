@@ -41,13 +41,13 @@
     </section>
 
     <section class="row pt-2">
-      <h2 class="v-step-13">Community Chat</h2>
+      <h2>Community Chat</h2>
       <div v-for="c in comments" :key="c.id" class="py-2">
         <CommentComponent :commentProp="c" />
       </div>
     </section>
 
-    <section class="row sticky-bottom p-3">
+    <section class="row sticky-bottom p-3 v-step-13">
       <form v-if="account.community == route.params.communityId" @submit.prevent="handleSubmit()" class="bg-neutral-light p-3 rounded elevation-5">
         <div class="form-group">
           <label for="comment">Comment</label>
@@ -142,7 +142,7 @@ export default {
           target: '.v-step-12',
           content: 'Add premade routines from each community!',
           params: {
-            enableScrolling: false,
+            enableScrolling: true,
             placement: 'bottom'
           }
         },
@@ -154,7 +154,7 @@ export default {
           content: 'NOTE: You can only chat with your community members but view the chat of other communities.',
           params: {
             enableScrolling: false,
-            placement: 'bottom'
+            placement: 'top'
           }
         }
       ],
