@@ -23,6 +23,7 @@
           </div>
         </div>
       </div>
+
       <div class="accordion-item">
         <h2 class="accordion-header v-step-12">
           <button class="accordion-button collapsed bg-neutral-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -126,6 +127,7 @@ export default {
       communityRoutines: computed(() => AppState.communityRoutines),
       comments: computed(() => AppState.comments),
       wantsTour: computed(() => AppState.wantsTour),
+
       steps: [
         {
           target: '.v-step-11',  // We're using document.querySelector() under the hood
@@ -140,7 +142,7 @@ export default {
         },
         {
           target: '.v-step-12',
-          content: 'Add premade routines from each community!',
+          content: 'Add pre-made routines from each community!',
           params: {
             enableScrolling: true,
             placement: 'bottom'

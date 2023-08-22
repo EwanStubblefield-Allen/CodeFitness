@@ -24,7 +24,7 @@
         </div>
         <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="authDropdown">
           <div class="list-group">
-            <div @click="editComment()" class="list-group-item dropdown-item list-group-item-action">
+            <div @click="editComment()" class="list-group-item dropdown-item list-group-item-action selectable">
               <i class="mdi mdi-pencil blue"></i>
               Edit
             </div>

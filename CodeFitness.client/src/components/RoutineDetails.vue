@@ -15,7 +15,7 @@
 
   <div class="d-flex justify-content-end align-items-center pt-3">
     <p>Copy Routine</p>
-    <button @click="createCopyRoutine(routine.id)" class="mdi mdi-plus mx-2 btn btn-action"></button>
+    <button @click="createCopyRoutine(routine.id, routine.community)" class="mdi mdi-plus mx-2 btn btn-action"></button>
   </div>
 </template>
 
@@ -33,9 +33,10 @@ export default {
     const router = useRouter()
     return {
       routine: computed(() => AppState.activeRoutine),
-      async createCopyRoutine(routineId) {
+
+      async createCopyRoutine(routineId, community) {
         try {
-          const copyRoutine = await routinesService.createCopyRoutine(routineId)
+          const copyRoutine = await routinesService.createCopyRoutine(routineId, community)
           Modal.getOrCreateInstance('#activeRoutine').hide()
           router.push({ name: 'Routines', params: { routineId: copyRoutine.id } })
         }

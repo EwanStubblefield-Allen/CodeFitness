@@ -41,8 +41,8 @@ class RoutinesService {
     return routine
   }
 
-  async createCopyRoutine(routineId) {
-    const res = await api.post(`api/routines/${routineId}`)
+  async createCopyRoutine(routineId, community = '') {
+    const res = await api.post(`api/routines/${routineId}`, { community })
     const routine = new Routine(res.data)
     AppState.routines.push(routine)
     Pop.success(`${routine.title} was copied!`)

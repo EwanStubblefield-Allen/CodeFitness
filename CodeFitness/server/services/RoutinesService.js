@@ -2,6 +2,7 @@ import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { accountAchievementsService } from "./AccountAchievementsService.js"
 import { activitiesService } from "./ActivitiesService.js"
+import { communityRoutinesService } from "./CommunityRoutinesService.js"
 
 class RoutinesService {
   async getRoutines() {
@@ -30,7 +31,13 @@ class RoutinesService {
   }
 
   async createCopyRoutine(routineData) {
-    const copyRoutineData = (await this.getRoutineById(routineData.id)).toObject()
+    let copyRoutineData
+    if (routineData.community) {
+      copyRoutineData = (await communityRoutinesService.getCommunityRoutinesById(routineData.id)).toObject()
+      copyRoutineData.authorId = routineData.accountId
+    } else {
+      copyRoutineData = (await this.getRoutineById(routineData.id)).toObject()
+    }
     delete copyRoutineData._id
     copyRoutineData.accountId = routineData.accountId
     copyRoutineData.completeCount = 0
