@@ -22,7 +22,7 @@
   </section>
   <section v-else class="row justify-content-center pt-5 bar-height">
     <div class="col-12 text-light">
-      <p class="fs-2 text-center text-break">Welcome to <strong>codeFitness</strong></p>
+      <p class="fs-3 text-center text-break">Welcome to <strong>codeFitness</strong></p>
       <p class="fs-1 mdi mdi-dots-horizontal text-center"></p>
       <p class="fs-6">Participate in the struggle for the highest points between the three different teams.</p>
       <br>

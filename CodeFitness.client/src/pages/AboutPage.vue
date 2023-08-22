@@ -12,6 +12,8 @@
               By providing a platform to find useful
               exercises, collect and organize them, that also allows you to indulge in the joy of leveling up and
               achievements, codeFitness strives to bring the power of the player to strength and fitness!
+              <br><span class="fw-bold">CodeFitness</span> is brought to you by Vue.js, Node.js, Vue Tour, and viewers like you
+              <br><span class="fw-bold">Thank You!</span>
             </p>
           </div>
         </section>
@@ -27,10 +29,9 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-12 col-md-8 fs-5 h-100 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions:
+            <p class="fs-2">Favorite Feature:
               <span style="--n:200">
-                Chuck Norris tells Simon what to do. If Chuck Norris were to travel to an alternate dimension in which
-                there was another Chuck Norris and they both fought, they would both win.
+                My favorite part of this application would be the logic the badges uses in the back end to integrate with the various Http requests the website already makes.
               </span>
             </p>
             <a href="https://www.linkedin.com/in/ewan-stubblefield-allen/" class="mdi mdi-linkedin fs-3" target="_blank">
@@ -47,10 +48,9 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions:
+            <p class="fs-2">Favorite Feature:
               <span style="--n:200">
-                The flu gets a Chuck Norris shot every year. Chuck Norris does not use spell check. If he happens to
-                misspell a word, Oxford will change the spelling.
+                The flu gets a Chuck Norris shot every year. Chuck Norris does not use spell check. If he happens to misspell a word, Oxford will change the spelling.
               </span>
             </p>
             <a href="" class="mdi mdi-linkedin fs-3" target="_blank"> Username</a>
@@ -64,15 +64,14 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions:
+            <p class="fs-2">Favorite Feature:
               <span style="--n:200">
                 Chuck Norris once had a heart attack. His heart lost. Chuck Norris once roundhouse kicked someone so hard
                 that his foot broke the speed of light.
               </span>
             </p>
-            <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank">
-              Jasper Delight</a>
-            <a href="https://github.com/Jasperdelight" class="mdi mdi-github fs-3" target="_blank">Jasperdelight</a>
+            <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank"> Jasper Delight</a>
+            <a href="https://github.com/Jasperdelight" class="mdi mdi-github fs-3" target="_blank"> Jasperdelight</a>
           </h2>
         </section>
 
@@ -82,7 +81,7 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions:
+            <p class="fs-2">Favorite Feature:
               <span style="--n:200">
                 Chuck Norris drinks napalm to fight his heartburn. When Chuck Norris gives you the finger, he’s telling
                 you how many seconds you have left to live.
@@ -99,7 +98,7 @@
             <div class="text-end">Full Stack Developer</div>
           </h1>
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
-            <p class="fs-2">Major contributions:
+            <p class="fs-2">Favorite Feature:
               <span style="--n:200">
                 On New Year’s Eve, Chuck Norris promised that he’d lose 20 pounds. The next morning he shaved his chest
                 and smiled as he realized that he’d lost 30.
@@ -171,7 +170,6 @@ export default {
 
       changeDev(dev) {
         selectedDev.value = dev
-        document.documentElement.scrollTop = 0
       }
     }
   }
