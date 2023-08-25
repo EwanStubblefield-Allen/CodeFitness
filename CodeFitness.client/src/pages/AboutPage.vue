@@ -70,7 +70,7 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
               <span style="--n:200">
-                The logic in the for the achievements and points as well as routines leveling up in the backend is my favorite feature of our Application. I also like how we overcame different obstacles in API's and eventually found a decent way around it given the restraints we had.
+                I like how we overcame different obstacles in API's and eventually found a decent way around it given the restraints we had. Also the logic in the backend for the achievements and points as well as routines leveling up are some of my favorite feature of our Application. Also the confetti muscle man and superset stuff if pretty awesome!
               </span>
             </p>
             <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank">
