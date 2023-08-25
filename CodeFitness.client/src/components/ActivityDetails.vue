@@ -65,7 +65,7 @@ export default {
 <style lang="scss" scoped>
 .activity-image{
   height: 60vh;
-  min-width: 60vh;
+  width: 60vh;
   width: 100%;
   object-fit: contain;
   object-position: center;
