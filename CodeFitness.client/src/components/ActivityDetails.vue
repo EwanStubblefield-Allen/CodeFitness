@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="img-fluid w-100" :src="activity.picture" :alt="activity.name">
+    <img class="img-fluid activity-image" :src="activity.picture" :alt="activity.name">
     <!-- <video v-if="activity.picture" class="img-fluid w-100" controls autoplay :src="activity.picture" type="sample/mp4">
       Your browser does not support the video tag.
     </video> -->
@@ -62,4 +62,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.activity-image{
+  height: 60vh;
+  min-width: 60vh;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  background-repeat: no-repeat;
+}
+</style>
