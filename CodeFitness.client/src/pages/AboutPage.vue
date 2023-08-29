@@ -241,30 +241,30 @@ export default {
   }
 
   .ewan-space {
-    background-image: url(assets/img/ewan-bg.jpg);
+    background-image: url(public/assets/img/ewan-bg.jpg);
     min-height: 50vh;
   }
 
   .faith-space {
-    background-image: url(assets/img/faith-bg.jpg);
+    background-image: url(public/assets/img/faith-bg.jpg);
     background-position: top;
     min-height: 50vh;
   }
 
   .jasper-space {
-    background-image: url(assets/img/jasper-bg.jpg);
+    background-image: url(public/assets/img/jasper-bg.jpg);
     background-position: top;
     min-height: 50vh;
   }
 
   .josh-space {
-    background-image: url(assets/img/josh-bg.jpg);
+    background-image: url(public/assets/img/josh-bg.jpg);
     background-position: top;
     min-height: 50vh;
   }
 
   .kyle-space {
-    background-image: url(assets/img/kyle-bg.jpg);
+    background-image: url(public/assets/img/kyle-bg.jpg);
     background-position: right top;
     min-height: 50vh;
   }
