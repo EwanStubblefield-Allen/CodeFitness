@@ -12,7 +12,7 @@
               By providing a platform to find useful
               exercises, collect and organize them, that also allows you to indulge in the joy of leveling up and
               achievements, codeFitness strives to bring the power of the player to strength and fitness!
-              <br><span class="fw-bold">CodeFitness</span> is brought to you by Vue.js, Node.js, Vue Tour, and users
+              <br><span class="fw-bold">CodeFitness</span> is made possible by Vue.js, Node.js, Vue Tour, and users
               like you
               <br><span class="fw-bold">Thank You!</span>
             </p>
@@ -119,23 +119,23 @@
 
     <section class="row">
       <div class="col-12 d-flex flex-column flex-md-row justify-content-around dev-select">
-        <div style="background-image: url(public/assets/img/about/ewan-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
+        <div style="background-image: url(public/assets/ewan-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(public/assets/img/about/faith-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
+        <div style="background-image: url(public/assets/faith-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
           <p class="fs-1">Faith</p>
           <!-- <img src="../assets/img/faith-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(public/assets/img/about/jasper-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
+        <div style="background-image: url(public/assets/jasper-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
           <p class="fs-1">Jasper</p>
           <!-- <img src="src/assets/img/jasper-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(public/assets/img/about/josh-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
+        <div style="background-image: url(public/assets/josh-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
           <p class="fs-1">Josh</p>
           <!-- <img src="src/assets/img/josh-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(public/assets/img/about/Kyle-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
+        <div style="background-image: url(public/assets/Kyle-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
           <p class="fs-1">Kyle</p>
           <!-- <img src="../assets/img/Kyle-icon.jpg" alt=""> -->
         </div>
@@ -242,30 +242,30 @@ export default {
   }
 
   .ewan-space {
-    background-image: url(public/assets/img/about/ewan-bg.jpg);
+    background-image: url(public/assets/ewan-bg.jpg);
     min-height: 50vh;
   }
 
   .faith-space {
-    background-image: url(public/assets/img/about/faith-bg.jpg);
+    background-image: url(public/assets/faith-bg.jpg);
     background-position: top;
     min-height: 50vh;
   }
 
   .jasper-space {
-    background-image: url(public/assets/img/about/jasper-bg.jpg);
+    background-image: url(public/assets/jasper-bg.jpg);
     background-position: top;
     min-height: 50vh;
   }
 
   .josh-space {
-    background-image: url(public/assets/img/about/josh-bg.jpg);
+    background-image: url(public/assets/josh-bg.jpg);
     background-position: top;
     min-height: 50vh;
   }
 
   .kyle-space {
-    background-image: url(public/assets/img/about/kyle-bg.jpg);
+    background-image: url(public/assets/kyle-bg.jpg);
     background-position: right top;
     min-height: 50vh;
   }
