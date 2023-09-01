@@ -12,7 +12,8 @@
               By providing a platform to find useful
               exercises, collect and organize them, that also allows you to indulge in the joy of leveling up and
               achievements, codeFitness strives to bring the power of the player to strength and fitness!
-              <br><span class="fw-bold">CodeFitness</span> was made possible by Vue.js, Node.js, Vue Tour, and users like you,
+              <br><span class="fw-bold">CodeFitness</span> was made possible by Vue.js, Node.js, Vue Tour, and users like
+              you,
               <br><span class="fw-bold">Thank You!</span>
             </p>
           </div>
@@ -51,8 +52,9 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
               <span style="--n:200">
-                The flu gets a Chuck Norris shot every year. Chuck Norris does not use spell check. If he happens to
-                misspell a word, Oxford will change the spelling.
+                Discovering ways to implement new CSS features, and diving deep into the user relationships with our
+                application was my favorite. As scrum master, Organizing excited developers was challenging but essential
+                to a great product and productive work environment.
               </span>
             </p>
             <a href="https://www.linkedin.com/in/faith-morgan-94686b289" class="mdi mdi-linkedin fs-3" target="_blank">
@@ -69,7 +71,10 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
               <span style="--n:350">
-                I like how we overcame different obstacles in API's and eventually found a decent way around it given the restraints we had. Also the logic in the backend for the achievements and points, as well as routines leveling up are some of my favorite features of our Application. Also the confetti, muscle man, and superset stuff is pretty awesome!
+                I like how we overcame different obstacles in API's and eventually found a decent way around it given the
+                restraints we had. Also the logic in the backend for the achievements and points, as well as routines
+                leveling up are some of my favorite features of our Application. Also the confetti, muscle man, and
+                superset stuff is pretty awesome!
               </span>
             </p>
             <a href="https://linkedin.com/in/jasper-delight-a00771122" class="mdi mdi-linkedin fs-3" target="_blank">
@@ -86,11 +91,13 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
               <span style="--n:200">
-                Chuck Norris drinks napalm to fight his heartburn. When Chuck Norris gives you the finger, he’s telling
-                you how many seconds you have left to live.
+                The flow of one part of the website to another is something I take pride in. Utilizing psychological web
+                design to leverage the accessibility of an increasingly complex website was an engaging task. Sharing my
+                experience with the team and helping keep the user in mind with design was especially gratifying.
               </span>
             </p>
-            <a href="https://www.linkedin.com/in/jwalk99star/" class="mdi mdi-linkedin fs-3" target="_blank"> Joshua Walker</a>
+            <a href="https://www.linkedin.com/in/jwalk99star/" class="mdi mdi-linkedin fs-3" target="_blank"> Joshua
+              Walker</a>
             <a href="https://github.com/jwalk99star" class="mdi mdi-github fs-3" target="_blank">
               jwalk99star</a>
           </h2>
@@ -104,8 +111,10 @@
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
               <span style="--n:200">
-                On New Year’s Eve, Chuck Norris promised that he’d lose 20 pounds. The next morning he shaved his chest
-                and smiled as he realized that he’d lost 30.
+                The gamification of the data we gathered was really rewarding. Finding interesting ways to turn the raw
+                data into elements you have a relationship with beyond just a data dump was a highlight. As product owner,
+                I learned that a clear vision is only as good as your ability to communicate it. Co-operation and
+                collaboration is as important as code, when concepts get challenging.
               </span>
             </p>
             <a href="http://linkedin.com/in/kyle-peppersack-a39025285" class="mdi mdi-linkedin fs-3" target="_blank"> Kyle
@@ -118,23 +127,33 @@
 
     <section class="row">
       <div class="col-12 d-flex flex-column flex-md-row justify-content-around dev-select">
-        <div style="background-image: url(assets/img/ewan-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
+        <div style="background-image: url(assets/img/ewan-icon.jpg);"
+          class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 1 }" @click="changeDev(1)">
           <p class="fs-1">Ewan</p>
           <!-- <img src="src/assets/img/ewan-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(assets/img/faith-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
+        <div style="background-image: url(assets/img/faith-icon.jpg);"
+          class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 2 }" @click="changeDev(2)">
           <p class="fs-1">Faith</p>
           <!-- <img src="../assets/img/faith-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(assets/img/jasper-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
+        <div style="background-image: url(assets/img/jasper-icon.jpg);"
+          class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 3 }" @click="changeDev(3)">
           <p class="fs-1">Jasper</p>
           <!-- <img src="src/assets/img/jasper-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(assets/img/josh-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
+        <div style="background-image: url(assets/img/josh-icon.jpg);"
+          class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 4 }" @click="changeDev(4)">
           <p class="fs-1">Josh</p>
           <!-- <img src="src/assets/img/josh-icon.jpg" alt=""> -->
         </div>
-        <div style="background-image: url(assets/img/Kyle-icon.jpg);" class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable" :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
+        <div style="background-image: url(assets/img/Kyle-icon.jpg);"
+          class="icon-space d-flex flex-column justify-content-end align-items-center flex-grow-1 selectable"
+          :class="{ iconBorder: selectedDev == 5 }" @click="changeDev(5)">
           <p class="fs-1">Kyle</p>
           <!-- <img src="../assets/img/Kyle-icon.jpg" alt=""> -->
         </div>
@@ -181,141 +200,141 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .reserved-space h1 {
-    background-size: cover;
+.reserved-space h1 {
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  text-shadow: 2px 2px black;
+  border-bottom: solid 2px #ffffff;
+  border-left: solid 2px #ffffff;
+  border-top: solid 2px #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .reserved-space span {
+    color: #0000;
+    background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
+      linear-gradient(white 0 0) 0 0;
+    background-size: calc(var(--n)*1ch) 200%;
+    -webkit-background-clip: padding-box,
+      text;
+    background-clip: padding-box,
+      text;
     background-repeat: no-repeat;
-
-    text-shadow: 2px 2px black;
-    border-bottom: solid 2px #ffffff;
-    border-left: solid 2px #ffffff;
-    border-top: solid 2px #ffffff;
+    animation: b .7s infinite steps(1),
+      t calc(var(--n)*.1s) steps(var(--n)) forwards;
   }
 
-  @media screen and (min-width: 768px) {
-    .reserved-space span {
-      color: #0000;
-      background: linear-gradient(-90deg, rgba(255, 0, 0, 0) 5px, #0000 0) 10px 0,
-        linear-gradient(white 0 0) 0 0;
-      background-size: calc(var(--n)*1ch) 200%;
-      -webkit-background-clip: padding-box,
-        text;
-      background-clip: padding-box,
-        text;
-      background-repeat: no-repeat;
-      animation: b .7s infinite steps(1),
-        t calc(var(--n)*.1s) steps(var(--n)) forwards;
-    }
-
-    @keyframes t {
-      from {
-        background-size: 0 200%
-      }
-    }
-
-    @keyframes b {
-      50% {
-        background-position: 0 -100%, 0 0
-      }
-    }
-
-    @keyframes typing {
-      0% {
-        width: 0%
-      }
-
-      100% {
-        width: 100%
-      }
-    }
-
-  }
-
-  @keyframes type {
+  @keyframes t {
     from {
-      width: 0;
+      background-size: 0 200%
     }
   }
 
-  .reserved-space h2 {
-    border: thick double #ffffff;
+  @keyframes b {
+    50% {
+      background-position: 0 -100%, 0 0
+    }
   }
 
-  .ewan-space {
-    background-image: url(../assets/img/ewan-bg.jpg);
-    min-height: 50vh;
+  @keyframes typing {
+    0% {
+      width: 0%
+    }
+
+    100% {
+      width: 100%
+    }
   }
 
-  .faith-space {
-    background-image: url(../assets/img/faith-bg.jpg);
-    background-position: top;
-    min-height: 50vh;
-  }
+}
 
-  .jasper-space {
-    background-image: url(../assets/img/jasper-bg.jpg);
-    background-position: top;
-    min-height: 50vh;
+@keyframes type {
+  from {
+    width: 0;
   }
+}
 
-  .josh-space {
-    background-image: url(../assets/img/josh-bg.jpg);
-    background-position: top;
-    min-height: 50vh;
-  }
+.reserved-space h2 {
+  border: thick double #ffffff;
+}
 
-  .kyle-space {
-    background-image: url(../assets/img/kyle-bg.jpg);
-    background-position: right top;
-    min-height: 50vh;
-  }
+.ewan-space {
+  background-image: url(../assets/img/ewan-bg.jpg);
+  min-height: 50vh;
+}
 
-  .icon-space {
-    height: 30vh;
-    background-position: center;
-    background-size: cover;
-  }
+.faith-space {
+  background-image: url(../assets/img/faith-bg.jpg);
+  background-position: top;
+  min-height: 50vh;
+}
 
-  .icon-space p {
-    color: #ffffff;
-    text-shadow: 2px 2px black;
-  }
+.jasper-space {
+  background-image: url(../assets/img/jasper-bg.jpg);
+  background-position: top;
+  min-height: 50vh;
+}
 
-  .icon-space p:hover {
-    font-size: 100px;
-  }
+.josh-space {
+  background-image: url(../assets/img/josh-bg.jpg);
+  background-position: top;
+  min-height: 50vh;
+}
 
-  .iconBorder {
-    border: 1rem solid #ffffff;
-  }
+.kyle-space {
+  background-image: url(../assets/img/kyle-bg.jpg);
+  background-position: right top;
+  min-height: 50vh;
+}
 
-  .reserved-space {
-    background-image: linear-gradient(#4496b6, #2e728d, #10313e);
-  }
+.icon-space {
+  height: 30vh;
+  background-position: center;
+  background-size: cover;
+}
 
-  .reserved-space>div {
-    height: 55vh;
-  }
+.icon-space p {
+  color: #ffffff;
+  text-shadow: 2px 2px black;
+}
 
-  .reserved-space a {
-    color: white;
-  }
+.icon-space p:hover {
+  font-size: 100px;
+}
 
-  .dev-select {
-    background-color: var(--neutral-light);
-    text-align: center;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-  }
+.iconBorder {
+  border: 1rem solid #ffffff;
+}
 
-  .dev-select img {
-    height: 10vh;
-    width: 10vh;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-  }
+.reserved-space {
+  background-image: linear-gradient(#4496b6, #2e728d, #10313e);
+}
 
-  .dev-select img:hover {
-    scale: 1.05;
-  }
+.reserved-space>div {
+  height: 55vh;
+}
+
+.reserved-space a {
+  color: white;
+}
+
+.dev-select {
+  background-color: var(--neutral-light);
+  text-align: center;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+.dev-select img {
+  height: 10vh;
+  width: 10vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.dev-select img:hover {
+  scale: 1.05;
+}
 </style>
