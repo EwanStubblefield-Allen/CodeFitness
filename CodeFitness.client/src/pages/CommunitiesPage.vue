@@ -61,7 +61,7 @@
 
 <script>
 import { useRoute } from "vue-router"
-import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue"
+import { computed, onUnmounted, ref, watchEffect } from "vue"
 import { AppState } from "../AppState.js"
 import { accountService } from "../services/AccountService"
 import { communitiesService } from '../services/CommunitiesService.js'
@@ -75,15 +75,10 @@ export default {
     const route = useRoute()
     const editable = ref({})
 
-    onMounted(() => {
-      getCommunityProfiles()
-      getCommunityRoutinesByCommunity()
-      getComments()
-    })
-
-    onUnmounted(() => {
-      document.documentElement.scrollTop = 0
-      AppState.comments = []
+    watchEffect(() => {
+      getCommunityProfiles(route.params.communityId)
+      getCommunityRoutinesByCommunity(route.params.communityId)
+      getComments(route.params.communityId)
     })
 
     watchEffect(() => {
@@ -92,27 +87,32 @@ export default {
       }
     })
 
-    async function getCommunityProfiles() {
+    onUnmounted(() => {
+      document.documentElement.scrollTop = 0
+      AppState.comments = []
+    })
+
+    async function getCommunityProfiles(communityId) {
       try {
-        await communitiesService.getCommunityProfiles(route.params.communityId)
+        await communitiesService.getCommunityProfiles(communityId)
       }
       catch (error) {
         Pop.error(error.message, '[GETTING COMMUNITY PROFILES]')
       }
     }
 
-    async function getCommunityRoutinesByCommunity() {
+    async function getCommunityRoutinesByCommunity(communityId) {
       try {
-        await communitiesService.getCommunityRoutinesByCommunity(route.params.communityId)
+        await communitiesService.getCommunityRoutinesByCommunity(communityId)
       }
       catch (error) {
         Pop.error(error.message, '[GETTING COMMUNITY ROUTINES BY COMMUNITY]')
       }
     }
 
-    async function getComments() {
+    async function getComments(communityId) {
       try {
-        await commentsService.getComments(route.params.communityId)
+        await commentsService.getComments(communityId)
       }
       catch (error) {
         Pop.error(error.message)
