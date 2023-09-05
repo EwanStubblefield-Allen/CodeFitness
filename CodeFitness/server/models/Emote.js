@@ -11,7 +11,7 @@ export const EmoteSchema = new Schema({
   },
   emote: {
     type: String,
-    enum: ['src/assets/img/achievement/routineCountT1.png', 'src/assets/img/achievement/routineCountT2.png', 'src/assets/img/achievement/routineCountT3.png', 'src/assets/img/achievement/routineCountT4.png', 'src/assets/img/achievement/levelCountT1.png', 'src/assets/img/achievement/levelCountT2.png', 'src/assets/img/achievement/levelCountT3.png', 'src/assets/img/achievement/levelCountT4.png', 'src/assets/img/achievement/pointCountT1.png', 'src/assets/img/achievement/pointCountT2.png', 'src/assets/img/achievement/pointCountT3.png', 'src/assets/img/achievement/pointCountT4.png', 'src/assets/img/achievement/routineCountT1.png', 'src/assets/img/achievement/routineCountT2.png', 'src/assets/img/achievement/routineCountT3.png', 'src/assets/img/achievement/routineCountT4.png'],
+    enum: ['../assets/img/routineCountT1.png', '../assets/img/routineCountT2.png', '../assets/img/routineCountT3.png', '../assets/img/routineCountT4.png', '../assets/img/levelCountT1.png', '../assets/img/levelCountT2.png', '../assets/img/levelCountT3.png', '../assets/img/levelCountT4.png', '../assets/img/pointCountT1.png', '../assets/img/pointCountT2.png', '../assets/img/pointCountT3.png', '../assets/img/pointCountT4.png', '../assets/img/routineCountT1.png', '../assets/img/routineCountT2.png', '../assets/img/routineCountT3.png', '../assets/img/routineCountT4.png'],
     required: true
   }
 }, {
