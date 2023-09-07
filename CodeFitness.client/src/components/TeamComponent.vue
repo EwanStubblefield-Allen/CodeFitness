@@ -210,9 +210,6 @@ import { AppState } from '../AppState.js'
 import { computed, onMounted, ref, watchEffect } from 'vue'
 import { accountService } from "../services/AccountService.js"
 import { communitiesService } from '../services/CommunitiesService.js'
-import iconCK from '../assets/img/iconCK.png'
-import iconWW from '../assets/img/iconWW.png'
-import iconLL from '../assets/img/iconLL.png'
 import { Modal } from "bootstrap"
 import Pop from "../utils/Pop.js"
 
@@ -230,28 +227,28 @@ export default {
     watchEffect(() => {
       switch (activeCommunity.value) {
         case 'Cardio Kings':
-          bgImage.value = `url(${iconCK})`
+          bgImage.value = 'url(../assets/img/iconCK.png)'
           color1.value = '#e21313'
           color2.value = '#7c1a1a'
           imgPos.value = '80%'
 
           break
         case 'Weight Warriors':
-          bgImage.value = `url(${iconWW})`
+          bgImage.value = 'url(../assets/img/iconWW.png)'
           color1.value = '#1222da'
           color2.value = '#1a227c'
           imgPos.value = '30%'
 
           break
         case 'Legion of Leisure':
-          bgImage.value = `url(${iconLL})`
+          bgImage.value = 'url(../assets/img/iconLL.png)'
           color1.value = '#dac612'
           color2.value = '#776f26'
           imgPos.value = '40%'
           break
 
         default:
-          bgImage.value = `url(${iconLL})`
+          bgImage.value = 'url(../assets/img/iconLL.png)'
           color1.value = '#5e5e5e'
           color2.value = '#0d0d0d'
           break
