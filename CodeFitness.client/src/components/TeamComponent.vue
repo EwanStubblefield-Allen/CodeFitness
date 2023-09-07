@@ -1,21 +1,27 @@
 <template>
   <!-- SECTION Logged in with community -->
   <section v-if="account.community && account.id" class="row justify-content-around bg-neutral-dark">
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }" :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Cardio Kings' } }"
+      :class="{ 'highlight1 order-2': account.community == 'Cardio Kings' }"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </RouterLink>
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }" :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Weight Warriors' } }"
+      :class="{ 'highlight2': account.community == 'Weight Warriors', 'order-3': account.community == 'Legion of Leisure' }"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Weight Warriors">
         <p class="title pt-3 v-step-0 ">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </RouterLink>
-    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }" :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
+    <RouterLink :to="{ name: 'Communities', params: { communityId: 'Legion of Leisure' } }"
+      :class="{ 'highlight3': account.community == 'Legion of Leisure', 'order-3': account.community == 'Cardio Kings' }"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center elevation-5 flag text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Legion of Leisure">
         <p id="v-step-18" class="title pt-3">Legion of Leisure</p>
@@ -28,21 +34,25 @@
   <!-- SECTION Logged in without community -->
   <section v-if="!account.community && account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
-    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Cardio Kings'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
+    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Cardio Kings'"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight1 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title pt-3 v-step-0">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Weight Warriors'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
+    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Weight Warriors'"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight2 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p id="v-step-18" class="title pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5 text-light">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="activeCommunity = 'Legion of Leisure'" class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
+    <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      @click="activeCommunity = 'Legion of Leisure'"
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center selectable elevation-5 flag highlight3 text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="title pt-3">Legion of Leisure</p>
@@ -54,21 +64,24 @@
   <!-- SECTION Not logged in without community -->
   <section v-if="!account.community && !account.id" class="row justify-content-around bg-neutral-dark">
     <h1 class="text-center text-light my-3">Select a Community to Earn Points</h1>
-    <div class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
+    <div
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagCK.png" alt="Cardio Kings">
         <p class="title pt-3">Cardio Kings</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Cardio Kings'] }}</p>
     </div>
-    <div class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
+    <div
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagWW.png" alt="Cardio Kings">
         <p class="title pt-3">Weight Warriors</p>
       </div>
       <p class="pt-3 fw-5">Global Points: {{ communities?.['Weight Warriors'] }}</p>
     </div>
-    <div class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
+    <div
+      class="col-4 col-md-3 d-flex flex-column justify-content-between bg-neutral-light my-4 py-3 px-1 text-center  elevation-5 flag-no-hover text-dark">
       <div>
         <img class="w-75" src="../assets/img/flagLL.png" alt="Cardio Kings">
         <p class="title pt-3">Legion of Leisure</p>
@@ -104,18 +117,18 @@
               <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
-                  modi
-                  veritatis commodi magnam sunt, aperiam aut adipisci obcaecati? Maiores recusandae quas omnis
-                  exercitationem!
+                  "Focus. Speed. Faster than fast, quicker than quick." - Lightning McQueen <br> If you have a burning
+                  desire to kick it into high
+                  gear then join us, The KINGS of cardio. Here we focus on one thing, Getting that heart going and leaving
+                  everyone else in our dust.
                 </p>
               </h5>
               <h6 class="ps-3">
                 Recommended for:
                 <div>
-                  <div><i class="mdi mdi-circle-small"></i>This person</div>
-                  <div><i class="mdi mdi-circle-small"></i>That person</div>
-                  <div><i class="mdi mdi-circle-small"></i>Those people</div>
+                  <div><i class="mdi mdi-circle-small"></i>Runners</div>
+                  <div><i class="mdi mdi-circle-small"></i>Competitors</div>
+                  <div><i class="mdi mdi-circle-small"></i>Royalty</div>
                 </div>
               </h6>
             </div>
@@ -141,18 +154,17 @@
               <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
-                  modi
-                  veritatis commodi magnam sunt, aperiam aut adipisci obcaecati? Maiores recusandae quas omnis
-                  exercitationem!
+                  "Early to bed, early to rise, work like hell, and advertise." - arnold schwarzenegger <br> Do thrive
+                  under pressure? (literally) Are you ready to challenge your self and take your body to its limits? Join
+                  us if you want to gain muscle and wage war on the competition.
                 </p>
               </h5>
               <h6 class="ps-3">
                 Recommended for:
                 <div>
-                  <div><i class="mdi mdi-circle-small"></i>This person</div>
-                  <div><i class="mdi mdi-circle-small"></i>That person</div>
-                  <div><i class="mdi mdi-circle-small"></i>Those people</div>
+                  <div><i class="mdi mdi-circle-small"></i>Gym rats</div>
+                  <div><i class="mdi mdi-circle-small"></i>Heavy thing enthusiasts</div>
+                  <div><i class="mdi mdi-circle-small"></i>Warriors</div>
                 </div>
               </h6>
             </div>
@@ -178,18 +190,18 @@
               <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
-                  modi
-                  veritatis commodi magnam sunt, aperiam aut adipisci obcaecati? Maiores recusandae quas omnis
-                  exercitationem!
+                  Hey... <br>
+                  Are you looking to get out there? Are you trying to be a better you? Do you want to be a part of a
+                  healthier world but don't want all of the aggression and comparison?
+                  Why not join us? We've got a lot of great people that are trying to improve themselves.
                 </p>
               </h5>
               <h6 class="ps-3">
                 Recommended for:
                 <div>
-                  <div><i class="mdi mdi-circle-small"></i>This person</div>
-                  <div><i class="mdi mdi-circle-small"></i>That person</div>
-                  <div><i class="mdi mdi-circle-small"></i>Those people</div>
+                  <div><i class="mdi mdi-circle-small"></i>Anyone</div>
+                  <div><i class="mdi mdi-circle-small"></i>Busy People</div>
+                  <div><i class="mdi mdi-circle-small"></i>Beginners</div>
                 </div>
               </h6>
             </div>
@@ -334,130 +346,130 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title {
+  color: white;
+  font-size: x-small;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 3px 3px 1px black, -3px -3px 1px black, 3px -3px 1px black, -3px 3px 1px black, -3px 0px 1px black, 3px 0px 1px black, 0px -3px 1px black, 0px 3px 1px black;
+}
+
+.bg-modal {
+  border: 5px solid white;
+  height: 30vh;
+  background-image: v-bind(bgImage), radial-gradient(v-bind(color1), v-bind(color2));
+  background-position: 50% v-bind(imgPos);
+  background-size: cover;
+  image-rendering: pixelated;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black;
+  color: #ffffff;
+}
+
+// .bg-modal div {
+//   backdrop-filter: blur(10px) grayscale(80%);
+// }
+
+.bg-text-area {
+  color: var(--darkest);
+  /* From https://css.glass */
+  background: var(--background);
+  border-radius: 6px;
+}
+
+.button-modal {
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 6px;
+  background-color: v-bind(color1);
+  background-image: linear-gradient(v-bind(color1), v-bind(color2));
+}
+
+button {
+  cursor: pointer;
+}
+
+.flag {
+  image-rendering: pixelated;
+  color: var(--light);
+  border: solid 4px var(--light);
+  text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
+  transition: 1s;
+}
+
+.flag img {
+  filter: drop-shadow(0 10px 10px black);
+
+}
+
+.flag-no-hover {
+  image-rendering: pixelated;
+  color: var(--light);
+  border: solid 4px var(--light);
+  text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
+}
+
+.flag-no-hover img {
+  filter: drop-shadow(0 10px 10px black);
+}
+
+.highlight1 {
+  background: rgb(161, 132, 132);
+  border: solid 4px whitesmoke;
+  box-shadow: inset 0 0 50px #fff,
+    inset 20px 0 80px rgb(255, 0, 0),
+    inset -20px 0 300px rgb(195, 0, 0),
+    inset 20px 0 300px rgb(255, 0, 0),
+    inset -20px 0 300px rgb(195, 0, 0),
+    0 0 50px #fff,
+    -10px 0 80px rgb(255, 0, 0),
+    10px 0 80px rgb(195, 0, 0);
+}
+
+.highlight2 {
+  border: solid 4px whitesmoke;
+  box-shadow:
+    inset 0 0 50px #fff,
+    inset 20px 0 80px #f0f,
+    inset -20px 0 300px #0ff,
+    inset 20px 0 300px #f0f,
+    inset -20px 0 300px #0ff,
+    0 0 50px #fff,
+    -10px 0 80px #f0f,
+    10px 0 80px #0ff;
+}
+
+.highlight3 {
+  background: rgb(164, 159, 128);
+  border: solid 4px whitesmoke;
+  box-shadow:
+    inset 0 0 50px #fff,
+    inset 20px 0 80px rgb(255, 234, 0),
+    inset -20px 0 300px rgb(231, 213, 109),
+    inset 20px 0 300px rgb(255, 234, 0),
+    inset -20px 0 300px rgb(231, 213, 109),
+    0 0 50px #fff,
+    -10px 0 80px rgb(255, 234, 0),
+    10px 0 80px rgb(231, 213, 109);
+}
+
+@media screen and (min-width: 768px) {
   .title {
-    color: white;
-    font-size: x-small;
-    font-family: 'Press Start 2P', cursive;
-    text-shadow: 3px 3px 1px black, -3px -3px 1px black, 3px -3px 1px black, -3px 3px 1px black, -3px 0px 1px black, 3px 0px 1px black, 0px -3px 1px black, 0px 3px 1px black;
+    font-size: large;
   }
 
-  .bg-modal {
-    border: 5px solid white;
-    height: 30vh;
-    background-image: v-bind(bgImage), radial-gradient(v-bind(color1), v-bind(color2));
-    background-position: 50% v-bind(imgPos);
-    background-size: cover;
-    image-rendering: pixelated;
-    font-family: 'Press Start 2P', cursive;
-    text-shadow: 3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black;
-    color: #ffffff;
+  .flag:hover {
+    transform: scale(1.025);
   }
 
-  // .bg-modal div {
-  //   backdrop-filter: blur(10px) grayscale(80%);
-  // }
-
-  .bg-text-area {
-    color: var(--darkest);
-    /* From https://css.glass */
-    background: var(--background);
-    border-radius: 6px;
-  }
-
-  .button-modal {
-    border: 0;
-    line-height: 2.5;
-    padding: 0 20px;
-    font-size: 1rem;
-    text-align: center;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 6px;
-    background-color: v-bind(color1);
-    background-image: linear-gradient(v-bind(color1), v-bind(color2));
-  }
-
-  button {
-    cursor: pointer;
-  }
-
-  .flag {
-    image-rendering: pixelated;
-    color: var(--light);
-    border: solid 4px var(--light);
-    text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
-    transition: 1s;
-  }
-
-  .flag img {
-    filter: drop-shadow(0 10px 10px black);
-
-  }
-
-  .flag-no-hover {
-    image-rendering: pixelated;
-    color: var(--light);
-    border: solid 4px var(--light);
-    text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.400);
-  }
-
-  .flag-no-hover img {
-    filter: drop-shadow(0 10px 10px black);
-  }
-
-  .highlight1 {
-    background: rgb(161, 132, 132);
-    border: solid 4px whitesmoke;
-    box-shadow: inset 0 0 50px #fff,
-      inset 20px 0 80px rgb(255, 0, 0),
-      inset -20px 0 300px rgb(195, 0, 0),
-      inset 20px 0 300px rgb(255, 0, 0),
-      inset -20px 0 300px rgb(195, 0, 0),
-      0 0 50px #fff,
-      -10px 0 80px rgb(255, 0, 0),
-      10px 0 80px rgb(195, 0, 0);
-  }
-
-  .highlight2 {
-    border: solid 4px whitesmoke;
-    box-shadow:
-      inset 0 0 50px #fff,
-      inset 20px 0 80px #f0f,
-      inset -20px 0 300px #0ff,
-      inset 20px 0 300px #f0f,
-      inset -20px 0 300px #0ff,
-      0 0 50px #fff,
-      -10px 0 80px #f0f,
-      10px 0 80px #0ff;
-  }
-
+  .highlight1,
+  .highlight2,
   .highlight3 {
-    background: rgb(164, 159, 128);
-    border: solid 4px whitesmoke;
-    box-shadow:
-      inset 0 0 50px #fff,
-      inset 20px 0 80px rgb(255, 234, 0),
-      inset -20px 0 300px rgb(231, 213, 109),
-      inset 20px 0 300px rgb(255, 234, 0),
-      inset -20px 0 300px rgb(231, 213, 109),
-      0 0 50px #fff,
-      -10px 0 80px rgb(255, 234, 0),
-      10px 0 80px rgb(231, 213, 109);
+    transform: scale(1.10);
   }
-
-  @media screen and (min-width: 768px) {
-    .title {
-      font-size: large;
-    }
-
-    .flag:hover {
-      transform: scale(1.025);
-    }
-
-    .highlight1,
-    .highlight2,
-    .highlight3 {
-      transform: scale(1.10);
-    }
-  }
+}
 </style>
