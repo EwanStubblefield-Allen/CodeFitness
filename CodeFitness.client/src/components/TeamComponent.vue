@@ -239,28 +239,28 @@ export default {
     watchEffect(() => {
       switch (activeCommunity.value) {
         case 'Cardio Kings':
-          bgImage.value = 'url(src/assets/img/iconCK.png)'
+          bgImage.value = 'url(../assets/img/iconCK.png)'
           color1.value = '#e21313'
           color2.value = '#7c1a1a'
           imgPos.value = '80%'
 
           break
         case 'Weight Warriors':
-          bgImage.value = 'url(src/assets/img/iconWW.png)'
+          bgImage.value = 'url(../assets/img/iconWW.png)'
           color1.value = '#1222da'
           color2.value = '#1a227c'
           imgPos.value = '30%'
 
           break
         case 'Legion of Leisure':
-          bgImage.value = 'url(src/assets/img/iconLL.png)'
+          bgImage.value = 'url(../assets/img/iconLL.png)'
           color1.value = '#dac612'
           color2.value = '#776f26'
           imgPos.value = '40%'
           break
 
         default:
-          bgImage.value = 'url(src/assets/img/iconLL.png)'
+          bgImage.value = 'url(../assets/img/iconLL.png)'
           color1.value = '#5e5e5e'
           color2.value = '#0d0d0d'
           break

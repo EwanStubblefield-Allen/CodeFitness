@@ -38,10 +38,10 @@
     </div>
 
     <div class="d-flex justify-content-between align-items-end px-3 pb-2 fs-5">
-      <p class="text-break pe-3">{{ commentProp.body }}</p>
+      <p class="text-break pe-3 selectable" data-bs-toggle="collapse" :data-bs-target="`#${commentProp.id}Emotes`" >{{ commentProp.body }}</p>
 
       <div class="d-flex">
-        <p v-if="commentProp.emotes.length" class="pe-1 selectable" data-bs-toggle="collapse" :data-bs-target="`#${commentProp.id}Emotes`">{{ commentProp.emotes.length }}</p>
+        <p v-if="commentProp.emotes.length" class="pe-1" >{{ commentProp.emotes.length }}</p>
         <p v-else class="pe-1">0</p>
 
         <i v-if="emoted" @click="createEmote()" class="mdi mdi-comment selectable"></i>

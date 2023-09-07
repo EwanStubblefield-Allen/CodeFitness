@@ -34,9 +34,6 @@
 <script>
 import { AppState } from '../AppState.js'
 import { computed, ref, watchEffect } from 'vue'
-import iconCK from '../assets/img/iconCK.png'
-import iconWW from '../assets/img/iconWW.png'
-import iconLL from '../assets/img/iconLL.png'
 
 export default {
   setup() {
@@ -48,17 +45,17 @@ export default {
       if (AppState.account.id) {
         switch (AppState.account.community) {
           case 'Cardio Kings':
-            comIcon.value = iconCK
+            comIcon.value = '../assets/img/iconCK.png'
             color1.value = '#e21313'
             color2.value = '#7c1a1a'
             break
           case 'Weight Warriors':
-            comIcon.value = iconWW
+            comIcon.value = '../assets/img/iconWW.png'
             color1.value = '#1222da'
             color2.value = '#1a227c'
             break
           case 'Legion of Leisure':
-            comIcon.value = iconLL
+            comIcon.value = '../assets/img/iconLL.png'
             color1.value = '#dac612'
             color2.value = '#776f26'
             break
