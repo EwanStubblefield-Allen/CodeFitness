@@ -51,7 +51,7 @@
           </h1>
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
-              <span style="--n:200">
+              <span style="--n:300">
                 Discovering ways to implement new CSS features, and diving deep into the user relationships with our
                 application was my favorite. As scrum master, Organizing excited developers was challenging but essential
                 to a great product and productive work environment.
@@ -90,7 +90,7 @@
           </h1>
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
-              <span style="--n:200">
+              <span style="--n:300">
                 The flow of one part of the website to another is something I take pride in. Utilizing psychological web
                 design to leverage the accessibility of an increasingly complex website was an engaging task. Sharing my
                 experience with the team and helping keep the user in mind with design was especially gratifying.
@@ -110,7 +110,7 @@
           </h1>
           <h2 class="col-12 col-md-8 fs-5 d-flex flex-column justify-content-around mb-0">
             <p class="fs-2">Favorite Feature:
-              <span style="--n:200">
+              <span style="--n:300">
                 The gamification of the data we gathered was really rewarding. Finding interesting ways to turn the raw
                 data into elements you have a relationship with beyond just a data dump was a highlight. As product owner,
                 I learned that a clear vision is only as good as your ability to communicate it. Co-operation and
