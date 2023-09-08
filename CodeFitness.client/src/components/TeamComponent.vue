@@ -84,7 +84,7 @@
         <div class="modal-body">
 
           <div v-if="activeCommunity == 'Cardio Kings'" class="bg-text-area">
-            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal">
+            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal" :style="{ 'background-image': `url('${bgImage}'), radial-gradient(${color1}, ${color2})` }">
               <div class="text-end">
                 <p type="button" class="mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
               </div>
@@ -104,24 +104,24 @@
               <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
-                  modi
-                  veritatis commodi magnam sunt, aperiam aut adipisci obcaecati? Maiores recusandae quas omnis
-                  exercitationem!
+                  "Focus. Speed. Faster than fast, quicker than quick." - Lightning McQueen <br> If you have a burning
+                  desire to kick it into high
+                  gear then join us, The KINGS of cardio. Here we focus on one thing, Getting that heart going and leaving
+                  everyone else in our dust.
                 </p>
               </h5>
               <h6 class="ps-3">
                 Recommended for:
                 <div>
-                  <div><i class="mdi mdi-circle-small"></i>This person</div>
-                  <div><i class="mdi mdi-circle-small"></i>That person</div>
-                  <div><i class="mdi mdi-circle-small"></i>Those people</div>
+                  <div><i class="mdi mdi-circle-small"></i>Runners</div>
+                  <div><i class="mdi mdi-circle-small"></i>Competitors</div>
+                  <div><i class="mdi mdi-circle-small"></i>Royalty</div>
                 </div>
               </h6>
             </div>
           </div>
           <div v-if="activeCommunity == 'Weight Warriors'" class="bg-text-area">
-            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal">
+            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal" :style="{ 'background-image': `url('${bgImage}'), radial-gradient(${color1}, ${color2})` }">
               <div class="text-end">
                 <p type="button" class="mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
               </div>
@@ -141,24 +141,23 @@
               <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
-                  modi
-                  veritatis commodi magnam sunt, aperiam aut adipisci obcaecati? Maiores recusandae quas omnis
-                  exercitationem!
+                  "Early to bed, early to rise, work like hell, and advertise." - arnold schwarzenegger <br> Do thrive
+                  under pressure? (literally) Are you ready to challenge your self and take your body to its limits? Join
+                  us if you want to gain muscle and wage war on the competition.
                 </p>
               </h5>
               <h6 class="ps-3">
                 Recommended for:
                 <div>
-                  <div><i class="mdi mdi-circle-small"></i>This person</div>
-                  <div><i class="mdi mdi-circle-small"></i>That person</div>
-                  <div><i class="mdi mdi-circle-small"></i>Those people</div>
+                  <div><i class="mdi mdi-circle-small"></i>Gym rats</div>
+                  <div><i class="mdi mdi-circle-small"></i>Heavy thing enthusiasts</div>
+                  <div><i class="mdi mdi-circle-small"></i>Warriors</div>
                 </div>
               </h6>
             </div>
           </div>
           <div v-if="activeCommunity == 'Legion of Leisure'" class="bg-text-area">
-            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal">
+            <h1 class="d-flex flex-column justify-content-between text-center p-3 bg-modal" :style="{ 'background-image': `url('${bgImage}'), radial-gradient(${color1}, ${color2})` }">
               <div class="text-end">
                 <p type="button" class="mdi mdi-close text-light fs-3" data-bs-dismiss="modal" aria-label="Close"></p>
               </div>
@@ -178,18 +177,18 @@
               <h5 class="ps-3">
                 Team Description:
                 <p class="text-start px-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quidem dicta id totam ea. Quae placeat
-                  modi
-                  veritatis commodi magnam sunt, aperiam aut adipisci obcaecati? Maiores recusandae quas omnis
-                  exercitationem!
+                  Hey... <br>
+                  Are you looking to get out there? Are you trying to be a better you? Do you want to be a part of a
+                  healthier world but don't want all of the aggression and comparison?
+                  Why not join us? We've got a lot of great people that are trying to improve themselves.
                 </p>
               </h5>
               <h6 class="ps-3">
                 Recommended for:
                 <div>
-                  <div><i class="mdi mdi-circle-small"></i>This person</div>
-                  <div><i class="mdi mdi-circle-small"></i>That person</div>
-                  <div><i class="mdi mdi-circle-small"></i>Those people</div>
+                  <div><i class="mdi mdi-circle-small"></i>Anyone</div>
+                  <div><i class="mdi mdi-circle-small"></i>Busy People</div>
+                  <div><i class="mdi mdi-circle-small"></i>Beginners</div>
                 </div>
               </h6>
             </div>
@@ -227,28 +226,28 @@ export default {
     watchEffect(() => {
       switch (activeCommunity.value) {
         case 'Cardio Kings':
-          bgImage.value = 'url(src/assets/img/iconCK.png)'
+          bgImage.value = '../assets/img/iconCK.png'
           color1.value = '#e21313'
           color2.value = '#7c1a1a'
           imgPos.value = '80%'
 
           break
         case 'Weight Warriors':
-          bgImage.value = 'url(src/assets/img/iconWW.png)'
+          bgImage.value = '../assets/img/iconWW.png'
           color1.value = '#1222da'
           color2.value = '#1a227c'
           imgPos.value = '30%'
 
           break
         case 'Legion of Leisure':
-          bgImage.value = 'url(src/assets/img/iconLL.png)'
+          bgImage.value = '../assets/img/iconLL.png'
           color1.value = '#dac612'
           color2.value = '#776f26'
           imgPos.value = '40%'
           break
 
         default:
-          bgImage.value = 'url(src/assets/img/iconLL.png)'
+          bgImage.value = '../assets/img/iconLL.png'
           color1.value = '#5e5e5e'
           color2.value = '#0d0d0d'
           break
@@ -344,7 +343,7 @@ export default {
   .bg-modal {
     border: 5px solid white;
     height: 30vh;
-    background-image: v-bind(bgImage), radial-gradient(v-bind(color1), v-bind(color2));
+    // background-image: v-bind(bgImage), radial-gradient(v-bind(color1), v-bind(color2));
     background-position: 50% v-bind(imgPos);
     background-size: cover;
     image-rendering: pixelated;
