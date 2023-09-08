@@ -10,7 +10,7 @@
   </section>
 
   <section class="row justify-content-between">
-    <div class="offset-md-2 col-10 col-md-8 order-2 order-md-1 d-flex justify-content-center align-items-center pt-3">
+    <div class="offset-md-2 col-10 col-md-8 order-2 order-md-1 d-flex justify-content-md-center align-items-center pt-3">
       <div class="fs-1 fs-bold text-center text-break text-uppercase">{{ profileProp.name }}</div>
       <img v-if="profileProp.community == 'Cardio Kings'" class="text-stroke px-3" src="../assets/img/flagCK.png" alt="Cardio Kings">
       <img v-else-if="profileProp.community == 'Weight Warriors'" class="text-stroke px-3" src="../assets/img/flagWW.png" alt="Weight Warriors">
